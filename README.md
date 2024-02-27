@@ -4,6 +4,6 @@
 
 ## Database Schema Design
 
-![slack-database-schema]
+![miniamazon-database-schema]
 
-[slack-database-schema]: https://miniamazon.s3.us-west-2.amazonaws.com/public/amazon-database-schema.png
+[miniamazon-database-schema]: https://miniamazon.s3.us-west-2.amazonaws.com/public/amazon-database-schema.png
