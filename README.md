@@ -140,6 +140,21 @@ information.
       }
     }
     ```
+
+* Error response: Inccorect Password
+  * Status code: 401
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+      {
+        "password": [
+          "Password was incorrect."
+        ]
+      }
+    ```
+
 * Error response: Bad request
   * Status Code: 400
   * Headers:
@@ -149,15 +164,10 @@ information.
     ```json
     {
       "email": [
-          "Email provided not found."
-      ]
-    }
-
-    or
-
-    {
+        "This field is required" || "Email provided not found."
+      ],
       "password": [
-        "Password was incorrect."
+        "This field is required" || "Password was incorrect."
       ]
     }
     ```
@@ -170,8 +180,6 @@ Logs out the current user, ending their session.
 * Request
   * Method: GET
   * URL: /api/auth/logout
-  * Headers:
-    * Content-Type: application/json
   * Body: None
 
 * Successful Response
@@ -238,10 +246,10 @@ Creates a new user, logs them in as the current user, and returns the current us
     ```json
     {
       "email": [
-          "Email address is already in use."
+        "Email address is already in use."
       ],
       "username": [
-          "Username is already in use."
+        "Username is already in use."
       ]
     }
     ```
@@ -255,19 +263,19 @@ Creates a new user, logs them in as the current user, and returns the current us
     ```json
     {
       "email": [
-          "Email is invalid."
+        "This field is required" || "Email is invalid."
       ],
       "first_name": [
-          "This field is required."
+        "This field is required."
       ],
       "last_name": [
-          "This field is required."
+        "This field is required."
       ],
       "password": [
-          "Password must be at least 6 characters."
+        "This field is required" || "Password must be at least 6 characters."
       ],
       "username": [
-          "Username must be at least 4 characters."
+        "This field is required" || "Username must be at least 4 characters."
       ],
       "profile_image_url": [
         "Photo must be a valid image URL!"
@@ -283,8 +291,6 @@ Returns all users
 * Request
   * Method: GET
   * URL: /api/users
-  * Headers:
-    * Content-Type: application/json
   * Body: None
 
 * Successful Response
@@ -316,8 +322,6 @@ Returns a specific user by id
 * Request
   * Method: GET
   * URL: /api/user/:id
-  * Headers:
-    * Content-Type: application/json
   * Body: None
 
 * Successful Response
@@ -342,8 +346,205 @@ Returns a specific user by id
   * Headers:
     * Content-Type: application/json
   * Body:
-   ```json
+
+    ```json
+      {
+        "message": "User couldn't be found"
+      }
+    ```
+
+### Update User
+
+Update user's information
+
+* Require Authentication: True
+* Request
+  * Method: PUT
+  * URL: /api/auth/update
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
     {
-      "message": "User couldn't be found"
+      "first_name": "John 2",
+      "last_name": "Smith 2",
+      "email": "john1.smith@gmail.com",
+      "username": "JohnSmith",
+      "password": "secret_password",
+      "profile_image_url": "https://meetup2024.s3.us-west-2.amazonaws.com/public/avatar2.png" || null
     }
+    ```
+
+* Successful Response
+  * Status Code: 200
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "user": {
+        "id": 1,
+        "first_name": "John 2",
+        "last_name": "Smith 2",
+        "email": "john1.smith@gmail.com",
+        "username": "JohnSmith,",
+        "profile_image_url": "https://meetup2024.s3.us-west-2.amazonaws.com/public/avatar2.png" || null,
+      }
+    }
+    ```
+
+* Error response: Body validation errors
+  * Status Code: 400
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "email": [
+        "This field is required." || "User could not be found"
+      ],
+      "username": [
+        "This field is required." || "User could not be found"
+      ],
+      "first_name": [
+        "This field is required."
+      ],
+      "last_name": [
+        "This field is required."
+      ],
+      "password": [
+        "This field is required."
+      ]
+    }
+    ```
+
+* Error response: Inccorect Password
+  * Status code: 401
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+      {
+        "password": [
+          "Password was incorrect."
+        ]
+      }
+    ```
+
+* Error response: Body validation errors
+  * Status Code: 400
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "email": [
+        "This field is required" || "Email is invalid."
+      ],
+      "first_name": [
+        "This field is required."
+      ],
+      "last_name": [
+        "This field is required."
+      ],
+      "password": [
+        "This field is required" || "Password must be at least 6 characters."
+      ],
+      "username": [
+        "This field is required" || "Username must be at least 4 characters."
+      ],
+      "profile_image_url": [
+        "Photo must be a valid image URL!"
+      ]
+    }
+    ```
+
+
+### Update User Password
+
+Update user's password. User is force to login again when password is updated successfully.
+
+* Require Authentication: True
+* Request
+  * Method: PUT
+  * URL: /api/auth/password
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+      {
+        "password": "haolam@user.io",
+        "new_password": "new_password"
+      }
+    ```
+
+* Successful Response
+  * Status Code: 200
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+      {
+        "message": "Successfully updated your password. Please log in again."
+      }
+    ```
+
+* Error response: Inccorect Password
+  * Status code: 401
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+      {
+        "password": [
+          "Password was incorrect."
+        ]
+      }
+    ```
+
+* Error response: Body validation errors
+  * Status Code: 400
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "password": [
+        "This field is required" || "Password must be at least 6 characters."
+      ],
+      "new_password": [
+        "This field is required" || "Password must be at least 6 characters."
+      ],
+    }
+    ```
+
+### Delete User
+
+Delete current user
+
+* Require Authentication: True
+* Request
+  * Method: PUT
+  * URL: /api/auth/password
+  * Body: None
+
+* Successful Response
+  * Status Code: 200
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+      {
+        "message": "Successfully updated your password. Please log in again."
+      }
     ```

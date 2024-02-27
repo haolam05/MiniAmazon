@@ -5,44 +5,44 @@ from flask_login import current_user, login_user, logout_user, login_required
 from werkzeug.security import check_password_hash
 from .aws_helpers import upload_file_to_s3, get_unique_filename
 
-auth_routes = Blueprint('auth', __name__)
+auth_routes = Blueprint("auth", __name__)
 
 
-@auth_routes.route('/')
+@auth_routes.route("/")
 def authenticate():
-    """Authenticates a customer."""
+    """Get Current User. Returns null if user is not signed in, a dictionary of user info if signed in."""
     if current_user.is_authenticated:
-        return current_user.to_dict()
-    return {'message': 'Unauthorized'}, 401
+        return {"user": current_user.to_dict()}, 200
+    return {"user": None}, 200
 
 
-@auth_routes.route('/login', methods=['POST'])
+@auth_routes.route("/login", methods=["POST"])
 def login():
     """Logs a customer in"""
     form = LoginForm()
-    form['csrf_token'].data = request.cookies['csrf_token']
+    form["csrf_token"].data = request.cookies["csrf_token"]
 
     if form.validate_on_submit():
-        customer = Customer.query.filter(Customer.email == form.data['email']).first()
+        customer = Customer.query.filter(Customer.email == form.data["email"]).first()
         login_user(customer)
-        return customer.to_dict()
+        return {"user": customer.to_dict()}, 200
 
     return form.errors, 401
 
 
-@auth_routes.route('/logout')
+@auth_routes.route("/logout")
 @login_required
 def logout():
     """Logs a customer out"""
     logout_user()
-    return {'message': 'Customer logged out'}
+    return {"message": "Customer logged out"}, 200
 
 
-@auth_routes.route('/signup', methods=['POST'])
+@auth_routes.route("/signup", methods=["POST"])
 def sign_up():
     """Signup"""
     form = SignUpForm()
-    form['csrf_token'].data = request.cookies['csrf_token']
+    form["csrf_token"].data = request.cookies["csrf_token"]
 
     if form.validate_on_submit():
         image = form.data["profile_image_url"]
@@ -66,26 +66,26 @@ def sign_up():
         db.session.add(customer)
         db.session.commit()
         login_user(customer)
-        return customer.to_dict()
+        return customer.to_dict(), 200
 
     return form.errors, 400
 
 
-@auth_routes.route('/update', methods=["PUT"])
+@auth_routes.route("/update", methods=["PUT"])
 @login_required
 def update_user():
     """Update current user information. Returns the updated user."""
     form = UpdateUserForm()
-    form['csrf_token'].data = request.cookies['csrf_token']
+    form["csrf_token"].data = request.cookies["csrf_token"]
 
     if form.validate_on_submit():
-        user = Customer.query.filter(Customer.email == form.data['email']).first()
+        user = Customer.query.filter(Customer.email == form.data["email"]).first()
 
         if not user:
             return { "message": "User couldn't be found" }, 404
 
         if not check_password_hash(user.password, form.data["password"]):
-            return { "password": "Password is incorrect" }, 400
+            return { "password": "Password was incorrect" }, 401
 
         image = form.data["profile_image_url"]
 
@@ -100,21 +100,21 @@ def update_user():
         user.last_name = form.data["last_name"]
 
         db.session.commit()
-        return user.to_dict()
+        return user.to_dict(), 200
 
     return form.errors, 400
 
 
-@auth_routes.route('/password', methods=["PUT"])
+@auth_routes.route("/password", methods=["PUT"])
 @login_required
 def update_user_password():
-    """Update current user's password. Required to log in again after success update."""
+    """Update current user"s password. Required to log in again after success update."""
     form = UpdatePasswordForm()
-    form['csrf_token'].data = request.cookies['csrf_token']
+    form["csrf_token"].data = request.cookies["csrf_token"]
 
     if form.validate_on_submit():
         if not check_password_hash(current_user.password, form.data["password"]):
-            return { "password": "Password is incorrect" }, 400
+            return { "password": "Password was incorrect" }, 401
         current_user.password = form.data["new_password"]
 
         db.session.commit()
@@ -125,13 +125,7 @@ def update_user_password():
     return form.errors, 400
 
 
-@auth_routes.route('/unauthorized')
-def unauthorized():
-    """User is not authorized. Please log in."""
-    return { 'message': 'Unauthorized' }, 401
-
-
-@auth_routes.route('/delete', methods=["DELETE"])
+@auth_routes.route("/delete", methods=["DELETE"])
 @login_required
 def delete_user():
     """Delete current user."""
@@ -141,7 +135,13 @@ def delete_user():
     return { "message": "Successfully deleted account" }, 200
 
 
-@auth_routes.route('/forbidden')
+@auth_routes.route("/unauthorized")
+def unauthorized():
+    """User is not authorized. Please log in."""
+    return { "message": "Unauthorized" }, 401
+
+
+@auth_routes.route("/forbidden")
 def forbidden():
     """User is forbbiden to perform this action."""
-    return { 'message': 'Forbidden' }, 403
+    return { "message": "Forbidden" }, 403

@@ -8,7 +8,7 @@ from app.models import Customer
 from ..api.aws_helpers import ALLOWED_EXTENSIONS
 
 
-def customer_exists(form, field):
+def user_exists(form, field):
     email = field.data
     customer = Customer.query.filter(Customer.email == email).first()
     if customer:
@@ -30,12 +30,12 @@ def validate_email(form, field):
 
 def username_check_len(form, field):
     if len(field.data) < 4:
-         raise ValidationError('Username must be at least 4 characters.')
+        raise ValidationError('Username must be at least 4 characters.')
 
 
 def password_check_len(form, field):
     if len(field.data) < 6:
-         raise ValidationError('Password must be at least 6 characters.')
+        raise ValidationError('Password must be at least 6 characters.')
 
 
 def validate_photo_url(form, field):
@@ -53,6 +53,6 @@ class SignUpForm(FlaskForm):
     first_name = StringField("First name", validators=[DataRequired()])
     last_name = StringField("Last name", validators=[DataRequired()])
     username = StringField('Username', validators=[DataRequired(), username_check_len, username_exists])
-    email = StringField('Email', validators=[DataRequired(), validate_email, customer_exists ])
+    email = StringField('Email', validators=[DataRequired(), validate_email, user_exists])
     password = StringField('Password', validators=[DataRequired(), password_check_len])
     profile_image_url = FileField("Profile Image Url", validators=[FileAllowed(list(ALLOWED_EXTENSIONS))])
