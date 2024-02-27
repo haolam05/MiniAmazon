@@ -85,48 +85,8 @@ Returns the information about the current user that is logged in.
         "last_name": "Smith",
         "email": "john1.smith@gmail.com",
         "username": "JohnSmith,",
-        "profile_image_url": null,
-        "is_deleted": false
+        "profile_image_url": null
       }
-    }
-    ```
-
-* Successful Response when there is no logged in user
-  * Status Code: 200
-  * Headers:
-    * Content-Type: application/json
-  * Body:
-
-    ```json
-    {
-      "user": null
-    }
-    ```
-### Get a User by ID
-
-Returns information about a user.
-
-* Require Authentication: True
-* Request
-  * Method: GET
-  * URL: /api/auth/:id
-  * Body: none
-
-* Successful Response when there is a logged in user
-  * Status Code: 200
-  * Headers:
-    * Content-Type: application/json
-  * Body:
-
-    ```json
-    {
-      "email": "zoro@user.io",
-      "first_name": "Zoro",
-      "id": 5,
-      "is_deleted": false,
-      "last_name": "Roronoa",
-      "profile_image_url": "https://slack2024.s3.us-west-2.amazonaws.com/public/avatar5.png",
-      "username": "zoro"
     }
     ```
 
@@ -176,8 +136,7 @@ information.
         "last_name": "Smith",
         "email": "john1.smith@gmail.com",
         "username": "JohnSmith,",
-        "profile_image_url": null,
-        "is_deleted": false
+        "profile_image_url": null
       }
     }
     ```
@@ -202,6 +161,7 @@ information.
       ]
     }
     ```
+
 ### Log Out a User
 
 Logs out the current user, ending their session.
@@ -246,7 +206,7 @@ Creates a new user, logs them in as the current user, and returns the current us
       "email": "john1.smith@gmail.com",
       "username": "JohnSmith",
       "password": "secret_password",
-      "profile_image_url": "https://meetup2024.s3.us-west-2.amazonaws.com/public/avatar2.png"
+      "profile_image_url": "https://meetup2024.s3.us-west-2.amazonaws.com/public/avatar2.png" || null
     }
     ```
 
@@ -264,8 +224,7 @@ Creates a new user, logs them in as the current user, and returns the current us
         "last_name": "Smith",
         "email": "john1.smith@gmail.com",
         "username": "JohnSmith,",
-        "profile_image_url": "https://meetup2024.s3.us-west-2.amazonaws.com/public/avatar2.png",
-        "is_deleted": false
+        "profile_image_url": "https://meetup2024.s3.us-west-2.amazonaws.com/public/avatar2.png" || null,
       }
     }
     ```
@@ -313,5 +272,78 @@ Creates a new user, logs them in as the current user, and returns the current us
       "profile_image_url": [
         "Photo must be a valid image URL!"
       ],
+    }
+    ```
+
+### Get all users
+
+Returns all users
+
+* Require Authentication: True
+* Request
+  * Method: GET
+  * URL: /api/users
+  * Headers:
+    * Content-Type: application/json
+  * Body: None
+
+* Successful Response
+  * Status Code: 200
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "customers": [
+        {
+            "email": "haolam@user.io",
+            "first_name": "Hao",
+            "id": 1,
+            "last_name": "Lam",
+            "profile_image_url": "https://miniamazon.s3.us-west-2.amazonaws.com/public/avatar1.png",
+            "username": "haolam"
+        }
+      ]
+    }
+    ```
+
+### Get a user by Id
+
+Returns a specific user by id
+
+* Require Authentication: True
+* Request
+  * Method: GET
+  * URL: /api/user/:id
+  * Headers:
+    * Content-Type: application/json
+  * Body: None
+
+* Successful Response
+  * Status Code: 200
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "email": "haolam@user.io",
+      "first_name": "Hao",
+      "id": 1,
+      "last_name": "Lam",
+      "profile_image_url": "https://miniamazon.s3.us-west-2.amazonaws.com/public/avatar1.png",
+      "username": "haolam"
+    }
+    ```
+
+* Error response: Workspace not found
+  * Status Code: 404
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+   ```json
+    {
+      "message": "User couldn't be found"
     }
     ```
