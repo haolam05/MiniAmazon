@@ -5,13 +5,14 @@ import os
 from flask import Flask, request, redirect
 from flask_cors import CORS
 from flask_migrate import Migrate
-from flask_wtf.csrf import CSRFProtect, generate_csrf
+from flask_wtf.csrf import generate_csrf
 from flask_login import LoginManager
-from .models import db, User
-from .api.user_routes import user_routes
+from .models import db, Customer
+from .api.customer_routes import customer_routes
 from .api.auth_routes import auth_routes
 from .seeds import seed_commands
 from .config import Config
+from .socket import socketio
 
 
 app = Flask(__name__, static_folder='../react-vite/dist', static_url_path='/')
@@ -23,16 +24,17 @@ login.login_view = 'auth.unauthorized'
 
 @login.user_loader
 def load_user(id):
-    return User.query.get(int(id))
+    return Customer.query.get(int(id))
 
 
 
 app.cli.add_command(seed_commands)
 app.config.from_object(Config)
-app.register_blueprint(user_routes, url_prefix='/api/users')
+app.register_blueprint(customer_routes, url_prefix='/api/customers')
 app.register_blueprint(auth_routes, url_prefix='/api/auth')
 db.init_app(app)
 Migrate(app, db)
+socketio.init_app(app, async_mode='gevent')
 
 
 CORS(app)
