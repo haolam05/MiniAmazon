@@ -25,6 +25,7 @@ class Product(db.Model):
     """ one-to-many """
     seller = db.relationship("Customer", back_populates="products")
     reviews = db.relationship("Review", back_populates="product", cascade="all, delete-orphan")
+    bookmarks = db.relationship("Bookmark", back_populates="product")
 
 
     def to_dict(self):

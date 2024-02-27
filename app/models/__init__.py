@@ -4,3 +4,4 @@ from .customer import Customer
 from .product import Product
 from .review import Review
 from .bookmark import Bookmark
+from .order import Order
