@@ -6,7 +6,7 @@ from .db import db, environment, SCHEMA
 
 
 class Customer(db.Model, UserMixin):
-    __tablename__ = 'users'
+    __tablename__ = 'customers'
 
     if environment == "production":
         __table_args__ = {'schema': SCHEMA}
@@ -40,8 +40,8 @@ class Customer(db.Model, UserMixin):
     def validate_username(self, _, val):
         if len(val) < 4:
             raise ValueError({"username": "Username must be at least 4 characters long"})
-        if len([user for user in Customer.query.all() if user.username == val]):
-            raise ValueError({ "username": "User with that username already exists" })
+        if len([customer for customer in Customer.query.all() if customer.username == val]):
+            raise ValueError({ "username": "Customer with that username already exists" })
         return val
 
 
@@ -49,14 +49,14 @@ class Customer(db.Model, UserMixin):
     def validate_email(self, _, val):
         if "@" not in val:
             raise ValueError({"email": "Invalid email"})
-        if len([user for user in Customer.query.all() if user.email == val]):
-            raise ValueError({ "email": "User with that email already exists" })
+        if len([customer for customer in Customer.query.all() if customer.email == val]):
+            raise ValueError({ "email": "Customer with that email already exists" })
         return val
 
 
     @classmethod
     def username_to_ids(cls):
-        return { user.username: user.id for user in cls.query.all() }
+        return { customer.username: customer.id for customer in cls.query.all() }
 
 
     @property
