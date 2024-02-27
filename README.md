@@ -6,7 +6,7 @@
 
 ![miniamazon-database-schema]
 
-[miniamazon-database-schema]: https://miniamazon.s3.us-west-2.amazonaws.com/public/mini-amazon-database-schema.png
+[miniamazon-database-schema]: https://miniamazon.s3.us-west-2.amazonaws.com/public/miniAmazon-database-schema.png
 
 # Demo
 

@@ -1,3 +1,4 @@
 from .db import db
-from .customer import Customer
 from .db import environment, SCHEMA
+from .customer import Customer
+from .product import Product

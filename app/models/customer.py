@@ -22,6 +22,10 @@ class Customer(db.Model, UserMixin):
     updated_at = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now)
 
 
+    """ one-to-many """
+    products = db.relationship("Product", back_populates="seller", cascade="all, delete-orphan")
+
+
     @validates('first_name')
     def validate_first_name(self, _, val):
         if not len(val):
