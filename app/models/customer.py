@@ -24,6 +24,7 @@ class Customer(db.Model, UserMixin):
 
     """ one-to-many """
     products = db.relationship("Product", back_populates="seller", cascade="all, delete-orphan")
+    reviews = db.relationship("Review", back_populates="customer", cascade="all, delete-orphan")
 
 
     @validates('first_name')
