@@ -10,14 +10,14 @@ from ..api.aws_helpers import ALLOWED_EXTENSIONS
 
 def customer_exists(form, field):
     email = field.data
-    customer = Customer.query.filter(customer.email == email).first()
+    customer = Customer.query.filter(Customer.email == email).first()
     if customer:
         raise ValidationError('Email address is already in use.')
 
 
 def username_exists(form, field):
     username = field.data
-    customer = Customer.query.filter(customer.username == username).first()
+    customer = Customer.query.filter(Customer.username == username).first()
     if customer:
         raise ValidationError('Username is already in use.')
 

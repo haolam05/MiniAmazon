@@ -18,7 +18,7 @@ def seed_customers():
             "first_name": "Luffy",
             "last_name": "Monkey D.",
             "username": "luffy",
-            "password": "password4",
+            "password": "password2",
             "email": "luffy@user.io",
             "profile_image_url": location + "avatar2.png"
         },
@@ -26,7 +26,7 @@ def seed_customers():
             "first_name": "Zoro",
             "last_name": "Roronoa",
             "username": "zoro",
-            "password": "password5",
+            "password": "password3",
             "email": "zoro@user.io",
             "profile_image_url": location + "avatar3.png"
         },
@@ -34,7 +34,7 @@ def seed_customers():
             "first_name": "Sanji",
             "last_name": "Vinsmoke",
             "username": "sanji",
-            "password": "password6",
+            "password": "password4",
             "email": "sanji@user.io",
             "profile_image_url": location + "avatar4.png"
         },
@@ -42,7 +42,7 @@ def seed_customers():
             "first_name": "Robin",
             "last_name": "Nico",
             "username": "robin",
-            "password": "password7",
+            "password": "password5",
             "email": "robin@user.io",
             "profile_image_url": location + "avatar5.png"
         },
@@ -50,7 +50,7 @@ def seed_customers():
             "first_name": "Mihawk",
             "last_name": "Dracule",
             "username": "mihawk",
-            "password": "password8",
+            "password": "password6",
             "email": "mihawk@user.io",
             "profile_image_url": location + "avatar6.png"
         },
@@ -58,7 +58,7 @@ def seed_customers():
             "first_name": "Ace",
             "last_name": "Portgas D.",
             "username": "acee",
-            "password": "password9",
+            "password": "password7",
             "email": "ace@user.io",
             "profile_image_url": location + "avatar7.png"
         }

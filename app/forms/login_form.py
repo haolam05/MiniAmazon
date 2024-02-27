@@ -6,7 +6,7 @@ from app.models import Customer
 
 def customer_exists(form, field):
     email = field.data
-    customer = Customer.query.filter(customer.email == email).first()
+    customer = Customer.query.filter(Customer.email == email).first()
     if not customer:
         raise ValidationError('Email provided not found.')
 
@@ -14,7 +14,7 @@ def customer_exists(form, field):
 def password_matches(form, field):
     password = field.data
     email = form.data['email']
-    customer = Customer.query.filter(customer.email == email).first()
+    customer = Customer.query.filter(Customer.email == email).first()
     if customer and not customer.check_password(password):
         raise ValidationError('Password was incorrect.')
 
