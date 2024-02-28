@@ -341,7 +341,7 @@ Returns a specific user by id
     }
     ```
 
-* Error response: Workspace not found
+* Error response: User not found
   * Status Code: 404
   * Headers:
     * Content-Type: application/json
@@ -607,7 +607,7 @@ Delete current user
       }
     ```
 
-* Error response: Workspace not found
+* Error response: Product not found
   * Status Code: 404
   * Headers:
     * Content-Type: application/json
@@ -873,4 +873,78 @@ Delete an existing product by id.
     {
       "message": "User couldn't be found"
     }
+    ```
+
+### Create a review for a product
+
+Each user can only comment 1 time on a product
+
+* Require Authentication: True
+* Request
+  * Method: POST
+  * URL: /api/products/:id/reviews
+  * Body:
+    ```json
+      {
+        "review": "good good good",
+        "rating": 4
+      }
+    ```
+
+* Successful Response
+  * Status Code: 200
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "created_at": "2024-02-28 13:04:07.345591",
+      "customer_id": 1,
+      "id": 10,
+      "product_id": 1,
+      "rating": 4,
+      "review": "Good good good"
+    }
+    ```
+
+* Error response: Product not found
+  * Status Code: 404
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "message": "Product couldn't be found"
+    }
+    ```
+
+* Error response: Duplicate review
+  * Status Code: 500
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "message": "You already had a review on this product"
+    }
+    ```
+
+* Error response: Body validation errors
+  * Status Code: 400
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+      {
+        "review": [
+          "This field is required."
+        ],
+        "rating": [
+          "This field is required." || "Rating must be between 1 and 5"
+        ]
+      }
     ```

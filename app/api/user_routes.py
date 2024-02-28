@@ -25,7 +25,7 @@ def customer(id):
 
 @user_routes.route('/<int:id>/reviews')
 @login_required
-def product_reviwes(id):
+def product_reviews(id):
     """Get all reviews belonged to a customer by id"""
     customer = Customer.query.get(id)
 

@@ -1,7 +1,7 @@
 from flask import Blueprint, request, redirect
 from flask_login import login_required, current_user
-from app.models import db, Product
-from app.forms import ProductForm
+from app.models import db, Product, Review
+from app.forms import ProductForm, ReviewForm
 from .aws_helpers import upload_file_to_s3, get_unique_filename
 
 product_routes = Blueprint('products', __name__)
@@ -119,7 +119,7 @@ def delete_product(id):
 
 @product_routes.route('/<int:id>/reviews')
 @login_required
-def product_reviwes(id):
+def product_reviews(id):
     """Get all reviews belonged to a product by id"""
     product = Product.query.get(id)
 
@@ -129,3 +129,34 @@ def product_reviwes(id):
     reviews = [review.to_dict() for review in product.reviews]
 
     return reviews, 200
+
+
+@product_routes.route('/<int:id>/reviews', methods=['POST'])
+@login_required
+def create_product_review(id):
+    """Create a new review for a product by id"""
+    form = ReviewForm()
+    form["csrf_token"].data = request.cookies["csrf_token"]
+
+    if form.validate_on_submit():
+        product = Product.query.get(id)
+
+        if not product:
+            return {"message": "Product couldn't be found"}, 404
+
+        if Review.query.filter(Review.product_id == id and Review.customer_id == current_user.id).one_or_none():
+            return {"message": "You already had a review on this product"}, 500
+
+        new_review = Review(
+            product_id=id,
+            customer_id=current_user.id,
+            review=form.data["review"],
+            rating=form.data["rating"]
+        )
+
+        db.session.add(new_review)
+        db.session.commit()
+
+        return new_review.to_dict(), 200
+
+    return form.errors, 400
