@@ -17,30 +17,29 @@ def bookmark(id):
     return bookmark.to_dict(), 200
 
 
-# @review_routes.route('/<int:id>', methods=['PUT'])
-# @login_required
-# def update_review(id):
-#     """Update a review by id"""
-#     form = ReviewForm()
-#     form["csrf_token"].data = request.cookies["csrf_token"]
+@bookmark_routes.route('/<int:id>', methods=['PUT'])
+@login_required
+def update_bookmark(id):
+    """Update a bookmark by id"""
+    form = BookmarkForm()
+    form["csrf_token"].data = request.cookies["csrf_token"]
 
-#     if form.validate_on_submit():
-#         review = Review.query.get(id)
+    if form.validate_on_submit():
+        bookmark = Bookmark.query.get(id)
 
-#         if not review:
-#             return {"message": "Review couldn't be found"}, 404
+        if not bookmark:
+            return {"message": "Bookmark couldn't be found"}, 404
 
-#         if review.customer_id != current_user.id:
-#             return redirect("/api/auth/forbidden")
+        if bookmark.customer_id != current_user.id:
+            return redirect("/api/auth/forbidden")
 
-#         review.review = form.data["review"]
-#         review.rating = form.data["rating"]
+        bookmark.note = form.data["note"]
 
-#         db.session.commit()
+        db.session.commit()
 
-#         return review.to_dict(), 200
+        return bookmark.to_dict(), 200
 
-#     return form.errors, 400
+    return form.errors, 400
 
 
 # @review_routes.route('/<int:id>', methods=['DELETE'])

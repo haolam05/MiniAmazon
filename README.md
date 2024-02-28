@@ -1264,3 +1264,58 @@ A product can only be bookmarked once by a user
         ]
       }
     ```
+
+### Update a bookmark for a product
+* Require Authentication: True
+* Require Authorization: True - Current user must be the owner of the bookmark
+* Request
+  * Method: PUT
+  * URL: /api/bookmarks/:id
+  * Body:
+    ```json
+      {
+        "note": "This is cool! Will buy on Black Friday! 222"
+      }
+    ```
+
+* Successful Response
+  * Status Code: 200
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+      {
+          "created_at": "2024-02-28 11:14:48.622326",
+          "customer_id": 1,
+          "id": 5,
+          "note": "This is cool! Will buy on Black Friday! 222",
+          "product_id": 10
+      }
+    ```
+
+* Error response: Bookmark not found
+  * Status Code: 404
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+      {
+        "message": "Bookmark couldn't be found"
+      }
+    ```
+
+* Error response: Body validation errors
+  * Status Code: 400
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+      {
+        "note": [
+          "This field is required."
+        ]
+      }
+    ```
