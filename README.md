@@ -1353,6 +1353,65 @@ A product can only be bookmarked once by a user
 
     ```
 
+## ORDERS
+
+### Get an order by id
+* Require Authentication: True
+* Request
+  * Method: GET
+  * URL: /api/orders/:id
+  * Body: None
+
+* Successful Response
+  * Status Code: 200
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+      {
+          "created_at": "2024-02-28 11:14:48.629002",
+          "customer_id": 1,
+          "id": 1,
+          "is_checkout": false,
+          "items": [
+              {
+                  "created_at": "2024-02-28 11:14:48.636667",
+                  "id": 1,
+                  "order_id": 1,
+                  "product_id": 1,
+                  "quantity": 2
+              },
+              {
+                  "created_at": "2024-02-28 11:14:48.636885",
+                  "id": 2,
+                  "order_id": 1,
+                  "product_id": 2,
+                  "quantity": 1
+              },
+              {
+                  "created_at": "2024-02-28 11:14:48.636938",
+                  "id": 3,
+                  "order_id": 1,
+                  "product_id": 13,
+                  "quantity": 3
+              }
+          ]
+      }
+    ```
+
+* Error response: Order not found
+  * Status Code: 404
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+      {
+        "message": "Order couldn't be found"
+      }
+    ```
+
 ### Get all orders belonged to a user by id
 
 At any point in time, there shuold be one and only 1 current checkout (meaning only 1 order with is_checkout = false)
