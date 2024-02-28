@@ -875,6 +875,42 @@ Delete an existing product by id.
     }
     ```
 
+### Get a review by id
+* Require Authentication: True
+* Request
+  * Method: GET
+  * URL: /api/reviews/:id
+  * Body: None
+
+* Successful Response
+  * Status Code: 200
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+      {
+        "created_at": "2024-02-28 11:14:48.613574",
+        "customer_id": 2,
+        "id": 1,
+        "product_id": 1,
+        "rating": 5,
+        "review": "Delicious avocado!!!"
+      }
+    ```
+
+* Error response: Review not found
+  * Status Code: 404
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+      {
+        "message": "Review couldn't be found"
+      }
+    ```
+
 ### Create a review for a product
 
 Each user can only comment 1 time on a product

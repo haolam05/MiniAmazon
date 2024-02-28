@@ -11,7 +11,7 @@ product_routes = Blueprint('products', __name__)
 def products():
     """Returns a list of all products"""
     products = Product.query.all()
-    return {'products': [product.to_dict() for product in products]}
+    return {'products': [product.to_dict() for product in products]}, 200
 
 
 @product_routes.route('/<int:id>')
@@ -21,7 +21,7 @@ def product(id):
     product = Product.query.get(id)
     if not product:
         return {"message": "Product couldn't be found"}, 404
-    return product.to_dict()
+    return product.to_dict(), 200
 
 
 @product_routes.route('/', methods=['POST'])
