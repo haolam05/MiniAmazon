@@ -548,3 +548,131 @@ Delete current user
         "message": "Successfully updated your password. Please log in again."
       }
     ```
+
+### Get all products
+* Require Authentication: False
+* Request
+  * Method: GET
+  * URL: /api/products
+  * Body: None
+
+* Successful Response
+  * Status Code: 200
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+      {
+        "products": [
+          {
+            "category": "Groceries",
+            "created_at": "2024-02-28 08:19:56.093091",
+            "description": "The Hass avocado is known as the 'year-round avocado' because of its seasonal availability. Mexico is the world's largest producer of Hass avocados, best known for their creamy texture and great taste!",
+            "id": 1,
+            "name": "Meidum Hass Avocado",
+            "price": "1.29",
+            "product_image": "https://miniamazon.s3.us-west-2.amazonaws.com/public/avocado.jpg",
+            "remaining": 22,
+            "seller_id": 1
+          }
+        ]
+      }
+    ```
+
+### Get a product by id
+* Require Authentication: True
+* Request
+  * Method: GET
+  * URL: /api/products/:id
+  * Body: None
+
+* Successful Response
+  * Status Code: 200
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+      {
+          "category": "Handmade",
+          "created_at": "2024-02-28 08:19:56.093877",
+          "description": "Make your gift unforgettable. We will write your wish on the puzzle and keep the memory of you and your gift for many years. ABSOLUTELY FREE. A personalized name puzzle is a hand-made toy that combines the Montessori technique, helping toddlers to learn how to spell their names, learn colors and develop motoric skills.",
+          "id": 14,
+          "name": "Personalized Wooden Name Puzzle for Kids Personalized Name Puzzle for Toddlers Personalized Baby Gifts First Birthday Gift Personalized Puzzle Wooden Puzzles Custom Name Puzzle Baby & Toddler Toys",
+          "price": "13.96",
+          "product_image": "https://miniamazon.s3.us-west-2.amazonaws.com/public/puzzle.jpg",
+          "remaining": 50,
+          "seller_id": 1
+      }
+    ```
+
+* Error response: Workspace not found
+  * Status Code: 404
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+      {
+        "message": "Product couldn't be found"
+      }
+    ```
+
+### Create a product
+* Require Authentication: True
+* Request
+  * Method: POST
+  * URL: /api/products
+  * Body:
+    ```json
+      {
+        "name": "Banana",
+        "category": "Groceries",
+        "description": "This is a very very very very very very delicious banana. It's also very very very very very very cheap",
+        "price": 3.23,
+        "remaining": 4,
+        "product_image": "Image URL"
+      }
+    ```
+
+* Successful Response
+  * Status Code: 200
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+      {
+
+      }
+    ```
+
+* Error response: Body validation errors
+  * Status Code: 400
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+      {
+        "category": [
+          "This field is required." || "Invalid category! Here is a list of allowed categories: ['Groceries', 'Electronics', 'Books', 'Beauty & Health', 'Handmade']"
+        ],
+        "description": [
+          "This field is required." || "Description must be at least 50 characters"
+        ],
+        "name": [
+          "This field is required." || "Name must be at least 4 characters"
+        ],
+        "price": [
+          "This field is required." || "Price must be greater than 0"
+        ],
+        "product_image": [
+          "This field is required."
+        ],
+        "remaining": [
+          "This field is required." || "Remaining must be greater than 0"
+        ]
+      }
+    ```

@@ -34,6 +34,12 @@ class Product(db.Model):
         location = 'https://miniamazon.s3.us-west-2.amazonaws.com/public/'
         return { product.product_image.split(location)[1]: product.id for product in cls.query.all() }
 
+
+    @classmethod
+    def allowed_categories(cls):
+        return ["Groceries", "Electronics", "Books", "Beauty & Health", "Handmade"]
+
+
     def to_dict(self):
         return {
             "id": self.id,

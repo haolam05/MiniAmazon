@@ -19,5 +19,5 @@ def customer(id):
     """Query for a customer by id and returns that customer in a dictionary"""
     customer = Customer.query.get(id)
     if not customer:
-        return {"message": "User can not be found"}, 404
+        return {"message": "User couldn't be found"}, 404
     return customer.to_dict()
