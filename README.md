@@ -1412,14 +1412,14 @@ A product can only be bookmarked once by a user
       }
     ```
 
-### Get all orders belonged to a user by id
+### Get all orders for the current user
 
 At any point in time, there shuold be one and only 1 current checkout (meaning only 1 order with is_checkout = false)
 
 * Require Authentication: True
 * Request
   * Method: GET
-  * URL: /api/users/:id/orders
+  * URL: /api/orders
   * Body: None
 
 * Successful Response
@@ -1484,14 +1484,37 @@ At any point in time, there shuold be one and only 1 current checkout (meaning o
     ]
     ```
 
-* Error response: User not found
-  * Status Code: 404
+### Create an order for the current user
+* Require Authentication: True
+* Request
+  * Method: POST
+  * URL: /api/orders
+  * Body: None
+
+* Successful Response
+  * Status Code: 200
   * Headers:
     * Content-Type: application/json
   * Body:
 
     ```json
-    {
-      "message": "User couldn't be found"
-    }
+      {
+        "created_at": "2024-02-28 15:33:50.491564",
+        "customer_id": 2,
+        "id": 4,
+        "is_checkout": false,
+        "items": []
+      }
+    ```
+
+* Error response: Duplicate cart
+  * Status Code: 500
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+      {
+        "message": "Please checkout first before creating another order"
+      }
     ```
