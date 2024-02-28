@@ -28,6 +28,9 @@ class Customer(db.Model, UserMixin):
     bookmarks = db.relationship("Bookmark", back_populates="customer", cascade="all, delete-orphan")
     orders = db.relationship("Order", back_populates="customer", cascade="all, delete-orphan")
 
+    """ many-to-many """
+    orders = db.relationship("Order", secondary="order_items", back_populates="")
+
 
     @validates('first_name')
     def validate_first_name(self, _, val):
