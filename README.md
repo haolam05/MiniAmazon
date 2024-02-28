@@ -984,3 +984,63 @@ Each user can only comment 1 time on a product
         ]
       }
     ```
+
+### Update a review by id
+* Require Authentication: True
+* Require Authorization: True - Current user must be the owner of the review
+* Request
+  * Method: PUT
+  * URL: /api/reviews/:id
+  * Body:
+    ```json
+      {
+        "review": "bad bad bad",
+        "rating": 1
+      }
+    ```
+
+* Successful Response
+  * Status Code: 200
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+      {
+        "created_at": "2024-02-28 13:04:07.345591",
+        "customer_id": 1,
+        "id": 10,
+        "product_id": 1,
+        "rating": 1,
+        "review": "Bad bad bad2"
+      }
+    ```
+
+* Error response: Review not found
+  * Status Code: 404
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "message": "Review couldn't be found"
+    }
+    ```
+
+* Error response: Body validation errors
+  * Status Code: 400
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+      {
+        "review": [
+          "This field is required."
+        ],
+        "rating": [
+          "This field is required." || "Rating must be between 1 and 5"
+        ]
+      }
+    ```
