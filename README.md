@@ -1087,6 +1087,43 @@ Delete an existing review by id.
 
 ## BOOKMARKS
 
+### Get all bookmarks belonged to a product by id
+* Require Authentication: True
+* Request
+  * Method: GET
+  * URL: /api/products/:id/bookmarks
+  * Body: None
+
+* Successful Response
+  * Status Code: 200
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    [
+      {
+        "created_at": "2024-02-28 11:14:48.621960",
+        "customer_id": 1,
+        "id": 1,
+        "note": "This seems reasonable. Looking to see if there is a better deal.",
+        "product_id": 4
+      }
+    ]
+    ```
+
+* Error response: Product not found
+  * Status Code: 404
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "message": "Product couldn't be found"
+    }
+    ```
+
 ### Get all bookmarks belonged to a user by id
 * Require Authentication: True
 * Request

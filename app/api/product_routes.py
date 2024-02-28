@@ -160,3 +160,17 @@ def create_product_review(id):
         return new_review.to_dict(), 200
 
     return form.errors, 400
+
+
+@product_routes.route('/<int:id>/bookmarks')
+@login_required
+def product_bookmarks(id):
+    """Get all bookmarks belonged to a product by id"""
+    product = Product.query.get(id)
+
+    if not product:
+        return {"message": "product couldn't be found"}, 404
+
+    bookmarks = [bookmark.to_dict() for bookmark in product.bookmarks]
+
+    return bookmarks, 200
