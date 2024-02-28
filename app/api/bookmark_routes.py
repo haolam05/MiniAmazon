@@ -42,19 +42,19 @@ def update_bookmark(id):
     return form.errors, 400
 
 
-# @review_routes.route('/<int:id>', methods=['DELETE'])
-# @login_required
-# def delete_review(id):
-#     """Delete a review by id"""
-#     review = Review.query.get(id)
+@bookmark_routes.route('/<int:id>', methods=['DELETE'])
+@login_required
+def delete_bookmark(id):
+    """Delete a bookmark by id"""
+    bookmark = Bookmark.query.get(id)
 
-#     if not review:
-#         return {"message": "review couldn't be found"}, 404
+    if not bookmark:
+        return {"message": "bookmark couldn't be found"}, 404
 
-#     if review.customer_id != current_user.id:
-#         return redirect("/api/auth/forbidden")
+    if bookmark.customer_id != current_user.id:
+        return redirect("/api/auth/forbidden")
 
-#     db.session.delete(review)
-#     db.session.commit()
+    db.session.delete(bookmark)
+    db.session.commit()
 
-#     return {"message": "Successfully deleted review"}, 200
+    return {"message": "Successfully deleted bookmark"}, 200

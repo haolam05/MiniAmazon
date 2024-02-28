@@ -1319,3 +1319,36 @@ A product can only be bookmarked once by a user
         ]
       }
     ```
+
+### Delete a bookmark by id
+* Require Authentication: True
+* Require Authorization: True. - Current user must be the owner of the bookmark
+* Request
+  * Method: DELETE
+  * URL: /api/bookmarks/:id
+  * Body: None
+
+* Successful Response
+  * Status Code: 200
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+      {
+        "message": "Successfully deleted bookmark"
+      }
+    ```
+
+* Error response: Bookmark not found
+  * Status Code: 404
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+      {
+        "message": "Bookmark couldn't be found"
+      }
+
+    ```
