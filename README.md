@@ -1044,3 +1044,38 @@ Each user can only comment 1 time on a product
         ]
       }
     ```
+
+### Delete a review by id
+
+Delete an existing review by id.
+
+* Require Authentication: True
+* Require Authorization: True. - Current user must be the owner of the review
+* Request
+  * Method: DELETE
+  * URL: /api/reviews/:id
+  * Body: None
+
+* Successful Response
+  * Status Code: 200
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "message": "Successfully deleted review"
+    }
+    ```
+
+* Error response: Review not found
+  * Status Code: 404
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "message": "Review couldn't be found"
+    }
+    ```

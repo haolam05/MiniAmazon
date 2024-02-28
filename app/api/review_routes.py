@@ -41,3 +41,21 @@ def update_review(id):
         return review.to_dict(), 200
 
     return form.errors, 400
+
+
+@review_routes.route('/<int:id>', methods=['DELETE'])
+@login_required
+def delete_review(id):
+    """Delete a review by id"""
+    review = Review.query.get(id)
+
+    if not review:
+        return {"message": "review couldn't be found"}, 404
+
+    if review.customer_id != current_user.id:
+        return redirect("/api/auth/forbidden")
+
+    db.session.delete(review)
+    db.session.commit()
+
+    return {"message": "Successfully deleted review"}, 200
