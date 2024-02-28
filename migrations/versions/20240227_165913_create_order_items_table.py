@@ -29,7 +29,7 @@ def upgrade():
         sa.Column('order_id', sa.Integer(), nullable=False),
         sa.ForeignKeyConstraint(['order_id'], ['orders.id'], ),
         sa.ForeignKeyConstraint(['product_id'], ['products.id'], ),
-        sa.UniqueConstraint('product_id', 'oder_id'),
+        sa.UniqueConstraint('product_id', 'order_id'),
         sa.PrimaryKeyConstraint('id')
     )
 
