@@ -38,9 +38,9 @@ All endpoints that require a current user to be logged in.
   * Body:
 
     ```json
-    {
-      "message": "Unauthorized"
-    }
+      {
+        "message": "Unauthorized"
+      }
     ```
 
 ### All endpoints that require proper authorization
@@ -56,9 +56,9 @@ correct role(s) or permission(s).
   * Body:
 
     ```json
-    {
-      "message": "Forbidden"
-    }
+      {
+        "message": "Forbidden"
+      }
     ```
 
 ## USERS
@@ -80,16 +80,16 @@ Returns the information about the current user that is logged in.
   * Body:
 
     ```json
-    {
-      "user": {
-        "id": 1,
-        "first_name": "John",
-        "last_name": "Smith",
-        "email": "john1.smith@gmail.com",
-        "username": "JohnSmith,",
-        "profile_image_url": null
+      {
+        "user": {
+          "id": 1,
+          "first_name": "John",
+          "last_name": "Smith",
+          "email": "john1.smith@gmail.com",
+          "username": "JohnSmith,",
+          "profile_image_url": null
+        }
       }
-    }
     ```
 
 * Successful Response when there is no logged in user
@@ -99,9 +99,9 @@ Returns the information about the current user that is logged in.
   * Body:
 
     ```json
-    {
-      "user": null
-    }
+      {
+        "user": null
+      }
     ```
 
 ### Log In a User
@@ -118,10 +118,10 @@ information.
   * Body:
 
     ```json
-    {
-      "email": "john1.smith@gmail.com",
-      "password": "secret_password"
-    }
+      {
+        "email": "john1.smith@gmail.com",
+        "password": "secret_password"
+      }
     ```
 
 * Successful Response
@@ -131,16 +131,16 @@ information.
   * Body:
 
     ```json
-    {
-      "user": {
-        "id": 1,
-        "first_name": "John",
-        "last_name": "Smith",
-        "email": "john1.smith@gmail.com",
-        "username": "JohnSmith,",
-        "profile_image_url": null
+      {
+        "user": {
+          "id": 1,
+          "first_name": "John",
+          "last_name": "Smith",
+          "email": "john1.smith@gmail.com",
+          "username": "JohnSmith,",
+          "profile_image_url": null
+        }
       }
-    }
     ```
 
 * Error response: Inccorect Password
@@ -164,14 +164,14 @@ information.
   * Body:
 
     ```json
-    {
-      "email": [
-        "This field is required" || "Email provided not found."
-      ],
-      "password": [
-        "This field is required" || "Password was incorrect."
-      ]
-    }
+      {
+        "email": [
+          "This field is required" || "Email provided not found."
+        ],
+        "password": [
+          "This field is required" || "Password was incorrect."
+        ]
+      }
     ```
 
 ### Log Out a User
@@ -191,9 +191,9 @@ Logs out the current user, ending their session.
   * Body:
 
     ```json
-    {
-      "message": "User logged out"
-    }
+      {
+        "message": "User logged out"
+      }
     ```
 
 
@@ -210,14 +210,14 @@ Creates a new user, logs them in as the current user, and returns the current us
   * Body:
 
     ```json
-    {
-      "first_name": "John",
-      "last_name": "Smith",
-      "email": "john1.smith@gmail.com",
-      "username": "JohnSmith",
-      "password": "secret_password",
-      "profile_image_url": "https://meetup2024.s3.us-west-2.amazonaws.com/public/avatar2.png" || null
-    }
+      {
+        "first_name": "John",
+        "last_name": "Smith",
+        "email": "john1.smith@gmail.com",
+        "username": "JohnSmith",
+        "password": "secret_password",
+        "profile_image_url": "https://meetup2024.s3.us-west-2.amazonaws.com/public/avatar2.png" || null
+      }
     ```
 
 * Successful Response
@@ -227,16 +227,16 @@ Creates a new user, logs them in as the current user, and returns the current us
   * Body:
 
     ```json
-    {
-      "user": {
-        "id": 1,
-        "first_name": "John",
-        "last_name": "Smith",
-        "email": "john1.smith@gmail.com",
-        "username": "JohnSmith,",
-        "profile_image_url": "https://meetup2024.s3.us-west-2.amazonaws.com/public/avatar2.png" || null,
+      {
+        "user": {
+          "id": 1,
+          "first_name": "John",
+          "last_name": "Smith",
+          "email": "john1.smith@gmail.com",
+          "username": "JohnSmith,",
+          "profile_image_url": "https://meetup2024.s3.us-west-2.amazonaws.com/public/avatar2.png" || null,
+        }
       }
-    }
     ```
 
 * Error response: User already exists with the specified email or username
@@ -263,26 +263,26 @@ Creates a new user, logs them in as the current user, and returns the current us
   * Body:
 
     ```json
-    {
-      "email": [
-        "This field is required" || "Email is invalid."
-      ],
-      "first_name": [
-        "This field is required."
-      ],
-      "last_name": [
-        "This field is required."
-      ],
-      "password": [
-        "This field is required" || "Password must be at least 6 characters."
-      ],
-      "username": [
-        "This field is required" || "Username must be at least 4 characters."
-      ],
-      "profile_image_url": [
-        "Photo must be a valid image URL!"
-      ],
-    }
+      {
+        "email": [
+          "This field is required" || "Email is invalid."
+        ],
+        "first_name": [
+          "This field is required."
+        ],
+        "last_name": [
+          "This field is required."
+        ],
+        "password": [
+          "This field is required" || "Password must be at least 6 characters."
+        ],
+        "username": [
+          "This field is required" || "Username must be at least 4 characters."
+        ],
+        "profile_image_url": [
+          "Photo must be a valid image URL!"
+        ],
+      }
     ```
 
 ### Get all users
@@ -302,18 +302,18 @@ Returns all users
   * Body:
 
     ```json
-    {
-      "customers": [
-        {
-            "email": "haolam@user.io",
-            "first_name": "Hao",
-            "id": 1,
-            "last_name": "Lam",
-            "profile_image_url": "https://miniamazon.s3.us-west-2.amazonaws.com/public/avatar1.png",
-            "username": "haolam"
-        }
-      ]
-    }
+      {
+        "customers": [
+          {
+              "email": "haolam@user.io",
+              "first_name": "Hao",
+              "id": 1,
+              "last_name": "Lam",
+              "profile_image_url": "https://miniamazon.s3.us-west-2.amazonaws.com/public/avatar1.png",
+              "username": "haolam"
+          }
+        ]
+      }
     ```
 
 ### Get a user by Id
@@ -333,14 +333,14 @@ Returns a specific user by id
   * Body:
 
     ```json
-    {
-      "email": "haolam@user.io",
-      "first_name": "Hao",
-      "id": 1,
-      "last_name": "Lam",
-      "profile_image_url": "https://miniamazon.s3.us-west-2.amazonaws.com/public/avatar1.png",
-      "username": "haolam"
-    }
+      {
+        "email": "haolam@user.io",
+        "first_name": "Hao",
+        "id": 1,
+        "last_name": "Lam",
+        "profile_image_url": "https://miniamazon.s3.us-west-2.amazonaws.com/public/avatar1.png",
+        "username": "haolam"
+      }
     ```
 
 * Error response: User not found
@@ -368,14 +368,14 @@ Update user's information
   * Body:
 
     ```json
-    {
-      "first_name": "John 2",
-      "last_name": "Smith 2",
-      "email": "john1.smith@gmail.com",
-      "username": "JohnSmith",
-      "password": "secret_password",
-      "profile_image_url": "https://meetup2024.s3.us-west-2.amazonaws.com/public/avatar2.png" || null
-    }
+      {
+        "first_name": "John 2",
+        "last_name": "Smith 2",
+        "email": "john1.smith@gmail.com",
+        "username": "JohnSmith",
+        "password": "secret_password",
+        "profile_image_url": "https://meetup2024.s3.us-west-2.amazonaws.com/public/avatar2.png" || null
+      }
     ```
 
 * Successful Response
@@ -385,16 +385,16 @@ Update user's information
   * Body:
 
     ```json
-    {
-      "user": {
-        "id": 1,
-        "first_name": "John 2",
-        "last_name": "Smith 2",
-        "email": "john1.smith@gmail.com",
-        "username": "JohnSmith,",
-        "profile_image_url": "https://meetup2024.s3.us-west-2.amazonaws.com/public/avatar2.png" || null,
+      {
+        "user": {
+          "id": 1,
+          "first_name": "John 2",
+          "last_name": "Smith 2",
+          "email": "john1.smith@gmail.com",
+          "username": "JohnSmith,",
+          "profile_image_url": "https://meetup2024.s3.us-west-2.amazonaws.com/public/avatar2.png" || null,
+        }
       }
-    }
     ```
 
 * Error response: Body validation errors
@@ -404,23 +404,23 @@ Update user's information
   * Body:
 
     ```json
-    {
-      "email": [
-        "This field is required." || "User could not be found"
-      ],
-      "username": [
-        "This field is required." || "User could not be found"
-      ],
-      "first_name": [
-        "This field is required."
-      ],
-      "last_name": [
-        "This field is required."
-      ],
-      "password": [
-        "This field is required."
-      ]
-    }
+      {
+        "email": [
+          "This field is required." || "User could not be found"
+        ],
+        "username": [
+          "This field is required." || "User could not be found"
+        ],
+        "first_name": [
+          "This field is required."
+        ],
+        "last_name": [
+          "This field is required."
+        ],
+        "password": [
+          "This field is required."
+        ]
+      }
     ```
 
 * Error response: Inccorect Password
@@ -444,26 +444,26 @@ Update user's information
   * Body:
 
     ```json
-    {
-      "email": [
-        "This field is required" || "Email is invalid."
-      ],
-      "first_name": [
-        "This field is required."
-      ],
-      "last_name": [
-        "This field is required."
-      ],
-      "password": [
-        "This field is required" || "Password must be at least 6 characters."
-      ],
-      "username": [
-        "This field is required" || "Username must be at least 4 characters."
-      ],
-      "profile_image_url": [
-        "Photo must be a valid image URL!"
-      ]
-    }
+      {
+        "email": [
+          "This field is required" || "Email is invalid."
+        ],
+        "first_name": [
+          "This field is required."
+        ],
+        "last_name": [
+          "This field is required."
+        ],
+        "password": [
+          "This field is required" || "Password must be at least 6 characters."
+        ],
+        "username": [
+          "This field is required" || "Username must be at least 4 characters."
+        ],
+        "profile_image_url": [
+          "Photo must be a valid image URL!"
+        ]
+      }
     ```
 
 
@@ -519,14 +519,14 @@ Update user's password. User is force to login again when password is updated su
   * Body:
 
     ```json
-    {
-      "password": [
-        "This field is required" || "Password must be at least 6 characters."
-      ],
-      "new_password": [
-        "This field is required" || "Password must be at least 6 characters."
-      ],
-    }
+      {
+        "password": [
+          "This field is required" || "Password must be at least 6 characters."
+        ],
+        "new_password": [
+          "This field is required" || "Password must be at least 6 characters."
+        ],
+      }
     ```
 
 ### Delete User
@@ -647,17 +647,17 @@ Delete current user
   * Body:
 
     ```json
-    {
-        "category": "Groceries",
-        "created_at": "2024-02-28 10:36:18.872389",
-        "description": "This is a very very very very very very delicious banana. It's also very very very very very very cheap",
-        "id": 16,
-        "name": "Banana",
-        "price": "3.23",
-        "product_image": "Image URL",
-        "remaining": 4,
-        "seller_id": 1
-    }
+      {
+          "category": "Groceries",
+          "created_at": "2024-02-28 10:36:18.872389",
+          "description": "This is a very very very very very very delicious banana. It's also very very very very very very cheap",
+          "id": 16,
+          "name": "Banana",
+          "price": "3.23",
+          "product_image": "Image URL",
+          "remaining": 4,
+          "seller_id": 1
+      }
     ```
 
 * Error response: Body validation errors
@@ -713,17 +713,17 @@ Delete current user
   * Body:
 
     ```json
-    {
-        "category": "Health & Beauty",
-        "created_at": "2024-02-28 10:36:18.872389",
-        "description": "This is a very very very very very very delicious banana. It's also very very very very very very cheap 2",
-        "id": 16,
-        "name": "Banana 2",
-        "price": "13.23",
-        "product_image": "Image URL",
-        "remaining": 3,
-        "seller_id": 1
-    }
+      {
+          "category": "Health & Beauty",
+          "created_at": "2024-02-28 10:36:18.872389",
+          "description": "This is a very very very very very very delicious banana. It's also very very very very very very cheap 2",
+          "id": 16,
+          "name": "Banana 2",
+          "price": "13.23",
+          "product_image": "Image URL",
+          "remaining": 3,
+          "seller_id": 1
+      }
     ```
 
 * Error response: Product not found
@@ -733,9 +733,9 @@ Delete current user
   * Body:
 
     ```json
-    {
-      "message": "Product couldn't be found"
-    }
+      {
+        "message": "Product couldn't be found"
+      }
     ```
 
 * Error response: Body validation errors
@@ -785,9 +785,9 @@ Delete an existing product by id.
   * Body:
 
     ```json
-    {
-      "message": "Successfully deleted product"
-    }
+      {
+        "message": "Successfully deleted product"
+      }
     ```
 
 * Error response: Product not found
@@ -797,9 +797,9 @@ Delete an existing product by id.
   * Body:
 
     ```json
-    {
-      "message": "Product couldn't be found"
-    }
+      {
+        "message": "Product couldn't be found"
+      }
     ```
 
 ## REVIEWS
@@ -818,16 +818,16 @@ Delete an existing product by id.
   * Body:
 
     ```json
-    [
-      {
-        "created_at": "2024-02-28 11:14:48.613574",
-        "customer_id": 2,
-        "id": 1,
-        "product_id": 1,
-        "rating": 5,
-        "review": "Delicious avocado!!!"
-      }
-    ]
+      [
+        {
+          "created_at": "2024-02-28 11:14:48.613574",
+          "customer_id": 2,
+          "id": 1,
+          "product_id": 1,
+          "rating": 5,
+          "review": "Delicious avocado!!!"
+        }
+      ]
     ```
 
 * Error response: Product not found
@@ -837,9 +837,9 @@ Delete an existing product by id.
   * Body:
 
     ```json
-    {
-      "message": "Product couldn't be found"
-    }
+      {
+        "message": "Product couldn't be found"
+      }
     ```
 
 ### Get all reviews belonged to a user by id
@@ -856,16 +856,16 @@ Delete an existing product by id.
   * Body:
 
     ```json
-    [
-      {
-        "created_at": "2024-02-28 11:14:48.613574",
-        "customer_id": 2,
-        "id": 1,
-        "product_id": 1,
-        "rating": 5,
-        "review": "Delicious avocado!!!"
-      }
-    ]
+      [
+        {
+          "created_at": "2024-02-28 11:14:48.613574",
+          "customer_id": 2,
+          "id": 1,
+          "product_id": 1,
+          "rating": 5,
+          "review": "Delicious avocado!!!"
+        }
+      ]
     ```
 
 * Error response: User not found
@@ -875,9 +875,9 @@ Delete an existing product by id.
   * Body:
 
     ```json
-    {
-      "message": "User couldn't be found"
-    }
+      {
+        "message": "User couldn't be found"
+      }
     ```
 
 ### Get a review by id
@@ -939,14 +939,14 @@ Each user can only comment 1 time on a product
   * Body:
 
     ```json
-    {
-      "created_at": "2024-02-28 13:04:07.345591",
-      "customer_id": 1,
-      "id": 10,
-      "product_id": 1,
-      "rating": 4,
-      "review": "Good good good"
-    }
+      {
+        "created_at": "2024-02-28 13:04:07.345591",
+        "customer_id": 1,
+        "id": 10,
+        "product_id": 1,
+        "rating": 4,
+        "review": "Good good good"
+      }
     ```
 
 * Error response: Product not found
@@ -956,9 +956,9 @@ Each user can only comment 1 time on a product
   * Body:
 
     ```json
-    {
-      "message": "Product couldn't be found"
-    }
+      {
+        "message": "Product couldn't be found"
+      }
     ```
 
 * Error response: Duplicate review
@@ -968,9 +968,9 @@ Each user can only comment 1 time on a product
   * Body:
 
     ```json
-    {
-      "message": "You already had a review on this product"
-    }
+      {
+        "message": "You already had a review on this product"
+      }
     ```
 
 * Error response: Body validation errors
@@ -1028,9 +1028,9 @@ Each user can only comment 1 time on a product
   * Body:
 
     ```json
-    {
-      "message": "Review couldn't be found"
-    }
+      {
+        "message": "Review couldn't be found"
+      }
     ```
 
 * Error response: Body validation errors
@@ -1068,9 +1068,9 @@ Delete an existing review by id.
   * Body:
 
     ```json
-    {
-      "message": "Successfully deleted review"
-    }
+      {
+        "message": "Successfully deleted review"
+      }
     ```
 
 * Error response: Review not found
@@ -1080,9 +1080,9 @@ Delete an existing review by id.
   * Body:
 
     ```json
-    {
-      "message": "Review couldn't be found"
-    }
+      {
+        "message": "Review couldn't be found"
+      }
     ```
 
 ## BOOKMARKS
@@ -1159,4 +1159,73 @@ Delete an existing review by id.
     {
       "message": "User couldn't be found"
     }
+    ```
+
+### Create a bookmark for a product
+
+A product can only be bookmarked once by a user
+
+* Require Authentication: True
+* Request
+  * Method: POST
+  * URL: /api/products/:id/bookmarks
+  * Body:
+    ```json
+      {
+        "note": "This is cool! Will buy on Black Friday!"
+      }
+    ```
+
+* Successful Response
+  * Status Code: 200
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+      {
+        "created_at": "2024-02-28 14:06:21.128037",
+        "customer_id": 1,
+        "id": 6,
+        "note": "This is cool! Will buy on Black Friday!",
+        "product_id": 5
+      }
+    ```
+
+* Error response: Product not found
+  * Status Code: 404
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+      {
+        "message": "Product couldn't be found"
+      }
+    ```
+
+* Error response: Duplicate bookmark
+  * Status Code: 500
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+      {
+        "message": "You already had a bookmark on this product"
+      }
+    ```
+
+* Error response: Body validation errors
+  * Status Code: 400
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+      {
+        "note": [
+          "This field is required."
+        ]
+      }
     ```

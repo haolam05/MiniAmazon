@@ -1,7 +1,7 @@
 from flask import Blueprint, request, redirect
 from flask_login import login_required, current_user
-from app.models import db, Product, Review
-from app.forms import ProductForm, ReviewForm
+from app.models import db, Product, Review, Bookmark
+from app.forms import ProductForm, ReviewForm, BookmarkForm
 from .aws_helpers import upload_file_to_s3, get_unique_filename
 
 product_routes = Blueprint('products', __name__)
@@ -174,3 +174,33 @@ def product_bookmarks(id):
     bookmarks = [bookmark.to_dict() for bookmark in product.bookmarks]
 
     return bookmarks, 200
+
+
+@product_routes.route('/<int:id>/bookmarks', methods=['POST'])
+@login_required
+def create_product_bookmark(id):
+    """Create a new bookmark"""
+    form = BookmarkForm()
+    form["csrf_token"].data = request.cookies["csrf_token"]
+
+    if form.validate_on_submit():
+        product = Product.query.get(id)
+
+        if not product:
+            return {"message": "Product couldn't be found"}, 404
+
+        if Bookmark.query.filter(Bookmark.product_id == id and Bookmark.customer_id == current_user.id).one_or_none():
+            return {"message": "You already had a bookmark on this product"}, 500
+
+        new_bookmark = Bookmark(
+            product_id=id,
+            customer_id=current_user.id,
+            note=form.data["note"]
+        )
+
+        db.session.add(new_bookmark)
+        db.session.commit()
+
+        return new_bookmark.to_dict(), 200
+
+    return form.errors, 400
