@@ -115,3 +115,17 @@ def delete_product(id):
     db.session.commit()
 
     return {"message": "Successfully deleted product"}, 200
+
+
+@product_routes.route('/<int:id>/reviews')
+@login_required
+def product_reviwes(id):
+    """Get all reviews belonged to a product by id"""
+    product = Product.query.get(id)
+
+    if not product:
+        return {"message": "Product couldn't be found"}, 404
+
+    reviews = [review.to_dict() for review in product.reviews]
+
+    return reviews, 200

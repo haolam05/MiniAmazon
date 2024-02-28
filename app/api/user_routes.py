@@ -21,3 +21,17 @@ def customer(id):
     if not customer:
         return {"message": "User couldn't be found"}, 404
     return customer.to_dict()
+
+
+@user_routes.route('/<int:id>/reviews')
+@login_required
+def product_reviwes(id):
+    """Get all reviews belonged to a customer by id"""
+    customer = Customer.query.get(id)
+
+    if not customer:
+        return {"message": "User couldn't be found"}, 404
+
+    reviews = [review.to_dict() for review in customer.reviews]
+
+    return reviews, 200
