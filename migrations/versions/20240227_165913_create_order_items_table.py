@@ -34,7 +34,7 @@ def upgrade():
     )
 
     if environment == "production":
-        op.execute(f"ALTER TABLE orders SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE order_items SET SCHEMA {SCHEMA};")
     # ### end Alembic commands ###
 
 
