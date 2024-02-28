@@ -29,6 +29,11 @@ class Product(db.Model):
     order_items = db.relationship("OrderItem", back_populates="product", cascade="all, delete-orphan")
 
 
+    @classmethod
+    def product_image_to_ids(cls):
+        location = 'https://miniamazon.s3.us-west-2.amazonaws.com/public/'
+        return { product.product_image.split(location)[1]: product.id for product in cls.query.all() }
+
     def to_dict(self):
         return {
             "id": self.id,
