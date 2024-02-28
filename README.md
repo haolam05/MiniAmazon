@@ -1352,3 +1352,87 @@ A product can only be bookmarked once by a user
       }
 
     ```
+
+### Get all orders belonged to a user by id
+
+At any point in time, there shuold be one and only 1 current checkout (meaning only 1 order with is_checkout = false)
+
+* Require Authentication: True
+* Request
+  * Method: GET
+  * URL: /api/users/:id/orders
+  * Body: None
+
+* Successful Response
+  * Status Code: 200
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    [
+      {
+        "created_at": "2024-02-28 11:14:48.629002",
+        "customer_id": 1,
+        "id": 1,
+        "is_checkout": false, // current items in the cart
+        "items": [
+          {
+            "created_at": "2024-02-28 11:14:48.636667",
+            "id": 1,
+            "order_id": 1,
+            "product_id": 1,
+            "quantity": 2
+          },
+          {
+            "created_at": "2024-02-28 11:14:48.636885",
+            "id": 2,
+            "order_id": 1,
+            "product_id": 2,
+            "quantity": 1
+          },
+          {
+            "created_at": "2024-02-28 11:14:48.636938",
+            "id": 3,
+            "order_id": 1,
+            "product_id": 13,
+            "quantity": 3
+          }
+        ]
+      },
+      {
+        "created_at": "2024-02-28 11:14:48.629298",
+        "customer_id": 1,
+        "id": 2,
+        "is_checkout": true,  // past orders
+        "items": [
+          {
+            "created_at": "2024-02-28 11:14:48.636979",
+            "id": 4,
+            "order_id": 2,
+            "product_id": 3,
+            "quantity": 4
+          },
+          {
+            "created_at": "2024-02-28 11:14:48.637017",
+            "id": 5,
+            "order_id": 2,
+            "product_id": 6,
+            "quantity": 1
+          }
+        ]
+      },
+    ]
+    ```
+
+* Error response: User not found
+  * Status Code: 404
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "message": "User couldn't be found"
+    }
+    ```

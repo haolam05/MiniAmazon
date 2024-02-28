@@ -26,7 +26,8 @@ class OrderItem(db.Model):
     def to_dict(self):
         return {
             "id": self.id,
-            "customer_id": self.customer_id,
-            "is_checkout": self.is_checkout,
+            "product_id": self.product_id,
+            "order_id": self.order_id,
+            "quantity": self.quantity,
             "created_at": str(self.created_at)
         }

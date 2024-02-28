@@ -23,9 +23,11 @@ class Order(db.Model):
 
 
     def to_dict(self):
+        items = [item.to_dict() for item in self.order_items]
         return {
             "id": self.id,
             "customer_id": self.customer_id,
             "is_checkout": self.is_checkout,
-            "created_at": str(self.created_at)
+            "created_at": str(self.created_at),
+            "items": items
         }
