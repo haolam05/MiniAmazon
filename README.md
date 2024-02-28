@@ -676,3 +676,38 @@ Delete current user
         ]
       }
     ```
+
+### Delete a product by id
+
+Delete an existing product by id.
+
+* Require Authentication: True
+* Require Authorization: True. (Must be the seller of the product)
+* Request
+  * Method: DELETE
+  * URL: /api/products/:id
+  * Body: None
+
+* Successful Response
+  * Status Code: 200
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "message": "Successfully deleted product"
+    }
+    ```
+
+* Error response: Product not found
+  * Status Code: 404
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "message": "Product couldn't be found"
+    }
+    ```
