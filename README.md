@@ -643,9 +643,95 @@ Delete current user
   * Body:
 
     ```json
-      {
+    {
+        "category": "Groceries",
+        "created_at": "2024-02-28 10:36:18.872389",
+        "description": "This is a very very very very very very delicious banana. It's also very very very very very very cheap",
+        "id": 16,
+        "name": "Banana",
+        "price": "3.23",
+        "product_image": "Image URL",
+        "remaining": 4,
+        "seller_id": 1
+    }
+    ```
 
+* Error response: Body validation errors
+  * Status Code: 400
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+      {
+        "category": [
+          "This field is required." || "Invalid category! Here is a list of allowed categories: ['Groceries', 'Electronics', 'Books', 'Beauty & Health', 'Handmade']"
+        ],
+        "description": [
+          "This field is required." || "Description must be at least 50 characters"
+        ],
+        "name": [
+          "This field is required." || "Name must be at least 4 characters"
+        ],
+        "price": [
+          "This field is required." || "Price must be greater than 0"
+        ],
+        "product_image": [
+          "This field is required."
+        ],
+        "remaining": [
+          "This field is required." || "Remaining must be greater than 0"
+        ]
       }
+    ```
+
+### Update a product
+* Require Authentication: True
+* Request
+  * Method: PUT
+  * URL: /api/products/:id
+  * Body:
+    ```json
+      {
+        "name": "Banana 2",
+        "category": "Health & Beauty",
+        "description": "This is a very very very very very very delicious banana. It's also very very very very very very cheap 2",
+        "price": 13.23,
+        "remaining": 3,
+        "product_image": "Image URL"
+      }
+    ```
+
+* Successful Response
+  * Status Code: 200
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+        "category": "Health & Beauty",
+        "created_at": "2024-02-28 10:36:18.872389",
+        "description": "This is a very very very very very very delicious banana. It's also very very very very very very cheap 2",
+        "id": 16,
+        "name": "Banana 2",
+        "price": "13.23",
+        "product_image": "Image URL",
+        "remaining": 3,
+        "seller_id": 1
+    }
+    ```
+
+* Error response: Product not found
+  * Status Code: 404
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "message": "Product couldn't be found"
+    }
     ```
 
 * Error response: Body validation errors
