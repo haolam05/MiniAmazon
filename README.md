@@ -797,3 +797,80 @@ Delete an existing product by id.
       "message": "Product couldn't be found"
     }
     ```
+
+
+### Get all reviews belonged to a product by id
+* Require Authentication: True
+* Request
+  * Method: GET
+  * URL: /api/products/:id/reviews
+  * Body: None
+
+* Successful Response
+  * Status Code: 200
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    [
+      {
+        "created_at": "2024-02-28 11:14:48.613574",
+        "customer_id": 2,
+        "id": 1,
+        "product_id": 1,
+        "rating": 5,
+        "review": "Delicious avocado!!!"
+      }
+    ]
+    ```
+
+* Error response: Product not found
+  * Status Code: 404
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "message": "Product couldn't be found"
+    }
+    ```
+
+### Get all reviews belonged to a user by id
+* Require Authentication: True
+* Request
+  * Method: GET
+  * URL: /api/users/:id/reviews
+  * Body: None
+
+* Successful Response
+  * Status Code: 200
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    [
+      {
+        "created_at": "2024-02-28 11:14:48.613574",
+        "customer_id": 2,
+        "id": 1,
+        "product_id": 1,
+        "rating": 5,
+        "review": "Delicious avocado!!!"
+      }
+    ]
+    ```
+
+* Error response: User not found
+  * Status Code: 404
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "message": "User couldn't be found"
+    }
+    ```
