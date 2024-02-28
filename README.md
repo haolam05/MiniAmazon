@@ -61,6 +61,8 @@ correct role(s) or permission(s).
     }
     ```
 
+## USERS
+
 ### Get the Current User
 
 Returns the information about the current user that is logged in.
@@ -549,6 +551,8 @@ Delete current user
       }
     ```
 
+## PRODUCTS
+
 ### Get all products
 * Require Authentication: False
 * Request
@@ -798,6 +802,7 @@ Delete an existing product by id.
     }
     ```
 
+## REVIEWS
 
 ### Get all reviews belonged to a product by id
 * Require Authentication: True
@@ -1077,5 +1082,44 @@ Delete an existing review by id.
     ```json
     {
       "message": "Review couldn't be found"
+    }
+    ```
+
+## BOOKMARKS
+
+### Get all bookmarks belonged to a user by id
+* Require Authentication: True
+* Request
+  * Method: GET
+  * URL: /api/users/:id/bookmarks
+  * Body: None
+
+* Successful Response
+  * Status Code: 200
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    [
+      {
+        "created_at": "2024-02-28 11:14:48.621960",
+        "customer_id": 1,
+        "id": 1,
+        "note": "This seems reasonable. Looking to see if there is a better deal.",
+        "product_id": 4
+      }
+    ]
+    ```
+
+* Error response: User not found
+  * Status Code: 404
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "message": "User couldn't be found"
     }
     ```

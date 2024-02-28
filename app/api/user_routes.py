@@ -25,7 +25,7 @@ def customer(id):
 
 @user_routes.route('/<int:id>/reviews')
 @login_required
-def product_reviews(id):
+def user_reviews(id):
     """Get all reviews belonged to a customer by id"""
     customer = Customer.query.get(id)
 
@@ -35,3 +35,17 @@ def product_reviews(id):
     reviews = [review.to_dict() for review in customer.reviews]
 
     return reviews, 200
+
+
+@user_routes.route('/<int:id>/bookmarks')
+@login_required
+def user_bookmarks(id):
+    """Get all bookmarks belonged to a customer by id"""
+    customer = Customer.query.get(id)
+
+    if not customer:
+        return {"message": "User couldn't be found"}, 404
+
+    bookmarks = [bookmark.to_dict() for bookmark in customer.bookmarks]
+
+    return bookmarks, 200
