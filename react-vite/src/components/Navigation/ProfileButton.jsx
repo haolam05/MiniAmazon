@@ -12,7 +12,7 @@ function ProfileButton() {
   const user = useSelector((store) => store.session.user);
   const ulRef = useRef();
 
-  const toggleMenu = (e) => {
+  const toggleMenu = e => {
     e.stopPropagation(); // Keep from bubbling up to document and triggering closeMenu
     setShowMenu(!showMenu);
   };
@@ -20,7 +20,7 @@ function ProfileButton() {
   useEffect(() => {
     if (!showMenu) return;
 
-    const closeMenu = (e) => {
+    const closeMenu = e => {
       if (ulRef.current && !ulRef.current.contains(e.target)) {
         setShowMenu(false);
       }
@@ -33,7 +33,7 @@ function ProfileButton() {
 
   const closeMenu = () => setShowMenu(false);
 
-  const logout = (e) => {
+  const logout = e => {
     e.preventDefault();
     dispatch(thunkLogout());
     closeMenu();
@@ -41,7 +41,7 @@ function ProfileButton() {
 
   return (
     <>
-      <button onClick={toggleMenu}>
+      {/* <button onClick={toggleMenu}>
         <FaUserCircle />
       </button>
       {showMenu && (
@@ -69,7 +69,7 @@ function ProfileButton() {
             </>
           )}
         </ul>
-      )}
+      )} */}
     </>
   );
 }

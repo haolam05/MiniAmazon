@@ -1,0 +1,87 @@
+#navbar {
+  position: fixed;
+  top: 0;
+  background-color: var(--navbar-background);
+  height: 60px;
+  width: 100%;
+  display: flex;
+  gap: 20px;
+  padding: 0 10px;
+  align-items: center;
+}
+
+#navbar #logo {
+  height: 40px;
+}
+
+#navbar .searchbox {
+  height: 100px;
+  width: 100%;
+  flex-grow: 2;
+}
+
+#navbar #searchbox>input {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  height: 35px;
+  min-width: 100px;
+  padding: 0 10px;
+  flex-grow: 1;
+  border: none;
+  color: var(--black);
+}
+
+#navbar #searchbox>input:focus {
+  outline: none;
+}
+
+#navbar #searchbox>input::placeholder {
+  color: var(--dark-gray);
+}
+
+#navbar div {
+  padding: 5px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+}
+
+#navbar div:hover {
+  border: 1px solid var(--white);
+}
+
+#navbar #searchbox:hover {
+  border: none;
+}
+
+#navbar #categories select {
+  border: none;
+}
+
+#navbar #categories select:focus {
+  outline: none;
+}
+
+#navbar #categories option {
+  color: var(--black);
+}
+
+#navbar #search-icon {
+  background-color: var(--search-icon-background);
+  height: 35px;
+  padding: 0 15px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#navbar #search-icon i {
+  color: var(--black);
+}
+
+#navbar #search-icon:hover {
+  border: none;
+  background-color: var(--search-icon-hover-background);
+}
