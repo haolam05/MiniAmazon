@@ -1,5 +1,5 @@
-from flask import Blueprint
-from flask_login import login_required
+from flask import Blueprint, redirect
+from flask_login import login_required, current_user
 from app.models import Customer
 
 user_routes = Blueprint('users', __name__)
@@ -32,6 +32,9 @@ def user_reviews(id):
     if not customer:
         return {"message": "User couldn't be found"}, 404
 
+    if customer.id != current_user.id:
+        return redirect("/api/auth/forbidden")
+
     reviews = [review.to_dict() for review in customer.reviews]
 
     return reviews, 200
@@ -45,6 +48,9 @@ def user_bookmarks(id):
 
     if not customer:
         return {"message": "User couldn't be found"}, 404
+
+    if customer.id != current_user.id:
+        return redirect("/api/auth/forbidden")
 
     bookmarks = [bookmark.to_dict() for bookmark in customer.bookmarks]
 

@@ -1,6 +1,7 @@
 from flask import Blueprint, request, redirect
 from flask_login import login_required, current_user
-from app.models import db, Order
+from app.models import db, Product, Order, OrderItem
+from app.forms import OrderForm
 
 
 order_routes = Blueprint('orders', __name__)
@@ -11,8 +12,13 @@ order_routes = Blueprint('orders', __name__)
 def order(id):
     """Returns an order specified by id"""
     order = Order.query.get(id)
+
     if not order:
         return {"message": "Order couldn't be found"}, 404
+
+    if order.customer_id != current_user.id:
+        return redirect("/api/auth/forbidden")
+
     return order.to_dict(), 200
 
 
@@ -37,3 +43,41 @@ def create_order():
     db.session.commit()
 
     return new_order.to_dict(), 200
+
+
+@order_routes.route('/<int:id>', methods=['PUT'])
+@login_required
+def add_item_to_order(id):
+    """Add an item to the current user's order"""
+    form = OrderForm()
+    form["csrf_token"].data = request.cookies["csrf_token"]
+
+    if form.validate_on_submit():
+        order = Order.query.get(id)
+        product = Product.query.get(form.data["product_id"])
+
+        if not order:
+            return {"message": "Order couldn't be found"}, 404
+
+        if not product:
+            return {"message": "Product couldn't be found"}, 404
+
+        if order.customer_id != current_user.id:
+            return redirect("/api/auth/forbidden")
+
+        order_item = OrderItem.query.filter(OrderItem.order_id == order.id).filter(OrderItem.product_id == product.id).one_or_none()
+        if not order_item:
+            order_item = OrderItem(
+                order_id=order.id,
+                product_id=form.data["product_id"],
+                quantity=form.data["quantity"]
+            )
+        else:
+            order_item.quantity = form.data["quantity"]
+
+        db.session.add(order_item)
+        db.session.commit()
+
+        return order_item.to_dict(), 200
+
+    return form.errors, 400

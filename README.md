@@ -844,6 +844,7 @@ Delete an existing product by id.
 
 ### Get all reviews belonged to a user by id
 * Require Authentication: True
+* Require Authorization: True - current user must be the same as the request user
 * Request
   * Method: GET
   * URL: /api/users/:id/reviews
@@ -1161,6 +1162,7 @@ Delete an existing review by id.
 
 ### Get all bookmarks belonged to a user by id
 * Require Authentication: True
+* Require Authorization: True - Current user must be the same as the requested user
 * Request
   * Method: GET
   * URL: /api/users/:id/bookmarks
@@ -1357,6 +1359,7 @@ A product can only be bookmarked once by a user
 
 ### Get an order by id
 * Require Authentication: True
+* Require Authorization: True - Current user must be the owner of the order
 * Request
   * Method: GET
   * URL: /api/orders/:id
@@ -1516,5 +1519,80 @@ At any point in time, there shuold be one and only 1 current checkout (meaning o
     ```json
       {
         "message": "Please checkout first before creating another order"
+      }
+    ```
+
+### Update the current order(in cart) for current user
+
+If the product item is not yet in the cart(order), it will be added with the specified quantity.
+If the product item is already in the cart, the quantity will be updated.
+
+* Require Authentication: True
+* Require Authorization: True - Current user must be the owner of the order
+* Request
+  * Method: PUT
+  * URL: /api/orders/:id
+  * Body:
+    ```json
+      {
+        "product_id": 2,
+        "quantity": 4
+      }
+    ```
+
+* Successful Response
+  * Status Code: 200
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "created_at": "2024-02-28 16:22:35.357897",
+      "id": 9,
+      "order_id": 4,
+      "product_id": 2,
+      "quantity": 4
+    }
+    ```
+
+* Error response: Order not found
+  * Status Code: 404
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+      {
+        "message": "Order couldn't be found"
+      }
+    ```
+
+* Error response: Product not found
+  * Status Code: 404
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+      {
+        "message": "Product couldn't be found"
+      }
+    ```
+
+* Error response: Body validation errors
+  * Status Code: 400
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+      {
+        "product_id": [
+          "This field is required." || "Product ID must be positive"
+        ],
+        "quantity": [
+          "This field is required." || "Quantity must be positive"
+        ]
       }
     ```
