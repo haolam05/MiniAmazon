@@ -1,6 +1,7 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { addOutline, removeOutline } from "../../utils/navbar";
-import ProfileButtons from "../ProfileButtons";
+import SessionInfo from "../SessionInfo";
 import "./NavBar.css";
 
 function NavBar({ user }) {
@@ -24,12 +25,13 @@ function NavBar({ user }) {
       </div>
       <div id="categories">
         <select name="categories" value={category} onChange={e => setCategory(e.target.value)}>
-          <option value="" hidden>Categories</option>
-          <option value="Groceries">Groceries</option>
-          <option value="Electronics">Electronics</option>
-          <option value="Books">Books</option>
-          <option value="Health & Beauty">Health & Beauty</option>
-          <option value="Handmade">Handmade</option>
+          <option className="category" value="" hidden>Categories</option>
+          <option className="category">All</option>
+          <option className="category" value="Groceries">Groceries</option>
+          <option className="category" value="Electronics">Electronics</option>
+          <option className="category" value="Books">Books</option>
+          <option className="category" value="Health & Beauty">Health & Beauty</option>
+          <option className="category" value="Handmade">Handmade</option>
         </select>
       </div>
       <div id="cart">
@@ -37,15 +39,7 @@ function NavBar({ user }) {
         <span>Cart</span>
         <span id="cart-items-count">0</span>
       </div>
-      {user && (
-        <div id="user-greetings">
-          <span>Hi {user.first_name} 😊</span>
-          <span>{user.email}</span>
-        </div>
-      )}
-      <div id="profile-btns">
-        <ProfileButtons user={user} />
-      </div>
+      <SessionInfo user={user} />
     </div>
   );
 }

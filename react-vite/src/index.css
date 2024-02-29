@@ -12,8 +12,13 @@
   --orange: orange;
   --light-yellow: rgb(245, 249, 3);
   --navbar-background: #0F1111;
+  /* #2A2F3E */
   --search-icon-background: rgb(241, 168, 33);
   --search-icon-hover-background: rgb(221, 147, 11);
+}
+
+option:hover {
+  background-color: yellow;
 }
 
 * {
