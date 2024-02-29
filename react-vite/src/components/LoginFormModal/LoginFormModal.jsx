@@ -1,54 +1,74 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
+import { disabledSubmitButton, enabledSubmitButton } from "../../utils/dom";
+import NotificationModal from "../NotificationModal";
 import * as sessionActions from "../../redux/session";
+import "./LoginFormModal.css"
 
 function LoginFormModal() {
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
-  const { closeModal } = useModal();
+  const { setModalContent } = useModal();
 
-  const handleSubmit = async e => {
+  const handleSubmit = async (e, loginAsDemoUser = false) => {
     e.preventDefault();
+    disabledSubmitButton();
 
-    const data = await dispatch(
-      sessionActions.thunkLogin({
-        email,
-        password,
-      })
-    );
+    let data;
 
-    if (data?.errors) return setErrors(data.errors);
-    closeModal();
+    if (loginAsDemoUser) {
+      data = await dispatch(
+        sessionActions.thunkLogin({
+          email: "haolam@user.io",
+          password: "password",
+        })
+      );
+    } else {
+      data = await dispatch(
+        sessionActions.thunkLogin({
+          email,
+          password,
+        })
+      );
+    }
+
+    if (data?.errors) {
+      enabledSubmitButton();
+      return setErrors(data.errors);
+    }
+    setModalContent(<NotificationModal message="You have successfully logged in!" status="alert-success" />);
+    enabledSubmitButton();
   };
 
   return (
     <>
-      <h1>Log In</h1>
+      <h2 className="subheading">Log In</h2>
       <form onSubmit={handleSubmit}>
-        <label>
-          Email
-          <input
-            type="text"
-            value={email}
-            onChange={e => setEmail(e.target.value)}
-            required
-          />
-        </label>
-        {errors.email && <p>{errors.email}</p>}
-        <label>
-          Password
-          <input
-            type="password"
-            value={password}
-            onChange={e => setPassword(e.target.value)}
-            required
-          />
-        </label>
-        {errors.password && <p>{errors.password}</p>}
-        <button type="submit">Log In</button>
+        <label>Email</label>
+        <input
+          type="text"
+          value={email}
+          spellCheck={false}
+          onChange={e => setEmail(e.target.value)}
+          required
+        />
+        {errors.email && <p className="modal-errors">{errors.email}</p>}
+        <label>Password</label>
+        <input
+          type="password"
+          value={password}
+          spellCheck={false}
+          onChange={e => setPassword(e.target.value)}
+          required
+        />
+        {errors.password && <p className="modal-errors">{errors.password}</p>}
+        <div className="login-form-footer">
+          <button type="submit">Log In</button>
+          <span type="submit" onClick={e => handleSubmit(e, true)}>Login as demo user</span>
+        </div>
       </form>
     </>
   );

@@ -6,13 +6,17 @@
   --dark-gray: #999999;
   --light-gray: #CCCCCC;
   --red: #FF5A5F;
-  --green: rgb(93, 203, 93);
+  --green: rgb(21, 117, 21);
   --pink: pink;
   --wheat: wheat;
   --orange: orange;
   --light-yellow: rgb(245, 249, 3);
+  --success-color: rgb(10, 133, 10);
+  --text-shadow: rgb(198, 198, 153) 1px 0 10px;
+  --modal-background: rgba(0, 0, 0, 0.7);
+  --modal-content-background: rgb(240, 238, 238);
   --navbar-background: #0F1111;
-  /* #2A2F3E */
+  --option-background: #2A2F3E;
   --search-icon-background: rgb(241, 168, 33);
   --search-icon-hover-background: rgb(221, 147, 11);
 }
@@ -41,6 +45,7 @@ p {
   text-shadow: none;
   font-style: italic;
   letter-spacing: 0.6px;
+  color: var(--green);
 }
 
 img {
@@ -53,38 +58,40 @@ h1 {
   margin: 40px;
 }
 
-.btn-submit {
-  padding: 10px;
+button[type="submit"] {
+  padding: 10px 20px;
   border: none;
   border-radius: 5px;
-  background-color: var(--submit-button-background);
-  box-shadow: -2px -2px 1px var(--gray);
+  background-color: var(--option-background);
   color: var(--white);
-  margin-top: 20px;
+  margin-top: 10px;
+  width: fit-content;
+}
+
+button[type="submit"]:hover {
+  text-decoration: underline;
 }
 
 .heading {
   font-size: 25pt;
   font-weight: bold;
   word-break: break-word;
+  color: var(--black);
 }
 
 .subheading {
   font-size: 17pt;
   font-weight: bold;
   word-break: break-word;
+  color: var(--black);
 }
 
 .alert-success {
-  color: rgb(93, 203, 93);
+  color: var(--success-color);
 }
 
 input[disabled]:hover {
   cursor: not-allowed;
-}
-
-select {
-  background-color: var(--other-message-background);
 }
 
 .disabled:hover,
@@ -110,28 +117,30 @@ ul {
   display: none;
 }
 
+select {
+  background-color: inherit;
+}
+
 form {
   display: flex;
   flex-direction: column;
   gap: 10px;
   width: 100%;
-}
-
-form h2 {
-  cursor: pointer;
+  justify-content: flex-start;
 }
 
 form input {
   padding: 10px;
-  background-color: var(--gray);
-  color: var(--white);
+  background-color: var(--white);
   border-radius: 5px;
   border: none;
+  color: var(--black);
+  border: 1px solid var(--gray);
 }
 
 form input:focus {
-  background-color: var(--gray);
-  color: var(--white);
+  color: var(--black);
+  outline: none;
 }
 
 form input[type="file"] {
@@ -144,7 +153,7 @@ form input[type="file"]::file-selector-button {
   color: var(--white);
   font-style: italic;
   font-size: 11px;
-  background-color: var(--modal-content-background);
+  background-color: var(--navbar-background);
   border: none;
   padding: 5px 10px;
   border-radius: 5px;
@@ -175,6 +184,10 @@ form input::placeholder {
   color: var(--white);
   font-style: italic;
   font-size: 10pt;
+}
+
+form label {
+  color: var(--black);
 }
 
 .modal-errors {

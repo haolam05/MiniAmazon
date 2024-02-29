@@ -1,15 +1,19 @@
 import { useDispatch } from "react-redux";
+import { useModal } from "../../context/Modal";
 import LoginFormModal from "../LoginFormModal";
 import OpenModalMenuItem from "../ProfileButtons/OpenModalMenuItem";
 import SignupFormModal from "../SignupFormModal";
 import * as sessionActions from "../../redux/session";
+import NotificationModal from "../NotificationModal";
 
 function SessionInfo({ user }) {
   const dispatch = useDispatch();
+  const { setModalContent } = useModal();
 
   const logout = e => {
     e.preventDefault();
     dispatch(sessionActions.thunkLogout());
+    setModalContent(<NotificationModal message="You have successfully logged out" />);
   }
 
   if (user) {

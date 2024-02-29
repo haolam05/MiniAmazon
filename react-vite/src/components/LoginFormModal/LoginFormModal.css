@@ -1,0 +1,17 @@
+.login-form-footer {
+  display: flex;
+  align-items: center;
+  ;
+  gap: 20px;
+}
+
+.login-form-footer span {
+  color: var(--black);
+  margin-top: 10px;
+  font-style: italic;
+}
+
+.login-form-footer span:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}

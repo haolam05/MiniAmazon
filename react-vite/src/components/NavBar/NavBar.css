@@ -68,12 +68,8 @@
 }
 
 #navbar #categories option {
-  background-color: #2A2F3E;
-  color: white;
-}
-
-#categories option.category s:hover {
-  background-color: #2A2F3E;
+  background-color: var(--option-background);
+  color: var(--white);
 }
 
 #navbar #search-icon {

@@ -15,10 +15,21 @@
   right: 0;
   left: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: var(--modal-background);
 }
 
 #modal-content {
   position: absolute;
-  background-color:white;
+  background-color: var(--modal-content-background);
+  color: var(--white);
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 30px;
+  align-items: center;
+  padding: 20px;
+  border-radius: 10px;
+  min-width: 400px;
+  width: min-content;
 }
