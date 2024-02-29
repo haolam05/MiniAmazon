@@ -7,6 +7,7 @@
   display: flex;
   gap: 20px;
   align-items: center;
+  cursor: auto;
 }
 
 #navbar #logo {
@@ -43,7 +44,9 @@
   height: 40px;
   display: flex;
   align-items: center;
+  justify-content: center;
   min-width: fit-content;
+  cursor: pointer;
 }
 
 #navbar div:hover {
@@ -56,6 +59,7 @@
 
 #navbar #categories select {
   border: none;
+  border-radius: 0;
 }
 
 #navbar #categories select:focus {
@@ -64,6 +68,7 @@
 
 #navbar #categories option {
   color: var(--black);
+  /* background-color: #2A2F3E; */
 }
 
 #navbar #search-icon {
@@ -87,8 +92,11 @@
 }
 
 #navbar #cart {
-  margin-right: 10px;
   position: relative;
+}
+
+#navbar #cart img {
+  height: 30px;
 }
 
 #navbar #cart span {
@@ -97,9 +105,42 @@
   align-items: flex-end;
 }
 
-#cart-items-count {
+#navbar #cart #cart-items-count {
   position: absolute;
-  left: 27px;
-  bottom: 34px;
+  left: 22px;
+  bottom: 33px;
+  font-size: 10pt;
   color: var(--orange);
+}
+
+#navbar #profile-btns {
+  width: 75px;
+  margin-right: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--search-icon-background);
+  border-radius: 5px;
+  height: 25px;
+  /* background-color: #2A2F3E; */
+}
+
+#navbar #profile-btns:hover {
+  background-color: var(--search-icon-hover-background);
+  border: none;
+}
+
+#navbar #profile-btns button {
+  background-color: transparent;
+  border: none;
+}
+
+#navbar #profile-btns .profile-dropdown {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  top: 60px;
+  background-color: #2A2F3E;
+  border-radius: 5px;
+  padding: 5px;
 }

@@ -1,4 +1,5 @@
 import { addOutline, removeOutline } from "../../utils/navbar";
+import ProfileButtons from "../ProfileButtons";
 import "./NavBar.css";
 
 function NavBar() {
@@ -33,6 +34,9 @@ function NavBar() {
         <img src="/images/cart.png" alt="shopping-cart" />
         <span>Cart</span>
         <span id="cart-items-count">0</span>
+      </div>
+      <div id="profile-btns">
+        <ProfileButtons />
       </div>
     </div>
   );
