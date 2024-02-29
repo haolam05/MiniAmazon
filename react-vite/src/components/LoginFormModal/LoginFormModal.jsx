@@ -1,8 +1,7 @@
 import { useState } from "react";
-import { thunkLogin } from "../../redux/session";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
-import "./LoginForm.css";
+import * as sessionActions from "../../redux/session";
 
 function LoginFormModal() {
   const dispatch = useDispatch();
@@ -11,21 +10,18 @@ function LoginFormModal() {
   const [errors, setErrors] = useState({});
   const { closeModal } = useModal();
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async e => {
     e.preventDefault();
 
-    const serverResponse = await dispatch(
-      thunkLogin({
+    const data = await dispatch(
+      sessionActions.thunkLogin({
         email,
         password,
       })
     );
 
-    if (serverResponse) {
-      setErrors(serverResponse);
-    } else {
-      closeModal();
-    }
+    if (data?.errors) return setErrors(data.errors);
+    closeModal();
   };
 
   return (
@@ -37,7 +33,7 @@ function LoginFormModal() {
           <input
             type="text"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={e => setEmail(e.target.value)}
             required
           />
         </label>
@@ -47,7 +43,7 @@ function LoginFormModal() {
           <input
             type="password"
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={e => setPassword(e.target.value)}
             required
           />
         </label>

@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { thunkSignup } from "../../redux/session";
-import "./SignupForm.css";
 
 function SignupFormModal() {
   const dispatch = useDispatch();
@@ -13,17 +12,14 @@ function SignupFormModal() {
   const [errors, setErrors] = useState({});
   const { closeModal } = useModal();
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async e => {
     e.preventDefault();
 
     if (password !== confirmPassword) {
-      return setErrors({
-        confirmPassword:
-          "Confirm Password field must be the same as the Password field",
-      });
+      return setErrors({ confirmPassword: "Confirm Password field must be the same as the Password field", });
     }
 
-    const serverResponse = await dispatch(
+    const data = await dispatch(
       thunkSignup({
         email,
         username,
@@ -31,11 +27,8 @@ function SignupFormModal() {
       })
     );
 
-    if (serverResponse) {
-      setErrors(serverResponse);
-    } else {
-      closeModal();
-    }
+    if (data?.errors) return setErrors(data.errors);
+    closeModal();
   };
 
   return (
@@ -48,7 +41,7 @@ function SignupFormModal() {
           <input
             type="text"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={e => setEmail(e.target.value)}
             required
           />
         </label>
@@ -58,7 +51,7 @@ function SignupFormModal() {
           <input
             type="text"
             value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            onChange={e => setUsername(e.target.value)}
             required
           />
         </label>
@@ -68,7 +61,7 @@ function SignupFormModal() {
           <input
             type="password"
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={e => setPassword(e.target.value)}
             required
           />
         </label>
@@ -78,7 +71,7 @@ function SignupFormModal() {
           <input
             type="password"
             value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
+            onChange={e => setConfirmPassword(e.target.value)}
             required
           />
         </label>

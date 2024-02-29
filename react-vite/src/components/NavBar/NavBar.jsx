@@ -1,8 +1,11 @@
+import { useState } from "react";
 import { addOutline, removeOutline } from "../../utils/navbar";
 import ProfileButtons from "../ProfileButtons";
 import "./NavBar.css";
 
-function NavBar() {
+function NavBar({ user }) {
+  const [category, setCategory] = useState("");
+
   return (
     <div id="navbar">
       <div id="logo">
@@ -20,9 +23,8 @@ function NavBar() {
         </div>
       </div>
       <div id="categories">
-        <select name="categories">
-          <option value="" disabled selected hidden>Categories</option>
-          <option value="All">All</option>
+        <select name="categories" value={category} onChange={e => setCategory(e.target.value)}>
+          <option value="" hidden>Categories</option>
           <option value="Groceries">Groceries</option>
           <option value="Electronics">Electronics</option>
           <option value="Books">Books</option>
@@ -35,8 +37,14 @@ function NavBar() {
         <span>Cart</span>
         <span id="cart-items-count">0</span>
       </div>
+      {user && (
+        <div id="user-greetings">
+          <span>Hi {user.first_name} 😊</span>
+          <span>{user.email}</span>
+        </div>
+      )}
       <div id="profile-btns">
-        <ProfileButtons />
+        <ProfileButtons user={user} />
       </div>
     </div>
   );
