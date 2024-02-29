@@ -181,7 +181,7 @@ form .btn-primary.enabled:hover {
 }
 
 form input::placeholder {
-  color: var(--white);
+  color: var(--black);
   font-style: italic;
   font-size: 10pt;
 }
@@ -192,4 +192,12 @@ form label {
 
 .modal-errors {
   color: var(--red);
+}
+
+.box-shadow-red {
+  box-shadow: -1px -1px 8px var(--red);
+}
+
+.box-shadow-green {
+  box-shadow: -1px -1px 8px var(--green);
 }

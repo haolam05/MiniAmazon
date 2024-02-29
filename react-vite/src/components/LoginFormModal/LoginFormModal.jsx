@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { disabledSubmitButton, enabledSubmitButton } from "../../utils/dom";
+import { handleEmailOnChange } from "../../utils/form";
 import NotificationModal from "../NotificationModal";
 import * as sessionActions from "../../redux/session";
 import "./LoginFormModal.css"
@@ -43,6 +44,15 @@ function LoginFormModal() {
     enabledSubmitButton();
   };
 
+  const inputInvalid = () => {
+    return (
+      !email.length ||
+      !email.includes("@") ||
+      !email.includes(".") ||
+      password.length < 6
+    )
+  }
+
   return (
     <>
       <h2 className="subheading">Log In</h2>
@@ -52,7 +62,8 @@ function LoginFormModal() {
           type="text"
           value={email}
           spellCheck={false}
-          onChange={e => setEmail(e.target.value)}
+          placeholder="haolam@user.io"
+          onChange={e => handleEmailOnChange(e, setEmail, setErrors)}
           required
         />
         {errors.email && <p className="modal-errors">{errors.email}</p>}
@@ -61,12 +72,19 @@ function LoginFormModal() {
           type="password"
           value={password}
           spellCheck={false}
+          placeholder="At least 6 characters"
           onChange={e => setPassword(e.target.value)}
           required
         />
         {errors.password && <p className="modal-errors">{errors.password}</p>}
         <div className="login-form-footer">
-          <button type="submit">Log In</button>
+          <button
+            type="submit"
+            className={`btn-submit ${inputInvalid() ? 'disabled' : ''}`}
+            disabled={inputInvalid()}
+          >
+            Log In
+          </button>
           <span type="submit" onClick={e => handleSubmit(e, true)}>Login as demo user</span>
         </div>
       </form>
