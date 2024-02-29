@@ -1,6 +1,5 @@
-import { useEffect } from "react";
-import "./NavBar.css";
 import { addOutline, removeOutline } from "../../utils/navbar";
+import "./NavBar.css";
 
 function NavBar() {
   return (
@@ -30,7 +29,11 @@ function NavBar() {
           <option value="Handmade">Handmade</option>
         </select>
       </div>
-      <div id="cart">Cart</div>
+      <div id="cart">
+        <img src="/images/cart.png" alt="shopping-cart" />
+        <span>Cart</span>
+        <span id="cart-items-count">0</span>
+      </div>
     </div>
   );
 }

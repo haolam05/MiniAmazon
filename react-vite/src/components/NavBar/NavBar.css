@@ -2,22 +2,21 @@
   position: fixed;
   top: 0;
   background-color: var(--navbar-background);
-  height: 60px;
+  height: 70px;
   width: 100%;
   display: flex;
   gap: 20px;
-  padding: 0 10px;
   align-items: center;
 }
 
 #navbar #logo {
   height: 40px;
+  margin-left: 10px;
 }
 
 #navbar .searchbox {
   height: 100px;
   width: 100%;
-  flex-grow: 2;
 }
 
 #navbar #searchbox>input {
@@ -41,9 +40,10 @@
 
 #navbar div {
   padding: 5px;
-  height: 35px;
+  height: 40px;
   display: flex;
   align-items: center;
+  min-width: fit-content;
 }
 
 #navbar div:hover {
@@ -84,4 +84,22 @@
 #navbar #search-icon:hover {
   border: none;
   background-color: var(--search-icon-hover-background);
+}
+
+#navbar #cart {
+  margin-right: 10px;
+  position: relative;
+}
+
+#navbar #cart span {
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+}
+
+#cart-items-count {
+  position: absolute;
+  left: 27px;
+  bottom: 34px;
+  color: var(--orange);
 }
