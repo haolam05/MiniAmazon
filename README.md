@@ -1596,3 +1596,47 @@ If the product item is already in the cart, the quantity will be updated.
         ]
       }
     ```
+
+### Checkout order for current user
+* Require Authentication: True
+* Require Authorization: True - Current user must be the owner of the order
+* Request
+  * Method: GET
+  * URL: /api/orders/:id/checkout
+  * Body: None
+
+* Successful Response
+  * Status Code: 200
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+      {
+        "message": "Successfully checkout out"
+      }
+    ```
+
+* Error response: Order not found
+  * Status Code: 404
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+      {
+        "message": "Order couldn't be found"
+      }
+    ```
+
+* Error response: Duplicate checkout
+  * Status Code: 500
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+      {
+        "message": "This order is already checked out"
+      }
+    ```

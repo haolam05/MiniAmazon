@@ -81,3 +81,25 @@ def add_item_to_order(id):
         return order_item.to_dict(), 200
 
     return form.errors, 400
+
+
+@order_routes.route('/<int:id>/checkout')
+@login_required
+def checkout_order(id):
+    """Checkout an order"""
+    order = Order.query.get(id)
+
+    if not order:
+        return {"message": "Order couldn't be found"}, 404
+
+    if order.customer_id != current_user.id:
+        return redirect("/api/auth/forbidden")
+
+    if order.is_checkout == True:
+        return {"message": "This order is already checked out"}, 500
+
+    order.is_checkout = True
+
+    db.session.commit()
+
+    return {"message": "Successfully checked out"}, 200
