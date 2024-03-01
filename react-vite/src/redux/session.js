@@ -78,6 +78,19 @@ export const deleteUserThunk = () => async dispatch => {
 };
 
 
+export const updateUserPasswordThunk = user => async dispatch => {
+  const response = await csrfFetch("/api/auth/password", {
+    method: "PUT",
+    body: JSON.stringify({
+      ...user
+    })
+  });
+
+  const data = await response.json();
+  if (!response.ok) return { errors: data };
+  dispatch(removeUser());
+};
+
 
 // Custom selectors
 export const sessionUser = state => state.session.user;

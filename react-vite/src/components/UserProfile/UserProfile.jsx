@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux";
 import { getAvatarUrl } from "../../utils/navbar";
 import { useModal } from "../../context/Modal";
 import ConfirmDeleteFormModal from "../ConfirmDeleteModal";
-// import UpdatePasswordFormModal from "../UpdatePasswordFormModal";
+import UpdatePasswordFormModal from "../UpdatePasswordFormModal";
 // import UpdateUserFormModal from "../UpdateUserFormModal";
 import NotificationModal from "../NotificationModal";
 import * as sessionActions from "../../redux/session";
@@ -19,7 +19,7 @@ function UserProfile({ user }) {
   }
 
   const openUpdatePasswordForm = () => {
-    // setModalContent(<UpdatePasswordFormModal user={user} />);
+    setModalContent(<UpdatePasswordFormModal user={user} />);
   }
 
   const openDeleteUserForm = () => {
