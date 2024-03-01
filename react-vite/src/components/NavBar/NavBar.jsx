@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
 import { addOutline, removeOutline } from "../../utils/navbar";
 import SessionInfo from "../SessionInfo";
 import "./NavBar.css";

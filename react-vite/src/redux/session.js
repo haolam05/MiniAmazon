@@ -1,4 +1,5 @@
 import { csrfFetch } from "./csrf";
+import { createSelector } from "reselect";
 
 // Actions
 const SET_USER = 'session/SET_USER';
@@ -18,7 +19,8 @@ const removeUser = () => ({
 
 // Thunk action creators
 export const restoreSession = () => async (dispatch, getState) => {
-  if (getState().session.user?.user) return;
+  const user = getState().session.user;
+  if (user && user.user) return;
   const response = await csrfFetch("/api/auth/");
   if (response.ok) {
     const data = await response.json();
@@ -113,7 +115,10 @@ export const updateUserThunk = user => async dispatch => {
 
 
 // Custom selectors
-export const sessionUser = state => state.session.user;
+export const sessionUser = createSelector(
+  state => state.session,
+  session => session.user
+);
 
 
 // Reducer

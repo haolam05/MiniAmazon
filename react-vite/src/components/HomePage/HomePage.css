@@ -1,0 +1,6 @@
+#home-page #main-content {
+  display: flex;
+  margin-top: 100px;
+  padding: 0 40px;
+  gap: 40px;
+}
