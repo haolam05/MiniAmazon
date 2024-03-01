@@ -16,7 +16,7 @@ function HomePage() {
       setIsLoaded(true);
     }
     loadInfo();
-  }, [dispatch]);
+  }, [user?.user, dispatch]);
 
   if (!isLoaded) return <Loading />;
 

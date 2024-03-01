@@ -18,8 +18,7 @@ const removeUser = () => ({
 
 // Thunk action creators
 export const restoreSession = () => async (dispatch, getState) => {
-  console.log(getState().session.user, getState().session.user?.user);
-  if (getState().session.user !== null) return;
+  if (getState().session.user?.user) return;
   const response = await csrfFetch("/api/auth/");
   if (response.ok) {
     const data = await response.json();
@@ -29,7 +28,20 @@ export const restoreSession = () => async (dispatch, getState) => {
   }
 };
 
-export const thunkLogin = user => async dispatch => {
+export const thunkLogin = credentials => async dispatch => {
+  const response = await csrfFetch("/api/auth/login", {
+    method: "POST",
+    body: JSON.stringify({
+      ...credentials
+    })
+  });
+
+  const data = await response.json();
+  if (!response.ok) return { errors: data };
+  dispatch(setUser(data));
+};
+
+export const thunkSignup = user => async dispatch => {
   const { first_name, last_name, profile_image_url, email, username, password } = user;
   const formData = new FormData();
   formData.append("first_name", first_name)
@@ -48,24 +60,6 @@ export const thunkLogin = user => async dispatch => {
   const data = await response.json();
   if (!response.ok) return { errors: data };
   dispatch(setUser(data));
-};
-
-export const thunkSignup = user => async dispatch => {
-  const response = await csrfFetch("/api/auth/signup", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(user)
-  });
-
-  if (response.ok) {
-    const data = await response.json();
-    dispatch(setUser(data));
-  } else if (response.status < 500) {
-    const errorMessages = await response.json();
-    return errorMessages
-  } else {
-    return { server: "Something went wrong. Please try again" }
-  }
 };
 
 export const thunkLogout = () => async dispatch => {
