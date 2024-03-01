@@ -39,7 +39,7 @@ function NavBar({ user }) {
         <span id="cart-items-count">0</span>
       </div>
       <div id="bookmark" title="View bookmarks">
-        <i class="fa-solid fa-bookmark"></i>
+        <i className="fa-solid fa-bookmark"></i>
       </div>
       <SessionInfo user={user} />
     </div>

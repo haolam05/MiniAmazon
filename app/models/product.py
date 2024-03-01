@@ -50,5 +50,6 @@ class Product(db.Model):
             "seller_id": self.seller_id,
             "remaining": self.remaining,
             "product_image": self.product_image,
+            "seller": self.seller.to_dict(),
             "created_at": str(self.created_at)
         }

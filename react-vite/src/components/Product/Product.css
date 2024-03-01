@@ -6,6 +6,8 @@
   height: 450px;
   border: 1px solid var(--black);
   background-color: var(--product-background);
+  position: relative;
+  cursor: pointer;
 }
 
 .product div {
