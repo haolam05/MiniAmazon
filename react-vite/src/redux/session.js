@@ -67,6 +67,17 @@ export const thunkLogout = () => async dispatch => {
   dispatch(removeUser());
 };
 
+export const deleteUserThunk = () => async dispatch => {
+  const response = await csrfFetch(`/api/auth/delete`, {
+    method: "DELETE"
+  });
+
+  if (response.ok) {
+    dispatch(removeUser());
+  }
+};
+
+
 
 // Custom selectors
 export const sessionUser = state => state.session.user;

@@ -1,0 +1,25 @@
+#confirm-delete-modal {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+#confirm-delete-modal p {
+  color: var(--black);
+}
+
+#confirm-delete-modal #delete-btns {
+  display: flex;
+  gap: 10px;
+}
+
+#confirm-delete-modal #delete-btns button {
+  background-color: var(--option-background);
+  padding: 5px 15px;
+  border-radius: 5px;
+  border: none;
+}
+
+#confirm-delete-modal #delete-btns button:hover {
+  text-decoration: underline;
+}
