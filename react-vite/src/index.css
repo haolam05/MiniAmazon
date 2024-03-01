@@ -90,6 +90,10 @@ button[type="submit"]:hover {
   color: var(--success-color);
 }
 
+input.disabled {
+  opacity: 0.5;
+}
+
 input[disabled]:hover {
   cursor: not-allowed;
 }
@@ -207,5 +211,5 @@ form label {
   width: 35px;
   height: 35px;
   bottom: 83px;
-  left: 400px;
+  right: 30px;
 }

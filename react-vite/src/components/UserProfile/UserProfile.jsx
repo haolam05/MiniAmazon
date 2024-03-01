@@ -3,7 +3,7 @@ import { getAvatarUrl } from "../../utils/navbar";
 import { useModal } from "../../context/Modal";
 import ConfirmDeleteFormModal from "../ConfirmDeleteModal";
 import UpdatePasswordFormModal from "../UpdatePasswordFormModal";
-// import UpdateUserFormModal from "../UpdateUserFormModal";
+import UpdateUserFormModal from "../UpdateUserFormModal";
 import NotificationModal from "../NotificationModal";
 import * as sessionActions from "../../redux/session";
 import "./UserProfile.css";
@@ -15,7 +15,7 @@ function UserProfile({ user }) {
   if (!user) return;
 
   const openUpdateUserForm = () => {
-    // setModalContent(<UpdateUserFormModal user={user} />);
+    setModalContent(<UpdateUserFormModal user={user} />);
   }
 
   const openUpdatePasswordForm = () => {

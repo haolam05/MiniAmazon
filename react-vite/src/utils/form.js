@@ -141,9 +141,13 @@ export const handleProfileImageUrlOnChange = (e, key, setProfileImageUrl, setErr
 
   previewImage.classList.add("hidden");
 
+  turnOnRedBoxShadow(e);
   if (size > 10 ** 6) {
-    turnOnRedBoxShadow(e);
     return setErrors({ [key]: "File size must not be larger than 10MB." });
+  }
+
+  if (!isImageValid(file.name)) {
+    return setErrors({ [key]: "Only .png, .jpg, .jpeg, .gif are allowed" });
   }
 
   const reader = new FileReader();
@@ -156,4 +160,21 @@ export const handleProfileImageUrlOnChange = (e, key, setProfileImageUrl, setErr
   turnOnGreenBoxShadow(e);
   setProfileImageUrl(file);
   setErrors({ profileImageUrl: "" });
+}
+
+const isImageValid = imageName => {
+  if (!imageName.length) return false;
+  const allowedExtensions = ["png", "jpg", "jpeg", "gif"];
+  const imageParts = imageName.split(".");
+  return imageParts && imageParts[1] && allowedExtensions.includes(imageParts[1].toLowerCase());
+}
+
+export const movePreviewImageUp = () => {
+  const previewImage = document.getElementById('preview-image');
+  if (previewImage) previewImage.style.bottom = "119px";
+}
+
+export const movePreviewImageDown = () => {
+  const previewImage = document.getElementById('preview-image');
+  if (previewImage) previewImage.style.bottom = "83px";
 }
