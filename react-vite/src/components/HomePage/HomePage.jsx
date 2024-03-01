@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { userIsValid } from "../../utils/user";
 import NavBar from "../NavBar/NavBar";
 import Loading from "../Loading";
 import Products from "../Products";
+import Cart from "../Cart";
 import * as sessionActions from "../../redux/session";
 import * as productActions from "../../redux/product";
+import * as orderActions from "../../redux/order";
 import "./HomePage.css";
 
 function HomePage() {
@@ -12,11 +15,15 @@ function HomePage() {
   const dispatch = useDispatch();
   const user = useSelector(sessionActions.sessionUser);
   const products = useSelector(productActions.getProducts);
+  const orders = useSelector(orderActions.getOrders);
 
   useEffect(() => {
     const loadData = async () => {
       await dispatch(sessionActions.restoreSession());
       await dispatch(productActions.loadProductsThunk());
+      if (userIsValid(user)) {
+        await dispatch(orderActions.loadOrdersThunk());
+      }
       setIsLoaded(true);
     }
     loadData();
@@ -29,7 +36,7 @@ function HomePage() {
       <NavBar user={user?.user} />
       <div id="main-content">
         <Products products={products} />
-        <div id="cart" style={{ color: 'red' }}></div>
+        <Cart orders={orders} />
       </div>
     </div>
   );

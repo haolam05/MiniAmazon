@@ -1,0 +1,10 @@
+#cart-orders {
+  background-color: rgb(220, 218, 218);
+  position: fixed;
+  right: 0;
+  top: 70px;
+  width: 375px;
+  height: 100vh;
+  border-bottom-left-radius: 5px;
+  padding: 10px;
+}

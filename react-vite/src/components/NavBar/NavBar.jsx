@@ -6,6 +6,14 @@ import "./NavBar.css";
 function NavBar({ user }) {
   const [category, setCategory] = useState("");
 
+  const showCart = async e => {
+    e.preventDefault();
+    const cart = document.querySelector("#cart-orders");
+    if (cart) {
+      cart.classList.toggle("hidden");
+    }
+  }
+
   return (
     <div id="navbar">
       <div id="logo">
@@ -33,7 +41,7 @@ function NavBar({ user }) {
           <option className="category" value="Handmade">Handmade</option>
         </select>
       </div>
-      <div id="cart" title="View cart">
+      <div id="cart" title="View cart" onClick={showCart}>
         <img src="/images/cart.png" alt="shopping-cart" />
         <span>Cart</span>
         <span id="cart-items-count">0</span>

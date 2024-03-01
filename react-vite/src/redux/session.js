@@ -1,5 +1,6 @@
 import { csrfFetch } from "./csrf";
 import { createSelector } from "reselect";
+import * as orderActions from "./order";
 
 // Actions
 const SET_USER = 'session/SET_USER';
@@ -67,6 +68,7 @@ export const thunkSignup = user => async dispatch => {
 export const thunkLogout = () => async dispatch => {
   await csrfFetch("/api/auth/logout");
   dispatch(removeUser());
+  dispatch(orderActions.reset());
 };
 
 export const deleteUserThunk = () => async dispatch => {
@@ -76,6 +78,7 @@ export const deleteUserThunk = () => async dispatch => {
 
   if (response.ok) {
     dispatch(removeUser());
+    dispatch(orderActions.reset());
   }
 };
 
@@ -90,6 +93,7 @@ export const updateUserPasswordThunk = user => async dispatch => {
   const data = await response.json();
   if (!response.ok) return { errors: data };
   dispatch(removeUser());
+  dispatch(orderActions.reset());
 };
 
 export const updateUserThunk = user => async dispatch => {
