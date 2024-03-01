@@ -3,4 +3,8 @@
   display: flex;
   flex-direction: column;
   gap: 40px;
+  height: 800px;
+  scrollbar-color: var(--dark-purple) transparent;
+  overflow-x: hidden;
+  overflow-y: scroll;
 }

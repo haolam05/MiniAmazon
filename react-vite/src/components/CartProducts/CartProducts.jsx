@@ -1,3 +1,4 @@
+import CartProduct from "../CartProduct";
 import "./CartProducts.css";
 
 function CartProducts({ products, itemsInCart }) {
@@ -5,7 +6,7 @@ function CartProducts({ products, itemsInCart }) {
     <div id="cart-products">
       {itemsInCart.map(item => {
         const product = products[item.product_id];
-        return <div key={item.id}>{product.name}</div>
+        return <CartProduct product={product} />
       })}
     </div>
   );

@@ -30,7 +30,7 @@ function Product({ product }) {
   return (
     <div
       className="product"
-      id="product.id"
+      id={product.id}
       title="Click to view product details"
       onClick={showProductDetails}
     >
