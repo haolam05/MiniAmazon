@@ -109,3 +109,27 @@ export const handleUsernameOnChange = (e, key, setUsername, setErrors) => {
   turnOnGreenBoxShadow(e);
   return setErrors(errors => ({ ...errors, [key]: "" }));
 }
+
+export const handleFirstNameOnChange = (e, key, setFirstName, setErrors) => {
+  setFirstName(e.target.value);
+
+  if (!e.target.value.length) {
+    turnOnRedBoxShadow(e);
+    return setErrors(errors => ({ ...errors, [key]: "This field is required" }));
+  }
+
+  turnOnGreenBoxShadow(e);
+  return setErrors(errors => ({ ...errors, [key]: "" }));
+}
+
+export const handleLastNameOnChange = (e, key, setLastName, setErrors) => {
+  setLastName(e.target.value);
+
+  if (!e.target.value.length) {
+    turnOnRedBoxShadow(e);
+    return setErrors(errors => ({ ...errors, [key]: "This field is required" }));
+  }
+
+  turnOnGreenBoxShadow(e);
+  return setErrors(errors => ({ ...errors, [key]: "" }));
+}
