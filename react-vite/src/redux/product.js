@@ -30,6 +30,8 @@ export const getProducts = createSelector(
   products => products.products ? Object.values(products.products) : []
 );
 
+export const getProductsObject = state => state.products.products;
+
 
 // Reducer
 const initialState = { products: null };

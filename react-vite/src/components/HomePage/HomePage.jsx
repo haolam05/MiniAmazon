@@ -15,7 +15,7 @@ function HomePage() {
   const dispatch = useDispatch();
   const user = useSelector(sessionActions.sessionUser);
   const products = useSelector(productActions.getProducts);
-  const orders = useSelector(orderActions.getOrders);
+  const getProductsObject = useSelector(productActions.getProductsObject);
 
   useEffect(() => {
     const loadData = async () => {
@@ -36,7 +36,7 @@ function HomePage() {
       <NavBar user={user?.user} />
       <div id="main-content">
         <Products products={products} />
-        <Cart orders={orders} />
+        <Cart products={getProductsObject} />
       </div>
     </div>
   );

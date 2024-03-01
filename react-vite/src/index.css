@@ -22,6 +22,7 @@
   --search-icon-background: rgb(241, 168, 33);
   --search-icon-hover-background: rgb(221, 147, 11);
   --product-background: rgb(218, 218, 227);
+  --cart-background: rgb(225, 224, 224);
 }
 
 option:hover {
