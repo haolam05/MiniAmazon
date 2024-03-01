@@ -29,7 +29,7 @@ function HomePage() {
       <NavBar user={user?.user} />
       <div id="main-content">
         <Products products={products} />
-        <div id="cart" style={{ color: 'red' }}>dfddddddddddddddddddddadfafadfd</div>
+        <div id="cart" style={{ color: 'red' }}></div>
       </div>
     </div>
   );
