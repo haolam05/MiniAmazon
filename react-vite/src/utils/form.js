@@ -133,3 +133,27 @@ export const handleLastNameOnChange = (e, key, setLastName, setErrors) => {
   turnOnGreenBoxShadow(e);
   return setErrors(errors => ({ ...errors, [key]: "" }));
 }
+
+export const handleProfileImageUrlOnChange = (e, key, setProfileImageUrl, setErrors) => {
+  const previewImage = document.getElementById('preview-image');
+  const file = e.target.files[0];
+  const size = file.size;
+
+  previewImage.classList.add("hidden");
+
+  if (size > 10 ** 6) {
+    turnOnRedBoxShadow(e);
+    return setErrors({ [key]: "File size must not be larger than 10MB." });
+  }
+
+  const reader = new FileReader();
+  reader.readAsDataURL(file);
+  reader.onload = event => {
+    previewImage.src = event.target.result;
+    previewImage.classList.remove("hidden");
+  }
+
+  turnOnGreenBoxShadow(e);
+  setProfileImageUrl(file);
+  setErrors({ profileImageUrl: "" });
+}

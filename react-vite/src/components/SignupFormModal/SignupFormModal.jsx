@@ -8,6 +8,7 @@ import {
   handleFirstNameOnChange,
   handleLastNameOnChange,
   handlePasswordOnChange,
+  handleProfileImageUrlOnChange,
   handleUsernameOnChange
 } from "../../utils/form";
 import NotificationModal from "../NotificationModal";
@@ -66,7 +67,8 @@ function SignupFormModal() {
       !emailIsValid(email) ||
       username.length < 4 ||
       password.length < 6 ||
-      confirmPassword < 6
+      confirmPassword.length < 6 ||
+      errors.profileImageUrl
     );
   }
 
@@ -134,7 +136,15 @@ function SignupFormModal() {
           required
         />
         {errors.confirmPassword && <p className="modal-errors">{errors.confirmPassword}</p>}
+        <label>Profile Image</label>
+        <input
+          type="file"
+          accept="image/*"
+          onChange={e => handleProfileImageUrlOnChange(e, "profileImageUrl", setProfileImageUrl, setErrors)}
+        />
+        {errors.profileImageUrl && <p className="modal-errors">{errors.profileImageUrl}</p>}
         {submitting && <Loading />}
+        <img alt="preview-image" id="preview-image" className="hidden" />
         <button
           type="submit"
           className={`btn-submit ${inputInvalid() ? 'disabled' : ''}`}

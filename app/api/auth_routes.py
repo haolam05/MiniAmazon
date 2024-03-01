@@ -51,7 +51,7 @@ def sign_up():
             image.filename = get_unique_filename(image.filename)
             upload = upload_file_to_s3(image)
             if "url" not in upload:
-                return upload, 500
+                return {"profile_image_url": "Image upload fail. Please try again later."}, 500
             url = upload["url"]
 
         customer = Customer(
@@ -93,7 +93,7 @@ def update_user():
             image.filename = get_unique_filename(image.filename)
             upload = upload_file_to_s3(image)
             if "url" not in upload:
-                return upload, 500
+                return {"profile_image_url": "Image upload fail. Please try again later."}, 500
             user.profile_image_url = upload["url"]
 
         user.first_name = form.data["first_name"]
