@@ -22,7 +22,6 @@
   position: absolute;
   background-color: var(--modal-content-background);
   color: var(--white);
-  width: 500px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -30,6 +29,6 @@
   align-items: center;
   padding: 20px;
   border-radius: 10px;
-  min-width: 425px;
+  min-width: 430px;
   width: min-content;
 }

@@ -1,10 +1,12 @@
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
+import { getAvatarUrl } from "../../utils/navbar";
 import LoginFormModal from "../LoginFormModal";
 import OpenModalMenuItem from "../ProfileButtons/OpenModalMenuItem";
 import SignupFormModal from "../SignupFormModal";
-import * as sessionActions from "../../redux/session";
 import NotificationModal from "../NotificationModal";
+import UserProfile from "../UserProfile";
+import * as sessionActions from "../../redux/session";
 
 function SessionInfo({ user }) {
   const dispatch = useDispatch();
@@ -22,6 +24,9 @@ function SessionInfo({ user }) {
         <div id="user-greetings">
           <span>Hi {user.first_name} 😊</span>
           <span>{user.email}</span>
+        </div>
+        <div id="avatar" onClick={e => setModalContent(<UserProfile user={user} />)}>
+          <img src={getAvatarUrl(user.profile_image_url)} alt="avatar" />
         </div>
         <div className="margin-right" onClick={logout}>Log Out</div>
       </>
