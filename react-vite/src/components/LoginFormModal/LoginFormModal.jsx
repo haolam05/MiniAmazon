@@ -48,7 +48,7 @@ function LoginFormModal() {
     return (
       !emailIsValid(email) ||
       password.length < 6
-    )
+    );
   }
 
   return (
@@ -61,7 +61,7 @@ function LoginFormModal() {
           value={email}
           spellCheck={false}
           placeholder="haolam@user.io"
-          onChange={e => handleEmailOnChange(e, setEmail, setErrors)}
+          onChange={e => handleEmailOnChange(e, "email", setEmail, setErrors)}
           required
         />
         {errors.email && <p className="modal-errors">{errors.email}</p>}
@@ -71,7 +71,7 @@ function LoginFormModal() {
           value={password}
           spellCheck={false}
           placeholder="At least 6 characters"
-          onChange={e => handlePasswordOnChange(e, setPassword, setErrors)}
+          onChange={e => handlePasswordOnChange(e, "password", setPassword, setErrors)}
           required
         />
         {errors && <p className="modal-errors">{errors.password}</p>}

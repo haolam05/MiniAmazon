@@ -1,7 +1,10 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
-import { thunkSignup } from "../../redux/session";
+import { disabledSubmitButton, enabledSubmitButton } from "../../utils/dom";
+import { emailIsValid, handleEmailOnChange, handlePasswordOnChange, handleUsernameOnChange } from "../../utils/form";
+import NotificationModal from "../NotificationModal";
+import * as sessionActions from "../../redux/session";
 
 function SignupFormModal() {
   const dispatch = useDispatch();
@@ -10,73 +13,89 @@ function SignupFormModal() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState({});
-  const { closeModal } = useModal();
+  const { setModalContent } = useModal();
 
   const handleSubmit = async e => {
     e.preventDefault();
+    disabledSubmitButton();
 
     if (password !== confirmPassword) {
+      enabledSubmitButton();
       return setErrors({ confirmPassword: "Confirm Password field must be the same as the Password field", });
     }
 
     const data = await dispatch(
-      thunkSignup({
+      sessionActions.thunkSignup({
         email,
         username,
         password,
       })
     );
 
-    if (data?.errors) return setErrors(data.errors);
-    closeModal();
+    if (data?.errors) {
+      enabledSubmitButton();
+      return setErrors(data.errors);
+    }
+    setModalContent(<NotificationModal message="You have successfully signed up!" status="alert-success" />);
+    enabledSubmitButton();
   };
+
+  const inputInvalid = () => {
+    return (
+      !emailIsValid(email) ||
+      username.length < 4 ||
+      password.length < 6 ||
+      confirmPassword < 6
+    );
+  }
 
   return (
     <>
-      <h1>Sign Up</h1>
-      {errors.server && <p>{errors.server}</p>}
+      <h2 className="subheading">Sign Up</h2>
       <form onSubmit={handleSubmit}>
-        <label>
-          Email
-          <input
-            type="text"
-            value={email}
-            onChange={e => setEmail(e.target.value)}
-            required
-          />
-        </label>
-        {errors.email && <p>{errors.email}</p>}
-        <label>
-          Username
-          <input
-            type="text"
-            value={username}
-            onChange={e => setUsername(e.target.value)}
-            required
-          />
-        </label>
-        {errors.username && <p>{errors.username}</p>}
-        <label>
-          Password
-          <input
-            type="password"
-            value={password}
-            onChange={e => setPassword(e.target.value)}
-            required
-          />
-        </label>
-        {errors.password && <p>{errors.password}</p>}
-        <label>
-          Confirm Password
-          <input
-            type="password"
-            value={confirmPassword}
-            onChange={e => setConfirmPassword(e.target.value)}
-            required
-          />
-        </label>
-        {errors.confirmPassword && <p>{errors.confirmPassword}</p>}
-        <button type="submit">Sign Up</button>
+        <label>Email</label>
+        <input
+          type="text"
+          value={email}
+          spellCheck={false}
+          onChange={e => handleEmailOnChange(e, "email", setEmail, setErrors)}
+          required
+        />
+        {errors.email && <p className="modal-errors">{errors.email}</p>}
+        <label>Username</label>
+        <input
+          type="text"
+          value={username}
+          spellCheck={false}
+          onChange={e => handleUsernameOnChange(e, "username", setUsername, setErrors)}
+          required
+        />
+        {errors.username && <p className="modal-errors">{errors.username}</p>}
+        <label>Password</label>
+        <input
+          type="password"
+          value={password}
+          spellCheck={false}
+          onChange={e => handlePasswordOnChange(e, "password", setPassword, setErrors)}
+          required
+        />
+        {errors.password && <p className="modal-errors">{errors.password}</p>}
+        <label>Confirm Password</label>
+        <input
+          type="password"
+          value={confirmPassword}
+          spellCheck={false}
+          onChange={e => handlePasswordOnChange(e, "confirmPassword", setConfirmPassword, setErrors)}
+          required
+        />
+        {errors.confirmPassword && <p className="modal-errors">{errors.confirmPassword}</p>}
+        <button
+          type="submit"
+          className={`btn-submit ${inputInvalid() ? 'disabled' : ''}`}
+          disabled={inputInvalid()}
+        >
+          Sign Up
+        </button>
       </form>
     </>
   );
