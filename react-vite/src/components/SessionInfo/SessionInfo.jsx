@@ -25,7 +25,7 @@ function SessionInfo({ user }) {
           <span>Hi {user.first_name} 😊</span>
           <span>{user.email}</span>
         </div>
-        <div id="avatar" onClick={() => setModalContent(<UserProfile user={user} />)}>
+        <div id="avatar" onClick={() => setModalContent(<UserProfile user={user} />)} title="Your profile">
           <img src={getAvatarUrl(user.profile_image_url)} alt="avatar" />
         </div>
         <div className="margin-right" onClick={logout}>Log Out</div>

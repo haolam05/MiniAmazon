@@ -2,6 +2,7 @@
   --white: #FFFFFF;
   --black: #000000;
   --purple: rgb(173, 173, 218);
+  --dark-purple: rgb(55, 55, 102);
   --gray: #808080;
   --dark-gray: #999999;
   --light-gray: #CCCCCC;
@@ -20,6 +21,7 @@
   --option-background: #2A2F3E;
   --search-icon-background: rgb(241, 168, 33);
   --search-icon-hover-background: rgb(221, 147, 11);
+  --product-background: rgb(218, 218, 227);
 }
 
 option:hover {

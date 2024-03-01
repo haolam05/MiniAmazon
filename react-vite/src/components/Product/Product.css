@@ -4,8 +4,8 @@
   gap: 25px;
   width: 300px;
   height: 450px;
-  border: 1px solid black;
-  background-color: rgb(218, 218, 227);
+  border: 1px solid var(--black);
+  background-color: var(--product-background);
 }
 
 .product div {
@@ -76,7 +76,7 @@
 .product .product-btns button {
   padding: 5px 15px;
   border: none;
-  background-color: var(--option-background);
+  background-color: var(--dark-purple);
   border-radius: 5px;
 }
 

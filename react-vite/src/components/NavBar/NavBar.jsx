@@ -22,7 +22,7 @@ function NavBar({ user }) {
           <i className="fa-solid fa-magnifying-glass"></i>
         </div>
       </div>
-      <div id="categories">
+      <div id="categories" title="Product categories">
         <select name="categories" value={category} onChange={e => setCategory(e.target.value)}>
           <option className="category" value="" hidden>Categories</option>
           <option className="category">All</option>
@@ -33,10 +33,13 @@ function NavBar({ user }) {
           <option className="category" value="Handmade">Handmade</option>
         </select>
       </div>
-      <div id="cart">
+      <div id="cart" title="View cart">
         <img src="/images/cart.png" alt="shopping-cart" />
         <span>Cart</span>
         <span id="cart-items-count">0</span>
+      </div>
+      <div id="bookmark" title="View bookmarks">
+        <i class="fa-solid fa-bookmark"></i>
       </div>
       <SessionInfo user={user} />
     </div>

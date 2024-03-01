@@ -16,8 +16,8 @@ function Product({ product }) {
       <div className="product-remaining">{product.remaining} left</div>
       {/* <div className="product-description">{getPreviewText(product.description)}</div> */}
       <div className="product-btns">
-        <button>Bookmark</button>
-        <button>Add to cart</button>
+        <button title="Bookmark this product">Bookmark</button>
+        <button title="Add this product to cart">Add to cart</button>
       </div>
     </div>
   );
