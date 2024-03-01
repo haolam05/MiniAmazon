@@ -32,7 +32,7 @@ export const handleEmailOnChange = (e, setEmail, setErrors) => {
 
   if (!value.length) {
     turnOnOffAllBoxShadow(e);
-    return setErrors({ "email": "" });
+    return setErrors(errors => ({ ...errors, "email": "" }));
   }
 
   turnOnRedBoxShadow(e);
@@ -40,41 +40,41 @@ export const handleEmailOnChange = (e, setEmail, setErrors) => {
   const dotIndex = value.indexOf(".");
 
   if (symbolIndex < 0) {
-    return setErrors({ "email": "Missing \"@\" " + goodEmail });
+    return setErrors(errors => ({ ...errors, "email": "Missing \"@\" " + goodEmail }));
   }
 
   if (dotIndex < 0) {
-    return setErrors({ "email": "Missing \".\" " + goodEmail });
+    return setErrors(errors => ({ ...errors, "email": "Missing \".\" " + goodEmail }));
   }
 
   let parts = value.split("@");
   if (parts.length != 2) {
-    return setErrors({ "email": "Only 1 \"@\" is allowed " + goodEmail })
+    return setErrors(errors => ({ ...errors, "email": "Only 1 \"@\" is allowed " + goodEmail }));
   }
 
   if (symbolIndex === 0) {
-    return setErrors({ "email": "Missing username " + goodEmail })
+    return setErrors(errors => ({ ...errors, "email": "Missing username " + goodEmail }));
   }
 
   if (symbolIndex + 1 === dotIndex) {
-    return setErrors({ "email": "Missing mail server " + goodEmail })
+    return setErrors(errors => ({ ...errors, "email": "Missing mail server " + goodEmail }));
   }
 
   if (symbolIndex > dotIndex) {
-    return setErrors({ "email": "\"@\" must come before \".\" " + goodEmail })
+    return setErrors(errors => ({ ...errors, "email": "\"@\" must come before \".\" " + goodEmail }));
   }
 
   parts = value.split(".");
   if (parts.length != 2) {
-    return setErrors({ "email": "Only 1 \".\" is allowed " + goodEmail })
+    return setErrors(errors => ({ ...errors, "email": "Only 1 \".\" is allowed " + goodEmail }));
   }
 
   if (dotIndex === value.length - 1) {
-    return setErrors({ "email": "Missing domain " + goodEmail })
+    return setErrors(errors => ({ ...errors, "email": "Missing domain " + goodEmail }));
   }
 
   turnOnGreenBoxShadow(e);
-  return setErrors({ "email": "" });
+  return setErrors(errors => ({ ...errors, "email": "" }));
 }
 
 export const handlePasswordOnChange = (e, setPassword, setErrors) => {
@@ -82,14 +82,14 @@ export const handlePasswordOnChange = (e, setPassword, setErrors) => {
 
   if (!e.target.value.length) {
     turnOnOffAllBoxShadow(e);
-    return setErrors({ "password": "" });
+    return setErrors(errors => ({ ...errors, "password": "" }));
   }
 
   turnOnRedBoxShadow(e);
   if (e.target.value.length < 6) {
-    return setErrors({ "password": "Must have at least 6 characters" });
+    return setErrors(errors => ({ ...errors, "password": "Must have at least 6 characters" }));
   }
 
   turnOnGreenBoxShadow(e);
-  return setErrors({ "password": "" });
+  return setErrors(errors => ({ ...errors, "password": "" }));
 }

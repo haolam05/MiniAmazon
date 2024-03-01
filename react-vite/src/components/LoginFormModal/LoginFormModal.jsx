@@ -74,7 +74,7 @@ function LoginFormModal() {
           onChange={e => handlePasswordOnChange(e, setPassword, setErrors)}
           required
         />
-        {errors.password && <p className="modal-errors">{errors.password}</p>}
+        {errors && <p className="modal-errors">{errors.password}</p>}
         <div className="login-form-footer">
           <button
             type="submit"
