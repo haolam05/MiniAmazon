@@ -1,5 +1,28 @@
 import { turnOnGreenBoxShadow, turnOnOffAllBoxShadow, turnOnRedBoxShadow } from "./dom";
 
+export const emailIsValid = email => {
+  const symbolIndex = email.indexOf("@");
+  const dotIndex = email.indexOf(".");
+
+  const parts1 = email.split("@");
+  const parts2 = email.split(".");
+
+  if (                                // good email : username@mail_server.domain
+    symbolIndex < 0 ||                // @ not found
+    dotIndex < 0 ||                   // . not found
+    parts1.length !== 2 ||            // 1+ @
+    symbolIndex === 0 ||              // missing username
+    symbolIndex + 1 === dotIndex ||   // missing mail_server
+    symbolIndex > dotIndex ||         // @ comes after .
+    parts2.length !== 2 ||            // 1+ .
+    dotIndex === email.length - 1     // domain not found
+  ) {
+    return false;
+  }
+
+  return true;
+}
+
 export const handleEmailOnChange = (e, setEmail, setErrors) => {
   const goodEmail = "(ex: username@mail_server.domain)";
   const element = e.target;
@@ -52,4 +75,21 @@ export const handleEmailOnChange = (e, setEmail, setErrors) => {
 
   turnOnGreenBoxShadow(e);
   return setErrors({ "email": "" });
+}
+
+export const handlePasswordOnChange = (e, setPassword, setErrors) => {
+  setPassword(e.target.value);
+
+  if (!e.target.value.length) {
+    turnOnOffAllBoxShadow(e);
+    return setErrors({ "password": "" });
+  }
+
+  turnOnRedBoxShadow(e);
+  if (e.target.value.length < 6) {
+    return setErrors({ "password": "Must have at least 6 characters" });
+  }
+
+  turnOnGreenBoxShadow(e);
+  return setErrors({ "password": "" });
 }
