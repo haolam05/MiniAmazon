@@ -2,8 +2,16 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { disabledSubmitButton, enabledSubmitButton } from "../../utils/dom";
-import { emailIsValid, handleEmailOnChange, handleFirstNameOnChange, handleLastNameOnChange, handlePasswordOnChange, handleUsernameOnChange } from "../../utils/form";
+import {
+  emailIsValid,
+  handleEmailOnChange,
+  handleFirstNameOnChange,
+  handleLastNameOnChange,
+  handlePasswordOnChange,
+  handleUsernameOnChange
+} from "../../utils/form";
 import NotificationModal from "../NotificationModal";
+import Loading from "../Loading";
 import * as sessionActions from "../../redux/session";
 
 function SignupFormModal() {
@@ -15,6 +23,7 @@ function SignupFormModal() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [profileImageUrl, setProfileImageUrl] = useState("");
+  const [submitting, setSubmitting] = useState(false);
   const [errors, setErrors] = useState({});
   const { setModalContent } = useModal();
 
@@ -24,9 +33,11 @@ function SignupFormModal() {
 
     if (password !== confirmPassword) {
       enabledSubmitButton();
+      setSubmitting(false);
       return setErrors({ confirmPassword: "Confirm Password field must be the same as the Password field" });
     }
 
+    setSubmitting(true);
     const data = await dispatch(
       sessionActions.thunkSignup({
         first_name: firstName,
@@ -40,10 +51,12 @@ function SignupFormModal() {
 
     if (data?.errors) {
       enabledSubmitButton();
+      setSubmitting(false);
       return setErrors(data.errors);
     }
     setModalContent(<NotificationModal message="You have successfully signed up!" status="alert-success" />);
     enabledSubmitButton();
+    setSubmitting(false);
   };
 
   const inputInvalid = () => {
@@ -121,6 +134,7 @@ function SignupFormModal() {
           required
         />
         {errors.confirmPassword && <p className="modal-errors">{errors.confirmPassword}</p>}
+        {submitting && <Loading />}
         <button
           type="submit"
           className={`btn-submit ${inputInvalid() ? 'disabled' : ''}`}
