@@ -41,7 +41,9 @@ function CartProduct({ product }) {
       <div className="cart-product-image">
         <img src={product.product_image} alt="cart-product-image" />
         <div className="cart-product-quantity">
-
+          <div className="minus"><i className="fa-solid fa-minus"></i></div>
+          <div className="quantity"><input type="text" /></div>
+          <div className="minus"><i className="fa-solid fa-plus"></i></div>
         </div>
       </div>
       <div className="cart-product-info">
