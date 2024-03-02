@@ -92,6 +92,6 @@
 }
 
 .cart-product .cart-product-quantity input:focus {
-  outline: 3px solid orange;
+  outline: 3px solid var(--orange);
   text-align: center;
 }

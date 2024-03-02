@@ -7,7 +7,7 @@ import LoginFormModal from "../LoginFormModal";
 import * as orderActions from "../..//redux/order";
 import "./Product.css";
 
-function Product({ product, user }) {
+function Product({ product, user, inCartProductIds }) {
   const dispatch = useDispatch();
   const { setModalContent } = useModal();
 
@@ -54,7 +54,7 @@ function Product({ product, user }) {
       <div className="product-remaining">{product.remaining} left</div>
       <div className="product-btns">
         <button title="Bookmark this product" onClick={showBookmarks}>Bookmark</button>
-        <button title="Add this product to cart" onClick={showCart}>Add to cart</button>
+        {!inCartProductIds.includes(product.id) && <button title="Add this product to cart" onClick={showCart}>Add to cart</button>}
       </div>
     </div>
   );

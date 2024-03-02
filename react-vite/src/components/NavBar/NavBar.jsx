@@ -2,14 +2,14 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { toggleCart } from "../../utils/cart";
 import { addOutline, removeOutline } from "../../utils/navbar";
-import * as orderActions from "../../redux/order";
 import SessionInfo from "../SessionInfo";
+import * as orderActions from "../../redux/order";
 import "./NavBar.css";
 
 function NavBar({ user }) {
   const [category, setCategory] = useState("");
   const orders = useSelector(orderActions.getOrders);
-  const itemsInCart = orders.filter(item => !item.is_checkout)[0]?.items || [];
+  const itemsInCart = orders.filter(order => !order.is_checkout)[0]?.items || [];
 
   return (
     <div id="navbar">
