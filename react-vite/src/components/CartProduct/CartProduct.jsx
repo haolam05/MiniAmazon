@@ -3,7 +3,7 @@ import { getFormattedPrice, getPreviewText } from "../../utils/product";
 import ProductDetails from "../ProductDetails";
 import "./CartProduct.css";
 
-function CartProduct({ product }) {
+function CartProduct({ product, quantity }) {
   const { setModalContent } = useModal();
 
   const showBookmarks = e => {
@@ -40,10 +40,11 @@ function CartProduct({ product }) {
     >
       <div className="cart-product-image">
         <img src={product.product_image} alt="cart-product-image" />
-        <div className="cart-product-quantity">
-          <div className="minus"><i className="fa-solid fa-minus"></i></div>
-          <div className="quantity"><input type="text" /></div>
-          <div className="minus"><i className="fa-solid fa-plus"></i></div>
+        <div className="cart-product-quantity" onClick={e => e.stopPropagation()}>
+          <div className="minus" title="Decrement product count"><i className="fa-solid fa-minus"></i></div>
+          <div className="quantity" title="Enter desired product quantity"><input type="number" spellCheck={false} placeholder={quantity} /></div>
+          <div className="minus" title="Increment product count"><i className="fa-solid fa-plus"></i></div>
+          <div className="submit-quantity" title="Save"><i className="fa-solid fa-paper-plane"></i></div>
         </div>
       </div>
       <div className="cart-product-info">
