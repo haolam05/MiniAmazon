@@ -7,6 +7,7 @@
   padding: 10px;
   margin-right: 10px;
   cursor: pointer;
+  position: relative;
 }
 
 .cart-product .cart-product-image {
@@ -103,4 +104,6 @@
   border-bottom-right-radius: 5px;
   padding: 5px 10px;
   position: absolute;
+  top: 0;
+  left: 0;
 }
