@@ -28,7 +28,7 @@ function CartProduct({ product, item }) {
   return (
     <div
       className="cart-product"
-      id={product.id}
+      id={`cart-product-${product.id}`}
     >
       <div className="cart-product-image">
         <img src={product.product_image} alt="cart-product-image" />

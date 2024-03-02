@@ -35,7 +35,7 @@ function HomePage() {
     <div id="home-page">
       <NavBar user={user?.user} />
       <div id="main-content">
-        <Products products={products} />
+        <Products products={products} user={user?.user} />
         <Cart products={getProductsObject} />
       </div>
     </div>

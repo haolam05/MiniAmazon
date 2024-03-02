@@ -13,7 +13,7 @@ function Cart({ products }) {
       <div className="cart-title">
         <h2 className="subheading">My shopping cart</h2>
         <div className="close-cart-btn" title="Close cart" onClick={closeCart}>
-          <i class="fa-solid fa-right-long"></i>
+          <i className="fa-solid fa-right-long"></i>
         </div>
       </div>
       <CartProducts products={products} itemsInCart={itemsInCart} />

@@ -3,6 +3,7 @@ import { createSelector } from "reselect";
 
 // Actions
 const LOAD_ORDERS = 'orders//LOAD_ORDERS';
+const CREATE_ORDER = 'orders//CREATE_ORDER';
 const UPDATE_ORDER_ITEM = 'orders//UPDATE_ORDER_ITEM';
 const DELETE_ORDER_ITEM = 'orders//DELETE_ORDER_ITEM';
 const RESET = 'orders/RESET';
@@ -14,15 +15,20 @@ const loadOrders = orders => ({
   orders
 });
 
-const updateOrderItem = product => ({
-  type: UPDATE_ORDER_ITEM,
-  product
+const createOrder = order => ({
+  type: CREATE_ORDER,
+  order
 });
 
-const deleteOrderItem = (orderId, productId) => ({
+const updateOrderItem = item => ({
+  type: UPDATE_ORDER_ITEM,
+  item
+});
+
+const deleteOrderItem = (orderId, itemId) => ({
   type: DELETE_ORDER_ITEM,
   orderId,
-  productId
+  itemId
 });
 
 export const reset = () => ({
@@ -40,6 +46,24 @@ export const loadOrdersThunk = () => async (dispatch, getState) => {
   dispatch(loadOrders(data));
   return data;
 };
+
+export const createOrderThunk = product => async (dispatch, getState) => {
+  const orders = Object.values(getState().orders.orders);
+  const order = orders.find(order => !order.is_checkout);
+  if (!order) {
+    const response = await csrfFetch(`/api/orders/`, {
+      method: 'POST'
+    });
+    const order = await response.json();
+    if (!response.ok) return { errors: order };
+    if (!order.message) {
+      dispatch(createOrder(order));
+    }
+    const data = await dispatch(updateOrderThunk(order.id, product.id, 1));
+    return data;
+  }
+  return { "message": "Item is already in cart" };
+}
 
 export const updateOrderThunk = (orderId, productId, quantityInput) => async dispatch => {
   const response = await csrfFetch(`/api/orders/${orderId}`, {
@@ -75,22 +99,33 @@ function orderReducer(state = initialState, action) {
   switch (action.type) {
     case LOAD_ORDERS:
       return {
-        ...state, orders: {
+        ...state,
+        orders: {
           ...action.orders.reduce((s, p) => (s[p.id] = p) && s, {})
         }
       };
+    case CREATE_ORDER:
+      return {
+        ...state,
+        orders: {
+          ...state.orders,
+          [action.order.id]: action.order
+        }
+      }
     case UPDATE_ORDER_ITEM: {
       const newState = { ...state };
-      const items = newState.orders[action.product.order_id].items;
-      const item = items.find(item => item.id === action.product.id);
+      const items = newState.orders[action.item.order_id].items;
+      const item = items.find(item => item.id === action.item.id);
       if (item) {
-        item.quantity = action.product.quantity;
+        item.quantity = action.item.quantity;
+      } else {
+        items.push(action.item);
       }
       return newState;
     }
     case DELETE_ORDER_ITEM: {
       const newState = { ...state };
-      newState.orders[action.orderId].items = newState.orders[action.orderId].items.filter(item => item.product_id !== action.productId);
+      newState.orders[action.orderId].items = newState.orders[action.orderId].items.filter(item => item.product_id !== action.itemId);
       if (newState.orders[action.orderId].items.length === 0) {
         delete newState.orders[action.orderId];
       }

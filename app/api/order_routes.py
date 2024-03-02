@@ -68,7 +68,11 @@ def update_order(id):
         order_item = OrderItem.query.filter(OrderItem.order_id == order.id).filter(OrderItem.product_id == product.id).one_or_none()
         if order_item and form.data["quantity"] == 0:
             """ Remove item from order (cart) if quantity == 0 """
-            db.session.delete(order_item)
+            order = order_item.order
+            if len(order.order_items) > 1:
+                db.session.delete(order_item)
+            else:   # last item => delete order
+                db.session.delete(order)
             db.session.commit()
             return {"message": "Successfully deleted item in the order"}, 200
         elif not order_item and form.data["quantity"] > 0:

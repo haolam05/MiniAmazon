@@ -1,23 +1,32 @@
 import { useModal } from "../../context/Modal";
+import { useDispatch } from "react-redux";
 import { getFormattedPrice, getPreviewText } from "../../utils/product";
 import ProductDetails from "../ProductDetails";
+import LoginFormModal from "../LoginFormModal";
+import * as orderActions from "../..//redux/order";
 import "./Product.css";
+import NotificationModal from "../NotificationModal";
 
-function Product({ product }) {
+function Product({ product, user }) {
+  const dispatch = useDispatch();
   const { setModalContent } = useModal();
 
   const showBookmarks = e => {
-    e.preventDefault();
     e.stopPropagation();
   }
 
-  const showCart = e => {
-    e.preventDefault();
+  const showCart = async e => {
     e.stopPropagation();
+    if (!user) {
+      return setModalContent(<LoginFormModal />);
+    }
+    const data = await dispatch(orderActions.createOrderThunk(product));
+    if (data?.message) {
+      setModalContent(<NotificationModal message={data.message} status="modal-errors" />)
+    }
   }
 
-  const showProductDetails = e => {
-    e.preventDefault();
+  const showProductDetails = () => {
     setModalContent(
       <ProductDetails
         product={product}
@@ -30,7 +39,7 @@ function Product({ product }) {
   return (
     <div
       className="product"
-      id={product.id}
+      id={`product-${product.id}`}
       title="Click to view product details"
       onClick={showProductDetails}
     >
