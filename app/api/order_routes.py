@@ -75,8 +75,13 @@ def update_order(id):
                 db.session.delete(order)
             db.session.commit()
             return {"message": "Successfully deleted item in the order"}, 200
-        elif not order_item and form.data["quantity"] > 0:
+        elif not order_item:
             """ Add item to order (cart) if not yet in cart """
+            if form.data["quantity"] != 1:
+                return {"message": "Quantity must be 1 when an item is first added to cart"}, 500
+            if product.remaining < 1:
+                return {"message": "Product has sold out"}, 500
+
             order_item = OrderItem(
                 order_id=order.id,
                 product_id=form.data["product_id"],
@@ -85,6 +90,8 @@ def update_order(id):
             db.session.add(order_item)
         elif form.data["quantity"] > 0:
             """ Update item count """
+            if product.remaining < form.data["quantity"]:
+                return {"message": "Not enough products to add to cart"}, 500
             order_item.quantity = form.data["quantity"]
         else:
             return {"message": "Item could not be found"}, 404
@@ -115,6 +122,9 @@ def checkout_order(id):
         return {"message": "You have nothing to checkout"}, 500
 
     order.is_checkout = True
+    for order_item in order.order_items:
+        product = order_item.product
+        product.remaining -= order_item.quantity
 
     db.session.commit()
 
