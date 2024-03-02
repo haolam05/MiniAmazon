@@ -2,7 +2,7 @@ import { getAvatarUrl } from "../../utils/navbar";
 import { getFormattedPrice, getPreviewText } from "../../utils/product";
 import "./ProductDetails.css";
 
-function ProductDetails({ product, showBookmarks, showCart }) {
+function ProductDetails({ product, showBookmarks, showCart, inCartProductIds }) {
   return (
     <>
       <h2 className="product-title subheading">{product.name}</h2>
@@ -17,10 +17,12 @@ function ProductDetails({ product, showBookmarks, showCart }) {
             <span className="decimal">{getFormattedPrice(product.price)[1]}</span>
           </div>
           <p className="product-category">Category: {getPreviewText(product.category)}</p>
-          <div className="product-remaining">{product.remaining} left</div>
+          <div className="product-remaining">{product.remaining > 0 ? `${product.remaining} left` : "Sold out"}</div>
           <div className="product-btns">
             <button title="Bookmark this product" onClick={showBookmarks}>Bookmark</button>
-            <button title="Add this product to cart" onClick={showCart}>Add to cart</button>
+            {!inCartProductIds.includes(product.id) && product.remaining > 0 && (
+              <button title="Add this product to cart" onClick={showCart}>Add to cart</button>
+            )}
           </div>
         </div>
         <div className="product-info">

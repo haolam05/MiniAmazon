@@ -11,6 +11,10 @@ function NavBar({ user }) {
   const orders = useSelector(orderActions.getOrders);
   const itemsInCart = orders.filter(order => !order.is_checkout)[0]?.items || [];
 
+  const showBookmarks = () => {
+
+  }
+
   return (
     <div id="navbar">
       <div id="logo">
@@ -43,7 +47,7 @@ function NavBar({ user }) {
         <span>Cart</span>
         <span id="cart-items-count">{itemsInCart.length}</span>
       </div>
-      <div id="bookmark" title="View bookmarks">
+      <div id="bookmark" title="View bookmarks" onClick={showBookmarks}>
         <i className="fa-solid fa-bookmark"></i>
       </div>
       <SessionInfo user={user} />

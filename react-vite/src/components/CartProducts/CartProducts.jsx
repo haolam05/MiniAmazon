@@ -7,7 +7,7 @@ import ConfirmDeleteModal from "../ConfirmDeleteModal";
 import * as orderActions from "../../redux/order";
 import "./CartProducts.css";
 
-function CartProducts({ products, itemsInCart, user }) {
+function CartProducts({ products, itemsInCart, user, inCartProductIds }) {
   const { setModalContent, closeModal } = useModal();
   const dispatch = useDispatch();
 
@@ -55,7 +55,7 @@ function CartProducts({ products, itemsInCart, user }) {
       </div>
       {itemsInCart.map(item => {
         const product = products[item.product_id];
-        return <CartProduct key={item.id} product={product} item={item} user={user} />
+        return <CartProduct key={item.id} product={product} item={item} user={user} inCartProductIds={inCartProductIds} />
       })}
     </div>
   );

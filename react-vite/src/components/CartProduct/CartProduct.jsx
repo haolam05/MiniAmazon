@@ -6,12 +6,11 @@ import Loading from "../Loading";
 import * as orderActions from "../../redux/order";
 import "./CartProduct.css";
 
-function CartProduct({ product, item, user }) {
+function CartProduct({ product, item, user, inCartProductIds }) {
   const dispatch = useDispatch();
   const { showProductDetails } = useModal();
   const [submitting, setSubmitting] = useState(false);
   const [quantityInput, setQuantityInput] = useState(item.quantity);
-  const [productRemaining, setProductRemaining] = useState(product.remaining);
   const [errors, setErrors] = useState({})
 
   const removeProductFromCart = async e => {
@@ -33,8 +32,8 @@ function CartProduct({ product, item, user }) {
     if (submitting) return;
 
     const quantity = +e.target.value;
-    if (quantity > productRemaining) {
-      setQuantityInput(productRemaining);
+    if (quantity > product.remaining) {
+      setQuantityInput(product.remaining);
       return setErrors({ "quantity": "None remaining ❌" });
     }
     if (quantity >= 1) {
@@ -46,7 +45,7 @@ function CartProduct({ product, item, user }) {
   const handleIncrement = () => {
     if (submitting) return;
 
-    if (quantityInput + 1 > productRemaining) {
+    if (quantityInput + 1 > product.remaining) {
       setErrors({ "quantity": "None remaining ❌" });
     } else {
       setQuantityInput(count => count + 1);
@@ -56,7 +55,7 @@ function CartProduct({ product, item, user }) {
   const handleDecrement = () => {
     if (submitting) return;
 
-    if (quantityInput - 1 <= productRemaining) {
+    if (quantityInput - 1 <= product.remaining) {
       setErrors({ "quantity": "" });
     }
     setQuantityInput(count => count - 1);
@@ -68,7 +67,7 @@ function CartProduct({ product, item, user }) {
       id={`cart-product-${product.id}`}
     >
       <div className="cart-product-image">
-        <img src={product.product_image} alt="cart-product-image" onClick={() => showProductDetails(product, user)} />
+        <img src={product.product_image} alt="cart-product-image" onClick={() => showProductDetails(product, user, inCartProductIds)} />
         {submitting && <Loading />}
         {errors.quantity && <p>{errors.quantity}</p>}
         <div className="cart-product-quantity" onClick={e => e.stopPropagation()}>
@@ -115,7 +114,7 @@ function CartProduct({ product, item, user }) {
             <i className="fa-solid fa-paper-plane"></i>
           </div>
         </div>
-        <div className="cart-product-remaining">{productRemaining - quantityInput} left</div>
+        <div className="cart-product-remaining">{product.remaining - quantityInput} left</div>
       </div>
       <div className="cart-product-info">
         <p className="cart-product-name">{getPreviewText(product.name)}</p>

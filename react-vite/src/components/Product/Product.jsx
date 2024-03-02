@@ -10,7 +10,7 @@ function Product({ product, user, inCartProductIds }) {
       className="product"
       id={`product-${product.id}`}
       title="Click to view product details"
-      onClick={() => showProductDetails(product, user)}
+      onClick={() => showProductDetails(product, user, inCartProductIds)}
     >
       <div className="product-image">
         <img src={product.product_image} alt="product-image" />
