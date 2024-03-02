@@ -1,4 +1,8 @@
 #past-orders {
   display: flex;
-  width: 99vh;
+  width: 90vw;
+  gap: 20px;
+  scrollbar-color: var(--cart-scroll-color) transparent;
+  overflow-x: scroll;
+  overflow-y: hidden;
 }

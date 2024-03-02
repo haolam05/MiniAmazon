@@ -1,6 +1,6 @@
 import { getFormattedPrice, getPreviewText } from "../../utils/product";
 
-function PastOrderItem({ product }) {
+function PastOrderItem({ item, product }) {
   return (
     <div
       className="cart-product"
@@ -8,6 +8,7 @@ function PastOrderItem({ product }) {
     >
       <div className="cart-product-image">
         <img src={product.product_image} alt="cart-product-image" />
+        <p style={{ textAlign: 'center' }}>Quantity: {item.quantity}</p>
       </div>
       <div className="cart-product-info">
         <p className="cart-product-name">{getPreviewText(product.name)}</p>

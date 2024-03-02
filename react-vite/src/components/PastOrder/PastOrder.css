@@ -1,12 +1,35 @@
 .past-order {
-  height: 600px;
-  scrollbar-color: var(--cart-scroll-color) transparent;
-  overflow-x: hidden;
-  overflow-y: scroll;
+  min-width: 325px;
+}
+
+.past-order .order-date {
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 10pt;
+}
+
+.past-order .past-order-number {
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+
+.past-order .past-order-number .total {
+  color: var(--light-orange);
+}
+
+.past-order .past-order-number span {
+  color: var(--black);
 }
 
 .past-order .past-order-items {
   display: flex;
   flex-direction: column;
   gap: 5px;
+  height: 600px;
+  scrollbar-color: var(--cart-scroll-color) transparent;
+  overflow-x: hidden;
+  overflow-y: scroll;
 }

@@ -2,9 +2,9 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { getFormattedPrice, getPreviewText } from "../../utils/product";
+import Loading from "../Loading";
 import * as orderActions from "../../redux/order";
 import "./CartProduct.css";
-import Loading from "../Loading";
 
 function CartProduct({ product, item, user }) {
   const dispatch = useDispatch();
@@ -25,7 +25,6 @@ function CartProduct({ product, item, user }) {
     await dispatch(orderActions.updateOrderThunk(item.order_id, product.id, quantityInput));
     setSubmitting(false);
   }
-
 
   return (
     <div

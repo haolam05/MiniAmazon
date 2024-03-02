@@ -28,6 +28,7 @@ class Order(db.Model):
             "id": self.id,
             "customer_id": self.customer_id,
             "is_checkout": self.is_checkout,
-            "created_at": str(self.created_at),
+            "created_at": str(self.created_at.strftime("%Y-%m-%d %H:%M:%S")),
+            "updated_at": str(self.updated_at.strftime("%Y-%m-%d %H:%M:%S")),
             "items": items
         }

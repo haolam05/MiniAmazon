@@ -4,7 +4,8 @@ import "./CartProducts.css";
 
 function CartProducts({ products, itemsInCart, user }) {
   const getSubTotal = items => {
-    return items.reduce((sum, item) => sum + (+products[item.product_id].price * item.quantity), 0);
+    const total = items.reduce((sum, item) => sum + (+products[item.product_id].price * item.quantity), 0);
+    return getFormattedPrice(`${total}`).join(".");
   }
 
   if (!itemsInCart.length) {
