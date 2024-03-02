@@ -21,10 +21,10 @@ function Product({ product, user, inCartProductIds }) {
         <span className="decimal">{getFormattedPrice(product.price)[1]}</span>
       </div>
       <p className="product-name">{getPreviewText(product.name)}</p>
-      <div className="product-remaining">{product.remaining} left</div>
+      <div className="product-remaining">{product.remaining > 0 ? `${product.remaining} left` : "Sold out"}</div>
       <div className="product-btns">
         <button title="Bookmark this product" onClick={e => showBookmarks(e, user)}>Bookmark</button>
-        {!inCartProductIds.includes(product.id) && (
+        {!inCartProductIds.includes(product.id) && product.remaining > 0 && (
           <button
             title="Add this product to cart"
             onClick={e => showCart(e, product, user)}

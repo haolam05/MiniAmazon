@@ -2,13 +2,19 @@ import { csrfFetch } from "./csrf";
 import { createSelector } from "reselect";
 
 // Actions
-const LOAD_PRODUCTS = 'products//LOAD_PRODUCTS';
+const LOAD_PRODUCTS = 'products/LOAD_PRODUCTS';
+const HANDLE_CHECKOUT = 'products/HANDLE_CHECKOUT';
 
 
 // POJO action creators
 const loadProducts = products => ({
   type: LOAD_PRODUCTS,
   products
+});
+
+export const handleCheckout = items => ({
+  type: HANDLE_CHECKOUT,
+  items
 });
 
 
@@ -44,6 +50,14 @@ function productReducer(state = initialState, action) {
           ...action.products.reduce((s, p) => (s[p.id] = p) && s, {})
         }
       };
+    case HANDLE_CHECKOUT: {
+      const newState = { ...state };
+      const products = newState.products;
+      action.items.forEach(item => {
+        products[item.product_id].remaining -= item.quantity;
+      });
+      return newState;
+    }
     default:
       return state;
   }

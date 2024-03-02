@@ -1,5 +1,6 @@
 import { csrfFetch } from "./csrf";
 import { createSelector } from "reselect";
+import * as productActions from "./product";
 
 // Actions
 const LOAD_ORDERS = 'orders/LOAD_ORDERS';
@@ -95,11 +96,12 @@ export const updateOrderThunk = (orderId, productId, quantityInput) => async dis
   return data;
 }
 
-export const checkoutOrderThunk = orderId => async dispatch => {
+export const checkoutOrderThunk = (orderId, items) => async dispatch => {
   const response = await csrfFetch(`/api/orders/${orderId}/checkout`);
   const data = await response.json();
   if (!response.ok) return { errors: data };
   dispatch(checkoutOrder(orderId));
+  dispatch(productActions.handleCheckout(items));
   return data;
 }
 

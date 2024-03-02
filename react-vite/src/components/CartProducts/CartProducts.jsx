@@ -17,7 +17,7 @@ function CartProducts({ products, itemsInCart, user }) {
   }
 
   const checkoutOrder = async () => {
-    const data = await dispatch(orderActions.checkoutOrderThunk(itemsInCart[0].order_id));
+    const data = await dispatch(orderActions.checkoutOrderThunk(itemsInCart[0].order_id, itemsInCart));
     if (data?.errors) {
       return setModalContent(<NotificationModal message={data.errors.message} status="modal-errors" />);
     }
