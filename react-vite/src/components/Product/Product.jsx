@@ -1,11 +1,11 @@
 import { useModal } from "../../context/Modal";
 import { useDispatch } from "react-redux";
-import { getFormattedPrice, getPreviewText } from "../../utils/product";
+import { revealCart } from "../../utils/cart";
+import { getFormattedPrice, getPreviewText, hideAddToCartBtn } from "../../utils/product";
 import ProductDetails from "../ProductDetails";
 import LoginFormModal from "../LoginFormModal";
 import * as orderActions from "../..//redux/order";
 import "./Product.css";
-import NotificationModal from "../NotificationModal";
 
 function Product({ product, user }) {
   const dispatch = useDispatch();
@@ -20,10 +20,9 @@ function Product({ product, user }) {
     if (!user) {
       return setModalContent(<LoginFormModal />);
     }
-    const data = await dispatch(orderActions.createOrderThunk(product));
-    if (data?.message) {
-      setModalContent(<NotificationModal message={data.message} status="modal-errors" />)
-    }
+    await dispatch(orderActions.createOrderThunk(product));
+    revealCart(e);
+    hideAddToCartBtn(product.id);
   }
 
   const showProductDetails = () => {

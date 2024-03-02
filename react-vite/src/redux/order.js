@@ -43,6 +43,8 @@ export const loadOrdersThunk = () => async (dispatch, getState) => {
   const data = await response.json();
 
   if (!response.ok) return { errors: data };
+  console.log(data);
+  data.forEach(order => order.items.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime()));
   dispatch(loadOrders(data));
   return data;
 };
@@ -61,8 +63,12 @@ export const createOrderThunk = product => async (dispatch, getState) => {
     }
     const data = await dispatch(updateOrderThunk(order.id, product.id, 1));
     return data;
+  } else {
+    const item = order.items.find(item => item.product_id === product.id);
+    if (item) return { "message": "Item is already in cart" };
+    const data = await dispatch(updateOrderThunk(order.id, product.id, 1));
+    return data;
   }
-  return { "message": "Item is already in cart" };
 }
 
 export const updateOrderThunk = (orderId, productId, quantityInput) => async dispatch => {
@@ -119,7 +125,7 @@ function orderReducer(state = initialState, action) {
       if (item) {
         item.quantity = action.item.quantity;
       } else {
-        items.push(action.item);
+        items.splice(0, 0, action.item);
       }
       return newState;
     }

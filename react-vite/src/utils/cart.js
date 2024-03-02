@@ -10,6 +10,18 @@ export const toggleCart = e => {
   }
 }
 
+export const revealCart = e => {
+  e.preventDefault();
+  const cart = document.querySelector("#cart-orders");
+  const products = document.querySelector("#products");
+  if (cart) {
+    if (products) {
+      products.style.marginRight = "0";
+    }
+    cart.classList.remove("hidden");
+  }
+}
+
 export const closeCart = e => {
   e.preventDefault();
   const cart = document.querySelector("#cart-orders");

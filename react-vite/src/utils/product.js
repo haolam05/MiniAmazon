@@ -12,3 +12,19 @@ export const getFormattedPrice = price => {
   const part2 = parts[1] ? (parts[1].length > 2 ? parts[1].slice(0, 2) : parts[1]) : "";
   return [part1, part2.padEnd(2, 0)];
 }
+
+export const hideAddToCartBtn = productId => {
+  const product = document.getElementById(`product-${productId}`);
+  if (product) {
+    const btn = product.querySelector(".product-btns>button+button");
+    if (btn) btn.classList.add("hidden");
+  }
+}
+
+export const showAddToCartBtn = productId => {
+  const product = document.getElementById(`product-${productId}`);
+  if (product) {
+    const btn = product.querySelector(".product-btns>button+button");
+    if (btn) btn.classList.remove("hidden");
+  }
+}
