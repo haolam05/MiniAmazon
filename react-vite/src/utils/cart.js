@@ -16,7 +16,7 @@ export const revealCart = e => {
   const products = document.querySelector("#products");
   if (cart) {
     if (products) {
-      products.style.marginRight = "0";
+      products.style.marginRight = "360px";
     }
     cart.classList.remove("hidden");
   }
