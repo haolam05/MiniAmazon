@@ -3,11 +3,12 @@ import { useModal } from "../../context/Modal";
 import { getFormattedPrice } from "../../utils/product";
 import CartProduct from "../CartProduct";
 import NotificationModal from "../NotificationModal";
+import ConfirmDeleteModal from "../ConfirmDeleteModal";
 import * as orderActions from "../../redux/order";
 import "./CartProducts.css";
 
 function CartProducts({ products, itemsInCart, user }) {
-  const { setModalContent } = useModal();
+  const { setModalContent, closeModal } = useModal();
   const dispatch = useDispatch();
 
   const getSubTotal = items => {
@@ -23,6 +24,18 @@ function CartProducts({ products, itemsInCart, user }) {
     return setModalContent(<NotificationModal message="You have successfully checkout!" status="alert-success" />);
   }
 
+  const showCheckoutConfirmModal = () => {
+    const total = `${getSubTotal(itemsInCart)}`;
+    setModalContent(
+      <ConfirmDeleteModal
+        title="Total"
+        text={`Can you confirm that your order's total is $${total} ?`}
+        deleteCb={checkoutOrder}
+        cancelDeleteCb={closeModal}
+      />
+    );
+  }
+
   if (!itemsInCart.length) {
     return <p className="empty-cart-message">There is no items in your cart!</p>;
   }
@@ -36,7 +49,7 @@ function CartProducts({ products, itemsInCart, user }) {
           <span className="price">{getFormattedPrice(`${getSubTotal(itemsInCart)}`)[0]}</span>
           <span className="decimal">{getFormattedPrice(`${getSubTotal(itemsInCart)}`)[1]}</span>
         </div>
-        <div className="checkout" onClick={checkoutOrder}>
+        <div className="checkout" onClick={showCheckoutConfirmModal}>
           <p>Proceed to checkout</p>
         </div>
       </div>

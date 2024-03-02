@@ -1,7 +1,6 @@
 import { useSelector } from "react-redux";
 import { closeCart } from "../../utils/cart";
 import { useModal } from "../../context/Modal";
-import { sortPastOrdersDesc } from "../../utils/order";
 import CartProducts from "../CartProducts";
 import PastOrders from "../PastOrders";
 import * as orderActions from "../../redux/order";
