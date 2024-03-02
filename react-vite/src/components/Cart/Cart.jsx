@@ -5,7 +5,7 @@ import "./Cart.css";
 
 function Cart({ products }) {
   const orders = useSelector(orderActions.getOrders);
-  const itemsInCart = orders.filter(item => !item.is_checkout)[0].items;
+  const itemsInCart = orders.filter(item => !item.is_checkout)[0]?.items || [];
 
   return (
     <div id="cart-orders" className="hidden">

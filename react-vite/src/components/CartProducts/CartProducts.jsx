@@ -7,6 +7,10 @@ function CartProducts({ products, itemsInCart }) {
     return items.reduce((sum, item) => sum + (+products[item.product_id].price * item.quantity), 0);
   }
 
+  if (!itemsInCart.length) {
+    return <p className="empty-cart-message">There is no items in your cart!</p>;
+  }
+
   return (
     <div id="cart-products">
       <div className="summary">

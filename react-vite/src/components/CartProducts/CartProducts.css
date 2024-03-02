@@ -1,3 +1,8 @@
+.empty-cart-message {
+  text-align: center;
+  margin-top: 20px;
+}
+
 #cart-products {
   margin-top: 70px;
   display: flex;
