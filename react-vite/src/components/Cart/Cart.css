@@ -19,10 +19,10 @@
 
 #cart-orders .close-cart-btn i {
   color: var(--red);
-  font-size: xx-large;
+  font-size: xxx-large;
   position: absolute;
-  top: 18px;
-  left: 5px;
+  top: 10px;
+  left: 10px;
   cursor: pointer;
 }
 
