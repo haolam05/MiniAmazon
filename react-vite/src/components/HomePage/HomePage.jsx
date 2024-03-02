@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { userIsValid } from "../../utils/user";
 import NavBar from "../NavBar/NavBar";
 import Loading from "../Loading";
 import Products from "../Products";
@@ -21,9 +20,7 @@ function HomePage() {
     const loadData = async () => {
       await dispatch(sessionActions.restoreSession());
       await dispatch(productActions.loadProductsThunk());
-      if (userIsValid(user)) {
-        await dispatch(orderActions.loadOrdersThunk());
-      }
+      await dispatch(orderActions.loadOrdersThunk());
       setIsLoaded(true);
     }
     loadData();

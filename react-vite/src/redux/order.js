@@ -43,7 +43,6 @@ export const loadOrdersThunk = () => async (dispatch, getState) => {
   const data = await response.json();
 
   if (!response.ok) return { errors: data };
-  console.log(data);
   data.forEach(order => order.items.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime()));
   dispatch(loadOrders(data));
   return data;
