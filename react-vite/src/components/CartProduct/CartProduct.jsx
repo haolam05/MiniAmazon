@@ -12,6 +12,7 @@ function CartProduct({ product, item, user, inCartProductIds }) {
   const [submitting, setSubmitting] = useState(false);
   const [quantityInput, setQuantityInput] = useState(item.quantity);
   const [errors, setErrors] = useState({})
+  const [unsaveChanges, setUnsaveChanges] = useState(false);
 
   const removeProductFromCart = async e => {
     e.stopPropagation();
@@ -23,6 +24,7 @@ function CartProduct({ product, item, user, inCartProductIds }) {
   const updateOrder = async e => {
     e.preventDefault();
     setErrors({ "quantity": "" });
+    setUnsaveChanges(false);
     setSubmitting(true);
     await dispatch(orderActions.updateOrderThunk(item.order_id, product.id, quantityInput));
     setSubmitting(false);
@@ -34,9 +36,11 @@ function CartProduct({ product, item, user, inCartProductIds }) {
     const quantity = +e.target.value;
     if (quantity > product.remaining) {
       setQuantityInput(product.remaining);
+      setUnsaveChanges(true);
       return setErrors({ "quantity": "None remaining ❌" });
     }
     if (quantity >= 1) {
+      setUnsaveChanges(true);
       setQuantityInput(quantity);
       setErrors({ "quantity": "" });
     }
@@ -48,6 +52,7 @@ function CartProduct({ product, item, user, inCartProductIds }) {
     if (quantityInput + 1 > product.remaining) {
       setErrors({ "quantity": "None remaining ❌" });
     } else {
+      setUnsaveChanges(true);
       setQuantityInput(count => count + 1);
     }
   }
@@ -58,6 +63,7 @@ function CartProduct({ product, item, user, inCartProductIds }) {
     if (quantityInput - 1 <= product.remaining) {
       setErrors({ "quantity": "" });
     }
+    setUnsaveChanges(true);
     setQuantityInput(count => count - 1);
   }
 
@@ -69,6 +75,7 @@ function CartProduct({ product, item, user, inCartProductIds }) {
       <div className="cart-product-image">
         <img src={product.product_image} alt="cart-product-image" onClick={() => showProductDetails(product, user, inCartProductIds)} />
         {submitting && <Loading />}
+        {unsaveChanges && <p className="unsave-changes">Unsave changes <i className="fa-solid fa-circle"></i></p>}
         {errors.quantity && <p>{errors.quantity}</p>}
         <div className="cart-product-quantity" onClick={e => e.stopPropagation()}>
           {quantityInput === 1 ? (

@@ -107,3 +107,8 @@
   top: 0;
   left: 0;
 }
+
+.cart-product .unsave-changes i {
+  color: rgb(3, 124, 3);
+  font-size: small;
+}
