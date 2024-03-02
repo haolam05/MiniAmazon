@@ -11,7 +11,10 @@ function Cart({ products }) {
   return (
     <div id="cart-orders" className="hidden">
       <div className="cart-title">
-        <h2 className="subheading">My shopping cart</h2>
+        <h2 className="subheading">
+          <div className="subheading">My shopping cart</div>
+          <div className="past-orders">Past orders</div>
+        </h2>
         <div className="close-cart-btn" title="Close cart" onClick={closeCart}>
           <i className="fa-solid fa-right-long"></i>
         </div>

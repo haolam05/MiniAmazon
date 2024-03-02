@@ -13,6 +13,9 @@ function Product({ product, user, inCartProductIds }) {
 
   const showBookmarks = e => {
     e.stopPropagation();
+    if (!user) {
+      return setModalContent(<LoginFormModal />);
+    }
   }
 
   const showCart = async e => {

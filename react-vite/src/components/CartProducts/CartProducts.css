@@ -4,11 +4,11 @@
 }
 
 #cart-products {
-  margin-top: 70px;
+  margin-top: 30px;
   display: flex;
   flex-direction: column;
   gap: 20px;
-  height: 725px;
+  height: 700px;
   scrollbar-color: var(--cart-scroll-color) transparent;
   overflow-x: hidden;
   overflow-y: scroll;
@@ -18,13 +18,13 @@
 
 #cart-products .summary {
   position: fixed;
-  top: 140px;
+  top: 160px;
   right: 210px;
 }
 
 #cart-products .checkout {
   position: fixed;
-  top: 140px;
+  top: 160px;
   right: 20px;
 }
 
