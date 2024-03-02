@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useModal } from "../../context/Modal";
 import { getFormattedPrice, getPreviewText } from "../../utils/product";
 import * as orderActions from "../../redux/order";
 import "./CartProduct.css";
 import Loading from "../Loading";
 
-function CartProduct({ product, item }) {
+function CartProduct({ product, item, user }) {
   const dispatch = useDispatch();
+  const { showProductDetails } = useModal();
   const [submitting, setSubmitting] = useState(false);
   const [quantityInput, setQuantityInput] = useState(item.quantity);
 
@@ -31,7 +33,7 @@ function CartProduct({ product, item }) {
       id={`cart-product-${product.id}`}
     >
       <div className="cart-product-image">
-        <img src={product.product_image} alt="cart-product-image" />
+        <img src={product.product_image} alt="cart-product-image" onClick={() => showProductDetails(product, user)} />
         {submitting && <Loading />}
         <div className="cart-product-quantity" onClick={e => e.stopPropagation()}>
           {quantityInput === 1 ? (

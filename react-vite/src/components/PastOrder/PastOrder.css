@@ -1,0 +1,12 @@
+.past-order {
+  height: 600px;
+  scrollbar-color: var(--cart-scroll-color) transparent;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+.past-order .past-order-items {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}

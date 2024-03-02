@@ -2,7 +2,7 @@ import { getFormattedPrice } from "../../utils/product";
 import CartProduct from "../CartProduct";
 import "./CartProducts.css";
 
-function CartProducts({ products, itemsInCart }) {
+function CartProducts({ products, itemsInCart, user }) {
   const getSubTotal = items => {
     return items.reduce((sum, item) => sum + (+products[item.product_id].price * item.quantity), 0);
   }
@@ -26,7 +26,7 @@ function CartProducts({ products, itemsInCart }) {
       </div>
       {itemsInCart.map(item => {
         const product = products[item.product_id];
-        return <CartProduct key={item.id} product={product} item={item} />
+        return <CartProduct key={item.id} product={product} item={item} user={user} />
       })}
     </div>
   );
