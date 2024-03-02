@@ -1,10 +1,69 @@
 #cart-products {
-  margin-top: 30px;
+  margin-top: 70px;
   display: flex;
   flex-direction: column;
   gap: 40px;
   height: 800px;
-  scrollbar-color: var(--dark-purple) transparent;
+  scrollbar-color: var(--cart-scroll-color) transparent;
   overflow-x: hidden;
   overflow-y: scroll;
+  border-top: 1px solid var(--gray);
+  padding-top: 10px;
+}
+
+#cart-products .summary {
+  position: fixed;
+  top: 140px;
+  right: 210px;
+}
+
+#cart-products .checkout {
+  position: fixed;
+  top: 140px;
+  right: 20px;
+}
+
+#cart-products .checkout {
+  background-color: var(--light-orange);
+  width: 135px;
+  height: 21px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+#cart-products .checkout p {
+  color: var(--black);
+}
+
+#cart-products .subtotal {
+  background-color: var(--purple);
+  width: 120px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+}
+
+#cart-products .subtotal .text {
+  color: var(--black);
+  align-self: center;
+  font-size: 14pt;
+  margin-right: 15px;
+}
+
+#cart-products .subtotal .price {
+  font-size: 14pt;
+  color: var(--black);
+}
+
+#cart-products .subtotal .decimal,
+#cart-products .subtotal .dollar-sign {
+  font-size: 9pt;
+  color: var(--black);
+  margin-top: 2px;
 }

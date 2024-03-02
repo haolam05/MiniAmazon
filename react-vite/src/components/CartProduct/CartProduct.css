@@ -3,8 +3,10 @@
   grid-template-columns: 1fr 1fr;
   grid-gap: 30px;
   border-radius: 5px;
-  background-color: rgb(205, 197, 197);
+  background-color: var(--cart-product-background);
   padding: 10px;
+  margin-right: 10px;
+  cursor: pointer;
 }
 
 .cart-product .cart-product-image img {
