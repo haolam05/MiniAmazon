@@ -1,10 +1,14 @@
 import { useState } from "react";
+import { useSelector } from "react-redux";
 import { addOutline, removeOutline } from "../../utils/navbar";
+import * as orderActions from "../../redux/order";
 import SessionInfo from "../SessionInfo";
 import "./NavBar.css";
 
 function NavBar({ user }) {
   const [category, setCategory] = useState("");
+  const orders = useSelector(orderActions.getOrders);
+  const itemsInCart = orders.filter(item => !item.is_checkout)[0]?.items || [];
 
   const showCart = async e => {
     e.preventDefault();
@@ -48,7 +52,7 @@ function NavBar({ user }) {
       <div id="cart" title="View cart" onClick={showCart}>
         <img src="/images/cart.png" alt="shopping-cart" />
         <span>Cart</span>
-        <span id="cart-items-count">0</span>
+        <span id="cart-items-count">{itemsInCart.length}</span>
       </div>
       <div id="bookmark" title="View bookmarks">
         <i className="fa-solid fa-bookmark"></i>
