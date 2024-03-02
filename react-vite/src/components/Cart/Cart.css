@@ -32,7 +32,7 @@
 }
 
 #cart-orders .cart-title .past-orders {
-  background-color: var(--cart-delete-btn);
+  color: var(--dark-purple);
   border-radius: 5px;
   font-style: italic;
   text-align: center;
