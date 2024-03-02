@@ -1,50 +1,64 @@
-import { useModal } from "../../context/Modal";
+import { useState } from "react";
 import { getFormattedPrice, getPreviewText } from "../../utils/product";
-import ProductDetails from "../ProductDetails";
 import "./CartProduct.css";
 
 function CartProduct({ product, quantity }) {
-  const { setModalContent } = useModal();
-
-  const showBookmarks = e => {
-    e.preventDefault();
-    e.stopPropagation();
-  }
-
-  const showCart = e => {
-    e.preventDefault();
-    e.stopPropagation();
-  }
-
-  const showProductDetails = e => {
-    e.preventDefault();
-    setModalContent(
-      <ProductDetails
-        product={product}
-        showBookmarks={showBookmarks}
-        showCart={showCart}
-      />
-    );
-  }
+  const [quantityInput, setQuantityInput] = useState(quantity);
 
   const removeProductFromCart = e => {
     e.stopPropagation();
   }
 
+  const updateOrder = e => {
+    e.preventDefault();
+  }
+
+
   return (
     <div
       className="cart-product"
       id={product.id}
-      title="Click to view product details"
-      onClick={showProductDetails}
     >
       <div className="cart-product-image">
         <img src={product.product_image} alt="cart-product-image" />
         <div className="cart-product-quantity" onClick={e => e.stopPropagation()}>
-          <div className="minus" title="Decrement product count"><i className="fa-solid fa-minus"></i></div>
-          <div className="quantity" title="Enter desired product quantity"><input type="number" spellCheck={false} placeholder={quantity} /></div>
-          <div className="minus" title="Increment product count"><i className="fa-solid fa-plus"></i></div>
-          <div className="submit-quantity" title="Save"><i className="fa-solid fa-paper-plane"></i></div>
+          {quantityInput === 1 ? (
+            <div
+              className="minus"
+              title="Delete product"
+              onClick={removeProductFromCart}
+            >
+              <i className="fa-solid fa-trash"></i>
+            </div>
+          ) : (
+            <div
+              className="minus"
+              title="Decrement product count"
+              onClick={() => setQuantityInput(count => count - 1)}
+            >
+              <i className="fa-solid fa-minus"></i>
+            </div>
+          )}
+          <div
+            className="quantity"
+            title="Enter desired product quantity"
+          >
+            <input type="number" spellCheck={false} value={quantityInput} onChange={e => setQuantityInput(+e.target.value)} />
+          </div>
+          <div
+            className="plus"
+            title="Increment product count"
+            onClick={() => setQuantityInput(count => count + 1)}
+          >
+            <i className="fa-solid fa-plus"></i>
+          </div>
+          <div
+            className="submit-quantity"
+            title="Save"
+            onClick={updateOrder}
+          >
+            <i className="fa-solid fa-paper-plane"></i>
+          </div>
         </div>
       </div>
       <div className="cart-product-info">

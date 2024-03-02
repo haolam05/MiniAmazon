@@ -578,6 +578,14 @@ Delete current user
             "price": "1.29",
             "product_image": "https://miniamazon.s3.us-west-2.amazonaws.com/public/avocado.jpg",
             "remaining": 22,
+            "seller": {
+              "email": "haolam@user.io",
+              "first_name": "Hao",
+              "id": 1,
+              "last_name": "Lam",
+              "profile_image_url": "https://miniamazon.s3.us-west-2.amazonaws.com/public/avatar1.png",
+              "username": "haolam"
+            },
             "seller_id": 1
           }
         ]
@@ -1580,6 +1588,19 @@ If the product item is already in the cart, the quantity will be updated.
       }
     ```
 
+* Error response: Item not found
+  * Status Code: 404
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+      { // if quantity = 0 (trying to delete), but not found item in order
+        "message": "Item couldn't be found"
+      }
+    ```
+
+
 * Error response: Body validation errors
   * Status Code: 400
   * Headers:
@@ -1592,7 +1613,7 @@ If the product item is already in the cart, the quantity will be updated.
           "This field is required." || "Product ID must be positive"
         ],
         "quantity": [
-          "This field is required." || "Quantity must be positive"
+          "This field is required." || "Quantity can not be negative"
         ]
       }
     ```

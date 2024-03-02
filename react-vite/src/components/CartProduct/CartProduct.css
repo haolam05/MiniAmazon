@@ -66,6 +66,7 @@
 
 .cart-product .cart-product-quantity {
   display: flex;
+  gap: 2px;
   background-color: var(--cart-delete-btn);
   border-radius: 5px;
   padding: 2 10px;
@@ -75,7 +76,7 @@
 
 .cart-product .cart-product-quantity i {
   color: var(--white);
-  padding: 10px;
+  padding: 7px;
 }
 
 .cart-product .cart-product-quantity i:hover {
@@ -83,7 +84,7 @@
 }
 
 .cart-product .cart-product-quantity input {
-  width: 30px;
+  width: 40px;
   border-radius: 5px;
   border: none;
   text-align: center;

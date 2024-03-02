@@ -47,8 +47,8 @@ def create_order():
 
 @order_routes.route('/<int:id>', methods=['PUT'])
 @login_required
-def add_item_to_order(id):
-    """Add an item to the current user's order"""
+def update_order(id):
+    """Update the current user's order"""
     form = OrderForm()
     form["csrf_token"].data = request.cookies["csrf_token"]
 
@@ -66,16 +66,25 @@ def add_item_to_order(id):
             return redirect("/api/auth/forbidden")
 
         order_item = OrderItem.query.filter(OrderItem.order_id == order.id).filter(OrderItem.product_id == product.id).one_or_none()
-        if not order_item:
+        if order_item and form.data["quantity"] == 0:
+            """ Remove item from order (cart) if quantity == 0 """
+            db.session.delete(order_item)
+            db.session.commit()
+            return {"message": "Successfully deleted item in the order"}, 200
+        elif not order_item and form.data["quantity"] > 0:
+            """ Add item to order (cart) if not yet in cart """
             order_item = OrderItem(
                 order_id=order.id,
                 product_id=form.data["product_id"],
                 quantity=form.data["quantity"]
             )
-        else:
+            db.session.add(order_item)
+        elif form.data["quantity"] > 0:
+            """ Update item count """
             order_item.quantity = form.data["quantity"]
+        else:
+            return {"message": "Item could not be found"}, 404
 
-        db.session.add(order_item)
         db.session.commit()
 
         return order_item.to_dict(), 200
