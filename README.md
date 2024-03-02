@@ -1661,3 +1661,15 @@ If the product item is already in the cart, the quantity will be updated.
         "message": "This order is already checked out"
       }
     ```
+
+* Error response: Empty order (cart)
+  * Status Code: 500
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+      {
+        "message": "You have nothing to checkout"
+      }
+    ```

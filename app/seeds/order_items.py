@@ -8,37 +8,37 @@ def seed_order_items():
     order_items = [
         {
             "product_id": product_image_name_to_ids["avocado.jpg"],
-            "order_id": 1,
+            "order_id": 3,
             "quantity": 2
         },
         {
             "product_id": product_image_name_to_ids["black+berries.jpg"],
-            "order_id": 1,
+            "order_id": 3,
             "quantity": 1
         },
         {
             "product_id": product_image_name_to_ids["ship.jpg"],
-            "order_id": 1,
+            "order_id": 3,
             "quantity": 3
         },
         {
             "product_id": product_image_name_to_ids["red+raspberries.jpg"],
-            "order_id": 2,
+            "order_id": 1,
             "quantity": 4
         },
         {
             "product_id": product_image_name_to_ids["camera.jpg"],
-            "order_id": 2,
+            "order_id": 1,
             "quantity": 1
         },
         {
             "product_id": product_image_name_to_ids["water+flosser.jpg"],
-            "order_id": 3,
+            "order_id": 2,
             "quantity": 1
         },
         {
             "product_id": product_image_name_to_ids["puppet.jpg"],
-            "order_id": 3,
+            "order_id": 2,
             "quantity": 4
         }
     ]

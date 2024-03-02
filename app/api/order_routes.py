@@ -111,6 +111,9 @@ def checkout_order(id):
     if order.is_checkout == True:
         return {"message": "This order is already checked out"}, 500
 
+    if len(order.order_items) < 1:
+        return {"message": "You have nothing to checkout"}, 500
+
     order.is_checkout = True
 
     db.session.commit()

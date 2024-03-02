@@ -2,10 +2,11 @@ import { csrfFetch } from "./csrf";
 import { createSelector } from "reselect";
 
 // Actions
-const LOAD_ORDERS = 'orders//LOAD_ORDERS';
-const CREATE_ORDER = 'orders//CREATE_ORDER';
-const UPDATE_ORDER_ITEM = 'orders//UPDATE_ORDER_ITEM';
-const DELETE_ORDER_ITEM = 'orders//DELETE_ORDER_ITEM';
+const LOAD_ORDERS = 'orders/LOAD_ORDERS';
+const CREATE_ORDER = 'orders/CREATE_ORDER';
+const CHECKOUT_ORDER = 'orders/CHECKOUT_ORDER';
+const UPDATE_ORDER_ITEM = 'orders/UPDATE_ORDER_ITEM';
+const DELETE_ORDER_ITEM = 'orders/DELETE_ORDER_ITEM';
 const RESET = 'orders/RESET';
 
 
@@ -18,6 +19,11 @@ const loadOrders = orders => ({
 const createOrder = order => ({
   type: CREATE_ORDER,
   order
+});
+
+const checkoutOrder = orderId => ({
+  type: CHECKOUT_ORDER,
+  orderId
 });
 
 const updateOrderItem = item => ({
@@ -89,6 +95,14 @@ export const updateOrderThunk = (orderId, productId, quantityInput) => async dis
   return data;
 }
 
+export const checkoutOrderThunk = orderId => async dispatch => {
+  const response = await csrfFetch(`/api/orders/${orderId}/checkout`);
+  const data = await response.json();
+  if (!response.ok) return { errors: data };
+  dispatch(checkoutOrder(orderId));
+  return data;
+}
+
 
 // Custom selectors
 export const getOrders = createSelector(
@@ -115,6 +129,17 @@ function orderReducer(state = initialState, action) {
         orders: {
           ...state.orders,
           [action.order.id]: action.order
+        }
+      }
+    case CHECKOUT_ORDER:
+      return {
+        ...state,
+        orders: {
+          ...state.orders,
+          [action.orderId]: {
+            ...state.orders[action.orderId],
+            is_checkout: true
+          }
         }
       }
     case UPDATE_ORDER_ITEM: {

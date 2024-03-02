@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import { closeCart } from "../../utils/cart";
 import { useModal } from "../../context/Modal";
+import { sortPastOrdersDesc } from "../../utils/order";
 import CartProducts from "../CartProducts";
 import PastOrders from "../PastOrders";
 import * as orderActions from "../../redux/order";
@@ -10,9 +11,10 @@ function Cart({ products, user }) {
   const { setModalContent } = useModal();
   const orders = useSelector(orderActions.getOrders);
   const itemsInCart = orders.filter(item => !item.is_checkout)[0]?.items || [];
+  const pastOrders = orders.filter(order => order.is_checkout);
 
   const showPastOrders = () => {
-    setModalContent(<PastOrders orders={orders} products={products} />);
+    setModalContent(<PastOrders orders={pastOrders.reverse()} products={products} />);
   }
 
   return (
