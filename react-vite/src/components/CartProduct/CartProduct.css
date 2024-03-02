@@ -46,3 +46,13 @@
   margin-top: 2px;
   height: 100%;
 }
+
+.cart-product-delete-btn {
+  background-color: var(--cart-delete-btn);
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.cart-product-delete-btn:hover {
+  text-decoration: underline;
+}

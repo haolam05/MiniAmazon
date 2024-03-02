@@ -27,6 +27,10 @@ function CartProduct({ product }) {
     );
   }
 
+  const removeProductFromCart = e => {
+    e.stopPropagation();
+  }
+
   return (
     <div
       className="cart-product"
@@ -36,6 +40,9 @@ function CartProduct({ product }) {
     >
       <div className="cart-product-image">
         <img src={product.product_image} alt="cart-product-image" />
+        <div className="cart-product-quantity">
+
+        </div>
       </div>
       <div className="cart-product-info">
         <p className="cart-product-name">{getPreviewText(product.name)}</p>
@@ -44,6 +51,7 @@ function CartProduct({ product }) {
           <span className="price">{getFormattedPrice(product.price)[0]}</span>
           <span className="decimal">{getFormattedPrice(product.price)[1]}</span>
         </div>
+        <div className="cart-product-delete-btn" onClick={removeProductFromCart}>Delete</div>
       </div>
     </div>
   );
