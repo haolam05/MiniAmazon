@@ -20,7 +20,9 @@ function HomePage() {
     const loadData = async () => {
       await dispatch(sessionActions.restoreSession());
       await dispatch(productActions.loadProductsThunk());
-      await dispatch(orderActions.loadOrdersThunk());
+      if (user?.user) {
+        await dispatch(orderActions.loadOrdersThunk());
+      }
       setIsLoaded(true);
     }
     loadData();
