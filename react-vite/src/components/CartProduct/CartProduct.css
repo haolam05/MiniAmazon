@@ -95,3 +95,12 @@
   outline: 3px solid var(--orange);
   text-align: center;
 }
+
+.cart-product .cart-product-remaining {
+  background-color: var(--light-orange);
+  width: fit-content;
+  border-top-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  padding: 5px 10px;
+  position: absolute;
+}
