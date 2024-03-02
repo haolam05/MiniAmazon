@@ -1548,7 +1548,7 @@ If the product item is already in the cart, the quantity will be updated.
       }
     ```
 
-* Successful Response
+* Successful Response (Quantity > 0)
   * Status Code: 200
   * Headers:
     * Content-Type: application/json
@@ -1561,6 +1561,18 @@ If the product item is already in the cart, the quantity will be updated.
       "order_id": 4,
       "product_id": 2,
       "quantity": 4
+    }
+    ```
+
+* Successful Response (Quantity = 0)
+  * Status Code: 200
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "message": "Successfully deleted item in the order"
     }
     ```
 
@@ -1600,6 +1612,17 @@ If the product item is already in the cart, the quantity will be updated.
       }
     ```
 
+* Error response: Invalid quantity
+  * Status Code: 500
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+      {
+        "message": "Quantity must be 1 when an item is first added to cart" || "Product has sold out" || "Not enough products to add to cart"
+      }
+    ```
 
 * Error response: Body validation errors
   * Status Code: 400
