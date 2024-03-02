@@ -1,16 +1,27 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { getFormattedPrice, getPreviewText } from "../../utils/product";
+import * as orderActions from "../../redux/order";
 import "./CartProduct.css";
+import Loading from "../Loading";
 
-function CartProduct({ product, quantity }) {
-  const [quantityInput, setQuantityInput] = useState(quantity);
+function CartProduct({ product, item }) {
+  const dispatch = useDispatch();
+  const [submitting, setSubmitting] = useState(false);
+  const [quantityInput, setQuantityInput] = useState(item.quantity);
 
-  const removeProductFromCart = e => {
+  const removeProductFromCart = async e => {
     e.stopPropagation();
+    setSubmitting(true);
+    await dispatch(orderActions.updateOrderThunk(item.order_id, product.id, 0));
+    setSubmitting(false);
   }
 
-  const updateOrder = e => {
+  const updateOrder = async e => {
     e.preventDefault();
+    setSubmitting(true);
+    await dispatch(orderActions.updateOrderThunk(item.order_id, product.id, quantityInput));
+    setSubmitting(false);
   }
 
 
@@ -21,6 +32,7 @@ function CartProduct({ product, quantity }) {
     >
       <div className="cart-product-image">
         <img src={product.product_image} alt="cart-product-image" />
+        {submitting && <Loading />}
         <div className="cart-product-quantity" onClick={e => e.stopPropagation()}>
           {quantityInput === 1 ? (
             <div
@@ -43,7 +55,7 @@ function CartProduct({ product, quantity }) {
             className="quantity"
             title="Enter desired product quantity"
           >
-            <input type="number" spellCheck={false} value={quantityInput} onChange={e => setQuantityInput(+e.target.value)} />
+            <input type="number" spellCheck={false} value={quantityInput} onChange={e => +e.target.value >= 1 && setQuantityInput(+e.target.value)} />
           </div>
           <div
             className="plus"

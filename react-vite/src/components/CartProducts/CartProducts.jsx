@@ -26,7 +26,7 @@ function CartProducts({ products, itemsInCart }) {
       </div>
       {itemsInCart.map(item => {
         const product = products[item.product_id];
-        return <CartProduct key={`cart-product-${item.id}`} product={product} quantity={item.quantity} />
+        return <CartProduct key={`cart-product-${item.id}`} product={product} item={item} />
       })}
     </div>
   );

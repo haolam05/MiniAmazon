@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
+import { toggleCart } from "../../utils/cart";
 import { addOutline, removeOutline } from "../../utils/navbar";
 import * as orderActions from "../../redux/order";
 import SessionInfo from "../SessionInfo";
@@ -9,18 +10,6 @@ function NavBar({ user }) {
   const [category, setCategory] = useState("");
   const orders = useSelector(orderActions.getOrders);
   const itemsInCart = orders.filter(item => !item.is_checkout)[0]?.items || [];
-
-  const showCart = async e => {
-    e.preventDefault();
-    const cart = document.querySelector("#cart-orders");
-    const products = document.querySelector("#products");
-    if (cart) {
-      if (products) {
-        products.style.marginRight = cart.classList.contains("hidden") ? "360px" : "0";
-      }
-      cart.classList.toggle("hidden");
-    }
-  }
 
   return (
     <div id="navbar">
@@ -49,7 +38,7 @@ function NavBar({ user }) {
           <option className="category" value="Handmade">Handmade</option>
         </select>
       </div>
-      <div id="cart" title="View cart" onClick={showCart}>
+      <div id="cart" title="View cart" onClick={toggleCart}>
         <img src="/images/cart.png" alt="shopping-cart" />
         <span>Cart</span>
         <span id="cart-items-count">{itemsInCart.length}</span>
