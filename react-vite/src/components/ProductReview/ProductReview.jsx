@@ -2,7 +2,11 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { getAvatarUrl } from "../../utils/navbar";
-import { hideEditReviewForm, showEditReviewForm } from "../../utils/review";
+import {
+  hideEditReviewForm,
+  isInEditMode,
+  showEditReviewForm
+} from "../../utils/review";
 import ConfirmDeleteModal from "../ConfirmDeleteModal";
 import NotificationModal from "../NotificationModal";
 import * as productActions from "../../redux/product";
@@ -12,6 +16,7 @@ function ProductReview({ review, user }) {
   const dispatch = useDispatch();
   const { setModalContent, closeModal } = useModal();
   const [reviewInput, setReviewInput] = useState(review.review);
+  const [ratingInput, setRatingInput] = useState(review.rating);
 
   if (!review) return;
 
@@ -50,6 +55,17 @@ function ProductReview({ review, user }) {
     );
   }
 
+  const setStars = e => {
+    if (isInEditMode(review.id)) {
+      const stars = +e.target.dataset.star;
+      setRatingInput(stars);
+    }
+  }
+
+  const resetStars = () => {
+    if (isInEditMode(review.id)) setRatingInput(review.rating);
+  }
+
   return (
     <div className={`product-review${isMyReview ? " me" : ""}`} id={`product-review-${review.id}`}>
       {isMyReview && (
@@ -63,11 +79,11 @@ function ProductReview({ review, user }) {
       </div>
       <div className="review-author">{review.customer.first_name} {review.customer.last_name}</div>
       <div className="rating">
-        {<i className={`fa-solid fa-star ${review.rating > 0 ? "orange" : "gray"}`}></i>}
-        {<i className={`fa-solid fa-star ${review.rating > 1 ? "orange" : "gray"}`}></i>}
-        {<i className={`fa-solid fa-star ${review.rating > 2 ? "orange" : "gray"}`}></i>}
-        {<i className={`fa-solid fa-star ${review.rating > 3 ? "orange" : "gray"}`}></i>}
-        {<i className={`fa-solid fa-star ${review.rating > 4 ? "orange" : "gray"}`}></i>}
+        {<i data-star="1" className={`fa-solid fa-star ${ratingInput > 0 ? "orange" : "gray"}`} onMouseOver={setStars} onMouseOut={resetStars}></i>}
+        {<i data-star="2" className={`fa-solid fa-star ${ratingInput > 1 ? "orange" : "gray"}`} onMouseOver={setStars} onMouseOut={resetStars}></i>}
+        {<i data-star="3" className={`fa-solid fa-star ${ratingInput > 2 ? "orange" : "gray"}`} onMouseOver={setStars} onMouseOut={resetStars}></i>}
+        {<i data-star="4" className={`fa-solid fa-star ${ratingInput > 3 ? "orange" : "gray"}`} onMouseOver={setStars} onMouseOut={resetStars}></i>}
+        {<i data-star="5" className={`fa-solid fa-star ${ratingInput > 4 ? "orange" : "gray"}`} onMouseOver={setStars} onMouseOut={resetStars}></i>}
       </div>
       <div className="review">
         <p className="product-review-text">{review.review}</p>

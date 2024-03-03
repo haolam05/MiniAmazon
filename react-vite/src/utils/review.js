@@ -39,3 +39,9 @@ export const hideEditReviewForm = reviewId => {
     if (productReviewText) productReviewText.classList.remove("hidden");
   }
 }
+
+export const isInEditMode = reviewId => {
+  const review = document.querySelector(`#product-review-${reviewId}`);
+  const textarea = review.querySelector(".review-textarea");
+  return textarea && !textarea.classList.contains("hidden") && review.classList.contains("me");
+}
