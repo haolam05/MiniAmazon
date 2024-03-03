@@ -28,12 +28,19 @@ function ProductDetails({ product, showBookmarks, showCart, inCartProductIds, bo
               <button
                 title="Bookmark this product"
                 onClick={showBookmarks}
+                className="bookmark-btn"
               >
                 Bookmark
               </button>
             )}
             {!inCartProductIds.includes(product.id) && product.remaining > 0 && (
-              <button title="Add this product to cart" onClick={showCart}>Add to cart</button>
+              <button
+                title="Add this product to cart"
+                onClick={showCart}
+                className="add-to-cart-btn"
+              >
+                Add to cart
+              </button>
             )}
           </div>
         </div>

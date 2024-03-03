@@ -1,0 +1,9 @@
+#bookmarks {
+  display: flex;
+  /* flex-direction: column; */
+  gap: 20px;
+  width: 90vw;
+  scrollbar-color: var(--cart-scroll-color) transparent;
+  overflow-y: hidden;
+  overflow-x: scroll;
+}

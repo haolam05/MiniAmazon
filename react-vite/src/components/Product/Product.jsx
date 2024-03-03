@@ -32,6 +32,7 @@ function Product({ product, user, inCartProductIds, bookmarkProductIds }) {
           <button
             title="Bookmark this product"
             onClick={e => showBookmarks(e, user)}
+            className="bookmark-btn"
           >
             Bookmark
           </button>
@@ -40,6 +41,7 @@ function Product({ product, user, inCartProductIds, bookmarkProductIds }) {
           <button
             title="Add this product to cart"
             onClick={e => showCart(e, product, user)}
+            className="add-to-cart-btn"
           >
             Add to cart
           </button>

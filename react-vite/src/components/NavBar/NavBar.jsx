@@ -8,14 +8,22 @@ import SessionInfo from "../SessionInfo";
 import * as orderActions from "../../redux/order";
 import "./NavBar.css";
 
-function NavBar({ user, products, inCartProductIds }) {
+function NavBar({ user, products, inCartProductIds, bookmarks, bookmarkProductIds }) {
   const { setModalContent } = useModal();
   const [category, setCategory] = useState("");
   const orders = useSelector(orderActions.getOrders);
   const itemsInCart = orders.filter(order => !order.is_checkout)[0]?.items || [];
 
   const showBookmarks = () => {
-    setModalContent(<Bookmarks user={user} products={products} inCartProductIds={inCartProductIds} />);
+    setModalContent(
+      <Bookmarks
+        user={user}
+        products={products}
+        inCartProductIds={inCartProductIds}
+        bookmarks={bookmarks}
+        bookmarkProductIds={bookmarkProductIds}
+      />
+    );
   }
 
   return (

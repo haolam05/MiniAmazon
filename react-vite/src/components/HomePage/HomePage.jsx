@@ -44,6 +44,7 @@ function HomePage() {
         products={getProductsObject}
         inCartProductIds={inCartProductIds}
         bookmarks={bookmarks}
+        bookmarkProductIds={bookmarkProductIds}
       />
       <div id="main-content">
         <Products

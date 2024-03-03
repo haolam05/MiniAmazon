@@ -15,14 +15,17 @@ export const getFormattedPrice = price => {
 
 export const hideAddToCartBtn = productId => {
   // Button in product list
-  const product = document.getElementById(`product-${productId}`);
-  if (product) {
-    const btn = product.querySelector(".product-btns>button+button");
-    if (btn) btn.classList.add("hidden");
+  const products = document.querySelectorAll(`#product-${productId}`);
+  if (products) {
+    for (let i = 0; i < products.length; i++) {
+      const product = products[i];
+      const btn = product.querySelector(".product-btns button.add-to-cart-btn");
+      if (btn) btn.classList.add("hidden");
+    }
   }
 
   // Button in product details page
-  const btn = document.querySelector("#product-details button+button")
+  const btn = document.querySelector("#product-details button.add-to-cart-btn")
   if (btn) btn.classList.add("hidden");
 }
 
