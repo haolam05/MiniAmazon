@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { getAvatarUrl } from "../../utils/navbar";
 import {
+  getAverageRating,
   hideEditReviewForm,
   isInEditMode,
   showEditReviewForm
@@ -12,7 +13,7 @@ import NotificationModal from "../NotificationModal";
 import * as productActions from "../../redux/product";
 import "./ProductReview.css";
 
-function ProductReview({ review, user }) {
+function ProductReview({ reviews, review, user, setAverageRating }) {
   const dispatch = useDispatch();
   const { setModalContent, closeModal } = useModal();
   const [reviewInput, setReviewInput] = useState(review.review);
@@ -22,6 +23,11 @@ function ProductReview({ review, user }) {
   if (!review) return;
 
   const isMyReview = user.id === review.customer_id;
+
+  const setNewAverageRating = () => {
+    const ratings = reviews.filter(r => r.id !== review.id).map(r => r.rating);
+    setAverageRating(getAverageRating([...ratings, currentRating]));
+  }
 
   const updateReview = async () => {
     const data = await dispatch(productActions.updateProductReviewThunk(review.product_id, review.id, reviewInput, currentRating));
@@ -33,6 +39,7 @@ function ProductReview({ review, user }) {
         />
       );
     }
+    setNewAverageRating();
   }
 
   const deleteMyReview = async () => {

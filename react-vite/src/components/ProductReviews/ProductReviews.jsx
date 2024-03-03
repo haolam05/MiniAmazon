@@ -1,7 +1,7 @@
 import ProductReview from "../ProductReview";
 import "./ProductReviews.css";
 
-function ProductReviews({ product, user }) {
+function ProductReviews({ product, user, setAverageRating }) {
   if (!product) return;
 
   const otherReviews = product.reviews.filter(review => review.customer_id !== user.id);
@@ -15,7 +15,7 @@ function ProductReviews({ product, user }) {
         </div>
       )}
       {[...myReview, ...otherReviews].map(review => (
-        <ProductReview key={review.id} review={review} user={user} />
+        <ProductReview key={review.id} reviews={product.reviews} review={review} user={user} setAverageRating={setAverageRating} />
       ))}
     </div>
   );

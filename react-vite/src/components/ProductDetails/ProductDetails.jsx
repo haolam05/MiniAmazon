@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { getAvatarUrl } from "../../utils/navbar";
 import { getFormattedPrice, getPreviewText } from "../../utils/product";
 import { getAverageRating, toggleReviewInfo } from "../../utils/review";
@@ -5,6 +6,8 @@ import ProductReviews from "../ProductReviews";
 import "./ProductDetails.css";
 
 function ProductDetails({ user, product, createAndShowBookmarks, showCart, inCartProductIds, bookmarkProductIds }) {
+  const [averageRating, setAverageRating] = useState(getAverageRating(product.reviews.map(review => review.rating)));
+
   return (
     <>
       <h2 className="product-title subheading">{product.name}</h2>
@@ -20,7 +23,7 @@ function ProductDetails({ user, product, createAndShowBookmarks, showCart, inCar
                     <span>Total reviews ~ {product.reviews.length} 📝</span>
                   </div>
                   <div className="average-rating">
-                    <span>Average rating ~ {getAverageRating(product.reviews.map(review => review.rating))} </span>
+                    <span>Average rating ~ {averageRating} </span>
                     <i className={`fa-solid fa-star`}></i>
                   </div>
                 </div>
@@ -73,7 +76,7 @@ function ProductDetails({ user, product, createAndShowBookmarks, showCart, inCar
             </div>
           </div>
         </div>
-        {user && <ProductReviews product={product} user={user} />}
+        {user && <ProductReviews product={product} user={user} setAverageRating={setAverageRating} />}
       </div>
     </>
   );
