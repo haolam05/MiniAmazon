@@ -1,0 +1,34 @@
+.product-review {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding-bottom: 20px;
+  min-width: 200px;
+  border: 1px solid var(--light-gray);
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  padding: 10px 10px;
+  margin-bottom: 20px;
+}
+
+.product-review .rating {
+  display: flex;
+}
+
+.product-review .fa-star.orange {
+  color: var(--orange);
+}
+
+.product-review .fa-star.gray {
+  color: var(--light-gray);
+}
+
+.product-review p {
+  text-align: center;
+  height: 50px;
+  width: 200px;
+  scrollbar-color: var(--cart-scroll-color) transparent;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}

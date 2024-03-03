@@ -5,7 +5,7 @@ function ProductReviews({ product }) {
   if (!product) return;
 
   return (
-    <div className="product-reviews">
+    <div id="product-reviews">
       {product.reviews.map(review => (
         <ProductReview key={review.id} review={review} />
       ))}

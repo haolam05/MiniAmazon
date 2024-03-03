@@ -1,0 +1,18 @@
+#product-reviews {
+  display: flex;
+  gap: 10px;
+  width: 600px;
+  margin: 20px;
+  margin-left: 0;
+  margin-bottom: 0;
+  gap: 5px;
+  scrollbar-color: var(--cart-scroll-color) transparent;
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+
+#product-reviews img {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+}
