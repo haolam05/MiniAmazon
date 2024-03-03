@@ -2,7 +2,7 @@ import { getAvatarUrl } from "../../utils/navbar";
 import { getFormattedPrice, getPreviewText } from "../../utils/product";
 import "./ProductDetails.css";
 
-function ProductDetails({ product, showBookmarks, showCart, inCartProductIds, bookmarkProductIds }) {
+function ProductDetails({ product, createAndShowBookmarks, showCart, inCartProductIds, bookmarkProductIds }) {
   return (
     <>
       <h2 className="product-title subheading">{product.name}</h2>
@@ -27,7 +27,7 @@ function ProductDetails({ product, showBookmarks, showCart, inCartProductIds, bo
             {!bookmarkProductIds.includes(product.id) && (
               <button
                 title="Bookmark this product"
-                onClick={showBookmarks}
+                onClick={createAndShowBookmarks}
                 className="bookmark-btn"
               >
                 Bookmark

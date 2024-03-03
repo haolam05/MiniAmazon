@@ -3,10 +3,10 @@ import { useModal } from "../../context/Modal";
 import { useDispatch } from "react-redux";
 import { hideEditBookmarkForm, showEditBookmarkForm } from "../../utils/bookmark";
 import Product from "../Product/Product";
+import NotificationModal from "../NotificationModal";
 import ConfirmDeleteFormModal from "../ConfirmDeleteModal";
 import * as bookmarkActions from "../../redux/bookmark";
 import "./Bookmark.css";
-import NotificationModal from "../NotificationModal";
 
 function Bookmark({ user, bookmark, products, inCartProductIds, bookmarkProductIds }) {
   const dispatch = useDispatch();

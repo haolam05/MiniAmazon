@@ -134,6 +134,18 @@ export const handleLastNameOnChange = (e, key, setLastName, setErrors) => {
   return setErrors(errors => ({ ...errors, [key]: "" }));
 }
 
+export const handleNoteOnChange = (e, key, setNote, setErrors) => {
+  setNote(e.target.value);
+
+  if (!e.target.value.length) {
+    turnOnRedBoxShadow(e);
+    return setErrors(errors => ({ ...errors, [key]: "This field is required" }));
+  }
+
+  turnOnGreenBoxShadow(e);
+  return setErrors(errors => ({ ...errors, [key]: "" }));
+}
+
 export const handleProfileImageUrlOnChange = (e, key, setProfileImageUrl, setErrors) => {
   const previewImage = document.getElementById('preview-image');
   const file = e.target.files[0];

@@ -1,0 +1,33 @@
+#bookmark-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+
+#bookmark-form textarea {
+  resize: none;
+  width: 475px;
+  color: var(--black);
+}
+
+#bookmark-form textarea:focus {
+  outline: none;
+}
+
+#bookmark-form textarea::placeholder {
+  color: var(--dark-gray);
+  font-style: italic;
+  text-align: center;
+}
+
+#bookmark-form button {
+  background-color: var(--option-background);
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: none;
+}
+
+#bookmark-form button:hover {
+  text-decoration: underline;
+}

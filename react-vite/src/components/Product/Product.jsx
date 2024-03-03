@@ -3,7 +3,7 @@ import { getFormattedPrice, getPreviewText } from "../../utils/product";
 import "./Product.css";
 
 function Product({ product, user, inCartProductIds, bookmarkProductIds }) {
-  const { showBookmarks, showCart, showProductDetails } = useModal();
+  const { createAndShowBookmarks, showCart, showProductDetails } = useModal();
 
   return (
     <div
@@ -31,7 +31,7 @@ function Product({ product, user, inCartProductIds, bookmarkProductIds }) {
         {!bookmarkProductIds.includes(product.id) && (
           <button
             title="Bookmark this product"
-            onClick={e => showBookmarks(e, user)}
+            onClick={e => createAndShowBookmarks(e, user, product.id)}
             className="bookmark-btn"
           >
             Bookmark
