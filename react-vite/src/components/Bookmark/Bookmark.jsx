@@ -68,6 +68,7 @@ function Bookmark({ user, bookmark, products, inCartProductIds, bookmarkProductI
           <textarea
             type="text"
             spellCheck={false}
+            placeholder="Note can not be empty :)"
             value={bookmarkNoteInput}
             onChange={e => setBookmarkNoteInput(e.target.value)}
           />
@@ -75,10 +76,12 @@ function Bookmark({ user, bookmark, products, inCartProductIds, bookmarkProductI
             hideEditBookmarkForm(bookmark.id);
             setBookmarkNoteInput(bookmark.note);
           }}></i>
-          <i className="fa-solid fa-paper-plane" title="Save" onClick={() => {
-            hideEditBookmarkForm(bookmark.id);
-            setBookmarkNote(bookmarkNoteInput);
-            updateBookmark();
+          <i className={`fa-solid fa-paper-plane${bookmarkNoteInput.length ? "" : " disabled"}`} title="Save" onClick={() => {
+            if (bookmarkNoteInput.length) {
+              hideEditBookmarkForm(bookmark.id);
+              setBookmarkNote(bookmarkNoteInput);
+              updateBookmark();
+            }
           }}></i>
         </div>
       </div>

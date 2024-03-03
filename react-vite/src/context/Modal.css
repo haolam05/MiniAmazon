@@ -7,6 +7,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 2;
 }
 
 #modal-background {
@@ -35,12 +36,8 @@
 }
 
 #modal-content h2 {
-  max-height: 30px;
-  scrollbar-color: var(--cart-scroll-color) transparent;
+  max-height: 100px;
+  scrollbar-color: var(--dark-purple) transparent;
   overflow-x: hidden;
   overflow-y: scroll;
-}
-
-#modal-content h2:hover {
-  z-index: 10;
 }

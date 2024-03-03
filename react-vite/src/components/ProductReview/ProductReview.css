@@ -54,3 +54,50 @@
   color: var(--black);
   cursor: pointer;
 }
+
+.product-review .review-textarea textarea {
+  resize: none;
+  height: 40px;
+  scrollbar-color: var(--cart-scroll-color) transparent;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  color: var(--black);
+  padding: 15px;
+}
+
+.product-review .review-textarea textarea:focus {
+  outline: none;
+}
+
+.product-review .review-textarea textarea::placeholder {
+  font-style: italic;
+  font-size: 10pt;
+  text-align: center;
+  color: var(--gray);
+  text-shadow: var(--text-shadow);
+}
+
+.product-review .review-textarea i {
+  color: var(--dark-gray);
+  cursor: pointer;
+}
+
+.product-review .review-textarea i:hover {
+  color: var(--red);
+}
+
+.product-review .review-textarea i.fa-paper-plane {
+  position: absolute;
+  right: 25px;
+  bottom: 20px;
+}
+
+.product-review .review-textarea i.fa-paper-plane.disabled {
+  cursor: not-allowed;
+}
+
+.product-review .review-textarea i.fa-rectangle-xmark {
+  position: absolute;
+  right: 25px;
+  bottom: 65px;
+}

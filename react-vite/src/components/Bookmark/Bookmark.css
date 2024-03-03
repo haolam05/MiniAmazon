@@ -28,11 +28,19 @@
   padding-left: 10px;
   padding-right: 45px;
   scrollbar-color: var(--light-gray) transparent;
+  cursor: default;
 }
 
 .bookmark .bookmark-note textarea:focus {
   outline: none;
   line-break: anywhere;
+}
+
+.bookmark .bookmark-note textarea::placeholder {
+  color: var(--white);
+  font-style: italic;
+  text-shadow: var(--text-shadow);
+  text-align: center;
 }
 
 .bookmark .bookmark-btns {
@@ -55,6 +63,10 @@
   position: absolute;
   bottom: 25px;
   right: 25px;
+}
+
+.bookmark .bookmark-textarea i.fa-paper-plane.disabled {
+  cursor: not-allowed;
 }
 
 .bookmark .bookmark-textarea i.fa-rectangle-xmark {

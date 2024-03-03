@@ -18,3 +18,24 @@ export const toggleReviewInfo = () => {
     }
   }
 }
+
+export const showEditReviewForm = reviewId => {
+  const review = document.querySelector(`#product-review-${reviewId}`);
+  if (review) {
+    const productReviewText = review.querySelector(".product-review-text");
+    const textarea = review.querySelector(".review-textarea");
+    if (textarea) textarea.classList.remove("hidden");
+    if (productReviewText) productReviewText.classList.add("hidden");
+  }
+}
+
+export const hideEditReviewForm = reviewId => {
+  const review = document.querySelector(`#product-review-${reviewId}`);
+  if (review) {
+    const productReviewText = review.querySelector(".product-review-text");
+    const textarea = review.querySelector(".review-textarea");
+    const rating = review.querySelector(".rating");
+    if (textarea) textarea.classList.add("hidden");
+    if (productReviewText) productReviewText.classList.remove("hidden");
+  }
+}
