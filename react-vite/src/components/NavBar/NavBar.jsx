@@ -1,18 +1,21 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
+import { useModal } from "../../context/Modal";
 import { toggleCart } from "../../utils/cart";
 import { addOutline, removeOutline } from "../../utils/navbar";
+import Bookmarks from "../Bookmarks";
 import SessionInfo from "../SessionInfo";
 import * as orderActions from "../../redux/order";
 import "./NavBar.css";
 
-function NavBar({ user }) {
+function NavBar({ user, products, inCartProductIds }) {
+  const { setModalContent } = useModal();
   const [category, setCategory] = useState("");
   const orders = useSelector(orderActions.getOrders);
   const itemsInCart = orders.filter(order => !order.is_checkout)[0]?.items || [];
 
   const showBookmarks = () => {
-
+    setModalContent(<Bookmarks user={user} products={products} inCartProductIds={inCartProductIds} />);
   }
 
   return (

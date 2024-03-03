@@ -7,6 +7,7 @@ import Cart from "../Cart";
 import * as sessionActions from "../../redux/session";
 import * as productActions from "../../redux/product";
 import * as orderActions from "../../redux/order";
+import * as bookmarkActions from "../../redux/bookmark";
 import "./HomePage.css";
 
 function HomePage() {
@@ -14,6 +15,7 @@ function HomePage() {
   const dispatch = useDispatch();
   const user = useSelector(sessionActions.sessionUser);
   const products = useSelector(productActions.getProducts);
+  const bookmarks = useSelector(bookmarkActions.getBookmarks);
   const getProductsObject = useSelector(productActions.getProductsObject);
   const orders = useSelector(orderActions.getOrders);
   const itemsInCart = orders.filter(order => !order.is_checkout)[0]?.items || [];
@@ -25,6 +27,7 @@ function HomePage() {
       await dispatch(productActions.loadProductsThunk());
       if (user?.user) {
         await dispatch(orderActions.loadOrdersThunk());
+        await dispatch(bookmarkActions.loadBookmarksThunk(user.user.id));
       }
       setIsLoaded(true);
     }
@@ -35,7 +38,7 @@ function HomePage() {
 
   return (
     <div id="home-page">
-      <NavBar user={user?.user} />
+      <NavBar user={user?.user} products={getProductsObject} inCartProductIds={inCartProductIds} bookmarks={bookmarks} />
       <div id="main-content">
         <Products products={products} user={user?.user} inCartProductIds={inCartProductIds} />
         <Cart products={getProductsObject} user={user?.user} inCartProductIds={inCartProductIds} />
