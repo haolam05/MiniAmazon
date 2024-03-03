@@ -1,14 +1,18 @@
 import { useState } from "react";
 import { useModal } from "../../context/Modal";
+import { useDispatch } from "react-redux";
 import Product from "../Product/Product";
 import ConfirmDeleteFormModal from "../ConfirmDeleteModal";
+import * as bookmarkActions from "../../redux/bookmark";
 import "./Bookmark.css";
 
 function Bookmark({ user, bookmark, products, inCartProductIds, bookmarkProductIds }) {
+  const dispatch = useDispatch();
   const { setModalContent, closeModal } = useModal();
   const [bookmarkNote, setBookmarkNote] = useState(bookmark.note);
+  const [bookmarkNoteInput, setBookmarkNoteInput] = useState(bookmark.note);
 
-  const hideEditBookmarkForm = e => {
+  const hideEditBookmarkForm = () => {
     const textarea = document.querySelector(".bookmark-textarea");
     const note = document.querySelector(".bookmark-note > span");
     if (textarea) textarea.classList.add("hidden");
@@ -20,6 +24,10 @@ function Bookmark({ user, bookmark, products, inCartProductIds, bookmarkProductI
     const note = document.querySelector(".bookmark-note > span");
     if (textarea) textarea.classList.remove("hidden");
     if (note) note.classList.add("hidden");
+  }
+
+  const updateBookmark = async () => {
+    await dispatch(bookmarkActions.updateBookmarkThunk(bookmark.id, bookmarkNoteInput));
   }
 
   const deleteBookmark = async () => {
@@ -60,19 +68,26 @@ function Bookmark({ user, bookmark, products, inCartProductIds, bookmarkProductI
           <i className="fa-solid fa-trash"></i>
         </div>
       </div>
-      <p className="bookmark-note">
-        <span>{bookmark.note}</span>
+      <div className="bookmark-note">
+        <span>{bookmarkNote}</span>
         <div className="bookmark-textarea hidden">
           <textarea
             type="text"
             spellCheck={false}
-            value={bookmarkNote}
-            onChange={e => setBookmarkNote(e.target.value)}
+            value={bookmarkNoteInput}
+            onChange={e => setBookmarkNoteInput(e.target.value)}
           />
-          <i className="fa-solid fa-rectangle-xmark" title="Cancel and close" onClick={hideEditBookmarkForm}></i>
-          <i className="fa-solid fa-paper-plane" title="Save" onClick={() => { }}></i>
+          <i className="fa-solid fa-rectangle-xmark" title="Cancel and close" onClick={() => {
+            hideEditBookmarkForm();
+            setBookmarkNoteInput(bookmark.note);
+          }}></i>
+          <i className="fa-solid fa-paper-plane" title="Save" onClick={() => {
+            hideEditBookmarkForm();
+            setBookmarkNote(bookmarkNoteInput);
+            updateBookmark();
+          }}></i>
         </div>
-      </p>
+      </div>
     </div>
   )
 }
