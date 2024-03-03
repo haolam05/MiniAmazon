@@ -28,7 +28,7 @@ function Product({ product, user, inCartProductIds, bookmarkProductIds }) {
         </div>
       )}
       <div className="product-btns">
-        {!bookmarkProductIds.includes(product.id) && (
+        {user && !bookmarkProductIds.includes(product.id) && (
           <button
             title="Bookmark this product"
             onClick={e => createAndShowBookmarks(e, user, product.id)}
@@ -37,7 +37,7 @@ function Product({ product, user, inCartProductIds, bookmarkProductIds }) {
             Bookmark
           </button>
         )}
-        {!inCartProductIds.includes(product.id) && product.remaining > 0 && (
+        {user && !inCartProductIds.includes(product.id) && product.remaining > 0 && (
           <button
             title="Add this product to cart"
             onClick={e => showCart(e, product, user)}

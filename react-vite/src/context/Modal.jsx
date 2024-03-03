@@ -51,6 +51,7 @@ export function ModalProvider({ children }) {
   const showProductDetails = (product, user, inCartProductIds, bookmarkProductIds) => {
     setModalContent(
       <ProductDetails
+        user={user}
         product={product}
         createAndShowBookmarks={e => createAndShowBookmarks(e, user, product.id)}
         showCart={e => showCart(e, product, user)}

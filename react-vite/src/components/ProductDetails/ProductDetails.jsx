@@ -1,8 +1,9 @@
 import { getAvatarUrl } from "../../utils/navbar";
 import { getFormattedPrice, getPreviewText } from "../../utils/product";
+import ProductReviews from "../ProductReviews";
 import "./ProductDetails.css";
 
-function ProductDetails({ product, createAndShowBookmarks, showCart, inCartProductIds, bookmarkProductIds }) {
+function ProductDetails({ user, product, createAndShowBookmarks, showCart, inCartProductIds, bookmarkProductIds }) {
   return (
     <>
       <h2 className="product-title subheading">{product.name}</h2>
@@ -24,7 +25,7 @@ function ProductDetails({ product, createAndShowBookmarks, showCart, inCartProdu
             </div>
           )}
           <div className="product-btns">
-            {!bookmarkProductIds.includes(product.id) && (
+            {user && !bookmarkProductIds.includes(product.id) && (
               <button
                 title="Bookmark this product"
                 onClick={createAndShowBookmarks}
@@ -33,7 +34,7 @@ function ProductDetails({ product, createAndShowBookmarks, showCart, inCartProdu
                 Bookmark
               </button>
             )}
-            {!inCartProductIds.includes(product.id) && product.remaining > 0 && (
+            {user && !inCartProductIds.includes(product.id) && product.remaining > 0 && (
               <button
                 title="Add this product to cart"
                 onClick={showCart}
@@ -57,6 +58,7 @@ function ProductDetails({ product, createAndShowBookmarks, showCart, inCartProdu
             {product.description}
           </div>
         </div>
+        <ProductReviews product={product} />
       </div>
     </>
   );

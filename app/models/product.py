@@ -41,6 +41,8 @@ class Product(db.Model):
 
 
     def to_dict(self):
+        reviews = [{**review.to_dict(), "customer": review.customer.to_dict() } for review in self.reviews]
+
         return {
             "id": self.id,
             "name": self.name,
@@ -51,5 +53,6 @@ class Product(db.Model):
             "remaining": self.remaining,
             "product_image": self.product_image,
             "seller": self.seller.to_dict(),
-            "created_at": str(self.created_at)
+            "created_at": str(self.created_at),
+            "reviews": reviews
         }
