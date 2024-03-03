@@ -120,6 +120,6 @@
 }
 
 .cart-product .unsave-changes i {
-  color: rgb(3, 124, 3);
+  color: var(--unsave-color);
   font-size: small;
 }

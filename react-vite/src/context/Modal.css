@@ -25,10 +25,22 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 30px;
+  gap: 20px;
   align-items: center;
   padding: 20px;
   border-radius: 10px;
   min-width: 500px;
   width: min-content;
+  max-height: 800px;
+}
+
+#modal-content h2 {
+  max-height: 50px;
+  scrollbar-color: var(--cart-scroll-color) transparent;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+#modal-content h2:hover {
+  z-index: 10;
 }

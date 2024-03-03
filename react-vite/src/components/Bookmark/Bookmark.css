@@ -3,7 +3,7 @@
 }
 
 .bookmark .bookmark-note {
-  background-color: rgb(214, 210, 210);
+  background-color: var(--bookmark-note-background);
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
   padding: 5px 10px;
@@ -39,7 +39,7 @@
   display: flex;
   padding: 10px;
   gap: 5px;
-  background-color: rgb(214, 210, 210);
+  background-color: var(--bookmark-note-background);
 }
 
 .bookmark .bookmark-btns i {

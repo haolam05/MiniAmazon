@@ -12,6 +12,10 @@
   margin-bottom: 20px;
 }
 
+.product-review.me {
+  background-color: var(--my-review-background);
+}
+
 .product-review .rating {
   display: flex;
 }
@@ -31,4 +35,8 @@
   scrollbar-color: var(--cart-scroll-color) transparent;
   overflow-x: hidden;
   overflow-y: scroll;
+}
+
+.product-review .review-author {
+  color: var(--black);
 }

@@ -28,6 +28,9 @@
   --cart-delete-btn: rgb(135, 93, 93);
   --cart-subtotal-btn: rgb(186, 167, 167);
   --html-scroll-color: rgb(156, 144, 144);
+  --bookmark-note-background: rgb(214, 210, 210);
+  --my-review-background: rgb(244, 209, 209);
+  --unsave-color: rgb(3, 124, 3);
 }
 
 option:hover {
