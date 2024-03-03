@@ -1,0 +1,23 @@
+.bookmark .bookmark-note {
+  color: var(--black);
+  background-color: rgb(214, 210, 210);
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  padding: 5px 10px;
+  max-height: 110px;
+  scrollbar-color: var(--cart-scroll-color) transparent;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+.bookmark .bookmark-btns {
+  display: flex;
+  padding: 10px;
+  gap: 5px;
+  background-color: rgb(214, 210, 210);
+}
+
+.bookmark .bookmark-btns i {
+  color: var(--dark-purple);
+  cursor: pointer;
+}
