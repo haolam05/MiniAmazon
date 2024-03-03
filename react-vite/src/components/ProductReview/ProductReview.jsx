@@ -16,6 +16,7 @@ function ProductReview({ review, user }) {
   const dispatch = useDispatch();
   const { setModalContent, closeModal } = useModal();
   const [reviewInput, setReviewInput] = useState(review.review);
+  const [currentRating, setCurrentRating] = useState(review.rating);
   const [ratingInput, setRatingInput] = useState(review.rating);
 
   if (!review) return;
@@ -23,7 +24,15 @@ function ProductReview({ review, user }) {
   const isMyReview = user.id === review.customer_id;
 
   const updateReview = async () => {
-    // const data = await dispatch(productActions.updateProductReviewThunk(review.))
+    const data = await dispatch(productActions.updateProductReviewThunk(review.product_id, review.id, reviewInput, currentRating));
+    if (data?.errors) {
+      return setModalContent(
+        <NotificationModal
+          message={data.errors.message}
+          status="modal-errors"
+        />
+      );
+    }
   }
 
   const deleteMyReview = async () => {
@@ -63,7 +72,14 @@ function ProductReview({ review, user }) {
   }
 
   const resetStars = () => {
-    if (isInEditMode(review.id)) setRatingInput(review.rating);
+    if (isInEditMode(review.id)) setRatingInput(currentRating);
+  }
+
+  const setRating = e => {
+    if (isInEditMode(review.id)) {
+      const stars = +e.target.dataset.star;
+      setCurrentRating(stars);
+    }
   }
 
   return (
@@ -79,14 +95,14 @@ function ProductReview({ review, user }) {
       </div>
       <div className="review-author">{review.customer.first_name} {review.customer.last_name}</div>
       <div className="rating">
-        {<i data-star="1" className={`fa-solid fa-star ${ratingInput > 0 ? "orange" : "gray"}`} onMouseOver={setStars} onMouseOut={resetStars}></i>}
-        {<i data-star="2" className={`fa-solid fa-star ${ratingInput > 1 ? "orange" : "gray"}`} onMouseOver={setStars} onMouseOut={resetStars}></i>}
-        {<i data-star="3" className={`fa-solid fa-star ${ratingInput > 2 ? "orange" : "gray"}`} onMouseOver={setStars} onMouseOut={resetStars}></i>}
-        {<i data-star="4" className={`fa-solid fa-star ${ratingInput > 3 ? "orange" : "gray"}`} onMouseOver={setStars} onMouseOut={resetStars}></i>}
-        {<i data-star="5" className={`fa-solid fa-star ${ratingInput > 4 ? "orange" : "gray"}`} onMouseOver={setStars} onMouseOut={resetStars}></i>}
+        {<i data-star="1" className={`fa-solid fa-star ${ratingInput > 0 ? "orange" : "gray"}`} onMouseOver={setStars} onMouseOut={resetStars} onClick={setRating}></i>}
+        {<i data-star="2" className={`fa-solid fa-star ${ratingInput > 1 ? "orange" : "gray"}`} onMouseOver={setStars} onMouseOut={resetStars} onClick={setRating}></i>}
+        {<i data-star="3" className={`fa-solid fa-star ${ratingInput > 2 ? "orange" : "gray"}`} onMouseOver={setStars} onMouseOut={resetStars} onClick={setRating}></i>}
+        {<i data-star="4" className={`fa-solid fa-star ${ratingInput > 3 ? "orange" : "gray"}`} onMouseOver={setStars} onMouseOut={resetStars} onClick={setRating}></i>}
+        {<i data-star="5" className={`fa-solid fa-star ${ratingInput > 4 ? "orange" : "gray"}`} onMouseOver={setStars} onMouseOut={resetStars} onClick={setRating}></i>}
       </div>
       <div className="review">
-        <p className="product-review-text">{review.review}</p>
+        <p className="product-review-text">{reviewInput}</p>
         {isMyReview && (
           <div className="review-textarea hidden">
             <textarea
@@ -99,11 +115,12 @@ function ProductReview({ review, user }) {
             <i className="fa-solid fa-rectangle-xmark" title="Cancel and close" onClick={() => {
               hideEditReviewForm(review.id);
               setReviewInput(review.review);
+              setRatingInput(review.rating);
+              setCurrentRating(review.rating);
             }}></i>
             <i className={`fa-solid fa-paper-plane${reviewInput.length ? "" : " disabled"}`} title="Save" onClick={() => {
               if (reviewInput.length) {
                 hideEditReviewForm(review.id);
-                setReviewInput(reviewInput);
                 updateReview();
               }
             }}></i>

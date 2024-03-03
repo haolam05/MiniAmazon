@@ -21,6 +21,10 @@
   display: flex;
 }
 
+.product-review.me .fa-star {
+  cursor: pointer;
+}
+
 .product-review .fa-star.orange {
   color: var(--orange);
 }

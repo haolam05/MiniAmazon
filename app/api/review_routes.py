@@ -38,7 +38,7 @@ def update_review(id):
 
         db.session.commit()
 
-        return review.to_dict(), 200
+        return {**review.to_dict(), "customer": review.customer.to_dict()}, 200
 
     return form.errors, 400
 
