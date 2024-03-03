@@ -108,6 +108,17 @@
   left: 0;
 }
 
+.cart-product .cart-product-bookmark {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.cart-product .cart-product-bookmark i {
+  color: var(--light-orange);
+  font-size: x-large;
+}
+
 .cart-product .unsave-changes i {
   color: rgb(3, 124, 3);
   font-size: small;

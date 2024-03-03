@@ -16,6 +16,7 @@ function HomePage() {
   const user = useSelector(sessionActions.sessionUser);
   const products = useSelector(productActions.getProducts);
   const bookmarks = useSelector(bookmarkActions.getBookmarks);
+  const bookmarkProductIds = bookmarks?.map(bookmark => bookmark.product_id) || [];
   const getProductsObject = useSelector(productActions.getProductsObject);
   const orders = useSelector(orderActions.getOrders);
   const itemsInCart = orders.filter(order => !order.is_checkout)[0]?.items || [];
@@ -38,10 +39,25 @@ function HomePage() {
 
   return (
     <div id="home-page">
-      <NavBar user={user?.user} products={getProductsObject} inCartProductIds={inCartProductIds} bookmarks={bookmarks} />
+      <NavBar
+        user={user?.user}
+        products={getProductsObject}
+        inCartProductIds={inCartProductIds}
+        bookmarks={bookmarks}
+      />
       <div id="main-content">
-        <Products products={products} user={user?.user} inCartProductIds={inCartProductIds} />
-        <Cart products={getProductsObject} user={user?.user} inCartProductIds={inCartProductIds} />
+        <Products
+          products={products}
+          user={user?.user}
+          inCartProductIds={inCartProductIds}
+          bookmarkProductIds={bookmarkProductIds}
+        />
+        <Cart
+          products={getProductsObject}
+          user={user?.user}
+          inCartProductIds={inCartProductIds}
+          bookmarkProductIds={bookmarkProductIds}
+        />
       </div>
     </div>
   );

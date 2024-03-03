@@ -69,6 +69,18 @@
   color: var(--white);
 }
 
+.product .product-bookmark {
+  width: fit-content;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.product .product-bookmark i {
+  color: var(--light-orange);
+  font-size: xx-large;
+}
+
 .product .product-btns {
   display: flex;
   gap: 10px;

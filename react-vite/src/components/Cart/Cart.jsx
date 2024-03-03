@@ -6,7 +6,7 @@ import PastOrders from "../PastOrders";
 import * as orderActions from "../../redux/order";
 import "./Cart.css";
 
-function Cart({ products, user, inCartProductIds }) {
+function Cart({ products, user, inCartProductIds, bookmarkProductIds }) {
   const { setModalContent } = useModal();
   const orders = useSelector(orderActions.getOrders);
   const itemsInCart = orders.filter(item => !item.is_checkout)[0]?.items || [];
@@ -27,7 +27,13 @@ function Cart({ products, user, inCartProductIds }) {
           <i className="fa-solid fa-right-long"></i>
         </div>
       </div>
-      <CartProducts products={products} itemsInCart={itemsInCart} user={user} inCartProductIds={inCartProductIds} />
+      <CartProducts
+        products={products}
+        itemsInCart={itemsInCart}
+        user={user}
+        inCartProductIds={inCartProductIds}
+        bookmarkProductIds={bookmarkProductIds}
+      />
     </div>
   );
 }

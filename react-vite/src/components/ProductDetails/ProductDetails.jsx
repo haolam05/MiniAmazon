@@ -2,7 +2,7 @@ import { getAvatarUrl } from "../../utils/navbar";
 import { getFormattedPrice, getPreviewText } from "../../utils/product";
 import "./ProductDetails.css";
 
-function ProductDetails({ product, showBookmarks, showCart, inCartProductIds }) {
+function ProductDetails({ product, showBookmarks, showCart, inCartProductIds, bookmarkProductIds }) {
   return (
     <>
       <h2 className="product-title subheading">{product.name}</h2>
@@ -18,8 +18,20 @@ function ProductDetails({ product, showBookmarks, showCart, inCartProductIds }) 
           </div>
           <p className="product-category">Category: {getPreviewText(product.category)}</p>
           <div className="product-remaining">{product.remaining > 0 ? `${product.remaining} left` : "Sold out"}</div>
+          {bookmarkProductIds.includes(product.id) && (
+            <div className="product-bookmark" title="This product has already been bookmarked">
+              <i className="fa-solid fa-bookmark"></i>
+            </div>
+          )}
           <div className="product-btns">
-            <button title="Bookmark this product" onClick={showBookmarks}>Bookmark</button>
+            {!bookmarkProductIds.includes(product.id) && (
+              <button
+                title="Bookmark this product"
+                onClick={showBookmarks}
+              >
+                Bookmark
+              </button>
+            )}
             {!inCartProductIds.includes(product.id) && product.remaining > 0 && (
               <button title="Add this product to cart" onClick={showCart}>Add to cart</button>
             )}

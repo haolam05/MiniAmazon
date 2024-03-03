@@ -46,13 +46,14 @@ export function ModalProvider({ children }) {
     hideAddToCartBtn(product.id);
   }
 
-  const showProductDetails = (product, user, inCartProductIds) => {
+  const showProductDetails = (product, user, inCartProductIds, bookmarkProductIds) => {
     setModalContent(
       <ProductDetails
         product={product}
         showBookmarks={e => showBookmarks(e, user)}
         showCart={e => showCart(e, product, user)}
         inCartProductIds={inCartProductIds}
+        bookmarkProductIds={bookmarkProductIds}
       />
     );
   }

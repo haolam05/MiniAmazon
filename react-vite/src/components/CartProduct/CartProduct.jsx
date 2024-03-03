@@ -6,7 +6,7 @@ import Loading from "../Loading";
 import * as orderActions from "../../redux/order";
 import "./CartProduct.css";
 
-function CartProduct({ product, item, user, inCartProductIds }) {
+function CartProduct({ product, item, user, inCartProductIds, bookmarkProductIds }) {
   const dispatch = useDispatch();
   const { showProductDetails } = useModal();
   const [submitting, setSubmitting] = useState(false);
@@ -73,7 +73,11 @@ function CartProduct({ product, item, user, inCartProductIds }) {
       id={`cart-product-${product.id}`}
     >
       <div className="cart-product-image">
-        <img src={product.product_image} alt="cart-product-image" onClick={() => showProductDetails(product, user, inCartProductIds)} />
+        <img
+          src={product.product_image}
+          alt="cart-product-image"
+          onClick={() => showProductDetails(product, user, inCartProductIds, bookmarkProductIds)}
+        />
         {submitting && <Loading />}
         {unsaveChanges && <p className="unsave-changes">Unsave changes <i className="fa-solid fa-circle"></i></p>}
         {errors.quantity && <p>{errors.quantity}</p>}
@@ -122,6 +126,11 @@ function CartProduct({ product, item, user, inCartProductIds }) {
           </div>
         </div>
         <div className="cart-product-remaining">{product.remaining - quantityInput} left</div>
+        {bookmarkProductIds.includes(product.id) && (
+          <div className="cart-product-bookmark" title="This product has already been bookmarked">
+            <i className="fa-solid fa-bookmark"></i>
+          </div>
+        )}
       </div>
       <div className="cart-product-info">
         <p className="cart-product-name">{getPreviewText(product.name)}</p>
