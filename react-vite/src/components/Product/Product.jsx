@@ -22,7 +22,7 @@ function Product({ product, user, inCartProductIds, bookmarkProductIds }) {
       </div>
       <p className="product-name">{getPreviewText(product.name)}</p>
       <div className="product-remaining">{product.remaining > 0 ? `${product.remaining} left` : "Sold out"}</div>
-      {bookmarkProductIds.includes(product.id) && (
+      {user && bookmarkProductIds.includes(product.id) && (
         <div className="product-bookmark" title="This product has already been bookmarked">
           <i className="fa-solid fa-bookmark"></i>
         </div>
