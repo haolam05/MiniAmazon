@@ -6,6 +6,7 @@ import Product from "../Product/Product";
 import ConfirmDeleteFormModal from "../ConfirmDeleteModal";
 import * as bookmarkActions from "../../redux/bookmark";
 import "./Bookmark.css";
+import NotificationModal from "../NotificationModal";
 
 function Bookmark({ user, bookmark, products, inCartProductIds, bookmarkProductIds }) {
   const dispatch = useDispatch();
@@ -18,7 +19,13 @@ function Bookmark({ user, bookmark, products, inCartProductIds, bookmarkProductI
   }
 
   const deleteBookmark = async () => {
-
+    await dispatch(bookmarkActions.deleteBookmarkThunk(bookmark.id));
+    setModalContent(
+      <NotificationModal
+        message="Successfully deleted bookmark"
+        status="alert-success"
+      />
+    );
   }
 
   const showConfirmDeleteBookmarkForm = () => {

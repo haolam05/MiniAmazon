@@ -4,6 +4,7 @@ import { createSelector } from "reselect";
 // Actions
 const LOAD_BOOKMARKS = 'bookmarks/LOAD_BOOKMARKS';
 const UPDATE_BOOKMARK = 'bookmarks/UPDATE_BOOKMARK'
+const DELETE_BOOKMARK = 'bookmarks/DELETE_BOOKMARK'
 
 
 // POJO action creators
@@ -15,7 +16,12 @@ const loadBookmarks = bookmarks => ({
 const updateBookmark = bookmark => ({
   type: UPDATE_BOOKMARK,
   bookmark
-})
+});
+
+const deleteBookmark = bookmarkId => ({
+  type: DELETE_BOOKMARK,
+  bookmarkId
+});
 
 
 // Thunk action creators
@@ -29,8 +35,8 @@ export const loadBookmarksThunk = userId => async (dispatch, getState) => {
   return data;
 };
 
-export const updateBookmarkThunk = (bookmardId, note) => async dispatch => {
-  const response = await csrfFetch(`/api/bookmarks/${bookmardId}`, {
+export const updateBookmarkThunk = (bookmarkId, note) => async dispatch => {
+  const response = await csrfFetch(`/api/bookmarks/${bookmarkId}`, {
     method: 'PUT',
     body: JSON.stringify({
       note
@@ -39,6 +45,16 @@ export const updateBookmarkThunk = (bookmardId, note) => async dispatch => {
   const data = await response.json();
   if (!response.ok) return { errors: data };
   dispatch(updateBookmark(data));
+  return data;
+}
+
+export const deleteBookmarkThunk = bookmarkId => async dispatch => {
+  const response = await csrfFetch(`/api/bookmarks/${bookmarkId}`, {
+    method: 'DELETE'
+  });
+  const data = await response.json();
+  if (!response.ok) return { "errors": data };
+  dispatch(deleteBookmark(bookmarkId));
   return data;
 }
 
@@ -70,6 +86,11 @@ function bookmarkReducer(state = initialState, action) {
           [action.bookmark.id]: action.bookmark
         }
       }
+    case DELETE_BOOKMARK: {
+      const newState = { ...state };
+      delete newState.bookmarks[action.bookmarkId];
+      return newState;
+    }
     default:
       return state;
   }
