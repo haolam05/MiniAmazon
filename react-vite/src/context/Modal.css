@@ -35,7 +35,7 @@
 }
 
 #modal-content h2 {
-  max-height: 50px;
+  max-height: 30px;
   scrollbar-color: var(--cart-scroll-color) transparent;
   overflow-x: hidden;
   overflow-y: scroll;

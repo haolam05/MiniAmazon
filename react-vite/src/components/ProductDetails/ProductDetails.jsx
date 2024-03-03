@@ -9,6 +9,22 @@ function ProductDetails({ user, product, createAndShowBookmarks, showCart, inCar
     return (ratings.reduce((sum, rating) => sum + rating, 0) / ratings.length).toFixed(2);
   }
 
+  const toggleReviewInfo = () => {
+    const reviewInfo = document.querySelector("#product-details .review-info");
+    const productReviewInfo = document.querySelector("#product-details .product-review-info");
+    if (reviewInfo) {
+      if (reviewInfo.classList.contains("hidden")) {
+        reviewInfo.classList.remove("hidden");
+        if (productReviewInfo) productReviewInfo.style.width = 'fit-content';
+      } else {
+        reviewInfo.classList.add("hidden");
+        if (productReviewInfo) {
+          productReviewInfo.style.width = '0';
+        }
+      }
+    }
+  }
+
   return (
     <>
       <h2 className="product-title subheading">{product.name}</h2>
@@ -17,6 +33,18 @@ function ProductDetails({ user, product, createAndShowBookmarks, showCart, inCar
           <div className="product" id="product.id">
             <div className="product-image">
               <img src={product.product_image} alt="product-image" />
+              <div className="product-review-info" onClick={toggleReviewInfo}>
+                <div className="sticker" title="Click to open/collapse reviews information"></div>
+                <div className="review-info">
+                  <div className="total-reviews">
+                    <span>Total reviews ~ {product.reviews.length} 📝</span>
+                  </div>
+                  <div className="average-rating">
+                    <span>Average rating ~ {getAverageRating(product.reviews.map(review => review.rating))} </span>
+                    <i className={`fa-solid fa-star`}></i>
+                  </div>
+                </div>
+              </div>
             </div>
             <div className="product-price">
               <span className="dollar-sign">$</span>
@@ -62,13 +90,6 @@ function ProductDetails({ user, product, createAndShowBookmarks, showCart, inCar
             </div>
             <div className="product-description">
               {product.description}
-            </div>
-            <div className="total-reviews">
-              <span>Total reviews ~ {product.reviews.length} 📝</span>
-            </div>
-            <div className="average-rating">
-              <span>Average rating ~ {getAverageRating(product.reviews.map(review => review.rating))} </span>
-              <i className={`fa-solid fa-star`}></i>
             </div>
           </div>
         </div>

@@ -54,19 +54,32 @@ h2.product-title {
   padding: 0 15px;
 }
 
-#product-details .product-wrapper .total-reviews {
-  margin-top: 20px;
-  margin-bottom: 10px;
-}
-
-#product-details .product-wrapper .total-reviews span {
-  color: var(--black);
-}
-
-#product-details .product-wrapper .average-rating span {
-  color: var(--black);
-}
-
 #product-details .product-wrapper .average-rating i.fa-star {
   color: var(--orange);
+}
+
+#product-details .product-wrapper .product-review-info {
+  position: absolute;
+  top: 200px;
+  left: 0;
+  background-color: var(--dark-purple);
+  padding: 10px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  display: flex;
+  padding-left: 0;
+}
+
+#product-details .product-wrapper .product-review-info .sticker {
+  border-left: 15px solid var(--orange);
+  margin-top: -10px;
+  margin-bottom: -10px;
+  margin-right: 10px;
+  height: 60px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+#product-details .product-wrapper .product-review-info:hover {
+  z-index: 1;
 }
