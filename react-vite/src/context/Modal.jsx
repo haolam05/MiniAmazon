@@ -7,7 +7,6 @@ import ProductDetails from '../components/ProductDetails';
 import LoginFormModal from '../components/LoginFormModal';
 import BookmarkForm from '../components/BookmarkForm';
 import * as orderActions from "../redux/order";
-import * as bookmarkActions from "../redux/bookmark";
 import './Modal.css';
 
 const ModalContext = createContext();
@@ -31,13 +30,12 @@ export function ModalProvider({ children }) {
 
   /************************************************/
   /********** Open Product details page **********/
-  const createAndShowBookmarks = async (e, user) => {
+  const createAndShowBookmarks = async (e, user, productId) => {
     e.stopPropagation();
     if (!user) {
       return setModalContent(<LoginFormModal />);
     }
-    setModalContent(<BookmarkForm />);
-    // await dispatch();
+    setModalContent(<BookmarkForm productId={productId} />);
   }
 
   const showCart = async (e, product, user) => {

@@ -1,12 +1,15 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { handleNoteOnChange } from "../../utils/form";
+import { useModal } from "../../context/Modal";
 import { disabledSubmitButton, enabledSubmitButton } from "../../utils/dom";
+import NotificationModal from "../NotificationModal";
 import * as bookmarkActions from "../../redux/bookmark";
 import "./BookmarkForm.css";
 
-function BookmarkForm() {
+function BookmarkForm({ productId }) {
   const dispatch = useDispatch();
+  const { setModalContent } = useModal();
   const [note, setNote] = useState("");
   const [errors, setErrors] = useState({});
   const [submitting, setSubmitting] = useState(false);
@@ -17,7 +20,7 @@ function BookmarkForm() {
     disabledSubmitButton();
     setSubmitting(true);
 
-    const data = "";// = await dispatch(bookmarkActions.createBookmarkThunk());
+    const data = await dispatch(bookmarkActions.createBookmarkThunk(productId, note));
 
     if (data?.errors) {
       setSubmitting(false);
@@ -27,6 +30,12 @@ function BookmarkForm() {
 
     setSubmitting(false);
     enabledSubmitButton();
+    setModalContent(
+      <NotificationModal
+        message="Successfully created bookmark"
+        status="alert-success"
+      />
+    );
   }
 
   return (

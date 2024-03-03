@@ -5,16 +5,18 @@ function Bookmarks({ user, products, inCartProductIds, bookmarks, bookmarkProduc
   return (<>
     <h2 className="subheading">My Bookmarks</h2>
     <div id="bookmarks">
-      {bookmarks.map(bookmark => (
-        <Bookmark
-          key={bookmark.id}
-          user={user}
-          bookmark={bookmark}
-          products={products}
-          inCartProductIds={inCartProductIds}
-          bookmarkProductIds={bookmarkProductIds}
-        />
-      ))}
+      {bookmarks
+        .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+        .map(bookmark => (
+          <Bookmark
+            key={bookmark.id}
+            user={user}
+            bookmark={bookmark}
+            products={products}
+            inCartProductIds={inCartProductIds}
+            bookmarkProductIds={bookmarkProductIds}
+          />
+        ))}
     </div>
   </>);
 }

@@ -35,6 +35,19 @@ export const loadBookmarksThunk = userId => async (dispatch, getState) => {
   return data;
 };
 
+export const createBookmarkThunk = (productId, note) => async dispatch => {
+  const response = await csrfFetch(`/api/products/${productId}/bookmarks`, {
+    method: 'POST',
+    body: JSON.stringify({
+      note
+    })
+  });
+  const data = await response.json();
+  if (!response.ok) return { "errors": data };
+  dispatch(updateBookmark(data));
+  return data;
+}
+
 export const updateBookmarkThunk = (bookmarkId, note) => async dispatch => {
   const response = await csrfFetch(`/api/bookmarks/${bookmarkId}`, {
     method: 'PUT',
