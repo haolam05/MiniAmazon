@@ -1,30 +1,10 @@
 import { getAvatarUrl } from "../../utils/navbar";
 import { getFormattedPrice, getPreviewText } from "../../utils/product";
+import { getAverageRating, toggleReviewInfo } from "../../utils/review";
 import ProductReviews from "../ProductReviews";
 import "./ProductDetails.css";
 
 function ProductDetails({ user, product, createAndShowBookmarks, showCart, inCartProductIds, bookmarkProductIds }) {
-  const getAverageRating = ratings => {
-    if (ratings.length === 0) return "";
-    return (ratings.reduce((sum, rating) => sum + rating, 0) / ratings.length).toFixed(2);
-  }
-
-  const toggleReviewInfo = () => {
-    const reviewInfo = document.querySelector("#product-details .review-info");
-    const productReviewInfo = document.querySelector("#product-details .product-review-info");
-    if (reviewInfo) {
-      if (reviewInfo.classList.contains("hidden")) {
-        reviewInfo.classList.remove("hidden");
-        if (productReviewInfo) productReviewInfo.style.width = 'fit-content';
-      } else {
-        reviewInfo.classList.add("hidden");
-        if (productReviewInfo) {
-          productReviewInfo.style.width = '0';
-        }
-      }
-    }
-  }
-
   return (
     <>
       <h2 className="product-title subheading">{product.name}</h2>
