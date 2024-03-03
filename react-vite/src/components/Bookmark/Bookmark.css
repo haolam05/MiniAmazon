@@ -1,13 +1,34 @@
 .bookmark .bookmark-note {
-  color: var(--black);
   background-color: rgb(214, 210, 210);
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
   padding: 5px 10px;
-  max-height: 110px;
+  height: 110px;
   scrollbar-color: var(--cart-scroll-color) transparent;
   overflow-x: hidden;
   overflow-y: scroll;
+}
+
+.bookmark .bookmark-note span {
+  color: var(--black);
+}
+
+.bookmark .bookmark-note textarea {
+  resize: none;
+  height: 54px;
+  width: 210px;
+  border-radius: 5px;
+  border: none;
+  background-color: gray;
+  padding: 25px;
+  padding-left: 10px;
+  padding-right: 45px;
+  scrollbar-color: var(--light-gray) transparent;
+}
+
+.bookmark .bookmark-note textarea:focus {
+  outline: none;
+  line-break: anywhere;
 }
 
 .bookmark .bookmark-btns {
@@ -18,6 +39,27 @@
 }
 
 .bookmark .bookmark-btns i {
-  color: var(--dark-purple);
+  color: var(--option-background);
+  cursor: pointer;
+}
+
+.bookmark .bookmark-textarea {
+  position: relative;
+}
+
+.bookmark .bookmark-textarea i.fa-paper-plane {
+  position: absolute;
+  bottom: 25px;
+  right: 25px;
+}
+
+.bookmark .bookmark-textarea i.fa-rectangle-xmark {
+  position: absolute;
+  right: 25px;
+  top: 5px;
+}
+
+.bookmark .bookmark-textarea i:hover {
+  color: var(--orange);
   cursor: pointer;
 }
