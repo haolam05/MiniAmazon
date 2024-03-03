@@ -31,5 +31,5 @@
   height: 600px;
   scrollbar-color: var(--cart-scroll-color) transparent;
   overflow-x: hidden;
-  overflow-y: scroll;
+  overflow-y: auto;
 }

@@ -39,7 +39,7 @@
   width: 200px;
   scrollbar-color: var(--cart-scroll-color) transparent;
   overflow-x: hidden;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .product-review .review-author {
@@ -64,7 +64,7 @@
   height: 40px;
   scrollbar-color: var(--cart-scroll-color) transparent;
   overflow-x: hidden;
-  overflow-y: scroll;
+  overflow-y: auto;
   color: var(--black);
   padding: 15px;
 }

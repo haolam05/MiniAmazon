@@ -49,7 +49,7 @@ option:hover {
 html {
   scrollbar-color: var(--html-scroll-color) var(--navbar-background);
   overflow-x: hidden;
-  overflow-y: scroll;
+  overflow-y: auto;
   scroll-behavior: smooth;
 }
 

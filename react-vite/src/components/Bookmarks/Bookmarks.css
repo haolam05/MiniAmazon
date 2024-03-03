@@ -4,6 +4,6 @@
   width: 85vw;
   scrollbar-color: var(--cart-scroll-color) transparent;
   overflow-y: hidden;
-  overflow-x: scroll;
+  overflow-x: auto;
   padding: 25px;
 }

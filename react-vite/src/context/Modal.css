@@ -39,5 +39,5 @@
   max-height: 100px;
   scrollbar-color: var(--dark-purple) transparent;
   overflow-x: hidden;
-  overflow-y: scroll;
+  overflow-y: auto;
 }

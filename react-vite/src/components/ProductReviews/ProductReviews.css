@@ -7,7 +7,7 @@
   margin-bottom: 0;
   gap: 5px;
   scrollbar-color: var(--cart-scroll-color) transparent;
-  overflow-x: scroll;
+  overflow-x: auto;
   overflow-y: hidden;
 }
 
