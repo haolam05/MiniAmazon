@@ -73,7 +73,7 @@ function ProductDetails({ user, product, createAndShowBookmarks, showCart, inCar
             </div>
           </div>
         </div>
-        <ProductReviews product={product} user={user} />
+        {user && <ProductReviews product={product} user={user} />}
       </div>
     </>
   );
