@@ -53,3 +53,20 @@ h2.product-title {
 #product-details .product-wrapper .product-category {
   padding: 0 15px;
 }
+
+#product-details .product-wrapper .total-reviews {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+#product-details .product-wrapper .total-reviews span {
+  color: var(--black);
+}
+
+#product-details .product-wrapper .average-rating span {
+  color: var(--black);
+}
+
+#product-details .product-wrapper .average-rating i.fa-star {
+  color: var(--orange);
+}

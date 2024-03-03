@@ -4,6 +4,11 @@ import ProductReviews from "../ProductReviews";
 import "./ProductDetails.css";
 
 function ProductDetails({ user, product, createAndShowBookmarks, showCart, inCartProductIds, bookmarkProductIds }) {
+  const getAverageRating = ratings => {
+    if (ratings.length === 0) return "";
+    return (ratings.reduce((sum, rating) => sum + rating, 0) / ratings.length).toFixed(2);
+  }
+
   return (
     <>
       <h2 className="product-title subheading">{product.name}</h2>
@@ -57,6 +62,13 @@ function ProductDetails({ user, product, createAndShowBookmarks, showCart, inCar
             </div>
             <div className="product-description">
               {product.description}
+            </div>
+            <div className="total-reviews">
+              <span>Total reviews ~ {product.reviews.length} 📝</span>
+            </div>
+            <div className="average-rating">
+              <span>Average rating ~ {getAverageRating(product.reviews.map(review => review.rating))} </span>
+              <i className={`fa-solid fa-star`}></i>
             </div>
           </div>
         </div>
