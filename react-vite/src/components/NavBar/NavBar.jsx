@@ -9,10 +9,19 @@ import * as orderActions from "../../redux/order";
 import "./NavBar.css";
 
 function NavBar({ user, products, inCartProductIds, bookmarks, bookmarkProductIds }) {
-  const { setModalContent } = useModal();
+  const { setModalContent, closeModal } = useModal();
   const [category, setCategory] = useState("");
   const orders = useSelector(orderActions.getOrders);
   const itemsInCart = orders.filter(order => !order.is_checkout)[0]?.items || [];
+
+  const toggleBookmarks = () => {
+    const bookmarks = document.querySelector("#bookmarks");
+    if (bookmarks) {
+      closeModal();
+    } else {
+      showBookmarks();
+    }
+  }
 
   const showBookmarks = () => {
     setModalContent(
@@ -58,7 +67,7 @@ function NavBar({ user, products, inCartProductIds, bookmarks, bookmarkProductId
         <span>Cart</span>
         <span id="cart-items-count">{itemsInCart.length}</span>
       </div>
-      <div id="bookmark" title="View bookmarks" onClick={showBookmarks}>
+      <div id="bookmark" title="View bookmarks" onClick={toggleBookmarks}>
         <i className="fa-solid fa-bookmark"></i>
       </div>
       <SessionInfo user={user} />

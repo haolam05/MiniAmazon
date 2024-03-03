@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useModal } from "../../context/Modal";
 import { useDispatch } from "react-redux";
+import { hideEditBookmarkForm, showEditBookmarkForm } from "../../utils/bookmark";
 import Product from "../Product/Product";
 import ConfirmDeleteFormModal from "../ConfirmDeleteModal";
 import * as bookmarkActions from "../../redux/bookmark";
@@ -11,20 +12,6 @@ function Bookmark({ user, bookmark, products, inCartProductIds, bookmarkProductI
   const { setModalContent, closeModal } = useModal();
   const [bookmarkNote, setBookmarkNote] = useState(bookmark.note);
   const [bookmarkNoteInput, setBookmarkNoteInput] = useState(bookmark.note);
-
-  const hideEditBookmarkForm = () => {
-    const textarea = document.querySelector(".bookmark-textarea");
-    const note = document.querySelector(".bookmark-note > span");
-    if (textarea) textarea.classList.add("hidden");
-    if (note) note.classList.remove("hidden");
-  }
-
-  const showEditBookmarkForm = () => {
-    const textarea = document.querySelector(".bookmark-textarea");
-    const note = document.querySelector(".bookmark-note > span");
-    if (textarea) textarea.classList.remove("hidden");
-    if (note) note.classList.add("hidden");
-  }
 
   const updateBookmark = async () => {
     await dispatch(bookmarkActions.updateBookmarkThunk(bookmark.id, bookmarkNoteInput));
@@ -56,7 +43,7 @@ function Bookmark({ user, bookmark, products, inCartProductIds, bookmarkProductI
         <div
           className="edit-bookmark"
           title="Edit bookmark"
-          onClick={showEditBookmarkForm}
+          onClick={() => showEditBookmarkForm(bookmark.id)}
         >
           <i className="fa-solid fa-gear"></i>
         </div>
@@ -78,11 +65,11 @@ function Bookmark({ user, bookmark, products, inCartProductIds, bookmarkProductI
             onChange={e => setBookmarkNoteInput(e.target.value)}
           />
           <i className="fa-solid fa-rectangle-xmark" title="Cancel and close" onClick={() => {
-            hideEditBookmarkForm();
+            hideEditBookmarkForm(bookmark.id);
             setBookmarkNoteInput(bookmark.note);
           }}></i>
           <i className="fa-solid fa-paper-plane" title="Save" onClick={() => {
-            hideEditBookmarkForm();
+            hideEditBookmarkForm(bookmark.id);
             setBookmarkNote(bookmarkNoteInput);
             updateBookmark();
           }}></i>
