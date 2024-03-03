@@ -14,6 +14,7 @@
 
 .product-review.me {
   background-color: var(--my-review-background);
+  position: relative;
 }
 
 .product-review .rating {
@@ -39,4 +40,17 @@
 
 .product-review .review-author {
   color: var(--black);
+}
+
+.product-review .my-reivew-settings {
+  display: flex;
+  gap: 5px;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+.product-review .my-reivew-settings i {
+  color: var(--black);
+  cursor: pointer;
 }

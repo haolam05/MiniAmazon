@@ -9,7 +9,7 @@ function ProductReviews({ product, user }) {
 
   return (
     <div id="product-reviews">
-      {!myReview && (
+      {!myReview.length && (
         <div className="new-review-icon" title="Write a review">
           <i className="fa-solid fa-pencil"></i>
         </div>
