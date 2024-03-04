@@ -1,0 +1,27 @@
+#product-form textarea {
+  resize: none;
+  color: var(--black);
+}
+
+#product-form textarea:focus {
+  outline: none;
+}
+
+#product-form ::placeholder {
+  font-style: italic;
+  font-size: 10pt;
+  color: var(--black);
+}
+
+#product-form select,
+#product-form option {
+  color: var(--black);
+}
+
+#product-form select {
+  background-color: var(--white);
+}
+
+#product-form select:focus {
+  outline: none;
+}

@@ -8,7 +8,7 @@ import {
   handleFirstNameOnChange,
   handleLastNameOnChange,
   handlePasswordOnChange,
-  handleProfileImageUrlOnChange,
+  handlePreviewImageOnChange,
   handleUsernameOnChange,
   movePreviewImageDown,
   movePreviewImageUp
@@ -145,7 +145,7 @@ function SignupFormModal() {
         <input
           type="file"
           accept="image/*"
-          onChange={e => handleProfileImageUrlOnChange(e, "profileImageUrl", setProfileImageUrl, setErrors)}
+          onChange={e => handlePreviewImageOnChange(e, "profileImageUrl", setProfileImageUrl, setErrors)}
         />
         {errors.profileImageUrl && <p className="modal-errors">{errors.profileImageUrl}</p>}
         {submitting && <Loading />}

@@ -158,15 +158,77 @@ export const handleReviewOnChange = (e, key, setReview, setErrors) => {
   return setErrors(errors => ({ ...errors, [key]: "" }));
 }
 
-export const handleProfileImageUrlOnChange = (e, key, setProfileImageUrl, setErrors) => {
+export const handleProductNameOnChange = (e, key, setName, setErrors) => {
+  setName(e.target.value);
+
+  if (e.target.value.length < 4) {
+    turnOnRedBoxShadow(e);
+    return setErrors(errors => ({ ...errors, [key]: "Must have at least 4 characters" }));
+  }
+
+  turnOnGreenBoxShadow(e);
+  return setErrors(errors => ({ ...errors, [key]: "" }));
+}
+
+export const handleProductDescriptionOnChange = (e, key, setDescription, setErrors) => {
+  setDescription(e.target.value);
+
+  if (e.target.value.length < 50) {
+    turnOnRedBoxShadow(e);
+    return setErrors(errors => ({ ...errors, [key]: "Must have at least 50 characters" }));
+  }
+
+  turnOnGreenBoxShadow(e);
+  return setErrors(errors => ({ ...errors, [key]: "" }));
+}
+
+export const handleProductPriceOnChange = (e, key, setPrice, setErrors) => {
+  setPrice(+e.target.value);
+
+  if (+e.target.value <= 0) {
+    turnOnRedBoxShadow(e);
+    return setErrors(errors => ({ ...errors, [key]: "Must be greater than 0" }));
+  }
+
+  turnOnGreenBoxShadow(e);
+  return setErrors(errors => ({ ...errors, [key]: "" }));
+}
+
+export const handleProductQuantityOnChange = (e, key, setQuantity, setErrors) => {
+  setQuantity(+e.target.value);
+
+  if (+e.target.value < 1) {
+    turnOnRedBoxShadow(e);
+    return setErrors(errors => ({ ...errors, [key]: "Must be greater than 0" }));
+  }
+
+  turnOnGreenBoxShadow(e);
+  return setErrors(errors => ({ ...errors, [key]: "" }));
+}
+
+export const handleProductCategoryOnChange = (e, key, setCategory, setErrors) => {
+  const allowedCategories = ["Groceries", "Electronics", "Books", "Beauty & Health", "Handmade"];
+  setCategory(e.target.value);
+
+  if (!allowedCategories.includes(e.target.value)) {
+    turnOnRedBoxShadow(e);
+    return setErrors(errors => ({ ...errors, [key]: `Only [${allowedCategories}] are allowed` }));
+  }
+
+  turnOnGreenBoxShadow(e);
+  return setErrors(errors => ({ ...errors, [key]: "" }));
+}
+
+export const handlePreviewImageOnChange = (e, key, setImageUrl, setErrors) => {
   const previewImage = document.getElementById('preview-image');
   const file = e.target.files[0];
   const size = file.size;
 
   previewImage.classList.add("hidden");
 
+  console.log("HAUIDFHDSAL", file.name, file.size)
   turnOnRedBoxShadow(e);
-  if (size > 10 ** 6) {
+  if (size > 10 * 10 ** 6) {
     return setErrors({ [key]: "File size must not be larger than 10MB." });
   }
 
@@ -182,7 +244,7 @@ export const handleProfileImageUrlOnChange = (e, key, setProfileImageUrl, setErr
   }
 
   turnOnGreenBoxShadow(e);
-  setProfileImageUrl(file);
+  setImageUrl(file);
   setErrors({ profileImageUrl: "" });
 }
 

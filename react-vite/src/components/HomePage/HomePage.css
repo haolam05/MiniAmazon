@@ -4,3 +4,23 @@
   padding: 0 40px;
   gap: 40px;
 }
+
+#home-page .manage-my-product-btns {
+  cursor: pointer;
+  position: fixed;
+  top: 85px;
+  right: 15px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+}
+
+#home-page .manage-my-product-btns i {
+  color: var(--navbar-background);
+  font-size: xx-large;
+}
+
+#home-page .manage-my-product-btns i:hover {
+  opacity: 0.7;
+}

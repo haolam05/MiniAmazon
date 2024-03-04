@@ -1,9 +1,11 @@
+import { useModal } from "../../context/Modal";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import NavBar from "../NavBar/NavBar";
+import Cart from "../Cart";
+import NavBar from "../NavBar";
 import Loading from "../Loading";
 import Products from "../Products";
-import Cart from "../Cart";
+import ProductForm from "../ProductForm";
 import * as sessionActions from "../../redux/session";
 import * as productActions from "../../redux/product";
 import * as orderActions from "../../redux/order";
@@ -11,8 +13,9 @@ import * as bookmarkActions from "../../redux/bookmark";
 import "./HomePage.css";
 
 function HomePage() {
-  const [isLoaded, setIsLoaded] = useState(false);
   const dispatch = useDispatch();
+  const [isLoaded, setIsLoaded] = useState(false);
+  const { setModalContent } = useModal();
   const user = useSelector(sessionActions.sessionUser);
   const products = useSelector(productActions.getProducts);
   const bookmarks = useSelector(bookmarkActions.getBookmarks);
@@ -21,6 +24,9 @@ function HomePage() {
   const orders = useSelector(orderActions.getOrders);
   const itemsInCart = orders.filter(order => !order.is_checkout)[0]?.items || [];
   const inCartProductIds = itemsInCart.map(item => item.product_id);
+
+  const showProductForm = () => setModalContent(<ProductForm />);
+  const showMyProducts = () => { };
 
   useEffect(() => {
     const loadData = async () => {
@@ -39,7 +45,10 @@ function HomePage() {
 
   return (
     <div id="home-page">
-      <i className="fa-solid fa-circle-plus"></i>
+      <div className="manage-my-product-btns">
+        <i className="fa-solid fa-plus" title="Add a product" onClick={showProductForm}></i>
+        <i className="fa-solid fa-database" title="My products" onClick={showMyProducts}></i>
+      </div>
       <NavBar
         user={user?.user}
         products={getProductsObject}

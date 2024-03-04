@@ -6,7 +6,7 @@ import {
   handleFirstNameOnChange,
   handleLastNameOnChange,
   handlePasswordOnChange,
-  handleProfileImageUrlOnChange,
+  handlePreviewImageOnChange,
   movePreviewImageDown,
   movePreviewImageUp
 } from "../../utils/form";
@@ -118,7 +118,7 @@ function UpdateUserFormModal({ user }) {
         <input
           type="file"
           accept="image/*"
-          onChange={e => handleProfileImageUrlOnChange(e, "profileImageUrl", setProfileImageUrl, setErrors)}
+          onChange={e => handlePreviewImageOnChange(e, "profileImageUrl", setProfileImageUrl, setErrors)}
         />
         {errors.profileImageUrl && <p className="modal-errors">{errors.profileImageUrl}</p>}
         {submitting && <Loading />}
