@@ -1,5 +1,6 @@
 from datetime import datetime
 from .db import db, environment, SCHEMA, add_prefix_for_prod
+from .product import Product
 
 
 class Order(db.Model):
@@ -23,7 +24,16 @@ class Order(db.Model):
 
 
     def to_dict(self):
-        items = [item.to_dict() for item in self.order_items]
+        items = []
+
+        for item in self.order_items:
+            if self.is_checkout == False:
+                product = Product.query.get(item.product_id)
+                if product.remaining > 0:
+                    items.append(item.to_dict())
+            else:
+                items.append(item.to_dict())
+
         return {
             "id": self.id,
             "customer_id": self.customer_id,

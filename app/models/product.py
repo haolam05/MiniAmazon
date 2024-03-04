@@ -15,6 +15,7 @@ class Product(db.Model):
     description = db.Column(db.String, nullable=False)
     remaining = db.Column(db.Integer, nullable=False)
     product_image = db.Column(db.String, nullable=False)
+    is_deleted = db.Column(db.Boolean, default=False)
     created_at = db.Column(db.DateTime, default=datetime.now)
     updated_at = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now)
 
@@ -52,6 +53,7 @@ class Product(db.Model):
             "seller_id": self.seller_id,
             "remaining": self.remaining,
             "product_image": self.product_image,
+            "is_deleted": self.is_deleted,
             "seller": self.seller.to_dict(),
             "created_at": str(self.created_at),
             "reviews": reviews

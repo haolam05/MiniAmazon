@@ -71,6 +71,10 @@
   color: var(--white);
 }
 
+.product .product-remaining.red {
+  background-color: var(--discontinue-color);
+}
+
 .product .product-bookmark {
   width: fit-content;
   position: absolute;

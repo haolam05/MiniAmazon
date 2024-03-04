@@ -21,14 +21,16 @@ function Product({ product, user, inCartProductIds, bookmarkProductIds }) {
         <span className="decimal">{getFormattedPrice(product.price)[1]}</span>
       </div>
       <p className="product-name">{getPreviewText(product.name)}</p>
-      <div className="product-remaining">{product.remaining > 0 ? `${product.remaining} left` : "Sold out"}</div>
+      <div className={`product-remaining${product.is_deleted ? " red" : ""}`}>{
+        product.is_deleted ? "Discontinued" : (product.remaining > 0 ? `${product.remaining} left` : "Sold out")
+      }</div>
       {user && bookmarkProductIds.includes(product.id) && (
         <div className="product-bookmark" title="This product has already been bookmarked">
           <i className="fa-solid fa-bookmark"></i>
         </div>
       )}
       <div className="product-btns">
-        {user && !bookmarkProductIds.includes(product.id) && (
+        {user && !bookmarkProductIds.includes(product.id) && !product.is_deleted && (
           <button
             title="Bookmark this product"
             onClick={e => createAndShowBookmarks(e, user, product.id)}
@@ -37,7 +39,7 @@ function Product({ product, user, inCartProductIds, bookmarkProductIds }) {
             Bookmark
           </button>
         )}
-        {user && !inCartProductIds.includes(product.id) && product.remaining > 0 && (
+        {user && !inCartProductIds.includes(product.id) && product.remaining > 0 && !product.is_deleted && (
           <button
             title="Add this product to cart"
             onClick={e => showCart(e, product, user)}

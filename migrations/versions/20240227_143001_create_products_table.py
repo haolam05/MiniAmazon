@@ -29,6 +29,7 @@ def upgrade():
         sa.Column('description', sa.String(), nullable=False),
         sa.Column('remaining', sa.Integer(), nullable=False),
         sa.Column('product_image', sa.String(), nullable=False),
+        sa.Column('is_deleted', sa.Boolean(), nullable=True),
         sa.Column('created_at', sa.DateTime(), nullable=True),
         sa.Column('updated_at', sa.DateTime(), nullable=True),
         sa.Column('seller_id', sa.Integer(), nullable=False),

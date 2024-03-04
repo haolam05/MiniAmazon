@@ -112,7 +112,7 @@ def delete_product(id):
     if product.seller_id != current_user.id:
         return redirect("/api/auth/forbidden")
 
-    db.session.delete(product)
+    product.is_deleted = True
     db.session.commit()
 
     return {"message": "Successfully deleted product"}, 200
