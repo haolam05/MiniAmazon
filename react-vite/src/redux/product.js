@@ -43,6 +43,21 @@ export const loadProductsThunk = () => async (dispatch, getState) => {
   return data;
 };
 
+export const createProductReviewThunk = (productId, reviewInput, ratingInput) => async dispatch => {
+  const response = await csrfFetch(`/api/products/${productId}/reviews`, {
+    method: 'POST',
+    body: JSON.stringify({
+      review: reviewInput,
+      rating: ratingInput
+    })
+  });
+  const data = await response.json();
+
+  if (!response.ok) return { "errors": data };
+  dispatch(updateProductReview(productId, data));
+  return data;
+}
+
 export const updateProductReviewThunk = (productId, reviewId, review, rating) => async dispatch => {
   const response = await csrfFetch(`/api/reviews/${reviewId}`, {
     method: 'PUT',

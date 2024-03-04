@@ -1,15 +1,18 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { handleNoteOnChange } from "../../utils/form";
+import { handleReviewOnChange } from "../../utils/form";
 import { useModal } from "../../context/Modal";
 import { disabledSubmitButton, enabledSubmitButton } from "../../utils/dom";
 import NotificationModal from "../NotificationModal";
 import * as productActions from "../../redux/product";
+import "./ReviewForm.css";
 
 function ReviewForm({ productId }) {
   const dispatch = useDispatch();
   const { setModalContent } = useModal();
-  const [note, setNote] = useState("");
+  const [reviewInput, setReviewInput] = useState("");
+  const [ratingInput, setRatingInput] = useState(3);
+  const [currentRating, setCurrentRating] = useState(3);
   const [errors, setErrors] = useState({});
   const [submitting, setSubmitting] = useState(false);
 
@@ -19,7 +22,7 @@ function ReviewForm({ productId }) {
     disabledSubmitButton();
     setSubmitting(true);
 
-    const data = await dispatch(bookmarkActions.createBookmarkThunk(productId, note));
+    const data = await dispatch(productActions.createProductReviewThunk(productId, reviewInput, currentRating));
 
     if (data?.errors) {
       setSubmitting(false);
@@ -31,34 +34,57 @@ function ReviewForm({ productId }) {
     enabledSubmitButton();
     setModalContent(
       <NotificationModal
-        message="Successfully created bookmark"
+        message="Successfully created review"
         status="alert-success"
       />
     );
   }
 
+  const setStars = e => {
+    const stars = +e.target.dataset.star;
+    setRatingInput(stars);
+  }
+
+  const resetStars = () => {
+    setRatingInput(currentRating);
+  }
+
+  const setRating = e => {
+    const stars = +e.target.dataset.star;
+    setCurrentRating(stars);
+  }
+
+
   return (
-    <>
+    <div id="review-form">
       <h2 className="subheading">Write a review</h2>
-      <form id="bookmark-form" onSubmit={handleSubmit}>
+      <div className="rating">
+        {<i data-star="1" className={`fa-solid fa-star ${ratingInput > 0 ? "orange" : "gray"}`} onMouseOver={setStars} onMouseOut={resetStars} onClick={setRating}></i>}
+        {<i data-star="2" className={`fa-solid fa-star ${ratingInput > 1 ? "orange" : "gray"}`} onMouseOver={setStars} onMouseOut={resetStars} onClick={setRating}></i>}
+        {<i data-star="3" className={`fa-solid fa-star ${ratingInput > 2 ? "orange" : "gray"}`} onMouseOver={setStars} onMouseOut={resetStars} onClick={setRating}></i>}
+        {<i data-star="4" className={`fa-solid fa-star ${ratingInput > 3 ? "orange" : "gray"}`} onMouseOver={setStars} onMouseOut={resetStars} onClick={setRating}></i>}
+        {<i data-star="5" className={`fa-solid fa-star ${ratingInput > 4 ? "orange" : "gray"}`} onMouseOver={setStars} onMouseOut={resetStars} onClick={setRating}></i>}
+      </div>
+      <form className="review-form" onSubmit={handleSubmit}>
         <textarea
           spellCheck={false}
-          placeholder="Add a note to your bookmark"
-          value={note}
-          onChange={e => handleNoteOnChange(e, "note", setNote, setErrors)}
+          placeholder="Write a review for this product"
+          value={reviewInput}
+          onChange={e => handleReviewOnChange(e, "review", setReviewInput, setErrors)}
         />
-        {errors.note && <p className="modal-errors">{errors.note}</p>}
+        {errors.review && <p className="modal-errors">{errors.review}</p>}
         {submitting && <div className="loader"></div>}
         <button
           type="submit"
-          className={note.length ? "" : "disabled"}
-          disabled={!note.length}
+          className={reviewInput.length ? "" : "disabled"}
+          disabled={!reviewInput.length}
         >
           Submit
         </button>
       </form>
-    </>
+    </div>
   );
 }
+
 
 export default ReviewForm;

@@ -1,0 +1,35 @@
+#review-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+#review-form p {
+  text-align: center
+}
+
+#review-form textarea {
+  color: var(--black);
+  width: 480px;
+}
+
+#review-form textarea:focus {
+  outline: none;
+}
+
+#review-form button {
+  align-self: center;
+}
+
+#review-form .fa-star {
+  cursor: pointer;
+}
+
+#review-form .fa-star.orange {
+  color: var(--orange);
+}
+
+#review-form .fa-star.gray {
+  color: var(--light-gray);
+}

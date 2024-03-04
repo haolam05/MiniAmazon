@@ -144,7 +144,7 @@ def create_product_review(id):
         if not product:
             return {"message": "Product couldn't be found"}, 404
 
-        if Review.query.filter(Review.product_id == id and Review.customer_id == current_user.id).one_or_none():
+        if Review.query.filter(Review.product_id == id).filter(Review.customer_id == current_user.id).one_or_none():
             return {"message": "You already had a review on this product"}, 500
 
         new_review = Review(
@@ -157,7 +157,7 @@ def create_product_review(id):
         db.session.add(new_review)
         db.session.commit()
 
-        return new_review.to_dict(), 200
+        return {**new_review.to_dict(), "customer": new_review.customer.to_dict()}, 200
 
     return form.errors, 400
 
