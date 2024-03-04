@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { toggleCart } from "../../utils/cart";
@@ -8,9 +7,8 @@ import SessionInfo from "../SessionInfo";
 import * as orderActions from "../../redux/order";
 import "./NavBar.css";
 
-function NavBar({ user, products, inCartProductIds, bookmarks, bookmarkProductIds }) {
+function NavBar({ user, products, inCartProductIds, bookmarks, bookmarkProductIds, productCategoryInput, setProductCategoryInput, productNameInput, setProductNameInput }) {
   const { setModalContent, closeModal } = useModal();
-  const [category, setCategory] = useState("");
   const orders = useSelector(orderActions.getOrders);
   const itemsInCart = orders.filter(order => !order.is_checkout)[0]?.items || [];
 
@@ -46,15 +44,16 @@ function NavBar({ user, products, inCartProductIds, bookmarks, bookmarkProductId
           placeholder="Search MiniAmazon"
           onFocus={addOutline}
           onBlur={removeOutline}
+          value={productNameInput}
+          onChange={e => setProductNameInput(e.target.value)}
         />
         <div id="search-icon">
           <i className="fa-solid fa-magnifying-glass"></i>
         </div>
       </div>
       <div id="categories" title="Product categories">
-        <select name="categories" value={category} onChange={e => setCategory(e.target.value)}>
-          <option className="category" value="" hidden>Categories</option>
-          <option className="category">All</option>
+        <select name="categories" value={productCategoryInput} onChange={e => setProductCategoryInput(e.target.value)}>
+          <option className="category" value="">All Categories</option>
           <option className="category" value="Groceries">Groceries</option>
           <option className="category" value="Electronics">Electronics</option>
           <option className="category" value="Books">Books</option>

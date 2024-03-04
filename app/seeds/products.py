@@ -136,7 +136,7 @@ def seed_products():
         },
         {
             "seller_id": username_to_ids["haolam"],
-            "name": "Meidum Hass Avocado",
+            "name": "Medium Hass Avocado",
             "price": 1.29,
             "category": categories[0],
             "description": "The Hass avocado is known as the 'year-round avocado' because of its seasonal availability. Mexico is the world's largest producer of Hass avocados, best known for their creamy texture and great taste!",

@@ -15,10 +15,12 @@ import "./HomePage.css";
 
 function HomePage() {
   const dispatch = useDispatch();
+  const [productNameInput, setProductNameInput] = useState("");
+  const [productCategoryInput, setProductCategoryInput] = useState("");
   const [isLoaded, setIsLoaded] = useState(false);
   const { setModalContent } = useModal();
   const user = useSelector(sessionActions.sessionUser);
-  const products = useSelector(productActions.getProducts);
+  let products = useSelector(productActions.getProducts);
   const bookmarks = useSelector(bookmarkActions.getBookmarks);
   const bookmarkProductIds = bookmarks?.map(bookmark => bookmark.product_id) || [];
   const getProductsObject = useSelector(productActions.getProductsObject);
@@ -65,6 +67,10 @@ function HomePage() {
         inCartProductIds={inCartProductIds}
         bookmarks={bookmarks}
         bookmarkProductIds={bookmarkProductIds}
+        productNameInput={productNameInput}
+        productCategoryInput={productCategoryInput}
+        setProductNameInput={setProductNameInput}
+        setProductCategoryInput={setProductCategoryInput}
       />
       <div id="main-content">
         <Products
@@ -72,6 +78,7 @@ function HomePage() {
           user={user?.user}
           inCartProductIds={inCartProductIds}
           bookmarkProductIds={bookmarkProductIds}
+          productCategoryInput={productCategoryInput}
         />
         <Cart
           products={getProductsObject}
