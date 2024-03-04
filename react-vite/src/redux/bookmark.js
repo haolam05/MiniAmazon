@@ -18,7 +18,7 @@ const updateBookmark = bookmark => ({
   bookmark
 });
 
-const deleteBookmark = bookmarkId => ({
+export const deleteBookmark = bookmarkId => ({
   type: DELETE_BOOKMARK,
   bookmarkId
 });

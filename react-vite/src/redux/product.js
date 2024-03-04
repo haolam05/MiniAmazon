@@ -1,5 +1,7 @@
 import { csrfFetch } from "./csrf";
 import { createSelector } from "reselect";
+import * as orderActions from "./order";
+import * as bookmarkActions from "./bookmark";
 
 // Actions
 const LOAD_PRODUCTS = 'products/LOAD_PRODUCTS';
@@ -95,7 +97,7 @@ export const updateProductThunk = (productId, product) => async dispatch => {
   return createUpdateThunkHelper(dispatch, product, productId)
 }
 
-export const deleteProductThunk = productId => async dispatch => {
+export const deleteProductThunk = productId => async (dispatch, getState) => {
   const response = await csrfFetch(`/api/products/${productId}`, {
     method: 'DELETE'
   });
@@ -103,6 +105,26 @@ export const deleteProductThunk = productId => async dispatch => {
 
   if (!response.ok) return { "errors": data };
   dispatch(deleteProduct(productId));
+
+  if (getState().orders.orders !== null) {
+    const orders = Object.values(getState().orders.orders);
+    orders.forEach(order => {
+      order.items.forEach(item => {
+        if (item.product_id === productId) {
+          dispatch(orderActions.deleteOrderItem(item.order_id, productId));
+        }
+      })
+    })
+  }
+  if (getState().bookmarks.bookmarks !== null) {
+    const bookmarks = Object.values(getState().bookmarks.bookmarks);
+    bookmarks.forEach(bookmark => {
+      if (bookmark.product_id === productId) {
+        dispatch(bookmarkActions.deleteBookmark(bookmark.id));
+      }
+    })
+  }
+
   return data;
 }
 

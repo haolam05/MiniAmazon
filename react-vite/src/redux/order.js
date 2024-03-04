@@ -32,7 +32,7 @@ const updateOrderItem = item => ({
   item
 });
 
-const deleteOrderItem = (orderId, itemId) => ({
+export const deleteOrderItem = (orderId, itemId) => ({
   type: DELETE_ORDER_ITEM,
   orderId,
   itemId

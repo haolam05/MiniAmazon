@@ -6,14 +6,14 @@ import ProductForm from "../ProductForm";
 import NotificationModal from "../NotificationModal";
 import * as productActions from "../../redux/product";
 
-function MyProduct({ product, user, bookmarkProductIds }) {
+function MyProduct({ product, user, bookmarkProductIds, itemsInCart }) {
   const dispatch = useDispatch();
   const { setModalContent, closeModal } = useModal();
 
   const showEditProductForm = () => setModalContent(<ProductForm product={product} />);
 
   const deleteProduct = async () => {
-    const data = await dispatch(productActions.deleteProductThunk(product.id));
+    const data = await dispatch(productActions.deleteProductThunk(product.id, itemsInCart));
     if (data?.errors) {
       setModalContent(
         <NotificationModal
@@ -24,7 +24,7 @@ function MyProduct({ product, user, bookmarkProductIds }) {
     } else {
       setModalContent(
         <NotificationModal
-          message="Successfully updated product!"
+          message="Successfully deleted product!"
           status="alert-success"
         />
       );

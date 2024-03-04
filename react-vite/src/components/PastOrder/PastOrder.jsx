@@ -6,6 +6,7 @@ function PastOrder({ order, products }) {
   if (!order) return;
 
   const getSubTotal = items => {
+    console.log(order.items)
     const total = items.reduce((sum, item) => sum + (+products[item.product_id].price * item.quantity), 0);
     return getFormattedPrice(`${total}`).join(".");
   }
