@@ -29,5 +29,5 @@ class Bookmark(db.Model):
             "product_id": self.product_id,
             "customer_id": self.customer_id,
             "note": self.note,
-            "created_at": str(self.created_at)
+            "created_at": str(self.created_at.strftime("%Y-%m-%d %H:%M:%S")),
         }

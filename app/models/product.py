@@ -55,6 +55,6 @@ class Product(db.Model):
             "product_image": self.product_image,
             "is_deleted": self.is_deleted,
             "seller": self.seller.to_dict(),
-            "created_at": str(self.created_at),
+            "created_at": str(self.created_at.strftime("%Y-%m-%d %H:%M:%S")),
             "reviews": reviews
         }

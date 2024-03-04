@@ -31,5 +31,5 @@ class Review(db.Model):
             "customer_id": self.customer_id,
             "review": self.review,
             "rating": self.rating,
-            "created_at": str(self.created_at)
+            "created_at": str(self.created_at.strftime("%Y-%m-%d %H:%M:%S")),
         }

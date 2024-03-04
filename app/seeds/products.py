@@ -10,15 +10,6 @@ def seed_products():
     products = [
         {
             "seller_id": username_to_ids["haolam"],
-            "name": "Meidum Hass Avocado",
-            "price": 1.29,
-            "category": categories[0],
-            "description": "The Hass avocado is known as the 'year-round avocado' because of its seasonal availability. Mexico is the world's largest producer of Hass avocados, best known for their creamy texture and great taste!",
-            "remaining": 22,
-            "product_image": location + "avocado.jpg"
-        },
-        {
-            "seller_id": username_to_ids["haolam"],
             "name": "Organic Blackberries, 6 Oz",
             "price": 4.69,
             "category": categories[0],
@@ -124,6 +115,15 @@ def seed_products():
             "description": "Behold the Titanic Toy for kids - now with a free Ice Berg accessory! At 8\" long, it's not just a gift, it's a calamity waiting to happen. Perfect for birthdays, holidays, or when you want to recreate history's most epic oopsie-daisy moment! Calling all model ship enthusiasts, collectors, and history buffs with a flair for the dramatic - this Titanic model is your ticket to reliving the \"unsinkable\" saga. Use it as a conversation starter or, better yet, an iceberg-dodging titanic cake topper. Who said history can't be deliciously decorative? Get ready for a 3D printed wonder that's all Titanic, all the time. It's like stepping back in time, but with a touch of whimsy that even the original iceberg would raise an eyebrow at. Our attention to detail is so spot-on, you'll swear you're hearing a distant Celine Dion ballad with this toy ship!" ,
             "remaining": 55,
             "product_image": location + "ship.jpg"
+        },\
+        {
+            "seller_id": username_to_ids["haolam"],
+            "name": "Customizable Boy Puppet #2 - Professional Puppet Ministry, School, Church",
+            "price": 89.00,
+            "category": categories[4],
+            "description": "This fun guy stands 18\" tall from hand opening to the top of his head and approx. 24\" overall. He is the perfect size for kids, adults and puppet teams! You can choose from 15 different skin and hair colors for a unique creation of your very own! These puppets are built by puppeteers so we know what's important. These puppets feature: Internal elbow seam. (Not exposed on the outside) FULLY lined body and head. (No exposed foam… anywhere) Quality fabrics and materials. (Including anti-pill fabric) Comfortable rounded mouth grip. (Not just flat) And a fun color t-shirt. (T-shirt color will vary) Removable legs are available for this puppet HERE. *This puppet is built at the time of order. Please allow 1-2 weeks for build time in addition to S&H. AVAILABLE IN BLACK LIGHT.",
+            "remaining": 18,
+            "product_image": location + "puppet.jpg"
         },
         {
             "seller_id": username_to_ids["haolam"],
@@ -136,13 +136,13 @@ def seed_products():
         },
         {
             "seller_id": username_to_ids["haolam"],
-            "name": "Customizable Boy Puppet #2 - Professional Puppet Ministry, School, Church",
-            "price": 89.00,
-            "category": categories[4],
-            "description": "This fun guy stands 18\" tall from hand opening to the top of his head and approx. 24\" overall. He is the perfect size for kids, adults and puppet teams! You can choose from 15 different skin and hair colors for a unique creation of your very own! These puppets are built by puppeteers so we know what's important. These puppets feature: Internal elbow seam. (Not exposed on the outside) FULLY lined body and head. (No exposed foam… anywhere) Quality fabrics and materials. (Including anti-pill fabric) Comfortable rounded mouth grip. (Not just flat) And a fun color t-shirt. (T-shirt color will vary) Removable legs are available for this puppet HERE. *This puppet is built at the time of order. Please allow 1-2 weeks for build time in addition to S&H. AVAILABLE IN BLACK LIGHT.",
-            "remaining": 18,
-            "product_image": location + "puppet.jpg"
-        },
+            "name": "Meidum Hass Avocado",
+            "price": 1.29,
+            "category": categories[0],
+            "description": "The Hass avocado is known as the 'year-round avocado' because of its seasonal availability. Mexico is the world's largest producer of Hass avocados, best known for their creamy texture and great taste!",
+            "remaining": 22,
+            "product_image": location + "avocado.jpg"
+        }
     ]
 
     [db.session.add(Product(**product)) for product in products]

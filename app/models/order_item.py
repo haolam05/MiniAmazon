@@ -29,5 +29,5 @@ class OrderItem(db.Model):
             "product_id": self.product_id,
             "order_id": self.order_id,
             "quantity": self.quantity,
-            "created_at": str(self.created_at)
+            "created_at": str(self.created_at.strftime("%Y-%m-%d %H:%M:%S")),
         }
