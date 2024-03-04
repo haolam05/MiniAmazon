@@ -4,7 +4,7 @@ import "./Products.css";
 function Products({ products, user, inCartProductIds, bookmarkProductIds }) {
   return (
     <div id="products">
-      {products.map(product =>
+      {products.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime()).map(product =>
         <Product
           key={product.id}
           product={product}

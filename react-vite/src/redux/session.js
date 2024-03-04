@@ -47,11 +47,11 @@ export const thunkLogin = credentials => async dispatch => {
 export const thunkSignup = user => async dispatch => {
   const { first_name, last_name, profile_image_url, email, username, password } = user;
   const formData = new FormData();
-  formData.append("first_name", first_name)
-  formData.append("last_name", last_name)
-  formData.append("email", email)
-  formData.append("username", username)
-  formData.append("password", password)
+  formData.append("first_name", first_name);
+  formData.append("last_name", last_name);
+  formData.append("email", email);
+  formData.append("username", username);
+  formData.append("password", password);
 
   if (profile_image_url) formData.append("profile_image_url", profile_image_url);
 

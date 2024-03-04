@@ -9,9 +9,12 @@ import {
   handleProductPriceOnChange,
   handleProductQuantityOnChange,
   handlePreviewImageOnChange,
+  movePreviewImageUp,
+  movePreviewImageDown,
 } from "../../utils/form";
 import NotificationModal from "../NotificationModal";
 import Loading from "../Loading";
+import * as productActions from "../../redux/product";
 import "./ProductForm.css";
 
 function ProductForm() {
@@ -32,26 +35,26 @@ function ProductForm() {
 
     setSubmitting(true);
     movePreviewImageUp();
-    // const data = await dispatch(
-    //   sessionActions.thunkSignup({
-    //     first_name: firstName,
-    //     last_name: lastName,
-    //     username,
-    //     password,
-    //     email,
-    //     profile_image_url: profileImageUrl
-    //   })
-    // );
+    const data = await dispatch(
+      productActions.createProductThunk({
+        name,
+        category,
+        description,
+        price,
+        remaining,
+        product_image: productImage
+      })
+    );
 
-    // if (data?.errors) {
-    //   enabledSubmitButton();
-    //   setSubmitting(false);
-    //   movePreviewImageDown();
-    //   return setErrors(data.errors);
-    // }
-    // setModalContent(<NotificationModal message="You have successfully signed up!" status="alert-success" />);
+    if (data?.errors) {
+      enabledSubmitButton();
+      setSubmitting(false);
+      movePreviewImageDown();
+      return setErrors(data.errors);
+    }
+    setModalContent(<NotificationModal message="Successfully added new product!" status="alert-success" />);
     enabledSubmitButton();
-    // movePreviewImageDown();
+    movePreviewImageDown();
     setSubmitting(false);
   };
 

@@ -207,7 +207,7 @@ export const handleProductQuantityOnChange = (e, key, setQuantity, setErrors) =>
 }
 
 export const handleProductCategoryOnChange = (e, key, setCategory, setErrors) => {
-  const allowedCategories = ["Groceries", "Electronics", "Books", "Beauty & Health", "Handmade"];
+  const allowedCategories = ["Groceries", "Electronics", "Books", "Health & Beauty", "Handmade"];
   setCategory(e.target.value);
 
   if (!allowedCategories.includes(e.target.value)) {

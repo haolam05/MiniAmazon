@@ -3,6 +3,7 @@ import { createSelector } from "reselect";
 
 // Actions
 const LOAD_PRODUCTS = 'products/LOAD_PRODUCTS';
+const UPDATE_PRODUCT = 'products/UPDATE_PRODUCT';
 const UPDATE_PRODUCT_REVIEW = 'products/UPDATE_PRODUCT_REVIEW';
 const DELETE_PRODUCT_REVIEW = 'products/DELETE_PRODUCT_REVIEW';
 const HANDLE_CHECKOUT = 'products/HANDLE_CHECKOUT';
@@ -12,6 +13,11 @@ const HANDLE_CHECKOUT = 'products/HANDLE_CHECKOUT';
 const loadProducts = products => ({
   type: LOAD_PRODUCTS,
   products
+});
+
+const updateProduct = product => ({
+  type: UPDATE_PRODUCT,
+  product
 });
 
 const updateProductReview = (productId, review) => ({
@@ -42,6 +48,27 @@ export const loadProductsThunk = () => async (dispatch, getState) => {
   dispatch(loadProducts(data.products));
   return data;
 };
+
+export const createProductThunk = product => async dispatch => {
+  const { name, category, description, price, remaining, product_image } = product;
+  const formData = new FormData();
+  formData.append("name", name);
+  formData.append("category", category);
+  formData.append("description", description);
+  formData.append("price", price);
+  formData.append("remaining", remaining);
+  formData.append("product_image", product_image);
+
+  const response = await csrfFetch(`/api/products/`, {
+    method: 'POST',
+    body: formData
+  });
+  const data = await response.json();
+
+  if (!response.ok) return { errors: data };
+  dispatch(updateProduct(data));
+  return data;
+}
 
 export const createProductReviewThunk = (productId, reviewInput, ratingInput) => async dispatch => {
   const response = await csrfFetch(`/api/products/${productId}/reviews`, {
@@ -101,10 +128,19 @@ function productReducer(state = initialState, action) {
   switch (action.type) {
     case LOAD_PRODUCTS:
       return {
-        ...state, products: {
+        ...state,
+        products: {
           ...action.products.reduce((s, p) => (s[p.id] = p) && s, {})
         }
       };
+    case UPDATE_PRODUCT:
+      return {
+        ...state,
+        products: {
+          ...state.products,
+          [action.product.id]: action.product
+        }
+      }
     case UPDATE_PRODUCT_REVIEW: {
       const newState = { ...state };
       const reviews = newState.products[action.productId].reviews;

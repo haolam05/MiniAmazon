@@ -102,10 +102,9 @@
 
 .product-review .review-textarea i.fa-paper-plane {
   position: absolute;
-  right: 9px;
+  right: 15px;
   bottom: 20px;
   color: var(--red);
-  background-color: var(--white);
 }
 
 .product-review .review-textarea i.fa-paper-plane.disabled {
@@ -114,10 +113,9 @@
 
 .product-review .review-textarea i.fa-rectangle-xmark {
   position: absolute;
-  right: 8px;
+  right: 15px;
   bottom: 65px;
   color: var(--red);
   font-size: larger;
   border-radius: none;
-  background-color: var(--white);
 }
