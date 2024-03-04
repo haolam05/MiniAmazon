@@ -44,6 +44,13 @@ function LoginFormModal() {
       setSubmitting(false);
       return setErrors(data.errors);
     }
+
+    if (data?.message) {
+      enabledSubmitButton();
+      setSubmitting(false);
+      return setModalContent(<NotificationModal message={data.message} status="modal-errors" />);
+    }
+
     setModalContent(<NotificationModal message="You have successfully logged in!" status="alert-success" />);
     enabledSubmitButton();
     setSubmitting(false);

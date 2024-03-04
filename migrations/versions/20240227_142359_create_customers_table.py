@@ -29,6 +29,7 @@ def upgrade():
         sa.Column('hashed_password', sa.String(), nullable=False),
         sa.Column('email', sa.String(), nullable=False),
         sa.Column('profile_image_url', sa.String(), nullable=True),
+        sa.Column('is_deleted', sa.Boolean(), nullable=True),
         sa.Column('created_at', sa.DateTime(), nullable=True),
         sa.Column('updated_at', sa.DateTime(), nullable=True),
         sa.PrimaryKeyConstraint('id'),

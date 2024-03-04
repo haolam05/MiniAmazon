@@ -18,13 +18,14 @@ class Customer(db.Model, UserMixin):
     hashed_password = db.Column(db.String, nullable=False)
     email = db.Column(db.String, nullable=False, unique=True)
     profile_image_url = db.Column(db.String)
+    is_deleted = db.Column(db.Boolean, default=False)
     created_at = db.Column(db.DateTime, default=datetime.now)
     updated_at = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now)
 
 
     """ one-to-many """
-    products = db.relationship("Product", back_populates="seller", cascade="all, delete-orphan")
-    reviews = db.relationship("Review", back_populates="customer", cascade="all, delete-orphan")
+    products = db.relationship("Product", back_populates="seller")
+    reviews = db.relationship("Review", back_populates="customer")
     bookmarks = db.relationship("Bookmark", back_populates="customer", cascade="all, delete-orphan")
     orders = db.relationship("Order", back_populates="customer", cascade="all, delete-orphan")
 
@@ -88,4 +89,5 @@ class Customer(db.Model, UserMixin):
             "username": self.username,
             "email": self.email,
             "profile_image_url": self.profile_image_url,
+            "is_deleted": self.is_deleted
         }

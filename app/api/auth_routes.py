@@ -24,6 +24,10 @@ def login():
 
     if form.validate_on_submit():
         customer = Customer.query.filter(Customer.email == form.data["email"]).first()
+
+        if customer.is_deleted:
+            return {"message": "This account has already been deleted"}
+
         login_user(customer)
         return {"user": customer.to_dict()}, 200
 
@@ -129,7 +133,7 @@ def update_user_password():
 @login_required
 def delete_user():
     """Delete current user."""
-    db.session.delete(current_user)
+    current_user.is_deleted = True
     db.session.commit()
     logout_user()
     return { "message": "Successfully deleted account" }, 200

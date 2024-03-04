@@ -26,7 +26,10 @@ function ProductReviews({ product, user, setAverageRating }) {
           <i className="fa-solid fa-pencil"></i>
         </div>
       )}
-      {[...myReview, ...otherReviews].map(review => (
+      {[
+        ...myReview,
+        ...otherReviews.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())
+      ].map(review => (
         <ProductReview
           key={review.id}
           reviews={product.reviews}

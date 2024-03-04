@@ -42,6 +42,7 @@ export const thunkLogin = credentials => async dispatch => {
   const data = await response.json();
   if (!response.ok) return { errors: data };
   dispatch(setUser(data));
+  return data;
 };
 
 export const thunkSignup = user => async dispatch => {
@@ -63,6 +64,7 @@ export const thunkSignup = user => async dispatch => {
   const data = await response.json();
   if (!response.ok) return { errors: data };
   dispatch(setUser(data));
+  return data;
 };
 
 export const thunkLogout = () => async dispatch => {

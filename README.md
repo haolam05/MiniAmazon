@@ -777,7 +777,7 @@ Delete current user
 
 ### Delete a product by id
 
-Delete an existing product by id. Deleting a product will set its quantity to 0. We want to keep the record of what being sold on MiniAmazon for further market analysis.
+Delete an existing product by id. Deleted product can still be view in past orders.
 
 * Require Authentication: True
 * Require Authorization: True. (Must be the seller of the product)
