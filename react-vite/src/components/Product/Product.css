@@ -15,7 +15,7 @@
 }
 
 .product .product-image {
-  max-height: 250px;
+  height: 250px;
   min-width: 290px;
   padding: 10px 5px;
   background-color: var(--white);

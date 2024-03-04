@@ -63,7 +63,7 @@ const createUpdateThunkHelper = async (dispatch, product, productId) => {
   formData.append("description", description);
   formData.append("price", price);
   formData.append("remaining", remaining);
-  formData.append("product_image", product_image);
+  if (product_image) formData.append("product_image", product_image);
 
   let url;
   let method;

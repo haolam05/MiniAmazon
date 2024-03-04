@@ -30,6 +30,7 @@ function ProductForm({ product }) {
   const { setModalContent } = useModal();
 
   const handleSubmit = async e => {
+    console.log(productImage)
     e.preventDefault();
     disabledSubmitButton();
 

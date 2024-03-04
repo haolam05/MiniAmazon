@@ -13,7 +13,7 @@ function MyProduct({ product, user, bookmarkProductIds }) {
   const showEditProductForm = () => setModalContent(<ProductForm product={product} />);
 
   const deleteProduct = async () => {
-    const data = false;//await dispatch(productActions.deleteProductThunk(product.id));
+    const data = await dispatch(productActions.deleteProductThunk(product.id));
     if (data?.errors) {
       setModalContent(
         <NotificationModal

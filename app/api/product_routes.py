@@ -90,7 +90,8 @@ def update_product(id):
         product.description = form.data["description"]
         product.price = form.data["price"]
         product.remaining = form.data["remaining"]
-        product.product_image = url
+        if url != None:
+            product.product_image = url
 
         db.session.commit()
 

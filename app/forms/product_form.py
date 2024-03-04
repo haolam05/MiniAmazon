@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from flask_wtf.file import FileField, FileAllowed, FileRequired
+from flask_wtf.file import FileField, FileAllowed#, FileRequired
 from wtforms import StringField, DecimalField, IntegerField
 from wtforms.validators import DataRequired, ValidationError
 from ..api.aws_helpers import ALLOWED_EXTENSIONS
@@ -38,4 +38,5 @@ class ProductForm(FlaskForm):
     category = StringField("category", validators=[DataRequired(), check_category])
     description = StringField("description", validators=[DataRequired(), check_description])
     remaining = IntegerField("remaining", validators=[DataRequired(), check_remaining])
-    product_image = FileField("Profile Image Url", validators=[FileRequired(), FileAllowed(list(ALLOWED_EXTENSIONS))])
+    product_image = FileField("Profile Image Url", validators=[FileAllowed(list(ALLOWED_EXTENSIONS))])
+    # product_image = FileField("Profile Image Url", validators=[FileRequired(), FileAllowed(list(ALLOWED_EXTENSIONS))])
