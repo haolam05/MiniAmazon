@@ -31,7 +31,6 @@ function HomePage() {
     <MyProducts
       products={products}
       user={user?.user}
-      inCartProductIds={inCartProductIds}
       bookmarkProductIds={bookmarkProductIds}
     />
   );

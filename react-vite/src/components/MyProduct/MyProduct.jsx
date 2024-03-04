@@ -6,7 +6,7 @@ import ProductForm from "../ProductForm";
 import NotificationModal from "../NotificationModal";
 import * as productActions from "../../redux/product";
 
-function MyProduct({ product, user, inCartProductIds, bookmarkProductIds }) {
+function MyProduct({ product, user, bookmarkProductIds }) {
   const dispatch = useDispatch();
   const { setModalContent, closeModal } = useModal();
 
@@ -61,24 +61,20 @@ function MyProduct({ product, user, inCartProductIds, bookmarkProductIds }) {
         </div>
       )}
       <div className="product-btns">
-        {user && !bookmarkProductIds.includes(product.id) && (
-          <button
-            title="Edit this product"
-            onClick={showEditProductForm}
-            className="bookmark-btn"
-          >
-            Edit
-          </button>
-        )}
-        {user && !inCartProductIds.includes(product.id) && product.remaining > 0 && (
-          <button
-            title="Delete this product"
-            onClick={showConfirmDeleteProduct}
-            className="add-to-cart-btn"
-          >
-            Delete
-          </button>
-        )}
+        <button
+          title="Edit this product"
+          onClick={showEditProductForm}
+          className="bookmark-btn"
+        >
+          Edit
+        </button>
+        <button
+          title="Delete this product"
+          onClick={showConfirmDeleteProduct}
+          className="add-to-cart-btn"
+        >
+          Delete
+        </button>
       </div>
     </div>
   );

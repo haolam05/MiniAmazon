@@ -35,16 +35,30 @@ function ProductForm({ product }) {
 
     setSubmitting(true);
     movePreviewImageUp();
-    const data = await dispatch(
-      productActions.createProductThunk({
-        name,
-        category,
-        description,
-        price,
-        remaining,
-        product_image: productImage
-      })
-    );
+    let data;
+    if (product) {
+      data = await dispatch(
+        productActions.updateProductThunk(product.id, {
+          name,
+          category,
+          description,
+          price,
+          remaining,
+          product_image: productImage
+        })
+      );
+    } else {
+      data = await dispatch(
+        productActions.createProductThunk({
+          name,
+          category,
+          description,
+          price,
+          remaining,
+          product_image: productImage
+        })
+      );
+    }
 
     if (data?.errors) {
       enabledSubmitButton();
@@ -52,7 +66,12 @@ function ProductForm({ product }) {
       movePreviewImageDown();
       return setErrors(data.errors);
     }
-    setModalContent(<NotificationModal message="Successfully added new product!" status="alert-success" />);
+
+    if (product) {
+      setModalContent(<NotificationModal message="Successfully updated product!" status="alert-success" />);
+    } else {
+      setModalContent(<NotificationModal message="Successfully added new product!" status="alert-success" />);
+    }
     enabledSubmitButton();
     movePreviewImageDown();
     setSubmitting(false);

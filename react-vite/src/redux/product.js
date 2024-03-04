@@ -49,7 +49,7 @@ export const loadProductsThunk = () => async (dispatch, getState) => {
   return data;
 };
 
-export const createProductThunk = product => async dispatch => {
+const createUpdateThunkHelper = async (dispatch, product, productId) => {
   const { name, category, description, price, remaining, product_image } = product;
   const formData = new FormData();
   formData.append("name", name);
@@ -59,8 +59,19 @@ export const createProductThunk = product => async dispatch => {
   formData.append("remaining", remaining);
   formData.append("product_image", product_image);
 
-  const response = await csrfFetch(`/api/products/`, {
-    method: 'POST',
+  let url;
+  let method;
+
+  if (productId) {
+    url = `/api/products/${productId}`;
+    method = 'PUT';
+  } else {
+    url = `/api/products/`;
+    method = 'POST';
+  }
+
+  const response = await csrfFetch(url, {
+    method,
     body: formData
   });
   const data = await response.json();
@@ -68,6 +79,18 @@ export const createProductThunk = product => async dispatch => {
   if (!response.ok) return { errors: data };
   dispatch(updateProduct(data));
   return data;
+}
+
+export const createProductThunk = product => async dispatch => {
+  return createUpdateThunkHelper(dispatch, product);
+}
+
+export const updateProductThunk = (productId, product) => async dispatch => {
+  return createUpdateThunkHelper(dispatch, product, productId)
+}
+
+export const deleteProductThunk = productId => async dispatch => {
+
 }
 
 export const createProductReviewThunk = (productId, reviewInput, ratingInput) => async dispatch => {
