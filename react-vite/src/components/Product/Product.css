@@ -29,6 +29,7 @@
 
 .product .product-name {
   padding: 0 15px;
+  line-break: anywhere;
 }
 
 .product .product-price {
@@ -56,6 +57,7 @@
   padding: 10px;
   height: fit-content;
   text-align: center;
+  line-break: anywhere;
 }
 
 .product .product-remaining {

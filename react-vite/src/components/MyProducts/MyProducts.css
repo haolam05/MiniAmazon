@@ -1,0 +1,11 @@
+#my-products {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  height: 80vh;
+  width: 80vw;
+  scrollbar-color: var(--cart-scroll-color) transparent;
+  overflow-x: hidden;
+  overflow-y: auto;
+}

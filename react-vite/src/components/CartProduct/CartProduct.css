@@ -30,6 +30,7 @@
 
 .cart-product .cart-product-name {
   color: var(--black);
+  line-break: anywhere;
 }
 
 .cart-product .cart-product-price {

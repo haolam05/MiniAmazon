@@ -6,6 +6,7 @@ import NavBar from "../NavBar";
 import Loading from "../Loading";
 import Products from "../Products";
 import ProductForm from "../ProductForm";
+import MyProducts from "../MyProducts";
 import * as sessionActions from "../../redux/session";
 import * as productActions from "../../redux/product";
 import * as orderActions from "../../redux/order";
@@ -26,7 +27,14 @@ function HomePage() {
   const inCartProductIds = itemsInCart.map(item => item.product_id);
 
   const showProductForm = () => setModalContent(<ProductForm />);
-  const showMyProducts = () => { };
+  const showMyProducts = () => setModalContent(
+    <MyProducts
+      products={products}
+      user={user?.user}
+      inCartProductIds={inCartProductIds}
+      bookmarkProductIds={bookmarkProductIds}
+    />
+  );
 
   useEffect(() => {
     const loadData = async () => {

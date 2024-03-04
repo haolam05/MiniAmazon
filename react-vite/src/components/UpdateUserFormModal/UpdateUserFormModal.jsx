@@ -101,6 +101,7 @@ function UpdateUserFormModal({ user }) {
           type="text"
           spellCheck={false}
           value={user.username}
+          placeholder="At least 4 characters"
           className="disabled"
           disabled
         />
@@ -110,6 +111,7 @@ function UpdateUserFormModal({ user }) {
           type="password"
           spellCheck={false}
           value={password}
+          placeholder="At least 6 characters"
           onChange={e => handlePasswordOnChange(e, "password", setPassword, setErrors)}
           required
         />

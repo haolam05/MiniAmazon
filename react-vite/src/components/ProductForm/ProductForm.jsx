@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { disabledSubmitButton, enabledSubmitButton } from "../../utils/dom";
@@ -17,14 +17,14 @@ import Loading from "../Loading";
 import * as productActions from "../../redux/product";
 import "./ProductForm.css";
 
-function ProductForm() {
+function ProductForm({ product }) {
   const dispatch = useDispatch();
-  const [name, setName] = useState("");
-  const [category, setCategory] = useState("");
-  const [description, setDescription] = useState("");
-  const [price, setPrice] = useState("");
-  const [remaining, setRemaining] = useState(1);
-  const [productImage, setProductImage] = useState("");
+  const [name, setName] = useState(product?.name || "");
+  const [category, setCategory] = useState(product?.category || "");
+  const [description, setDescription] = useState(product?.description || "");
+  const [price, setPrice] = useState(product?.price || "");
+  const [remaining, setRemaining] = useState(product?.remaining || 1);
+  const [productImage, setProductImage] = useState(product?.product_image || "");
   const [submitting, setSubmitting] = useState(false);
   const [errors, setErrors] = useState({});
   const { setModalContent } = useModal();
@@ -72,7 +72,7 @@ function ProductForm() {
 
   return (
     <>
-      <h2 className="subheading">Create new product</h2>
+      <h2 className="subheading">{product ? "Edit Product" : "Create new product"}</h2>
       <form onSubmit={handleSubmit} id="product-form">
         <label>Name</label>
         <input
@@ -136,7 +136,7 @@ function ProductForm() {
         />
         {errors.productImage && <p className="modal-errors">{errors.productImage}</p>}
         {submitting && <Loading />}
-        <img alt="preview-image" id="preview-image" className="hidden" />
+        <img alt="preview-image" id="preview-image" className={productImage ? "" : "hidden"} src={productImage} />
         <button
           type="submit"
           className={`btn-submit ${inputInvalid() ? 'disabled' : ''}`}

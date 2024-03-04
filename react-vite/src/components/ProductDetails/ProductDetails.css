@@ -24,6 +24,7 @@ h2.product-title {
   overflow-y: auto;
   text-align: justify;
   padding-right: 10px;
+  line-break: anywhere;
 }
 
 #product-details .product-wrapper .product-info .product-seller {
