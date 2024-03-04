@@ -8,17 +8,17 @@ def seed_order_items():
     order_items = [
         {
             "product_id": product_image_name_to_ids["avocado.jpg"],
-            "order_id": 3,
+            "order_id": 5,
             "quantity": 2
         },
         {
             "product_id": product_image_name_to_ids["black+berries.jpg"],
-            "order_id": 3,
+            "order_id": 5,
             "quantity": 1
         },
         {
             "product_id": product_image_name_to_ids["ship.jpg"],
-            "order_id": 3,
+            "order_id": 5,
             "quantity": 3
         },
         {
@@ -27,9 +27,19 @@ def seed_order_items():
             "quantity": 4
         },
         {
-            "product_id": product_image_name_to_ids["camera.jpg"],
+            "product_id": product_image_name_to_ids["avocado.jpg"],
             "order_id": 1,
             "quantity": 1
+        },
+        {
+            "product_id": product_image_name_to_ids["puppet.jpg"],
+            "order_id": 1,
+            "quantity": 3
+        },
+        {
+            "product_id": product_image_name_to_ids["puzzle.jpg"],
+            "order_id": 1,
+            "quantity": 2
         },
         {
             "product_id": product_image_name_to_ids["water+flosser.jpg"],
@@ -40,6 +50,46 @@ def seed_order_items():
             "product_id": product_image_name_to_ids["puppet.jpg"],
             "order_id": 2,
             "quantity": 4
+        },
+        {
+            "product_id": product_image_name_to_ids["hair+dryer.jpg"],
+            "order_id": 2,
+            "quantity": 3
+        },
+        {
+            "product_id": product_image_name_to_ids["ship.jpg"],
+            "order_id": 2,
+            "quantity": 4
+        },
+        {
+            "product_id": product_image_name_to_ids["ship.jpg"],
+            "order_id": 3,
+            "quantity": 1
+        },
+        {
+            "product_id": product_image_name_to_ids["avocado.jpg"],
+            "order_id": 3,
+            "quantity": 1
+        },
+        {
+            "product_id": product_image_name_to_ids["red+raspberries.jpg"],
+            "order_id": 3,
+            "quantity": 1
+        },
+        {
+            "product_id": product_image_name_to_ids["black+berries.jpg"],
+            "order_id": 4,
+            "quantity": 1
+        },
+        {
+            "product_id": product_image_name_to_ids["book+blood+money.jpg"],
+            "order_id": 4,
+            "quantity": 1
+        },
+        {
+            "product_id": product_image_name_to_ids["red+raspberries.jpg"],
+            "order_id": 4,
+            "quantity": 1
         }
     ]
 

@@ -36,7 +36,7 @@ def seed_products():
             "product_image": location + "red+raspberries.jpg"
         },
         {
-            "seller_id": username_to_ids["haolam"],
+            "seller_id": username_to_ids["zoro"],
             "name": "Andonstar AD246S-M HDMI Digital Microscope 2000x for Adults, 3 Lens 2160P UHD Video Record, 7 Inch LCD Soldering Microscope, Coin Microscope, Biological Microscope Kit, Windows Compatible",
             "price": 178.99,
             "category": categories[1],
@@ -45,7 +45,7 @@ def seed_products():
             "product_image": location + "digital+microscope.jpg"
         },
         {
-            "seller_id": username_to_ids["haolam"],
+            "seller_id": username_to_ids["zoro"],
             "name": "DJI Mini 2 SE, Lightweight Mini Drone with QHD Video, 10km Video Transmission, 31-min Flight Time, Under 249 g, Return to Home, Drone with Camera for Beginners",
             "price": 299,
             "category": categories[1],
@@ -54,7 +54,7 @@ def seed_products():
             "product_image": location + "mini+drone.jpg"
         },
         {
-            "seller_id": username_to_ids["haolam"],
+            "seller_id": username_to_ids["zoro"],
             "name": "Dragon Touch Action Camera 4K 20MP 30FPS 100FT Waterproof Underwater Camera 170° Wide Angle WiFi Sports Cam with Remote 2 Batteries and Mounting Accessories Kit",
             "price": 44.99,
             "category": categories[1],
@@ -63,7 +63,7 @@ def seed_products():
             "product_image": location + "camera.jpg"
         },
         {
-            "seller_id": username_to_ids["haolam"],
+            "seller_id": username_to_ids["sanji"],
             "name": "Blood Money: Why the Powerful Turn a Blind Eye While China Kills Americans Hardcover - February 27, 2024",
             "price": 22.38,
             "category": categories[2],
@@ -72,7 +72,7 @@ def seed_products():
             "product_image": location + "book+blood+money.jpg"
         },
         {
-            "seller_id": username_to_ids["haolam"],
+            "seller_id": username_to_ids["sanji"],
             "name": "The Python Bible for Beginners: A Step-By-Step Guide to Master Coding from Scratch in Less Than 7 Days and Become the Expert that Top Companies Vie to Hire (with Hands-On Exercises and Code Snippets)",
             "price": 25.64,
             "category": categories[2],
@@ -81,7 +81,7 @@ def seed_products():
             "product_image": location + "book+python+bible.jpg"
         },
         {
-            "seller_id": username_to_ids["haolam"],
+            "seller_id": username_to_ids["sanji"],
             "name": "Modern Java in Action: Lambdas, streams, functional and reactive programming 2nd Edition",
             "price": 54.99,
             "category": categories[2],

@@ -39,6 +39,7 @@ function HomePage() {
 
   return (
     <div id="home-page">
+      <i className="fa-solid fa-circle-plus"></i>
       <NavBar
         user={user?.user}
         products={getProductsObject}

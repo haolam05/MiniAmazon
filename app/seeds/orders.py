@@ -16,7 +16,15 @@ def seed_orders():
         },
         {
             "customer_id": username_to_ids["haolam"],
-        }
+            "is_checkout": True
+        },
+        {
+            "customer_id": username_to_ids["haolam"],
+            "is_checkout": True
+        },
+        {
+            "customer_id": username_to_ids["haolam"],
+        },
     ]
 
     [db.session.add(Order(**order)) for order in orders]
