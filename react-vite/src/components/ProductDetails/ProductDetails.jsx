@@ -16,18 +16,20 @@ function ProductDetails({ user, product, createAndShowBookmarks, showCart, inCar
           <div className="product" id="product.id">
             <div className="product-image">
               <img src={product.product_image} alt="product-image" />
-              <div className="product-review-info" onClick={toggleReviewInfo}>
-                <div className="sticker" title="Click to open/collapse reviews information"></div>
-                <div className="review-info">
-                  <div className="total-reviews">
-                    <span>Total reviews ~ {product.reviews.length} 📝</span>
-                  </div>
-                  <div className="average-rating">
-                    <span>Average rating ~ {averageRating} </span>
-                    <i className={`fa-solid fa-star`}></i>
+              {user && (
+                <div className="product-review-info" onClick={toggleReviewInfo}>
+                  <div className="sticker" title="Click to open/collapse reviews information"></div>
+                  <div className="review-info">
+                    <div className="total-reviews">
+                      <span>Total reviews ~ {product.reviews.length} 📝</span>
+                    </div>
+                    <div className="average-rating">
+                      <span>Average rating ~ {averageRating} </span>
+                      <i className={`fa-solid fa-star`}></i>
+                    </div>
                   </div>
                 </div>
-              </div>
+              )}
             </div>
             <div className="product-price">
               <span className="dollar-sign">$</span>
