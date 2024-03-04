@@ -78,6 +78,7 @@ function HomePage() {
           user={user?.user}
           inCartProductIds={inCartProductIds}
           bookmarkProductIds={bookmarkProductIds}
+          productNameInput={productNameInput}
           productCategoryInput={productCategoryInput}
         />
         <Cart

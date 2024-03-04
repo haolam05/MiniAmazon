@@ -2,16 +2,24 @@ import { useEffect, useState } from "react";
 import Product from "../Product/Product";
 import "./Products.css";
 
-function Products({ products, user, inCartProductIds, bookmarkProductIds, productCategoryInput }) {
+function Products({ products, user, inCartProductIds, bookmarkProductIds, productNameInput, productCategoryInput }) {
   const [currentProducts, setCurrentProducts] = useState(products);
 
   useEffect(() => {
+    let nextProducts = [];
+
     if (productCategoryInput === "") {
-      setCurrentProducts([...products]);
+      nextProducts = [...products];
     } else {
-      setCurrentProducts(products.filter(product => product.category === productCategoryInput));
+      nextProducts = products.filter(product => product.category === productCategoryInput);
     }
-  }, [productCategoryInput, products]);
+
+    if (productNameInput !== "") {
+      nextProducts = nextProducts.filter(product => product.name.toLowerCase().includes(productNameInput.toLowerCase()));
+    }
+
+    setCurrentProducts(nextProducts);
+  }, [productNameInput, productCategoryInput, products]);
 
   return (
     <div id="products">
