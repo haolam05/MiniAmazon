@@ -54,28 +54,32 @@ function MyProduct({ product, user, bookmarkProductIds, itemsInCart }) {
         <span className="decimal">{getFormattedPrice(product.price)[1]}</span>
       </div>
       <p className="product-name">{getPreviewText(product.name)}</p>
-      <div className="product-remaining">{product.remaining > 0 ? `${product.remaining} left` : "Sold out"}</div>
+      <div className={`product-remaining${product.is_deleted ? " red" : ""}`}>{
+        product.is_deleted ? "Discontinued" : (product.remaining > 0 ? `${product.remaining} left` : "Sold out")
+      }</div>
       {user && bookmarkProductIds.includes(product.id) && (
         <div className="product-bookmark" title="This product has already been bookmarked">
           <i className="fa-solid fa-bookmark"></i>
         </div>
       )}
-      <div className="product-btns">
-        <button
-          title="Edit this product"
-          onClick={showEditProductForm}
-          className="bookmark-btn"
-        >
-          Edit
-        </button>
-        <button
-          title="Delete this product"
-          onClick={showConfirmDeleteProduct}
-          className="add-to-cart-btn"
-        >
-          Delete
-        </button>
-      </div>
+      {!product.is_deleted && (
+        <div className="product-btns">
+          <button
+            title="Edit this product"
+            onClick={showEditProductForm}
+            className="bookmark-btn"
+          >
+            Edit
+          </button>
+          <button
+            title="Delete this product"
+            onClick={showConfirmDeleteProduct}
+            className="add-to-cart-btn"
+          >
+            Delete
+          </button>
+        </div>
+      )}
     </div>
   );
 }
