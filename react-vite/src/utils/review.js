@@ -34,7 +34,6 @@ export const hideEditReviewForm = reviewId => {
   if (review) {
     const productReviewText = review.querySelector(".product-review-text");
     const textarea = review.querySelector(".review-textarea");
-    const rating = review.querySelector(".rating");
     if (textarea) textarea.classList.add("hidden");
     if (productReviewText) productReviewText.classList.remove("hidden");
   }
