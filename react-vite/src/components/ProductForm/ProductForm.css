@@ -1,6 +1,7 @@
 #product-form textarea {
   resize: none;
   color: var(--black);
+  scrollbar-color: var(--cart-scroll-color) transparent;
 }
 
 #product-form textarea:focus {

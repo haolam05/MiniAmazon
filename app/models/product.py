@@ -37,7 +37,7 @@ class Product(db.Model):
 
     @classmethod
     def allowed_categories(cls):
-        return ["Groceries", "Electronics", "Books", "Beauty & Health", "Handmade"]
+        return ["Groceries", "Electronics", "Books", "Health & Beauty", "Handmade"]
 
 
     def to_dict(self):

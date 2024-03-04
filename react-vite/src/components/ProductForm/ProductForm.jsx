@@ -31,7 +31,7 @@ function ProductForm() {
     disabledSubmitButton();
 
     setSubmitting(true);
-    // movePreviewImageUp();
+    movePreviewImageUp();
     // const data = await dispatch(
     //   sessionActions.thunkSignup({
     //     first_name: firstName,
@@ -52,7 +52,7 @@ function ProductForm() {
     // setModalContent(<NotificationModal message="You have successfully signed up!" status="alert-success" />);
     enabledSubmitButton();
     // movePreviewImageDown();
-    // setSubmitting(false);
+    setSubmitting(false);
   };
 
   const inputInvalid = () => {
@@ -62,6 +62,7 @@ function ProductForm() {
       description.length < 50 ||
       price <= 0 ||
       remaining < 1 ||
+      !productImage ||
       errors.productImage
     );
   }
@@ -138,7 +139,7 @@ function ProductForm() {
           className={`btn-submit ${inputInvalid() ? 'disabled' : ''}`}
           disabled={inputInvalid()}
         >
-          Sign Up
+          Submit
         </button>
       </form>
     </>

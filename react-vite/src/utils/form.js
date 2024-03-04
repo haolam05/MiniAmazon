@@ -226,7 +226,6 @@ export const handlePreviewImageOnChange = (e, key, setImageUrl, setErrors) => {
 
   previewImage.classList.add("hidden");
 
-  console.log("HAUIDFHDSAL", file.name, file.size)
   turnOnRedBoxShadow(e);
   if (size > 10 * 10 ** 6) {
     return setErrors({ [key]: "File size must not be larger than 10MB." });
@@ -255,12 +254,12 @@ const isImageValid = imageName => {
   return imageParts && imageParts[1] && allowedExtensions.includes(imageParts[1].toLowerCase());
 }
 
-export const movePreviewImageUp = () => {
+export const movePreviewImageUp = (amt = 119) => {
   const previewImage = document.getElementById('preview-image');
-  if (previewImage) previewImage.style.bottom = "119px";
+  if (previewImage) previewImage.style.bottom = `${amt}px`;
 }
 
-export const movePreviewImageDown = () => {
+export const movePreviewImageDown = (amt = 83) => {
   const previewImage = document.getElementById('preview-image');
-  if (previewImage) previewImage.style.bottom = "83px";
+  if (previewImage) previewImage.style.bottom = `${amt}px`;
 }
