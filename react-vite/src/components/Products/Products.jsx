@@ -23,7 +23,7 @@ function Products({ products, user, inCartProductIds, bookmarkProductIds, produc
 
   return (
     <div id="products">
-      {currentProducts.reverse().map(product =>
+      {currentProducts.map(product =>
         <Product
           key={product.id}
           product={product}
