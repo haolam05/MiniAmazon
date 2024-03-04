@@ -45,10 +45,12 @@ function HomePage() {
 
   return (
     <div id="home-page">
-      <div className="manage-my-product-btns">
-        <i className="fa-solid fa-plus" title="Add a product" onClick={showProductForm}></i>
-        <i className="fa-solid fa-database" title="My products" onClick={showMyProducts}></i>
-      </div>
+      {user?.user && (
+        <div className="manage-my-product-btns">
+          <i className="fa-solid fa-plus" title="Add a product" onClick={showProductForm}></i>
+          <i className="fa-solid fa-database" title="My products" onClick={showMyProducts}></i>
+        </div>
+      )}
       <NavBar
         user={user?.user}
         products={getProductsObject}
