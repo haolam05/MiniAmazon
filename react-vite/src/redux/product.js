@@ -4,6 +4,7 @@ import { createSelector } from "reselect";
 // Actions
 const LOAD_PRODUCTS = 'products/LOAD_PRODUCTS';
 const UPDATE_PRODUCT = 'products/UPDATE_PRODUCT';
+const DELETE_PRODUCT = 'products/DELETE_PRODUCT';
 const UPDATE_PRODUCT_REVIEW = 'products/UPDATE_PRODUCT_REVIEW';
 const DELETE_PRODUCT_REVIEW = 'products/DELETE_PRODUCT_REVIEW';
 const HANDLE_CHECKOUT = 'products/HANDLE_CHECKOUT';
@@ -18,6 +19,11 @@ const loadProducts = products => ({
 const updateProduct = product => ({
   type: UPDATE_PRODUCT,
   product
+});
+
+const deleteProduct = productId => ({
+  type: DELETE_PRODUCT,
+  productId
 });
 
 const updateProductReview = (productId, review) => ({
@@ -90,7 +96,14 @@ export const updateProductThunk = (productId, product) => async dispatch => {
 }
 
 export const deleteProductThunk = productId => async dispatch => {
+  const response = await csrfFetch(`/api/products/${productId}`, {
+    method: 'DELETE'
+  });
+  const data = await response.json();
 
+  if (!response.ok) return { "errors": data };
+  dispatch(deleteProduct(productId));
+  return data;
 }
 
 export const createProductReviewThunk = (productId, reviewInput, ratingInput) => async dispatch => {
@@ -164,6 +177,11 @@ function productReducer(state = initialState, action) {
           [action.product.id]: action.product
         }
       }
+    case DELETE_PRODUCT: {
+      const newState = { ...state };
+      delete newState.products[action.productId];
+      return newState;
+    }
     case UPDATE_PRODUCT_REVIEW: {
       const newState = { ...state };
       const reviews = newState.products[action.productId].reviews;
