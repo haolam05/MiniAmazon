@@ -12,6 +12,11 @@
   margin-bottom: 20px;
 }
 
+.product-review .product-review-text {
+  line-break: anywhere;
+  color: var(--black);
+}
+
 .product-review.me {
   background-color: var(--my-review-background);
   position: relative;
@@ -62,11 +67,16 @@
 .product-review .review-textarea textarea {
   resize: none;
   height: 40px;
-  scrollbar-color: var(--cart-scroll-color) transparent;
+  width: 180px;
+  scrollbar-color: rgb(250, 225, 225) transparent;
   overflow-x: hidden;
   overflow-y: auto;
   color: var(--black);
-  padding: 15px;
+  padding: 30px;
+  padding-left: 5px;
+  padding-top: 5px;
+  border: none;
+  border-radius: 5px;
 }
 
 .product-review .review-textarea textarea:focus {
@@ -87,13 +97,15 @@
 }
 
 .product-review .review-textarea i:hover {
-  color: var(--red);
+  opacity: 0.8;
 }
 
 .product-review .review-textarea i.fa-paper-plane {
   position: absolute;
-  right: 25px;
+  right: 9px;
   bottom: 20px;
+  color: var(--red);
+  background-color: var(--white);
 }
 
 .product-review .review-textarea i.fa-paper-plane.disabled {
@@ -102,6 +114,10 @@
 
 .product-review .review-textarea i.fa-rectangle-xmark {
   position: absolute;
-  right: 25px;
+  right: 8px;
   bottom: 65px;
+  color: var(--red);
+  font-size: larger;
+  border-radius: none;
+  background-color: var(--white);
 }
