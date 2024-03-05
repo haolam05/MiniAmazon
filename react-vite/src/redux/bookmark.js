@@ -5,6 +5,7 @@ import { createSelector } from "reselect";
 const LOAD_BOOKMARKS = 'bookmarks/LOAD_BOOKMARKS';
 const UPDATE_BOOKMARK = 'bookmarks/UPDATE_BOOKMARK'
 const DELETE_BOOKMARK = 'bookmarks/DELETE_BOOKMARK'
+const RESET = 'bookmarks/RESET';
 
 
 // POJO action creators
@@ -22,6 +23,11 @@ export const deleteBookmark = bookmarkId => ({
   type: DELETE_BOOKMARK,
   bookmarkId
 });
+
+export const reset = () => ({
+  type: RESET
+});
+
 
 
 // Thunk action creators
@@ -104,6 +110,10 @@ function bookmarkReducer(state = initialState, action) {
       delete newState.bookmarks[action.bookmarkId];
       return newState;
     }
+    case RESET:
+      return {
+        ...state, bookmarks: null
+      }
     default:
       return state;
   }

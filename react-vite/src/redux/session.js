@@ -1,6 +1,7 @@
 import { csrfFetch } from "./csrf";
 import { createSelector } from "reselect";
 import * as orderActions from "./order";
+import * as bookmarkActions from "./bookmark";
 
 // Actions
 const SET_USER = 'session/SET_USER';
@@ -71,6 +72,7 @@ export const thunkLogout = () => async dispatch => {
   await csrfFetch("/api/auth/logout");
   dispatch(removeUser());
   dispatch(orderActions.reset());
+  dispatch(bookmarkActions.reset());
 };
 
 export const deleteUserThunk = () => async dispatch => {
@@ -81,6 +83,7 @@ export const deleteUserThunk = () => async dispatch => {
   if (response.ok) {
     dispatch(removeUser());
     dispatch(orderActions.reset());
+    dispatch(bookmarkActions.reset());
   }
 };
 
@@ -96,6 +99,7 @@ export const updateUserPasswordThunk = user => async dispatch => {
   if (!response.ok) return { errors: data };
   dispatch(removeUser());
   dispatch(orderActions.reset());
+  dispatch(bookmarkActions.reset());
 };
 
 export const updateUserThunk = user => async dispatch => {

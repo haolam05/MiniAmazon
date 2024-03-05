@@ -20,7 +20,7 @@ function HomePage() {
   const [isLoaded, setIsLoaded] = useState(false);
   const { setModalContent } = useModal();
   const user = useSelector(sessionActions.sessionUser);
-  let products = useSelector(productActions.getProducts);
+  const products = useSelector(productActions.getProducts);
   const bookmarks = useSelector(bookmarkActions.getBookmarks);
   const bookmarkProductIds = bookmarks?.map(bookmark => bookmark.product_id) || [];
   const getProductsObject = useSelector(productActions.getProductsObject);
