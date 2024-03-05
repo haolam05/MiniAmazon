@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { getAvatarUrl } from "../../utils/navbar";
 import { getFormattedPrice, getPreviewText } from "../../utils/product";
 import { getAverageRating, toggleReviewInfo } from "../../utils/review";
 import ProductReviews from "../ProductReviews";
 import AddToCartButton from "../AddToCartButton";
 import BookmarkButton from "../BookmarkButton";
+import ProductInfo from "../ProductInfo/ProductInfo";
+import ProductBookmark from "../ProductBookmark";
 import "./ProductDetails.css";
 
 function ProductDetails({ user, product, createAndShowBookmarks, showCart, inCartProductIds, bookmarkProductIds }) {
@@ -70,39 +71,27 @@ function ProductDetails({ user, product, createAndShowBookmarks, showCart, inCar
             <div className={`product-remaining${product.is_deleted ? " red" : ""}`}>{
               product.is_deleted ? "Discontinued" : (product.remaining > 0 ? `${product.remaining} left` : "Sold out")
             }</div>
-            {user && bookmarkProductIds.includes(product.id) && (
-              <div className="product-bookmark" title="This product has already been bookmarked">
-                <i className="fa-solid fa-bookmark"></i>
-              </div>
-            )}
+            <ProductBookmark
+              user={user}
+              bookmarkProductIds={bookmarkProductIds}
+              product={product}
+            />
             <div className="product-btns">
               <BookmarkButton
                 bookmarkProductIds={bookmarkProductIds}
                 product={product}
                 user={user}
-                createAndShowBookmarks={createAndShowBookmarks}
+                createAndShowBookmarks={e => createAndShowBookmarks(e, product.id)}
               />
               <AddToCartButton
-                showCart={showCart}
+                showCart={e => showCart(e, product)}
                 product={product}
                 user={user}
                 inCartProductIds={inCartProductIds}
               />
             </div>
           </div>
-          <div className="product-info">
-            <div className="product-seller">
-              <div><img src={getAvatarUrl(product.seller.profile_image_url)} alt="avatar" /></div>
-              <div className="product-seller-info">
-                <div className="product-seller-title">Seller Info</div>
-                <div>{product.seller.first_name}, {product.seller.last_name}</div>
-                <div>{product.seller.email}</div>
-              </div>
-            </div>
-            <div className="product-description">
-              {product.description}
-            </div>
-          </div>
+          <ProductInfo product={product} />
         </div>
         {user && <ProductReviews product={product} user={user} setAverageRating={setAverageRating} />}
       </div>

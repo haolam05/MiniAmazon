@@ -9,7 +9,7 @@ function AddToCartButton({ showCart, product, user, inCartProductIds }) {
     return (
       <button
         title="Add this product to cart"
-        onClick={e => showCart(e, product, user)}
+        onClick={e => showCart(e, product)}
         className="add-to-cart-btn"
       >
         Add to cart

@@ -7,7 +7,7 @@ function BookmarkButton({ bookmarkProductIds, product, user, createAndShowBookma
     return (
       <button
         title="Bookmark this product"
-        onClick={createAndShowBookmarks}
+        onClick={e => createAndShowBookmarks(e, product.id)}
         className="bookmark-btn"
       >
         Bookmark

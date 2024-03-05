@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { getFormattedPrice, getPreviewText } from "../../utils/product";
 import Loading from "../Loading";
+import ProductBookmark from "../ProductBookmark";
 import * as orderActions from "../../redux/order";
 import "./CartProduct.css";
 
@@ -127,11 +128,12 @@ function CartProduct({ product, item, user, inCartProductIds, bookmarkProductIds
           </div>
         </div>
         <div className="cart-product-remaining">{product.remaining - quantityInput} left</div>
-        {bookmarkProductIds.includes(product.id) && (
-          <div className="cart-product-bookmark" title="This product has already been bookmarked">
-            <i className="fa-solid fa-bookmark"></i>
-          </div>
-        )}
+        <ProductBookmark
+          user={user}
+          bookmarkProductIds={bookmarkProductIds}
+          product={product}
+          cls="cart-product-bookmark"
+        />
       </div>
       <div className="cart-product-info">
         <p className="cart-product-name">{getPreviewText(product.name)}</p>

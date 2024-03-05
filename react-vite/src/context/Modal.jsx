@@ -4,7 +4,6 @@ import { hideAddToCartBtn } from '../utils/product';
 import { useRef, useState, useContext, createContext } from 'react';
 import ReactDOM from 'react-dom';
 import ProductDetails from '../components/ProductDetails';
-import LoginFormModal from '../components/LoginFormModal';
 import BookmarkForm from '../components/BookmarkForm';
 import * as orderActions from "../redux/order";
 import './Modal.css';
@@ -30,19 +29,13 @@ export function ModalProvider({ children }) {
 
   /************************************************/
   /********** Open Product details page **********/
-  const createAndShowBookmarks = async (e, user, productId) => {
+  const createAndShowBookmarks = async (e, productId) => {
     e.stopPropagation();
-    if (!user) {
-      return setModalContent(<LoginFormModal />);
-    }
     setModalContent(<BookmarkForm productId={productId} />);
   }
 
-  const showCart = async (e, product, user) => {
+  const showCart = async (e, product) => {
     e.stopPropagation();
-    if (!user) {
-      return setModalContent(<LoginFormModal />);
-    }
     await dispatch(orderActions.createOrderThunk(product));
     revealCart(e);
     hideAddToCartBtn(product.id);
@@ -53,8 +46,8 @@ export function ModalProvider({ children }) {
       <ProductDetails
         user={user}
         product={product}
-        createAndShowBookmarks={e => createAndShowBookmarks(e, user, product.id)}
-        showCart={e => showCart(e, product, user)}
+        createAndShowBookmarks={e => createAndShowBookmarks(e, product.id)}
+        showCart={e => showCart(e, product)}
         inCartProductIds={inCartProductIds}
         bookmarkProductIds={bookmarkProductIds}
       />

@@ -36,10 +36,10 @@ function Product({ product, user, inCartProductIds, bookmarkProductIds }) {
           bookmarkProductIds={bookmarkProductIds}
           product={product}
           user={user}
-          createAndShowBookmarks={createAndShowBookmarks}
+          createAndShowBookmarks={e => createAndShowBookmarks(e, product.id)}
         />
         <AddToCartButton
-          showCart={showCart}
+          showCart={e => showCart(e, product)}
           product={product}
           user={user}
           inCartProductIds={inCartProductIds}
