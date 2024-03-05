@@ -1,14 +1,17 @@
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
+import { useSecondaryModal } from "../../context/SecondaryModal";
 import { getFormattedPrice } from "../../utils/product";
 import CartProduct from "../CartProduct";
 import NotificationModal from "../NotificationModal";
 import ConfirmDeleteModal from "../ConfirmDeleteModal";
 import * as orderActions from "../../redux/order";
 import "./CartProducts.css";
+import PastOrders from "../PastOrders";
 
-function CartProducts({ products, itemsInCart, user, inCartProductIds, bookmarkProductIds }) {
+function CartProducts({ products, pastOrders, itemsInCart, user, inCartProductIds, bookmarkProductIds }) {
   const { setModalContent, closeModal } = useModal();
+  const { setSecondaryModalContent } = useSecondaryModal();
   const dispatch = useDispatch();
 
   const getSubTotal = items => {
@@ -19,9 +22,30 @@ function CartProducts({ products, itemsInCart, user, inCartProductIds, bookmarkP
   const checkoutOrder = async () => {
     const data = await dispatch(orderActions.checkoutOrderThunk(itemsInCart[0].order_id, itemsInCart));
     if (data?.errors) {
-      return setModalContent(<NotificationModal message={data.errors.message} status="modal-errors" />);
+      return setModalContent(
+        <NotificationModal
+          message={data.errors.message}
+          status="modal-errors"
+        />
+      );
     }
-    return setModalContent(<NotificationModal message="You have successfully checkout!" status="alert-success" />);
+
+    setSecondaryModalContent(
+      <NotificationModal
+        message="You have successfully checkout!"
+        status="alert-success"
+        secondaryModal={true}
+      />
+    );
+    setModalContent(
+      <PastOrders
+        orders={[...pastOrders, data].reverse()}
+        products={products}
+        user={user}
+        inCartProductIds={inCartProductIds}
+        bookmarkProductIds={bookmarkProductIds}
+      />
+    );
   }
 
   const showCheckoutConfirmModal = () => {

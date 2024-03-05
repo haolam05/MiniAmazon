@@ -128,4 +128,4 @@ def checkout_order(id):
 
     db.session.commit()
 
-    return {"message": "Successfully checked out"}, 200
+    return order.to_dict(), 200
