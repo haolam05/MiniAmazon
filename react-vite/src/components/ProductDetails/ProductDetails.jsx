@@ -8,8 +8,8 @@ import ProductInfo from "../ProductInfo/ProductInfo";
 import ProductBookmark from "../ProductBookmark";
 import ProductRemaining from "../ProductRemaining";
 import ProductPrice from "../ProductPrice";
+import ProductReviewInfo from "../ProductReviewInfo";
 import "./ProductDetails.css";
-import ProductReviewInfo from "../ProductReviewInfo/ProductReviewInfo";
 
 function ProductDetails({ user, product, createAndShowBookmarks, showCart, inCartProductIds, bookmarkProductIds }) {
   const [averageRating, setAverageRating] = useState(getAverageRating(product.reviews.map(review => review.rating)));
@@ -82,7 +82,13 @@ function ProductDetails({ user, product, createAndShowBookmarks, showCart, inCar
           </div>
           <ProductInfo product={product} />
         </div>
-        {user && <ProductReviews product={product} user={user} setAverageRating={setAverageRating} />}
+        {user && (
+          <ProductReviews
+            product={product}
+            user={user}
+            setAverageRating={setAverageRating}
+          />
+        )}
       </div>
     </>
   );
