@@ -1,3 +1,15 @@
+@keyframes modal-slide-in {
+  0% {
+    transform: translateX(-30vw);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
 #modal {
   position: fixed;
   top: 0;
@@ -8,6 +20,7 @@
   justify-content: center;
   align-items: center;
   z-index: 2;
+  animation: modal-slide-in 500ms ease-in-out;
 }
 
 #modal-background {
