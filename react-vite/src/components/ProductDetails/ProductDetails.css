@@ -39,10 +39,6 @@ h2.product-title {
     color: var(--black);
   }
 
-  .product-wrapper img {
-    cursor: crosshair;
-  }
-
   .product-wrapper .product-info img {
     border-radius: 50%;
     width: 100%;
@@ -97,6 +93,15 @@ h2.product-title {
     height: 452px;
     right: 0;
     cursor: none;
-    border-left: 1px solid black;
+    border-left: 1px solid var(--black);
+  }
+
+  .image-len {
+    position: absolute;
+    border: 1px solid var(--navbar-background);
+    width: 40px;
+    height: 40px;
+    left: 130px;
+    top: 50px;
   }
 }

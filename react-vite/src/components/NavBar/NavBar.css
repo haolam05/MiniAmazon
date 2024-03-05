@@ -19,6 +19,7 @@
 #navbar .searchbox {
   height: 100px;
   width: 100%;
+  border: none;
 }
 
 #navbar #searchbox>input {
@@ -48,6 +49,7 @@
   justify-content: center;
   min-width: fit-content;
   cursor: pointer;
+  border: 1px solid var(--navbar-background);
 }
 
 #navbar div:hover {
@@ -83,6 +85,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  border: none;
 }
 
 #navbar #search-icon i {

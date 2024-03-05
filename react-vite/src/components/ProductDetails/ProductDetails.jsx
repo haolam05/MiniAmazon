@@ -8,8 +8,30 @@ import "./ProductDetails.css";
 function ProductDetails({ user, product, createAndShowBookmarks, showCart, inCartProductIds, bookmarkProductIds }) {
   const [averageRating, setAverageRating] = useState(getAverageRating(product.reviews.map(review => review.rating)));
 
+  const getCursorPositionOnImage = e => {
+    return [position.x, position.y];
+  }
+
+  const handleLenMove = e => {
+    const [lenX, lenY] = [e.pageX, e.pageY];
+    const [lenWidth, lenHeight] = [e.target.offsetWidth, e.target.offsetHeight];
+    const [cursorX, cursorY] = [e.clientX, e.clientY];
+    console.log("LEN POSITION", lenX, lenY);
+    console.log("CURSOR POSITION", cursorX, cursorY)
+    e.target.style.left = cursorX;
+    e.target.style.top = cursorY;
+  }
+
   const showMagnifyImage = e => {
-    console.log(e.target)
+    //   const image = document.querySelector("#product-details .product-image");
+    //   const [imageX, imageY] = [image.getBoundingClientRect().left, image.getBoundingClientRect().top];
+    //   const [cursorX, cursorY] = [e.clientX, e.clientY];
+    //   const len = document.querySelector("#product-details .image-len");
+    //   const [offsetX, offsetY] = [len.getBoundingClientRect().left, len.getBoundingClientRect().top];
+
+    //   const [nextX, nextY] = [cursorX - offsetX, cursorY - offsetY];
+    //   if (nextX >= imageX) len.style.top = nextY + "px";
+    //   if (nextY <= imageY) len.style.left = nextX + "px";
   }
 
   return (
@@ -17,11 +39,12 @@ function ProductDetails({ user, product, createAndShowBookmarks, showCart, inCar
       <h2 className="product-title subheading">{product.name}</h2>
       <div id="product-details">
         {/* <div className="product-image-magnify">
-          <img src={product.product_image} alt="product-image-magnify" zoom={4} />
+          <img src={product.product_image} alt="product-image-magnify" />
         </div> */}
         <div className="product-wrapper">
           <div className="product" id="product.id">
             <div className="product-image">
+              {/* <div className="image-len"></div> */}
               <img src={product.product_image} alt="product-image" onMouseMove={showMagnifyImage} />
               {user && (
                 <div className="product-review-info" onClick={toggleReviewInfo}>
