@@ -58,6 +58,7 @@ function Bookmark({ user, bookmarks, bookmark, products, inCartProductIds, bookm
         user={user}
         inCartProductIds={inCartProductIds}
         bookmarkProductIds={bookmarkProductIds}
+        secondaryModal={true}
       />
       <div className="bookmark-btns">
         <div

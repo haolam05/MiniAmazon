@@ -1,4 +1,5 @@
 import { useModal } from "../../context/Modal";
+import { useSecondaryModal } from "../../context/SecondaryModal";
 import { getPreviewText } from "../../utils/product";
 import AddToCartButton from "../AddToCartButton";
 import BookmarkButton from "../BookmarkButton";
@@ -7,7 +8,8 @@ import ProductPrice from "../ProductPrice";
 import ProductRemaining from "../ProductRemaining";
 import "./Product.css";
 
-function Product({ product, user, inCartProductIds, bookmarkProductIds }) {
+function Product({ product, user, inCartProductIds, bookmarkProductIds, secondaryModal }) {
+  const { setSecondaryModalContent } = useSecondaryModal();
   const { createAndShowBookmarks, showCart, showProductDetails } = useModal();
 
   return (
@@ -15,7 +17,7 @@ function Product({ product, user, inCartProductIds, bookmarkProductIds }) {
       className="product"
       id={`product-${product.id}`}
       title="Click to view product details"
-      onClick={() => showProductDetails(product, user, inCartProductIds, bookmarkProductIds)}
+      onClick={() => showProductDetails(product, user, inCartProductIds, bookmarkProductIds, secondaryModal, setSecondaryModalContent)}
     >
       <div className="product-image">
         <img src={product.product_image} alt="product-image" />

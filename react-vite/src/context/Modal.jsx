@@ -41,17 +41,30 @@ export function ModalProvider({ children }) {
     hideAddToCartBtn(product.id);
   }
 
-  const showProductDetails = (product, user, inCartProductIds, bookmarkProductIds) => {
-    setModalContent(
-      <ProductDetails
-        user={user}
-        product={product}
-        createAndShowBookmarks={e => createAndShowBookmarks(e, product.id)}
-        showCart={e => showCart(e, product)}
-        inCartProductIds={inCartProductIds}
-        bookmarkProductIds={bookmarkProductIds}
-      />
-    );
+  const showProductDetails = (product, user, inCartProductIds, bookmarkProductIds, secondaryModal = false, setSecondaryModalContent = null) => {
+    if (secondaryModal && setSecondaryModalContent) {
+      setSecondaryModalContent(
+        <ProductDetails
+          user={user}
+          product={product}
+          createAndShowBookmarks={e => createAndShowBookmarks(e, product.id)}
+          showCart={e => showCart(e, product)}
+          inCartProductIds={inCartProductIds}
+          bookmarkProductIds={bookmarkProductIds}
+        />
+      );
+    } else {
+      setModalContent(
+        <ProductDetails
+          user={user}
+          product={product}
+          createAndShowBookmarks={e => createAndShowBookmarks(e, product.id)}
+          showCart={e => showCart(e, product)}
+          inCartProductIds={inCartProductIds}
+          bookmarkProductIds={bookmarkProductIds}
+        />
+      );
+    }
   }
   /************************************************/
   /************************************************/
