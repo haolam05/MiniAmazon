@@ -13,6 +13,7 @@ function Bookmarks({ user, products, inCartProductIds, bookmarks, bookmarkProduc
             key={bookmark.id}
             user={user}
             bookmark={bookmark}
+            bookmarks={bookmarks}
             products={products}
             inCartProductIds={inCartProductIds}
             bookmarkProductIds={bookmarkProductIds}

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useModal } from "../../context/Modal";
+import { useSecondaryModal } from "../../context/SecondaryModal";
 import { useDispatch } from "react-redux";
 import { hideEditBookmarkForm, showEditBookmarkForm } from "../../utils/bookmark";
 import Product from "../Product/Product";
@@ -7,10 +8,12 @@ import NotificationModal from "../NotificationModal";
 import ConfirmDeleteFormModal from "../ConfirmDeleteModal";
 import * as bookmarkActions from "../../redux/bookmark";
 import "./Bookmark.css";
+import Bookmarks from "../Bookmarks";
 
-function Bookmark({ user, bookmark, products, inCartProductIds, bookmarkProductIds }) {
+function Bookmark({ user, bookmarks, bookmark, products, inCartProductIds, bookmarkProductIds }) {
   const dispatch = useDispatch();
-  const { setModalContent, closeModal } = useModal();
+  const { setModalContent } = useModal();
+  const { setSecondaryModalContent, closeSecondaryModal } = useSecondaryModal();
   const [bookmarkNote, setBookmarkNote] = useState(bookmark.note);
   const [bookmarkNoteInput, setBookmarkNoteInput] = useState(bookmark.note);
 
@@ -20,20 +23,30 @@ function Bookmark({ user, bookmark, products, inCartProductIds, bookmarkProductI
 
   const deleteBookmark = async () => {
     await dispatch(bookmarkActions.deleteBookmarkThunk(bookmark.id));
-    setModalContent(
+    setSecondaryModalContent(
       <NotificationModal
         message="Successfully deleted bookmark"
         status="alert-success"
+        secondaryModal={true}
+      />
+    );
+    setModalContent(
+      <Bookmarks
+        user={user}
+        products={products}
+        inCartProductIds={inCartProductIds}
+        bookmarks={bookmarks.filter(b => b.id !== bookmark.id)}
+        bookmarkProductIds={bookmarkProductIds}
       />
     );
   }
 
   const showConfirmDeleteBookmarkForm = () => {
-    setModalContent(
+    setSecondaryModalContent(
       <ConfirmDeleteFormModal
         text="Are you sure you want to delete this bookmark?"
         deleteCb={deleteBookmark}
-        cancelDeleteCb={closeModal}
+        cancelDeleteCb={closeSecondaryModal}
       />
     )
   }
