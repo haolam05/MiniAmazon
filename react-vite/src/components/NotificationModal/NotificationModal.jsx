@@ -1,9 +1,20 @@
 import { useEffect } from "react";
 import { useModal } from "../../context/Modal";
+import { useSecondaryModal } from "../../context/SecondaryModal";
 import "./NotificationModal.css";
 
-function NotificationModal({ message, status }) {
-  const { closeModal } = useModal();
+function NotificationModal({ message, status, secondaryModal = false }) {
+  const getCloseModal = () => {
+    if (secondaryModal) {
+      const { closeModal } = useSecondaryModal();
+      return closeModal;
+    } else {
+      const { closeModal } = useModal();
+      return closeModal;
+    }
+  }
+
+  const closeModal = getCloseModal();
 
   useEffect(() => {
     const timer = setTimeout(() => {

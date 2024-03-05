@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { ModalProvider, Modal } from "../context/Modal";
+import { SecondaryModalProvider, SecondaryModal } from "../context/SecondaryModal";
 import * as sessionActions from "../redux/session";
 
 export default function Layout() {
@@ -19,8 +20,11 @@ export default function Layout() {
   return (
     <>
       <ModalProvider>
-        {isLoaded && <Outlet />}
-        <Modal />
+        <SecondaryModalProvider>
+          {isLoaded && <Outlet />}
+          <Modal />
+          <SecondaryModal />
+        </SecondaryModalProvider>
       </ModalProvider>
     </>
   );

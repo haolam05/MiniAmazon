@@ -1,10 +1,10 @@
-import { useModal } from "../../context/Modal";
+import { useSecondaryModal } from "../../context/SecondaryModal";
 import ProductReview from "../ProductReview";
 import ReviewForm from "../ReviewForm";
 import "./ProductReviews.css";
 
 function ProductReviews({ product, user, setAverageRating }) {
-  const { setModalContent } = useModal();
+  const { setModalContent } = useSecondaryModal();
 
   if (!product) return;
 
