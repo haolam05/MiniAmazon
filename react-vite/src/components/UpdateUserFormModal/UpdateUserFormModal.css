@@ -1,0 +1,3 @@
+#update-user-form input::placeholder {
+  color: var(--red);
+}

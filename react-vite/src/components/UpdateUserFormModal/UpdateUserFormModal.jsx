@@ -13,6 +13,7 @@ import {
 import Loading from "../Loading";
 import NotificationModal from "../NotificationModal";
 import * as sessionActions from "../../redux/session";
+import "./UpdateUserFormModal.css";
 
 function UpdateUserFormModal({ user }) {
   const dispatch = useDispatch();
@@ -68,7 +69,7 @@ function UpdateUserFormModal({ user }) {
   return (
     <>
       <h2 className="subheading">Update Profile</h2>
-      <form onSubmit={handleSubmit} encType="multipart/form-data">
+      <form onSubmit={handleSubmit} encType="multipart/form-data" id="update-user-form">
         <label>First Name</label>
         <input
           type="text"
@@ -111,7 +112,7 @@ function UpdateUserFormModal({ user }) {
           type="password"
           spellCheck={false}
           value={password}
-          placeholder="At least 6 characters"
+          placeholder="Please enter your password for update!!"
           onChange={e => handlePasswordOnChange(e, "password", setPassword, setErrors)}
           required
         />
