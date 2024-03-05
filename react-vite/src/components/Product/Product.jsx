@@ -3,6 +3,7 @@ import { getFormattedPrice, getPreviewText } from "../../utils/product";
 import AddToCartButton from "../AddToCartButton";
 import BookmarkButton from "../BookmarkButton";
 import ProductBookmark from "../ProductBookmark";
+import ProductRemaining from "../ProductRemaining";
 import "./Product.css";
 
 function Product({ product, user, inCartProductIds, bookmarkProductIds }) {
@@ -24,9 +25,7 @@ function Product({ product, user, inCartProductIds, bookmarkProductIds }) {
         <span className="decimal">{getFormattedPrice(product.price)[1]}</span>
       </div>
       <p className="product-name">{getPreviewText(product.name)}</p>
-      <div className={`product-remaining${product.is_deleted ? " red" : ""}`}>{
-        product.is_deleted ? "Discontinued" : (product.remaining > 0 ? `${product.remaining} left` : "Sold out")
-      }</div>
+      <ProductRemaining product={product} />
       <ProductBookmark
         user={user}
         bookmarkProductIds={bookmarkProductIds}
