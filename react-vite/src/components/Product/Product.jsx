@@ -2,6 +2,7 @@ import { useModal } from "../../context/Modal";
 import { getFormattedPrice, getPreviewText } from "../../utils/product";
 import AddToCartButton from "../AddToCartButton";
 import BookmarkButton from "../BookmarkButton";
+import ProductBookmark from "../ProductBookmark";
 import "./Product.css";
 
 function Product({ product, user, inCartProductIds, bookmarkProductIds }) {
@@ -26,11 +27,11 @@ function Product({ product, user, inCartProductIds, bookmarkProductIds }) {
       <div className={`product-remaining${product.is_deleted ? " red" : ""}`}>{
         product.is_deleted ? "Discontinued" : (product.remaining > 0 ? `${product.remaining} left` : "Sold out")
       }</div>
-      {user && bookmarkProductIds.includes(product.id) && (
-        <div className="product-bookmark" title="This product has already been bookmarked">
-          <i className="fa-solid fa-bookmark"></i>
-        </div>
-      )}
+      <ProductBookmark
+        user={user}
+        bookmarkProductIds={bookmarkProductIds}
+        product={product}
+      />
       <div className="product-btns">
         <BookmarkButton
           bookmarkProductIds={bookmarkProductIds}

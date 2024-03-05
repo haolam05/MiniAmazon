@@ -4,6 +4,7 @@ import { getFormattedPrice, getPreviewText } from "../../utils/product";
 import ConfirmDeleteFormModal from "../ConfirmDeleteModal";
 import ProductForm from "../ProductForm";
 import NotificationModal from "../NotificationModal";
+import ProductBookmark from "../ProductBookmark";
 import * as productActions from "../../redux/product";
 
 function MyProduct({ product, user, bookmarkProductIds, inCartProductIds, itemsInCart }) {
@@ -57,11 +58,11 @@ function MyProduct({ product, user, bookmarkProductIds, inCartProductIds, itemsI
       <div className={`product-remaining${product.is_deleted ? " red" : ""}`}>{
         product.is_deleted ? "Discontinued" : (product.remaining > 0 ? `${product.remaining} left` : "Sold out")
       }</div>
-      {user && bookmarkProductIds.includes(product.id) && (
-        <div className="product-bookmark" title="This product has already been bookmarked">
-          <i className="fa-solid fa-bookmark"></i>
-        </div>
-      )}
+      <ProductBookmark
+        user={user}
+        bookmarkProductIds={bookmarkProductIds}
+        product={product}
+      />
       {!product.is_deleted && (
         <div className="product-btns">
           <button
