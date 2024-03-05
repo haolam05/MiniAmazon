@@ -85,9 +85,10 @@ function ProductDetails({ user, product, createAndShowBookmarks, showCart, inCar
               )}
               {user && !inCartProductIds.includes(product.id) && product.remaining > 0 && !product.is_deleted && (
                 <button
-                  title="Add this product to cart"
-                  onClick={showCart}
-                  className="add-to-cart-btn"
+                  title={user.id === product.seller_id ? "You can not add your own product" : "Add this product to cart"}
+                  onClick={e => showCart(e, product, user)}
+                  className={`add-to-cart-btn${user.id === product.seller_id ? " disabled" : ""}`}
+                  disabled={user.id === product.seller_id}
                 >
                   Add to cart
                 </button>
