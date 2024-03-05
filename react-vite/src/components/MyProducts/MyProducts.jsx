@@ -8,17 +8,21 @@ function MyProducts({ products, user, bookmarkProductIds, itemsInCart }) {
 
   return (<>
     <h2 className="subheading">My Products</h2>
-    <div id="my-products">
-      {myProducts.map(product => (
-        <MyProduct
-          key={product.id}
-          product={product}
-          user={user}
-          itemsInCart={itemsInCart}
-          bookmarkProductIds={bookmarkProductIds}
-        />
-      ))}
-    </div>
+    {myProducts.length ? (
+      <div id="my-products">
+        {myProducts.map(product => (
+          <MyProduct
+            key={product.id}
+            product={product}
+            user={user}
+            itemsInCart={itemsInCart}
+            bookmarkProductIds={bookmarkProductIds}
+          />
+        ))}
+      </div>
+    ) : (
+      <p className="alert-success">You have not listed any products yet!</p >
+    )}
   </>);
 }
 

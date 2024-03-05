@@ -8,14 +8,21 @@ import "./ProductDetails.css";
 function ProductDetails({ user, product, createAndShowBookmarks, showCart, inCartProductIds, bookmarkProductIds }) {
   const [averageRating, setAverageRating] = useState(getAverageRating(product.reviews.map(review => review.rating)));
 
+  const showMagnifyImage = e => {
+    console.log(e.target)
+  }
+
   return (
     <>
       <h2 className="product-title subheading">{product.name}</h2>
       <div id="product-details">
+        {/* <div className="product-image-magnify">
+          <img src={product.product_image} alt="product-image-magnify" zoom={4} />
+        </div> */}
         <div className="product-wrapper">
           <div className="product" id="product.id">
             <div className="product-image">
-              <img src={product.product_image} alt="product-image" />
+              <img src={product.product_image} alt="product-image" onMouseMove={showMagnifyImage} />
               {user && (
                 <div className="product-review-info" onClick={toggleReviewInfo}>
                   <div className="sticker" title="Click to open/collapse reviews information"></div>

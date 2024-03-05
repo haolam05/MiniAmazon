@@ -2,7 +2,7 @@ import { getFormattedPrice } from "../../utils/product";
 import PastOrderItem from "../PastOrderItem";
 import "./PastOrder.css";
 
-function PastOrder({ order, products }) {
+function PastOrder({ order, products, user, inCartProductIds, bookmarkProductIds }) {
   if (!order) return;
 
   const getSubTotal = items => {
@@ -22,7 +22,14 @@ function PastOrder({ order, products }) {
       <div className="past-order-items">
         {order.items.map(item => {
           const product = products[item.product_id]
-          return <PastOrderItem key={item.id} item={item} product={product} />
+          return <PastOrderItem
+            key={item.id}
+            item={item}
+            product={product}
+            user={user}
+            inCartProductIds={inCartProductIds}
+            bookmarkProductIds={bookmarkProductIds}
+          />
         })}
       </div>
     </div>

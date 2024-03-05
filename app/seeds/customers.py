@@ -61,6 +61,14 @@ def seed_customers():
             "password": "password7",
             "email": "ace@user.io",
             "profile_image_url": location + "avatar7.png"
+        },
+        {
+            "first_name": "Nicky",
+            "last_name": "Li",
+            "username": "nickyli",
+            "password": "password8",
+            "email": "nickyli@user.io",
+            "profile_image_url": location + "avatar8.jpg"
         }
     ]
 

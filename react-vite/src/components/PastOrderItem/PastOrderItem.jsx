@@ -1,13 +1,20 @@
+import { useModal } from "../../context/Modal";
 import { getFormattedPrice, getPreviewText } from "../../utils/product";
 
-function PastOrderItem({ item, product }) {
+function PastOrderItem({ item, product, user, inCartProductIds, bookmarkProductIds }) {
+  const { showProductDetails } = useModal();
+
   return (
     <div
       className="cart-product"
       id={`cart-product-${product.id}`}
     >
       <div className="cart-product-image">
-        <img src={product.product_image} alt="cart-product-image" />
+        <img
+          src={product.product_image}
+          alt="cart-product-image"
+          onClick={() => showProductDetails(product, user, inCartProductIds, bookmarkProductIds)}
+        />
         <p style={{ textAlign: 'center' }}>Quantity: {item.quantity}</p>
       </div>
       <div className="cart-product-info">

@@ -13,7 +13,15 @@ function Cart({ products, user, inCartProductIds, bookmarkProductIds }) {
   const pastOrders = orders.filter(order => order.is_checkout);
 
   const showPastOrders = () => {
-    setModalContent(<PastOrders orders={pastOrders.reverse()} products={products} />);
+    setModalContent(
+      <PastOrders
+        orders={pastOrders.reverse()}
+        products={products}
+        user={user}
+        inCartProductIds={inCartProductIds}
+        bookmarkProductIds={bookmarkProductIds}
+      />
+    );
   }
 
   return (

@@ -1,86 +1,102 @@
-#product-details .product-wrapper {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 40px;
-  justify-items: center;
-  align-items: center;
-}
-
 h2.product-title {
   text-align: center;
 }
 
-#product-details .product-wrapper .product-info {
-  margin: 10px;
-}
+#product-details {
+  .product-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    justify-items: center;
+    align-items: center;
+  }
 
-#product-details .product-wrapper .product-info .product-description {
-  color: var(--green);
-  font-style: italic;
-  width: 300px;
-  max-height: 275px;
-  scrollbar-color: var(--dark-purple) transparent;
-  overflow-x: hidden;
-  overflow-y: auto;
-  text-align: justify;
-  padding-right: 10px;
-  line-break: anywhere;
-}
+  .product-wrapper .product-info {
+    margin: 10px;
+  }
 
-#product-details .product-wrapper .product-info .product-seller {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-  align-items: center;
-}
+  .product-wrapper .product-info .product-description {
+    color: var(--green);
+    font-style: italic;
+    width: 300px;
+    max-height: 275px;
+    scrollbar-color: var(--dark-purple) transparent;
+    overflow-x: hidden;
+    overflow-y: auto;
+    text-align: justify;
+    padding-right: 10px;
+    line-break: anywhere;
+  }
 
-#product-details .product-wrapper .product-info .product-seller-info div {
-  color: var(--black);
-}
+  .product-wrapper .product-info .product-seller {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    align-items: center;
+  }
 
-#product-details .product-wrapper .product-info img {
-  border-radius: 50%;
-  width: 100%;
-  height: 100%;
-  margin-bottom: 10px;
-}
+  .product-wrapper .product-info .product-seller-info div {
+    color: var(--black);
+  }
 
-#product-details .product-wrapper .product-info .product-seller-title {
-  font-style: italic;
-  margin-bottom: 20px;
-  text-decoration: underline;
-}
+  .product-wrapper img {
+    cursor: crosshair;
+  }
 
-#product-details .product-wrapper .product-category {
-  padding: 0 15px;
-}
+  .product-wrapper .product-info img {
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+    margin-bottom: 10px;
+  }
 
-#product-details .product-wrapper .average-rating i.fa-star {
-  color: var(--orange);
-}
+  .product-wrapper .product-info .product-seller-title {
+    font-style: italic;
+    margin-bottom: 20px;
+    text-decoration: underline;
+  }
 
-#product-details .product-wrapper .product-review-info {
-  position: absolute;
-  top: 200px;
-  left: 0;
-  background-color: var(--dark-purple);
-  padding: 10px;
-  border-top-right-radius: 5px;
-  border-bottom-right-radius: 5px;
-  display: flex;
-  padding-left: 0;
-}
+  .product-wrapper .product-category {
+    padding: 0 15px;
+  }
 
-#product-details .product-wrapper .product-review-info .sticker {
-  border-left: 15px solid var(--orange);
-  margin-top: -10px;
-  margin-bottom: -10px;
-  margin-right: 10px;
-  height: 60px;
-  border-top-right-radius: 5px;
-  border-bottom-right-radius: 5px;
-}
+  .product-wrapper .average-rating i.fa-star {
+    color: var(--orange);
+  }
 
-#product-details .product-wrapper .product-review-info:hover {
-  z-index: 1;
+  .product-wrapper .product-review-info {
+    position: absolute;
+    top: 200px;
+    left: 0;
+    background-color: var(--dark-purple);
+    padding: 10px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    display: flex;
+    padding-left: 0;
+  }
+
+  .product-wrapper .product-review-info .sticker {
+    border-left: 15px solid var(--orange);
+    margin-top: -10px;
+    margin-bottom: -10px;
+    margin-right: 10px;
+    height: 60px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+  }
+
+  .product-wrapper .product-review-info:hover {
+    z-index: 1;
+  }
+
+  .product-image-magnify {
+    position: absolute;
+    z-index: 1;
+    width: 390px;
+    height: 452px;
+    right: 0;
+    cursor: none;
+    border-left: 1px solid black;
+  }
 }
