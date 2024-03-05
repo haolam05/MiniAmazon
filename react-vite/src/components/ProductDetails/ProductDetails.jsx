@@ -42,14 +42,14 @@ function ProductDetails({ user, product, createAndShowBookmarks, showCart, inCar
           <img src={product.product_image} alt="product-image-magnify" />
         </div> */}
         <div className="product-wrapper">
-          <div className="product" id="product.id">
+          <div className="product cursor-normal" id="product.id">
             <div className="product-image">
               {/* <div className="image-len"></div> */}
               <img src={product.product_image} alt="product-image" onMouseMove={showMagnifyImage} />
               {user && (
                 <div className="product-review-info" onClick={toggleReviewInfo}>
-                  <div className="sticker" title="Click to open/collapse reviews information"></div>
-                  <div className="review-info">
+                  <div className="sticker cursor-pointer" title="Click to open/collapse reviews information"></div>
+                  <div className="review-info cursor-pointer">
                     <div className="total-reviews">
                       <span>Total reviews ~ {product.reviews.length} 📝</span>
                     </div>

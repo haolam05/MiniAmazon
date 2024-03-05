@@ -6,9 +6,9 @@ import ProductForm from "../ProductForm";
 import NotificationModal from "../NotificationModal";
 import * as productActions from "../../redux/product";
 
-function MyProduct({ product, user, bookmarkProductIds, itemsInCart }) {
+function MyProduct({ product, user, bookmarkProductIds, inCartProductIds, itemsInCart }) {
   const dispatch = useDispatch();
-  const { setModalContent, closeModal } = useModal();
+  const { setModalContent, closeModal, showProductDetails } = useModal();
 
   const showEditProductForm = () => setModalContent(<ProductForm product={product} />);
 
@@ -41,11 +41,11 @@ function MyProduct({ product, user, bookmarkProductIds, itemsInCart }) {
 
   return (
     <div
-      className="product"
+      className="product cursor-normal"
       id={`product-${product.id}`}
       onClick={e => e.stopPropagation()}
     >
-      <div className="product-image">
+      <div className="product-image cursor-pointer" onClick={() => showProductDetails(product, user, inCartProductIds, bookmarkProductIds)}>
         <img src={product.product_image} alt="product-image" />
       </div>
       <div className="product-price">

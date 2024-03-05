@@ -69,13 +69,14 @@ function CartProduct({ product, item, user, inCartProductIds, bookmarkProductIds
 
   return (
     <div
-      className="cart-product"
+      className="cart-product cursor-normal"
       id={`cart-product-${product.id}`}
     >
       <div className="cart-product-image">
         <img
           src={product.product_image}
           alt="cart-product-image"
+          className="cursor-pointer"
           onClick={() => showProductDetails(product, user, inCartProductIds, bookmarkProductIds)}
         />
         {submitting && <Loading />}
@@ -92,7 +93,7 @@ function CartProduct({ product, item, user, inCartProductIds, bookmarkProductIds
             </div>
           ) : (
             <div
-              className="minus"
+              className="minus cursor-pointer"
               title="Decrement product count"
               onClick={handleDecrement}
             >
@@ -111,14 +112,14 @@ function CartProduct({ product, item, user, inCartProductIds, bookmarkProductIds
             />
           </div>
           <div
-            className="plus"
+            className="plus cursor-pointer"
             title="Increment product count"
             onClick={handleIncrement}
           >
             <i className="fa-solid fa-plus"></i>
           </div>
           <div
-            className="submit-quantity"
+            className="submit-quantity cursor-pointer"
             title="Save"
             onClick={updateOrder}
           >
@@ -139,7 +140,7 @@ function CartProduct({ product, item, user, inCartProductIds, bookmarkProductIds
           <span className="price">{getFormattedPrice(product.price)[0]}</span>
           <span className="decimal">{getFormattedPrice(product.price)[1]}</span>
         </div>
-        <div className="cart-product-delete-btn" onClick={removeProductFromCart}>Delete</div>
+        <div className="cart-product-delete-btn cursor-pointer" onClick={removeProductFromCart}>Delete</div>
       </div>
     </div>
   );

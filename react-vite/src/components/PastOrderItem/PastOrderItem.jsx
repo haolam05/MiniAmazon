@@ -6,13 +6,14 @@ function PastOrderItem({ item, product, user, inCartProductIds, bookmarkProductI
 
   return (
     <div
-      className="cart-product"
+      className="cart-product cursor-normal"
       id={`cart-product-${product.id}`}
     >
       <div className="cart-product-image">
         <img
           src={product.product_image}
           alt="cart-product-image"
+          className="cursor-pointer"
           onClick={() => showProductDetails(product, user, inCartProductIds, bookmarkProductIds)}
         />
         <p style={{ textAlign: 'center' }}>Quantity: {item.quantity}</p>

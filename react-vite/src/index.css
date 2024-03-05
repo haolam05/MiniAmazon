@@ -89,6 +89,14 @@ button[type="submit"]:hover {
   text-decoration: underline;
 }
 
+.cursor-normal {
+  cursor: auto
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
 .heading {
   font-size: 25pt;
   font-weight: bold;

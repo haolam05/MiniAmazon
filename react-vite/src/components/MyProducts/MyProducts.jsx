@@ -1,7 +1,7 @@
 import MyProduct from "../MyProduct";
 import "./MyProducts.css";
 
-function MyProducts({ products, user, bookmarkProductIds, itemsInCart }) {
+function MyProducts({ products, user, bookmarkProductIds, inCartProductIds, itemsInCart }) {
   if (!user || !products) return;
 
   const myProducts = products.filter(product => product.seller_id === user.id);
@@ -16,6 +16,7 @@ function MyProducts({ products, user, bookmarkProductIds, itemsInCart }) {
             product={product}
             user={user}
             itemsInCart={itemsInCart}
+            inCartProductIds={inCartProductIds}
             bookmarkProductIds={bookmarkProductIds}
           />
         ))}

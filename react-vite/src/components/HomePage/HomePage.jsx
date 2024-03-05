@@ -34,6 +34,7 @@ function HomePage() {
       products={products}
       user={user?.user}
       itemsInCart={itemsInCart}
+      inCartProductIds={inCartProductIds}
       bookmarkProductIds={bookmarkProductIds}
     />
   );
