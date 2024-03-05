@@ -21,7 +21,7 @@ function ProductReviews({ product, user, setAverageRating }) {
 
   return (
     <div id="product-reviews">
-      {!myReview.length && (
+      {!myReview.length && product.seller_id !== user.id && (
         <div className="new-review-icon" title="Write a review" onClick={showReviewForm}>
           <i className="fa-solid fa-pencil"></i>
         </div>
