@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { ModalProvider, Modal } from "../context/Modal";
 import { SecondaryModalProvider, SecondaryModal } from "../context/SecondaryModal";
 import * as sessionActions from "../redux/session";
+import { ThirdLevelModal, ThirdLevelModalProvider } from "../context/ThirdLevelModal";
 
 export default function Layout() {
   const dispatch = useDispatch();
@@ -21,9 +22,12 @@ export default function Layout() {
     <>
       <ModalProvider>
         <SecondaryModalProvider>
-          {isLoaded && <Outlet />}
-          <Modal />
-          <SecondaryModal />
+          <ThirdLevelModalProvider>
+            {isLoaded && <Outlet />}
+            <Modal />
+            <SecondaryModal />
+            <ThirdLevelModal />
+          </ThirdLevelModalProvider>
         </SecondaryModalProvider>
       </ModalProvider>
     </>

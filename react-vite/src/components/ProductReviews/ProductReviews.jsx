@@ -1,10 +1,10 @@
-import { useSecondaryModal } from "../../context/SecondaryModal";
+import { useThirdLevelModal } from "../../context/ThirdLevelModal";
 import ProductReview from "../ProductReview";
 import ReviewForm from "../ReviewForm";
 import "./ProductReviews.css";
 
 function ProductReviews({ product, user, setAverageRating }) {
-  const { setSecondaryModalContent } = useSecondaryModal();
+  const { setThirdLevelModalContent } = useThirdLevelModal();
 
   if (!product) return;
 
@@ -12,7 +12,7 @@ function ProductReviews({ product, user, setAverageRating }) {
   const myReview = product.reviews.filter(review => review.customer_id === user.id);
 
   const showReviewForm = () => {
-    setSecondaryModalContent(
+    setThirdLevelModalContent(
       <ReviewForm
         productId={product.id}
       />

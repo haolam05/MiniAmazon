@@ -1,11 +1,15 @@
 import { useEffect } from "react";
 import { useModal } from "../../context/Modal";
 import { useSecondaryModal } from "../../context/SecondaryModal";
+import { useThirdLevelModal } from "../../context/ThirdLevelModal";
 import "./NotificationModal.css";
 
-function NotificationModal({ message, status, secondaryModal = false }) {
+function NotificationModal({ message, status, secondaryModal = false, thirdLevelModal = false }) {
   const getCloseModal = () => {
-    if (secondaryModal) {
+    if (thirdLevelModal) {
+      const { closeThirdLevelModal } = useThirdLevelModal();
+      return closeThirdLevelModal;
+    } else if (secondaryModal) {
       const { closeSecondaryModal } = useSecondaryModal();
       return closeSecondaryModal;
     } else {

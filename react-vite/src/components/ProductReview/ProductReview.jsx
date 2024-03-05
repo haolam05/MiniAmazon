@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useSecondaryModal } from "../../context/SecondaryModal";
+import { useThirdLevelModal } from "../../context/ThirdLevelModal";
 import { getAvatarUrl } from "../../utils/navbar";
 import {
   getAverageRating,
@@ -15,7 +15,7 @@ import "./ProductReview.css";
 
 function ProductReview({ reviews, review, user, setAverageRating }) {
   const dispatch = useDispatch();
-  const { setSecondaryModalContent, closeSecondaryModal } = useSecondaryModal();
+  const { setThirdLevelModalContent, closeThirdLevelModal } = useThirdLevelModal();
   const [reviewInput, setReviewInput] = useState(review.review);
   const [currentRating, setCurrentRating] = useState(review.rating);
   const [ratingInput, setRatingInput] = useState(review.rating);
@@ -32,11 +32,11 @@ function ProductReview({ reviews, review, user, setAverageRating }) {
   const updateReview = async () => {
     const data = await dispatch(productActions.updateProductReviewThunk(review.product_id, review.id, reviewInput, currentRating));
     if (data?.errors) {
-      return setSecondaryModalContent(
+      return setThirdLevelModalContent(
         <NotificationModal
           message={data.errors.message}
           status="modal-errors"
-          secondaryModal={true}
+          thirdLevelModal={true}
         />
       );
     }
@@ -46,30 +46,30 @@ function ProductReview({ reviews, review, user, setAverageRating }) {
   const deleteMyReview = async () => {
     const data = await dispatch(productActions.deleteProductReviewThunk(review.product_id, review.id));
     if (data?.errors) {
-      setSecondaryModalContent(
+      setThirdLevelModalContent(
         <NotificationModal
           message={data.errors.message}
           status="modal-errors"
-          secondaryModal={true}
+          thirdLevelModal={true}
         />
       );
     } else {
-      setSecondaryModalContent(
+      setThirdLevelModalContent(
         <NotificationModal
           message="Successfully deleted review"
           status="alert-success"
-          secondaryModal={true}
+          thirdLevelModal={true}
         />
       );
     }
   }
 
   const showConfirmDeleteReviewModal = () => {
-    setSecondaryModalContent(
+    setThirdLevelModalContent(
       <ConfirmDeleteModal
         text="Are you sure you want to delete your review?"
         deleteCb={deleteMyReview}
-        cancelDeleteCb={closeSecondaryModal}
+        cancelDeleteCb={closeThirdLevelModal}
       />
     );
   }

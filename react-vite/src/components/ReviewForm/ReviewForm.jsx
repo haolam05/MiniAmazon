@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { handleReviewOnChange } from "../../utils/form";
-import { useSecondaryModal } from "../../context/SecondaryModal";
+import { useThirdLevelModal } from "../../context/ThirdLevelModal";
 import { disabledSubmitButton, enabledSubmitButton } from "../../utils/dom";
 import NotificationModal from "../NotificationModal";
 import * as productActions from "../../redux/product";
@@ -9,7 +9,7 @@ import "./ReviewForm.css";
 
 function ReviewForm({ productId }) {
   const dispatch = useDispatch();
-  const { setSecondaryModalContent } = useSecondaryModal();
+  const { setThirdLevelModalContent } = useThirdLevelModal();
   const [reviewInput, setReviewInput] = useState("");
   const [ratingInput, setRatingInput] = useState(3);
   const [currentRating, setCurrentRating] = useState(3);
@@ -32,11 +32,11 @@ function ReviewForm({ productId }) {
 
     setSubmitting(false);
     enabledSubmitButton();
-    setSecondaryModalContent(
+    setThirdLevelModalContent(
       <NotificationModal
         message="Successfully created review"
         status="alert-success"
-        secondaryModal={true}
+        thirdLevelModal={true}
       />
     );
   }
