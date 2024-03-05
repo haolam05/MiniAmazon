@@ -5,27 +5,28 @@ import { useThirdLevelModal } from "../../context/ThirdLevelModal";
 import "./NotificationModal.css";
 
 function NotificationModal({ message, status, secondaryModal = false, thirdLevelModal = false }) {
+  const { closeSecondaryModal } = useSecondaryModal();
+  const { closeThirdLevelModal } = useThirdLevelModal();
+  const { closeModal } = useModal();
+
   const getCloseModal = () => {
     if (thirdLevelModal) {
-      const { closeThirdLevelModal } = useThirdLevelModal();
       return closeThirdLevelModal;
     } else if (secondaryModal) {
-      const { closeSecondaryModal } = useSecondaryModal();
       return closeSecondaryModal;
     } else {
-      const { closeModal } = useModal();
       return closeModal;
     }
   }
 
-  const closeModal = getCloseModal();
+  const closeModalFn = getCloseModal();
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      closeModal();
+      closeModalFn();
     }, 4000);
     return () => clearTimeout(timer);
-  }, []);
+  }, [closeModalFn]);
 
   return (
     <div id="notification">

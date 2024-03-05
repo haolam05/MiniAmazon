@@ -1,5 +1,4 @@
 import { useDispatch } from "react-redux";
-import { useModal } from "../../context/Modal";
 import { useSecondaryModal } from "../../context/SecondaryModal";
 import { getPreviewText } from "../../utils/product";
 import ConfirmDeleteFormModal from "../ConfirmDeleteModal";
