@@ -15,15 +15,17 @@ function ProductDetails({ user, product, createAndShowBookmarks, showCart, inCar
   const [averageRating, setAverageRating] = useState(getAverageRating(product.reviews.map(review => review.rating)));
 
   const showMagnifyImage = e => {
-    const len = document.querySelector("#product-details .image-len");
-    const image = document.querySelector("#product-details .product-image img");
-    const imageMagnifyContainer = document.querySelector("#product-details .product-image-magnify");
+    const productDetails = e.target.closest("#product-details");
+
+    if (!productDetails) return
+
+    const len = productDetails.querySelector(".image-len");
+    const image = productDetails.querySelector(".product-image img");
+    const imageMagnifyContainer = productDetails.querySelector(".product-image-magnify");
     const lenInfo = len.getBoundingClientRect();
     const imageInfo = image.getBoundingClientRect();
     const paddingX = 5;  // 5px horizontal padding of parent container
     const paddingY = 10; // 10px vertical padding of parent container
-
-    if (!len || !image || !imageMagnifyContainer) return;
 
     len.classList.remove("hidden");
     imageMagnifyContainer.classList.remove("hidden")
@@ -82,25 +84,33 @@ function ProductDetails({ user, product, createAndShowBookmarks, showCart, inCar
     }
   }
 
-  const hideMagnifyImage = () => {
-    const len = document.querySelector("#product-details .image-len");
-    const imageMagnifyContainer = document.querySelector("#product-details .product-image-magnify");
-    if (len && imageMagnifyContainer) {
-      len.classList.add("hidden");
-      imageMagnifyContainer.classList.add("hidden")
+  const hideMagnifyImage = e => {
+    if (!e.target.classList.contains("image-len") && !e.target.classList.contains("product-image-tag")) {
+      const len = document.querySelector("#product-details .image-len");
+      const imageMagnifyContainer = document.querySelector("#product-details .product-image-magnify");
+      if (len) len.classList.add("hidden");
+      if (imageMagnifyContainer) imageMagnifyContainer.classList.add("hidden");
     }
   }
 
   return (
     <>
       <h2 className="product-title subheading">{product.name}</h2>
-      <div id="product-details">
+      <div id="product-details" onMouseMove={hideMagnifyImage}>
         <div className="product-image-magnify hidden"></div>
         <div className="product-wrapper">
           <div className="product cursor-normal" id={product.id}>
             <div className="product-image">
-              <div className="image-len hidden" onMouseMove={showMagnifyImage}></div>
-              <img src={product.product_image} alt="product-image" onMouseMove={showMagnifyImage} onMouseLeave={hideMagnifyImage} />
+              <div
+                className="image-len hidden"
+                onMouseMove={showMagnifyImage}
+              />
+              <img
+                src={product.product_image}
+                alt="product-image"
+                className="product-image-tag"
+                onMouseMove={showMagnifyImage}
+              />
               <ProductReviewInfo
                 user={user}
                 product={product}
