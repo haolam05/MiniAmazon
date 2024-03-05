@@ -9,6 +9,7 @@ import ProductBookmark from "../ProductBookmark";
 import ProductRemaining from "../ProductRemaining";
 import ProductPrice from "../ProductPrice";
 import "./ProductDetails.css";
+import ProductReviewInfo from "../ProductReviewInfo/ProductReviewInfo";
 
 function ProductDetails({ user, product, createAndShowBookmarks, showCart, inCartProductIds, bookmarkProductIds }) {
   const [averageRating, setAverageRating] = useState(getAverageRating(product.reviews.map(review => review.rating)));
@@ -49,20 +50,12 @@ function ProductDetails({ user, product, createAndShowBookmarks, showCart, inCar
             <div className="product-image">
               {/* <div className="image-len"></div> */}
               <img src={product.product_image} alt="product-image" onMouseMove={showMagnifyImage} />
-              {user && (
-                <div className="product-review-info" onClick={toggleReviewInfo}>
-                  <div className="sticker cursor-pointer" title="Click to open/collapse reviews information"></div>
-                  <div className="review-info cursor-pointer">
-                    <div className="total-reviews">
-                      <span>Total reviews ~ {product.reviews.length} 📝</span>
-                    </div>
-                    <div className="average-rating">
-                      <span>Average rating ~ {averageRating} </span>
-                      <i className={`fa-solid fa-star`}></i>
-                    </div>
-                  </div>
-                </div>
-              )}
+              <ProductReviewInfo
+                user={user}
+                product={product}
+                toggleReviewInfo={toggleReviewInfo}
+                averageRating={averageRating}
+              />
             </div>
             <ProductPrice product={product} />
             <p className="product-category">Category: {getPreviewText(product.category)}</p>
