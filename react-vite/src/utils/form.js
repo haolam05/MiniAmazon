@@ -183,7 +183,7 @@ export const handleProductDescriptionOnChange = (e, key, setDescription, setErro
 }
 
 export const handleProductPriceOnChange = (e, key, setPrice, setErrors) => {
-  setPrice(+e.target.value);
+  setPrice(e.target.value);
 
   if (+e.target.value <= 0) {
     turnOnRedBoxShadow(e);
@@ -195,7 +195,7 @@ export const handleProductPriceOnChange = (e, key, setPrice, setErrors) => {
 }
 
 export const handleProductQuantityOnChange = (e, key, setQuantity, setErrors) => {
-  setQuantity(+e.target.value);
+  setQuantity(e.target.value);
 
   if (+e.target.value < 1) {
     turnOnRedBoxShadow(e);
