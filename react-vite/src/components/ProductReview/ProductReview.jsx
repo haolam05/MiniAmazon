@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useModal } from "../../context/Modal";
+import { useSecondaryModal } from "../../context/SecondaryModal";
 import { getAvatarUrl } from "../../utils/navbar";
 import {
   getAverageRating,
@@ -15,7 +15,7 @@ import "./ProductReview.css";
 
 function ProductReview({ reviews, review, user, setAverageRating }) {
   const dispatch = useDispatch();
-  const { setModalContent, closeModal } = useModal();
+  const { setModalContent, closeModal } = useSecondaryModal();
   const [reviewInput, setReviewInput] = useState(review.review);
   const [currentRating, setCurrentRating] = useState(review.rating);
   const [ratingInput, setRatingInput] = useState(review.rating);
@@ -36,6 +36,7 @@ function ProductReview({ reviews, review, user, setAverageRating }) {
         <NotificationModal
           message={data.errors.message}
           status="modal-errors"
+          secondaryModal={true}
         />
       );
     }
@@ -49,6 +50,7 @@ function ProductReview({ reviews, review, user, setAverageRating }) {
         <NotificationModal
           message={data.errors.message}
           status="modal-errors"
+          secondaryModal={true}
         />
       );
     } else {
@@ -56,6 +58,7 @@ function ProductReview({ reviews, review, user, setAverageRating }) {
         <NotificationModal
           message="Successfully deleted review"
           status="alert-success"
+          secondaryModal={true}
         />
       );
     }
