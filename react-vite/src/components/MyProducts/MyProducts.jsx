@@ -14,6 +14,7 @@ function MyProducts({ products, user, bookmarkProductIds, inCartProductIds, item
           <MyProduct
             key={product.id}
             product={product}
+            products={products}
             user={user}
             itemsInCart={itemsInCart}
             inCartProductIds={inCartProductIds}

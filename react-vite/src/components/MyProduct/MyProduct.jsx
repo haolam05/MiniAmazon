@@ -1,4 +1,5 @@
 import { useDispatch } from "react-redux";
+import { useModal } from "../../context/Modal";
 import { useSecondaryModal } from "../../context/SecondaryModal";
 import { getPreviewText } from "../../utils/product";
 import ConfirmDeleteFormModal from "../ConfirmDeleteModal";
@@ -9,11 +10,23 @@ import ProductRemaining from "../ProductRemaining";
 import ProductPrice from "../ProductPrice";
 import * as productActions from "../../redux/product";
 
-function MyProduct({ product, user, bookmarkProductIds, inCartProductIds, itemsInCart }) {
+function MyProduct({ products, product, user, bookmarkProductIds, inCartProductIds, itemsInCart }) {
   const dispatch = useDispatch();
-  const { setModalContent, closeModal, showProductDetails } = useSecondaryModal();
+  const { showProductDetails } = useModal();
+  const { setModalContent, closeModal } = useSecondaryModal();
 
-  const showEditProductForm = () => setModalContent(<ProductForm product={product} />);
+  const showEditProductForm = () => {
+    setModalContent(
+      <ProductForm
+        product={product}
+        products={products}
+        user={user}
+        bookmarkProductIds={bookmarkProductIds}
+        inCartProductIds={inCartProductIds}
+        itemsInCart={itemsInCart}
+      />
+    );
+  };
 
   const deleteProduct = async () => {
     const data = await dispatch(productActions.deleteProductThunk(product.id, itemsInCart));
@@ -52,7 +65,10 @@ function MyProduct({ product, user, bookmarkProductIds, inCartProductIds, itemsI
       id={`product-${product.id}`}
       onClick={e => e.stopPropagation()}
     >
-      <div className="product-image cursor-pointer" onClick={() => showProductDetails(product, user, inCartProductIds, bookmarkProductIds)}>
+      <div className="product-image cursor-pointer" onClick={() => {
+        closeModal();
+        showProductDetails(product, user, inCartProductIds, bookmarkProductIds);
+      }}>
         <img src={product.product_image} alt="product-image" />
       </div>
       <ProductPrice product={product} />

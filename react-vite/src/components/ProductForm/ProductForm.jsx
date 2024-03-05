@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useModal } from "../../context/Modal";
 import { disabledSubmitButton, enabledSubmitButton } from "../../utils/dom";
+import { useModal } from "../../context/Modal";
+import { useSecondaryModal } from "../../context/SecondaryModal";
 import {
   handleProductCategoryOnChange,
   handleProductDescriptionOnChange,
@@ -16,8 +17,9 @@ import NotificationModal from "../NotificationModal";
 import Loading from "../Loading";
 import * as productActions from "../../redux/product";
 import "./ProductForm.css";
+import MyProducts from "../MyProducts";
 
-function ProductForm({ product }) {
+function ProductForm({ product, products, user, bookmarkProductIds, inCartProductIds, itemsInCart }) {
   const dispatch = useDispatch();
   const [name, setName] = useState(product?.name || "");
   const [category, setCategory] = useState(product?.category || "");
@@ -27,7 +29,8 @@ function ProductForm({ product }) {
   const [productImage, setProductImage] = useState(product?.product_image || "");
   const [submitting, setSubmitting] = useState(false);
   const [errors, setErrors] = useState({});
-  const { setModalContent } = useModal();
+  const { setModalContent } = useSecondaryModal();
+  const { closeModal } = useModal();
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -68,10 +71,40 @@ function ProductForm({ product }) {
     }
 
     if (product) {
-      setModalContent(<NotificationModal message="Successfully updated product!" status="alert-success" />);
+      setModalContent(
+        <NotificationModal
+          message="Successfully updated product!"
+          status="alert-success"
+          secondaryModal={true}
+        />
+      );
+      closeModal();
+      const updatedProducts = [...products];
+      for (let i = 0; i < products.length; i++) {
+        if (products[i].id === product.id) {
+          updatedProducts.splice(i, 1, data);
+          break;
+        }
+      }
+      setModalContent(
+        <MyProducts
+          products={updatedProducts}
+          user={user}
+          itemsInCart={itemsInCart}
+          inCartProductIds={inCartProductIds}
+          bookmarkProductIds={bookmarkProductIds}
+        />
+      );
     } else {
-      setModalContent(<NotificationModal message="Successfully added new product!" status="alert-success" />);
+      setModalContent(
+        <NotificationModal
+          message="Successfully added new product!"
+          status="alert-success"
+          secondaryModal={true}
+        />
+      );
     }
+
     enabledSubmitButton();
     movePreviewImageDown();
     setSubmitting(false);
