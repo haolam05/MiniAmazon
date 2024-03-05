@@ -4,9 +4,18 @@ export const toggleCart = e => {
   const products = document.querySelector("#products");
   if (cart) {
     if (products) {
-      products.style.marginRight = cart.classList.contains("hidden") ? "360px" : "0";
+      if (cart.classList.contains("hidden")) {
+        products.style.marginRight = "360px";
+        cart.classList.remove("hidden");
+        cart.classList.remove("close");
+        cart.classList.add("open");
+      } else {
+        products.style.marginRight = "0";
+        setTimeout(() => cart.classList.add("hidden"), 400);
+        cart.classList.remove("open");
+        cart.classList.add("close");
+      }
     }
-    cart.classList.toggle("hidden");
   }
 }
 
@@ -19,6 +28,8 @@ export const revealCart = e => {
       products.style.marginRight = "360px";
     }
     cart.classList.remove("hidden");
+    cart.classList.remove("close");
+    cart.classList.add("open");
   }
 }
 
@@ -30,6 +41,8 @@ export const closeCart = e => {
     if (products) {
       products.style.marginRight = "0";
     }
-    cart.classList.add("hidden");
+    setTimeout(() => cart.classList.add("hidden"), 400);
+    cart.classList.remove("open");
+    cart.classList.add("close");
   }
 }

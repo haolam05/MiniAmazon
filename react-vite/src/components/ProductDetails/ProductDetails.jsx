@@ -16,8 +16,6 @@ function ProductDetails({ user, product, createAndShowBookmarks, showCart, inCar
     const [lenX, lenY] = [e.pageX, e.pageY];
     const [lenWidth, lenHeight] = [e.target.offsetWidth, e.target.offsetHeight];
     const [cursorX, cursorY] = [e.clientX, e.clientY];
-    console.log("LEN POSITION", lenX, lenY);
-    console.log("CURSOR POSITION", cursorX, cursorY)
     e.target.style.left = cursorX;
     e.target.style.top = cursorY;
   }
