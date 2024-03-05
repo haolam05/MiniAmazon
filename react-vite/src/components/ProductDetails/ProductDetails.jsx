@@ -4,6 +4,7 @@ import { getFormattedPrice, getPreviewText } from "../../utils/product";
 import { getAverageRating, toggleReviewInfo } from "../../utils/review";
 import ProductReviews from "../ProductReviews";
 import AddToCartButton from "../AddToCartButton";
+import BookmarkButton from "../BookmarkButton";
 import "./ProductDetails.css";
 
 function ProductDetails({ user, product, createAndShowBookmarks, showCart, inCartProductIds, bookmarkProductIds }) {
@@ -75,15 +76,12 @@ function ProductDetails({ user, product, createAndShowBookmarks, showCart, inCar
               </div>
             )}
             <div className="product-btns">
-              {user && !bookmarkProductIds.includes(product.id) && !product.is_deleted && (
-                <button
-                  title="Bookmark this product"
-                  onClick={createAndShowBookmarks}
-                  className="bookmark-btn"
-                >
-                  Bookmark
-                </button>
-              )}
+              <BookmarkButton
+                bookmarkProductIds={bookmarkProductIds}
+                product={product}
+                user={user}
+                createAndShowBookmarks={createAndShowBookmarks}
+              />
               <AddToCartButton
                 showCart={showCart}
                 product={product}

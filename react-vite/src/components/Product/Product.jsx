@@ -1,6 +1,7 @@
 import { useModal } from "../../context/Modal";
 import { getFormattedPrice, getPreviewText } from "../../utils/product";
 import AddToCartButton from "../AddToCartButton";
+import BookmarkButton from "../BookmarkButton";
 import "./Product.css";
 
 function Product({ product, user, inCartProductIds, bookmarkProductIds }) {
@@ -31,15 +32,12 @@ function Product({ product, user, inCartProductIds, bookmarkProductIds }) {
         </div>
       )}
       <div className="product-btns">
-        {user && !bookmarkProductIds.includes(product.id) && !product.is_deleted && (
-          <button
-            title="Bookmark this product"
-            onClick={e => createAndShowBookmarks(e, user, product.id)}
-            className="bookmark-btn"
-          >
-            Bookmark
-          </button>
-        )}
+        <BookmarkButton
+          bookmarkProductIds={bookmarkProductIds}
+          product={product}
+          user={user}
+          createAndShowBookmarks={createAndShowBookmarks}
+        />
         <AddToCartButton
           showCart={showCart}
           product={product}
