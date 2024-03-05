@@ -6,8 +6,8 @@ import "./NotificationModal.css";
 function NotificationModal({ message, status, secondaryModal = false }) {
   const getCloseModal = () => {
     if (secondaryModal) {
-      const { closeModal } = useSecondaryModal();
-      return closeModal;
+      const { closeSecondaryModal } = useSecondaryModal();
+      return closeSecondaryModal;
     } else {
       const { closeModal } = useModal();
       return closeModal;

@@ -9,7 +9,7 @@ import "./ReviewForm.css";
 
 function ReviewForm({ productId }) {
   const dispatch = useDispatch();
-  const { setModalContent } = useSecondaryModal();
+  const { setSecondaryModalContent } = useSecondaryModal();
   const [reviewInput, setReviewInput] = useState("");
   const [ratingInput, setRatingInput] = useState(3);
   const [currentRating, setCurrentRating] = useState(3);
@@ -32,7 +32,7 @@ function ReviewForm({ productId }) {
 
     setSubmitting(false);
     enabledSubmitButton();
-    setModalContent(
+    setSecondaryModalContent(
       <NotificationModal
         message="Successfully created review"
         status="alert-success"

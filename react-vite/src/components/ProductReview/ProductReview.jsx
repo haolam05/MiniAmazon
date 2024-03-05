@@ -15,7 +15,7 @@ import "./ProductReview.css";
 
 function ProductReview({ reviews, review, user, setAverageRating }) {
   const dispatch = useDispatch();
-  const { setModalContent, closeModal } = useSecondaryModal();
+  const { setSecondaryModalContent, closeModal } = useSecondaryModal();
   const [reviewInput, setReviewInput] = useState(review.review);
   const [currentRating, setCurrentRating] = useState(review.rating);
   const [ratingInput, setRatingInput] = useState(review.rating);
@@ -32,7 +32,7 @@ function ProductReview({ reviews, review, user, setAverageRating }) {
   const updateReview = async () => {
     const data = await dispatch(productActions.updateProductReviewThunk(review.product_id, review.id, reviewInput, currentRating));
     if (data?.errors) {
-      return setModalContent(
+      return setSecondaryModalContent(
         <NotificationModal
           message={data.errors.message}
           status="modal-errors"
@@ -46,7 +46,7 @@ function ProductReview({ reviews, review, user, setAverageRating }) {
   const deleteMyReview = async () => {
     const data = await dispatch(productActions.deleteProductReviewThunk(review.product_id, review.id));
     if (data?.errors) {
-      setModalContent(
+      setSecondaryModalContent(
         <NotificationModal
           message={data.errors.message}
           status="modal-errors"
@@ -54,7 +54,7 @@ function ProductReview({ reviews, review, user, setAverageRating }) {
         />
       );
     } else {
-      setModalContent(
+      setSecondaryModalContent(
         <NotificationModal
           message="Successfully deleted review"
           status="alert-success"
@@ -65,7 +65,7 @@ function ProductReview({ reviews, review, user, setAverageRating }) {
   }
 
   const showConfirmDeleteReviewModal = () => {
-    setModalContent(
+    setSecondaryModalContent(
       <ConfirmDeleteModal
         text="Are you sure you want to delete your review?"
         deleteCb={deleteMyReview}

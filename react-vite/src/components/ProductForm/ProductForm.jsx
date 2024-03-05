@@ -29,8 +29,8 @@ function ProductForm({ product, products, user, bookmarkProductIds, inCartProduc
   const [productImage, setProductImage] = useState(product?.product_image || "");
   const [submitting, setSubmitting] = useState(false);
   const [errors, setErrors] = useState({});
-  const { setModalContent } = useSecondaryModal();
-  const { closeModal } = useModal();
+  const { setSecondaryModalContent } = useSecondaryModal();
+  const { setModalContent } = useModal();
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -71,14 +71,13 @@ function ProductForm({ product, products, user, bookmarkProductIds, inCartProduc
     }
 
     if (product) {
-      setModalContent(
+      setSecondaryModalContent(
         <NotificationModal
           message="Successfully updated product!"
           status="alert-success"
           secondaryModal={true}
         />
       );
-      closeModal();
       const updatedProducts = [...products];
       for (let i = 0; i < products.length; i++) {
         if (products[i].id === product.id) {
@@ -96,7 +95,7 @@ function ProductForm({ product, products, user, bookmarkProductIds, inCartProduc
         />
       );
     } else {
-      setModalContent(
+      setSecondaryModalContent(
         <NotificationModal
           message="Successfully added new product!"
           status="alert-success"

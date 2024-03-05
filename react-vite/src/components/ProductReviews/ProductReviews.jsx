@@ -4,7 +4,7 @@ import ReviewForm from "../ReviewForm";
 import "./ProductReviews.css";
 
 function ProductReviews({ product, user, setAverageRating }) {
-  const { setModalContent } = useSecondaryModal();
+  const { setSecondaryModalContent } = useSecondaryModal();
 
   if (!product) return;
 
@@ -12,7 +12,7 @@ function ProductReviews({ product, user, setAverageRating }) {
   const myReview = product.reviews.filter(review => review.customer_id === user.id);
 
   const showReviewForm = () => {
-    setModalContent(
+    setSecondaryModalContent(
       <ReviewForm
         productId={product.id}
       />

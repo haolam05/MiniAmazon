@@ -12,11 +12,11 @@ import * as productActions from "../../redux/product";
 
 function MyProduct({ products, product, user, bookmarkProductIds, inCartProductIds, itemsInCart }) {
   const dispatch = useDispatch();
-  const { showProductDetails } = useModal();
-  const { setModalContent, closeModal } = useSecondaryModal();
+  const { showProductDetails } = useSecondaryModal();
+  const { setSecondaryModalContent, closeSecondaryModal } = useSecondaryModal();
 
   const showEditProductForm = () => {
-    setModalContent(
+    setSecondaryModalContent(
       <ProductForm
         product={product}
         products={products}
@@ -31,7 +31,7 @@ function MyProduct({ products, product, user, bookmarkProductIds, inCartProductI
   const deleteProduct = async () => {
     const data = await dispatch(productActions.deleteProductThunk(product.id, itemsInCart));
     if (data?.errors) {
-      setModalContent(
+      setSecondaryModalContent(
         <NotificationModal
           message={data.errors.message}
           status="modal-errors"
@@ -39,7 +39,7 @@ function MyProduct({ products, product, user, bookmarkProductIds, inCartProductI
         />
       );
     } else {
-      setModalContent(
+      setSecondaryModalContent(
         <NotificationModal
           message="Successfully deleted product!"
           status="alert-success"
@@ -50,11 +50,11 @@ function MyProduct({ products, product, user, bookmarkProductIds, inCartProductI
   }
 
   const showConfirmDeleteProduct = () => {
-    setModalContent(
+    setSecondaryModalContent(
       <ConfirmDeleteFormModal
         text="Are you sure you want to delete this product?"
         deleteCb={deleteProduct}
-        cancelDeleteCb={closeModal}
+        cancelDeleteCb={closeSecondaryModal}
       />
     );
   }
@@ -65,10 +65,7 @@ function MyProduct({ products, product, user, bookmarkProductIds, inCartProductI
       id={`product-${product.id}`}
       onClick={e => e.stopPropagation()}
     >
-      <div className="product-image cursor-pointer" onClick={() => {
-        closeModal();
-        showProductDetails(product, user, inCartProductIds, bookmarkProductIds);
-      }}>
+      <div className="product-image cursor-pointer" onClick={() => showProductDetails(product, user, inCartProductIds, bookmarkProductIds)}>
         <img src={product.product_image} alt="product-image" />
       </div>
       <ProductPrice product={product} />
