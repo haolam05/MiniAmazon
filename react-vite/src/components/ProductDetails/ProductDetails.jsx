@@ -14,41 +14,62 @@ import "./ProductDetails.css";
 function ProductDetails({ user, product, createAndShowBookmarks, showCart, inCartProductIds, bookmarkProductIds }) {
   const [averageRating, setAverageRating] = useState(getAverageRating(product.reviews.map(review => review.rating)));
 
-  const getCursorPositionOnImage = e => {
-    return [position.x, position.y];
-  }
-
-  const handleLenMove = e => {
-    const [lenX, lenY] = [e.pageX, e.pageY];
-    const [lenWidth, lenHeight] = [e.target.offsetWidth, e.target.offsetHeight];
-    const [cursorX, cursorY] = [e.clientX, e.clientY];
-    e.target.style.left = cursorX;
-    e.target.style.top = cursorY;
-  }
-
   const showMagnifyImage = e => {
-    //   const image = document.querySelector("#product-details .product-image");
-    //   const [imageX, imageY] = [image.getBoundingClientRect().left, image.getBoundingClientRect().top];
-    //   const [cursorX, cursorY] = [e.clientX, e.clientY];
-    //   const len = document.querySelector("#product-details .image-len");
-    //   const [offsetX, offsetY] = [len.getBoundingClientRect().left, len.getBoundingClientRect().top];
+    const len = document.querySelector("#product-details .image-len");
+    const image = document.querySelector("#product-details .product-image img");
+    const lenInfo = len.getBoundingClientRect();
+    const imageInfo = image.getBoundingClientRect();
 
-    //   const [nextX, nextY] = [cursorX - offsetX, cursorY - offsetY];
-    //   if (nextX >= imageX) len.style.top = nextY + "px";
-    //   if (nextY <= imageY) len.style.left = nextX + "px";
+    if (image && len) {
+      // cursorX = the width between left of screen (viewport) to current cursor position
+      // cursorY = the height between top of screen (viewport) to current cursor position
+      const [cursorX, cursorY] = [
+        e.clientX,
+        e.clientY
+      ];
+
+      // imageX = the width between left of screen (viewport) to the start of image position (left)
+      // imageY = the height between top of screen (viewport) to the start of image position (top)
+      const [imageX, imageY] = [
+        imageInfo.left,
+        imageInfo.top
+      ];
+
+      // offsetX = the width between the start of the image from the left side to the cursor position (left)
+      // offsetY = the height between the start of the image from the top side to the cursor position (top)
+      let [offsetX, offsetY] = [
+        cursorX - imageX + 5, // 5px horizontal padding of parent container
+        cursorY - imageY + 10 // 10px vertical padding of parent container
+      ];
+
+      // imageWidth = width of the image (including border and padding)
+      // imageHeight = height of the image (including border and padding)
+      const [imageWidth, imageHeight] = [
+        imageInfo.width,
+        imageInfo.height
+      ];
+
+      if (offsetX < 0) offsetX = 0;
+      if (offsetY < 0) offsetY = 0;
+      if (offsetX > imageWidth - lenInfo.width) offsetX = imageWidth - lenInfo.width + 5;
+      if (offsetY > imageHeight - lenInfo.height) offsetY = imageHeight - lenInfo.height + 10;
+
+      len.style.left = offsetX + "px";
+      len.style.top = offsetY + "px";
+    }
   }
 
   return (
     <>
       <h2 className="product-title subheading">{product.name}</h2>
       <div id="product-details">
-        {/* <div className="product-image-magnify">
+        <div className="product-image-magnify">
           <img src={product.product_image} alt="product-image-magnify" />
-        </div> */}
+        </div>
         <div className="product-wrapper">
-          <div className="product cursor-normal" id="product.id">
+          <div className="product cursor-normal" id={product.id}>
             <div className="product-image">
-              {/* <div className="image-len"></div> */}
+              <div className="image-len"></div>
               <img src={product.product_image} alt="product-image" onMouseMove={showMagnifyImage} />
               <ProductReviewInfo
                 user={user}

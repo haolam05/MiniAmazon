@@ -40,6 +40,7 @@ h2.product-title {
   }
 
   .product-wrapper .product-info img {
+    box-sizing: border-box;
     border-radius: 50%;
     width: 100%;
     height: 100%;
@@ -90,15 +91,17 @@ h2.product-title {
     position: absolute;
     z-index: 1;
     width: 390px;
-    height: 452px;
+    height: 450px;
     right: 0;
     cursor: none;
     border-left: 1px solid var(--black);
   }
 
   .image-len {
+    box-sizing: border-box;
+    box-shadow: -3px -3px 0.8em 1px var(--orange);
     position: absolute;
-    border: 1px solid var(--navbar-background);
+    border: 1px solid var(--white);
     width: 40px;
     height: 40px;
     left: 130px;
