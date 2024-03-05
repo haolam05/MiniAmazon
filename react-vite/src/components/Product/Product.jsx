@@ -1,5 +1,6 @@
 import { useModal } from "../../context/Modal";
 import { getFormattedPrice, getPreviewText } from "../../utils/product";
+import AddToCartButton from "../AddToCartButton";
 import "./Product.css";
 
 function Product({ product, user, inCartProductIds, bookmarkProductIds }) {
@@ -39,16 +40,12 @@ function Product({ product, user, inCartProductIds, bookmarkProductIds }) {
             Bookmark
           </button>
         )}
-        {user && !inCartProductIds.includes(product.id) && product.remaining > 0 && !product.is_deleted && (
-          <button
-            title={user.id === product.seller_id ? "You can not add your own product" : "Add this product to cart"}
-            onClick={e => showCart(e, product, user)}
-            className={`add-to-cart-btn${user.id === product.seller_id ? " disabled" : ""}`}
-            disabled={user.id === product.seller_id}
-          >
-            Add to cart
-          </button>
-        )}
+        <AddToCartButton
+          showCart={showCart}
+          product={product}
+          user={user}
+          inCartProductIds={inCartProductIds}
+        />
       </div>
     </div>
   );

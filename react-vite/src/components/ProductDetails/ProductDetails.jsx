@@ -3,6 +3,7 @@ import { getAvatarUrl } from "../../utils/navbar";
 import { getFormattedPrice, getPreviewText } from "../../utils/product";
 import { getAverageRating, toggleReviewInfo } from "../../utils/review";
 import ProductReviews from "../ProductReviews";
+import AddToCartButton from "../AddToCartButton";
 import "./ProductDetails.css";
 
 function ProductDetails({ user, product, createAndShowBookmarks, showCart, inCartProductIds, bookmarkProductIds }) {
@@ -83,16 +84,12 @@ function ProductDetails({ user, product, createAndShowBookmarks, showCart, inCar
                   Bookmark
                 </button>
               )}
-              {user && !inCartProductIds.includes(product.id) && product.remaining > 0 && !product.is_deleted && (
-                <button
-                  title={user.id === product.seller_id ? "You can not add your own product" : "Add this product to cart"}
-                  onClick={e => showCart(e, product, user)}
-                  className={`add-to-cart-btn${user.id === product.seller_id ? " disabled" : ""}`}
-                  disabled={user.id === product.seller_id}
-                >
-                  Add to cart
-                </button>
-              )}
+              <AddToCartButton
+                showCart={showCart}
+                product={product}
+                user={user}
+                inCartProductIds={inCartProductIds}
+              />
             </div>
           </div>
           <div className="product-info">
