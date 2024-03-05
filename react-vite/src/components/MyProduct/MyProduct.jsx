@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
-import { useModal } from "../../context/Modal";
-import { getFormattedPrice, getPreviewText } from "../../utils/product";
+import { useSecondaryModal } from "../../context/SecondaryModal";
+import { getPreviewText } from "../../utils/product";
 import ConfirmDeleteFormModal from "../ConfirmDeleteModal";
 import ProductForm from "../ProductForm";
 import NotificationModal from "../NotificationModal";
@@ -11,7 +11,7 @@ import * as productActions from "../../redux/product";
 
 function MyProduct({ product, user, bookmarkProductIds, inCartProductIds, itemsInCart }) {
   const dispatch = useDispatch();
-  const { setModalContent, closeModal, showProductDetails } = useModal();
+  const { setModalContent, closeModal, showProductDetails } = useSecondaryModal();
 
   const showEditProductForm = () => setModalContent(<ProductForm product={product} />);
 
@@ -22,6 +22,7 @@ function MyProduct({ product, user, bookmarkProductIds, inCartProductIds, itemsI
         <NotificationModal
           message={data.errors.message}
           status="modal-errors"
+          secondaryModal={true}
         />
       );
     } else {
@@ -29,18 +30,21 @@ function MyProduct({ product, user, bookmarkProductIds, inCartProductIds, itemsI
         <NotificationModal
           message="Successfully deleted product!"
           status="alert-success"
+          secondaryModal={true}
         />
       );
     }
   }
 
-  const showConfirmDeleteProduct = () => setModalContent(
-    <ConfirmDeleteFormModal
-      text="Are you sure you want to delete this product?"
-      deleteCb={deleteProduct}
-      cancelDeleteCb={closeModal}
-    />
-  );
+  const showConfirmDeleteProduct = () => {
+    setModalContent(
+      <ConfirmDeleteFormModal
+        text="Are you sure you want to delete this product?"
+        deleteCb={deleteProduct}
+        cancelDeleteCb={closeModal}
+      />
+    );
+  }
 
   return (
     <div
