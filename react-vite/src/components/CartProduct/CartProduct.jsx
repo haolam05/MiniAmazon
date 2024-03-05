@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
-import { getFormattedPrice, getPreviewText } from "../../utils/product";
+import { getPreviewText } from "../../utils/product";
 import Loading from "../Loading";
 import ProductBookmark from "../ProductBookmark";
+import ProductPrice from "../ProductPrice";
 import * as orderActions from "../../redux/order";
 import "./CartProduct.css";
 
@@ -137,11 +138,7 @@ function CartProduct({ product, item, user, inCartProductIds, bookmarkProductIds
       </div>
       <div className="cart-product-info">
         <p className="cart-product-name">{getPreviewText(product.name)}</p>
-        <div className="cart-product-price">
-          <span className="dollar-sign">$</span>
-          <span className="price">{getFormattedPrice(product.price)[0]}</span>
-          <span className="decimal">{getFormattedPrice(product.price)[1]}</span>
-        </div>
+        <ProductPrice product={product} cls="cart-product-price" />
         <div className="cart-product-delete-btn cursor-pointer" onClick={removeProductFromCart}>Delete</div>
       </div>
     </div>

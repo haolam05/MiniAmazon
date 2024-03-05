@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { getFormattedPrice, getPreviewText } from "../../utils/product";
+import { getPreviewText } from "../../utils/product";
 import { getAverageRating, toggleReviewInfo } from "../../utils/review";
 import ProductReviews from "../ProductReviews";
 import AddToCartButton from "../AddToCartButton";
@@ -7,6 +7,7 @@ import BookmarkButton from "../BookmarkButton";
 import ProductInfo from "../ProductInfo/ProductInfo";
 import ProductBookmark from "../ProductBookmark";
 import ProductRemaining from "../ProductRemaining";
+import ProductPrice from "../ProductPrice";
 import "./ProductDetails.css";
 
 function ProductDetails({ user, product, createAndShowBookmarks, showCart, inCartProductIds, bookmarkProductIds }) {
@@ -63,11 +64,7 @@ function ProductDetails({ user, product, createAndShowBookmarks, showCart, inCar
                 </div>
               )}
             </div>
-            <div className="product-price">
-              <span className="dollar-sign">$</span>
-              <span className="price">{getFormattedPrice(product.price)[0]}</span>
-              <span className="decimal">{getFormattedPrice(product.price)[1]}</span>
-            </div>
+            <ProductPrice product={product} />
             <p className="product-category">Category: {getPreviewText(product.category)}</p>
             <ProductRemaining product={product} />
             <ProductBookmark

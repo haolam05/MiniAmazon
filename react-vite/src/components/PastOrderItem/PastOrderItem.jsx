@@ -1,5 +1,6 @@
 import { useModal } from "../../context/Modal";
-import { getFormattedPrice, getPreviewText } from "../../utils/product";
+import { getPreviewText } from "../../utils/product";
+import ProductPrice from "../ProductPrice";
 
 function PastOrderItem({ item, product, user, inCartProductIds, bookmarkProductIds }) {
   const { showProductDetails } = useModal();
@@ -20,11 +21,7 @@ function PastOrderItem({ item, product, user, inCartProductIds, bookmarkProductI
       </div>
       <div className="cart-product-info">
         <p className="cart-product-name">{getPreviewText(product.name)}</p>
-        <div className="cart-product-price">
-          <span className="dollar-sign">$</span>
-          <span className="price">{getFormattedPrice(product.price)[0]}</span>
-          <span className="decimal">{getFormattedPrice(product.price)[1]}</span>
-        </div>
+        <ProductPrice product={product} cls="cart-product-price" />
       </div>
     </div>
   );

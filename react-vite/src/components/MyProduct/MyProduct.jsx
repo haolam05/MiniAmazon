@@ -6,6 +6,7 @@ import ProductForm from "../ProductForm";
 import NotificationModal from "../NotificationModal";
 import ProductBookmark from "../ProductBookmark";
 import ProductRemaining from "../ProductRemaining";
+import ProductPrice from "../ProductPrice";
 import * as productActions from "../../redux/product";
 
 function MyProduct({ product, user, bookmarkProductIds, inCartProductIds, itemsInCart }) {
@@ -50,11 +51,7 @@ function MyProduct({ product, user, bookmarkProductIds, inCartProductIds, itemsI
       <div className="product-image cursor-pointer" onClick={() => showProductDetails(product, user, inCartProductIds, bookmarkProductIds)}>
         <img src={product.product_image} alt="product-image" />
       </div>
-      <div className="product-price">
-        <span className="dollar-sign">$</span>
-        <span className="price">{getFormattedPrice(product.price)[0]}</span>
-        <span className="decimal">{getFormattedPrice(product.price)[1]}</span>
-      </div>
+      <ProductPrice product={product} />
       <p className="product-name">{getPreviewText(product.name)}</p>
       <ProductRemaining product={product} />
       <ProductBookmark
