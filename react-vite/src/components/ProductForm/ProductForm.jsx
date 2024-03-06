@@ -29,8 +29,8 @@ function ProductForm({ product, products, user, bookmarkProductIds, inCartProduc
   const [productImage, setProductImage] = useState(product?.product_image || "");
   const [submitting, setSubmitting] = useState(false);
   const [errors, setErrors] = useState({});
+  const { setModalContent, closeModal } = useModal();
   const { setSecondaryModalContent } = useSecondaryModal();
-  const { setModalContent } = useModal();
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -102,6 +102,7 @@ function ProductForm({ product, products, user, bookmarkProductIds, inCartProduc
           secondaryModal={true}
         />
       );
+      closeModal();
     }
 
     enabledSubmitButton();

@@ -190,7 +190,7 @@ def create_product_bookmark(id):
         if not product:
             return {"message": "Product couldn't be found"}, 404
 
-        if Bookmark.query.filter(Bookmark.product_id == id and Bookmark.customer_id == current_user.id).one_or_none():
+        if Bookmark.query.filter(Bookmark.product_id == id).filter(Bookmark.customer_id == current_user.id).one_or_none():
             return {"message": "You already had a bookmark on this product"}, 500
 
         new_bookmark = Bookmark(
