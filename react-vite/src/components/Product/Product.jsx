@@ -1,5 +1,6 @@
 import { useModal } from "../../context/Modal";
 import { useSecondaryModal } from "../../context/SecondaryModal";
+import { useThirdLevelModal } from "../../context/ThirdLevelModal";
 import { getPreviewText } from "../../utils/product";
 import AddToCartButton from "../AddToCartButton";
 import BookmarkButton from "../BookmarkButton";
@@ -9,8 +10,9 @@ import ProductRemaining from "../ProductRemaining";
 import "./Product.css";
 
 function Product({ product, user, inCartProductIds, bookmarkProductIds, secondaryModal }) {
+  const { showCart, showProductDetails } = useModal();
   const { setSecondaryModalContent } = useSecondaryModal();
-  const { createAndShowBookmarks, showCart, showProductDetails } = useModal();
+  const { createAndShowBookmarks } = useThirdLevelModal();
 
   return (
     <div

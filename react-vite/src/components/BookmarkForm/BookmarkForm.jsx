@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { handleNoteOnChange } from "../../utils/form";
-import { useModal } from "../../context/Modal";
+import { useThirdLevelModal } from "../../context/ThirdLevelModal";
 import { disabledSubmitButton, enabledSubmitButton } from "../../utils/dom";
 import NotificationModal from "../NotificationModal";
 import * as bookmarkActions from "../../redux/bookmark";
@@ -9,7 +9,7 @@ import "./BookmarkForm.css";
 
 function BookmarkForm({ productId }) {
   const dispatch = useDispatch();
-  const { setModalContent } = useModal();
+  const { setThirdLevelModalContent } = useThirdLevelModal();
   const [note, setNote] = useState("");
   const [errors, setErrors] = useState({});
   const [submitting, setSubmitting] = useState(false);
@@ -30,10 +30,11 @@ function BookmarkForm({ productId }) {
 
     setSubmitting(false);
     enabledSubmitButton();
-    setModalContent(
+    setThirdLevelModalContent(
       <NotificationModal
         message="Successfully created bookmark"
         status="alert-success"
+        thirdLevelModal={true}
       />
     );
   }
