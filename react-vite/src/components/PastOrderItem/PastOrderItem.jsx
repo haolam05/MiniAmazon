@@ -1,9 +1,9 @@
-import { useModal } from "../../context/Modal";
+import { useSecondaryModal } from "../../context/SecondaryModal";
 import { getPreviewText } from "../../utils/product";
 import ProductPrice from "../ProductPrice";
 
 function PastOrderItem({ item, product, user, inCartProductIds, bookmarkProductIds }) {
-  const { showProductDetails } = useModal();
+  const { showProductDetails } = useSecondaryModal();
 
   return (
     <div
