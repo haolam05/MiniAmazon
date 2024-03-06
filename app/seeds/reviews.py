@@ -60,6 +60,24 @@ def seed_reviews():
             "customer_id": username_to_ids["mihawk"],
             "review": "Could have come in a better package!",
             "rating": 3
+        },
+        {
+            "product_id": product_image_name_to_ids["lego.jpg"],
+            "customer_id": username_to_ids["mihawk"],
+            "review": "Very nice lego! My daughter loves it 🎉",
+            "rating": 5
+        },
+        {
+            "product_id": product_image_name_to_ids["lego.jpg"],
+            "customer_id": username_to_ids["robin"],
+            "review": "Awesome, would be better if comes in a nicer package. Also, why does my package does not come with the balloon?",
+            "rating": 4
+        },
+        {
+            "product_id": product_image_name_to_ids["lego.jpg"],
+            "customer_id": username_to_ids["zoro"],
+            "review": "I only have the orange balloon!!! Is this a scam? Send me another one!",
+            "rating": 1
         }
     ]
 

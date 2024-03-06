@@ -14,7 +14,8 @@ function ProductReviews({ product, user, setAverageRating }) {
   const showReviewForm = () => {
     setThirdLevelModalContent(
       <ReviewForm
-        productId={product.id}
+        product={product}
+        setAverageRating={setAverageRating}
       />
     );
   }

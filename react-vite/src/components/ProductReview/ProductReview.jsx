@@ -29,6 +29,11 @@ function ProductReview({ reviews, review, user, setAverageRating }) {
     setAverageRating(getAverageRating([...ratings, currentRating]));
   }
 
+  const setAverageRatingAfterDelete = () => {
+    const ratings = reviews.filter(r => r.id !== review.id).map(r => r.rating);
+    setAverageRating(getAverageRating(ratings));
+  }
+
   const updateReview = async () => {
     const data = await dispatch(productActions.updateProductReviewThunk(review.product_id, review.id, reviewInput, currentRating));
     if (data?.errors) {
@@ -61,6 +66,7 @@ function ProductReview({ reviews, review, user, setAverageRating }) {
           thirdLevelModal={true}
         />
       );
+      setAverageRatingAfterDelete();
     }
   }
 

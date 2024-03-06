@@ -1,13 +1,14 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { handleReviewOnChange } from "../../utils/form";
+import { getAverageRating } from "../../utils/review";
 import { useThirdLevelModal } from "../../context/ThirdLevelModal";
+import { handleReviewOnChange } from "../../utils/form";
 import { disabledSubmitButton, enabledSubmitButton } from "../../utils/dom";
 import NotificationModal from "../NotificationModal";
 import * as productActions from "../../redux/product";
 import "./ReviewForm.css";
 
-function ReviewForm({ productId }) {
+function ReviewForm({ product, setAverageRating }) {
   const dispatch = useDispatch();
   const { setThirdLevelModalContent } = useThirdLevelModal();
   const [reviewInput, setReviewInput] = useState("");
@@ -22,13 +23,17 @@ function ReviewForm({ productId }) {
     disabledSubmitButton();
     setSubmitting(true);
 
-    const data = await dispatch(productActions.createProductReviewThunk(productId, reviewInput, currentRating));
+    const data = await dispatch(productActions.createProductReviewThunk(product.id, reviewInput, currentRating));
 
     if (data?.errors) {
       setSubmitting(false);
       enabledSubmitButton();
       return setErrors(data.errors);
     }
+
+    const ratings = product.reviews.map(review => review.rating);
+    console.log(ratings)
+    setAverageRating(getAverageRating([...ratings, data.rating]));
 
     setSubmitting(false);
     enabledSubmitButton();
