@@ -90,9 +90,9 @@ h2.product-title {
   .product-image-magnify {
     position: absolute;
     z-index: 1;
-    width: 390px;
+    width: 380px;
     height: 450px;
-    right: 0;
+    right: 10px;
     cursor: none;
     border-left: 1px solid var(--black);
   }
