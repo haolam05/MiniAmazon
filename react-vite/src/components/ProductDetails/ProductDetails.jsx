@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { getPreviewText } from "../../utils/product";
+import { useThirdLevelModal } from "../../context/ThirdLevelModal";
 import { hideMagnifyImage, showMagnifyImage } from "../../utils/magnify";
 import { getAverageRating, toggleReviewInfo } from "../../utils/review";
 import ProductReviews from "../ProductReviews";
@@ -12,7 +13,8 @@ import ProductPrice from "../ProductPrice";
 import ProductReviewInfo from "../ProductReviewInfo";
 import "./ProductDetails.css";
 
-function ProductDetails({ user, product, createAndShowBookmarks, showCart, inCartProductIds, bookmarkProductIds }) {
+function ProductDetails({ user, product, showCart, inCartProductIds, bookmarkProductIds }) {
+  const { createAndShowBookmarks } = useThirdLevelModal();
   const [averageRating, setAverageRating] = useState(getAverageRating(product.reviews.map(review => review.rating)));
 
   return (

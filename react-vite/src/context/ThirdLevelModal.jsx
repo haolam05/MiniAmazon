@@ -46,7 +46,6 @@ export function ThirdLevelModalProvider({ children }) {
       <ProductDetails
         user={user}
         product={product}
-        createAndShowBookmarks={e => createAndShowBookmarks(e, product.id)}
         showCart={e => showCart(e, product)}
         inCartProductIds={inCartProductIds}
         bookmarkProductIds={bookmarkProductIds}
