@@ -78,6 +78,42 @@ def seed_reviews():
             "customer_id": username_to_ids["zoro"],
             "review": "I only have the orange balloon!!! Is this a scam? Send me another one!",
             "rating": 1
+        },
+        {
+            "product_id": product_image_name_to_ids["chess.jpg"],
+            "customer_id": username_to_ids["sanji"],
+            "review": "Pretty cool board, but I don't really like the pieces. Do you have a different color other than black and white?",
+            "rating": 4
+        },
+        {
+            "product_id": product_image_name_to_ids["chess.jpg"],
+            "customer_id": username_to_ids["robin"],
+            "review": "I got better at chess after I bought this! 😂",
+            "rating": 5
+        },
+        {
+            "product_id": product_image_name_to_ids["chess.jpg"],
+            "customer_id": username_to_ids["haolam"],
+            "review": "The material has high quality. Highly recommended!! ♟️♟️",
+            "rating": 5
+        },
+        {
+            "product_id": product_image_name_to_ids["watch-men.jpg"],
+            "customer_id": username_to_ids["haolam"],
+            "review": "Love the fancy design. Let me know when there is a discount 🙂",
+            "rating": 4
+        },
+        {
+            "product_id": product_image_name_to_ids["watch-men.jpg"],
+            "customer_id": username_to_ids["sanji"],
+            "review": "It's too bright and it hurts my eyes 👀",
+            "rating": 3
+        },
+        {
+            "product_id": product_image_name_to_ids["watch-men.jpg"],
+            "customer_id": username_to_ids["robin"],
+            "review": "Too pricey... 💸💸",
+            "rating": 4
         }
     ]
 
