@@ -28,7 +28,7 @@ def seed_bookmarks():
             "note": "Considering which language to learn. Java book is too expensive compared to python book."
         },
         {
-            "product_id": product_image_name_to_ids["eyedrop.webp"],
+            "product_id": product_image_name_to_ids["eyedrop.png"],
             "customer_id": username_to_ids["haolam"],
             "note": "Coding too much, needs eyedrop. Looking for a larger pack."
         }

@@ -24,7 +24,7 @@ def seed_products():
             "category": categories[0],
             "description": "Raspberries can be found in assorted colors including gold, black and purple, but red raspberries are the most common. These fruits are as nutritious as they are beautiful....",
             "remaining": 50,
-            "product_image": location + "red+raspberries.jpg"
+            "product_image": location + "raspberries.jpg"
         },
         {
             "seller_id": username_to_ids["zoro"],
@@ -87,7 +87,7 @@ def seed_products():
             "category": categories[3],
             "description": "Original strength formula. Relieves mild symptoms of eye dryness. Instantly moisturizes and lubricates. Designed to act like your own natural tears. Doctor recommended with over 30 years of experience; REFRESH Family of Products, Ipsos Healthcare, 2021 REFRESH ECP Recommendation Survey.",
             "remaining": 222,
-            "product_image": location + "eyedrop.webp"
+            "product_image": location + "eyedrop.png"
         },
                 {
             "seller_id": username_to_ids["haolam"],
@@ -142,6 +142,96 @@ def seed_products():
             "description": "The Hass avocado is known as the 'year-round avocado' because of its seasonal availability. Mexico is the world's largest producer of Hass avocados, best known for their creamy texture and great taste!",
             "remaining": 22,
             "product_image": location + "avocado.jpg"
+        },
+        {
+            "seller_id": username_to_ids["robin"],
+            "name": "Cherry Red Conventional, 16 Ounce",
+            "price": 7.99,
+            "category": categories[0],
+            "description": "Luxardo Maraschino Cherries are famous. Marasca cherries are dark red, almost black candied cherries that have been soaked in thick marasca cherry syrup. The candying process gives Luxardo Maraschino Cherries a delightful crispiness that, along with its signature taste, makes it stand out amongst other cocktail cherries.",
+            "remaining": 16,
+            "product_image": location + "cherry.jpg"
+        },
+        {
+            "seller_id": username_to_ids["mihawk"],
+            "name": "Seedless Mini Watermelon",
+            "price": 4.99,
+            "category": categories[0],
+            "description": "Customers like the taste of the watermelon, mentioning it's sweet and juicy. They do, however, have concerns about the texture, size and softness of the product. They say it' s over ripen, rubbery and has visible damage. Customers also have mixed opinions on freshness.",
+            "remaining": 111,
+            "product_image": location + "watermelon.jpg"
+        },
+        {
+            "seller_id": username_to_ids["mihawk"],
+            "name": "Skytech Gaming Nebula Gaming PC Desktop - Intel Core i5 13400F 2.5 GHz, NVIDIA RTX 3050, 1TB NVME SSD, 16GB DDR4 RAM 3200, 600W Gold PSU, 11AC Wi-Fi, Windows 11 Home 64-bit",
+            "price": 749.99,
+            "category": categories[1],
+            "description": "INTEL Core i5 13400F 2.5GHz (4.6GHz Max Boost) CPU Processor | 1TB NVME SSD - Up to 30x Faster Than Traditional HDD NVIDIA Geforce RTX 3050 8GB GDDR6 Graphics Card (Brand may vary) | 16GB DDR4 RAM 3200 Gaming Memory with Heat Spreader | Windows 11 Home 64-bit 802.11 AC | No Bloatware | Graphic output options include 1 x HDMI, and 1 x Display Port Guaranteed, Additional Ports may vary | USB Ports Including 2.0, 3.0, and 3.2 Gen1 Ports | HD Audio and Mic | Free Gaming Keyboard and Mouse 4 RGB Fans for Maximum Air Flow | Skytech Nebula Black Edition with Front Mesh | 1 Year Warranty on Parts and Labor | Lifetime Free Technical Support | Assembled in the USA This powerful gaming PC is capable of running all your favorite games such as Call of Duty Warzone, Fornite, Escape from Tarkov, Grand Theft Auto V, Valorant, World of Warcraft, League of Legends, Apex Legends, Roblox, PLAYERUNKNOWN's Battlegrounds, Overwatch, Counter-Strike: Global Offensive, Battlefield V, New World, Minecraft, Elden Ring, Rocket League, The Division 2, and more at Ultra settings, detailed 1080p Full HD resolution, and smooth 60+ FPS gameplay.",
+            "remaining": 2,
+            "product_image": location + "pc.jpg"
+        },
+        {
+            "seller_id": username_to_ids["robin"],
+            "name": "PHILIPS 22 inch Class Thin Full HD (1920 x 1080) 75Hz Monitor, VESA, HDMI & VGA Port, 4 Year Advance Replacement Warranty, 221V8LN",
+            "price": 69.99,
+            "category": categories[1],
+            "description": "CRISP CLARITY: This 22 inch class (21.45″ viewable) Philips V line monitor delivers crisp Full HD 1920x1080 visuals. Enjoy movies, shows and videos with remarkable detail INCREDIBLE CONTRAST: The VA panel produces brighter whites and deeper blacks. You get true-to-life images and more gradients with 16.7 million colors THE PERFECT VIEW: The 178/178 degree extra wide viewing angle prevents the shifting of colors when viewed from an offset angle, so you always get consistent colors WORK SEAMLESSLY: This sleek monitor is virtually bezel-free on three sides, so the screen looks even bigger for the viewer. This minimalistic design also allows for seamless multi-monitor setups that enhance your workflow and boost productivity A BETTER READING EXPERIENCE: For busy office workers, EasyRead mode provides a more paper-like experience for when viewing lengthy documents 75HZ FAST REFRESH RATE: 75 Hz (via HDMI 1.4) brings your favorite movies and video games to life. Stream, binge, and play effortlessly SMOOTH ACTION WITH ADAPTIVE-SYNC: Adaptive-Sync technology ensures fluid action sequences and rapid response time. Every frame will be rendered smoothly with crystal clarity and without stutter DESIGNED FOR YOUR WELLBEING: Philips monitors use LowBlue Mode to reduce harmful shortwave blue light. Flicker-free technology alleviates eye fatigue for more comfortable extended computing USER CONVENIENCE: Robust connections include HDMI 1.4, VGA and audio out. VESA compatibility gives you flexible mounting options PEACE OF MIND: Philips monitors come with 4-Year Advance Replacement Warranty in the United States, minimizing downtime",
+            "remaining": 12,
+            "product_image": location + "monitor.jpg"
+        },
+        {
+            "seller_id": username_to_ids["robin"],
+            "name": "Milk and Honey Paperback - October 6, 2015",
+            "price": 6.26,
+            "category": categories[2],
+            "description": "#1 New York Times bestseller milk and honey is a collection of poetry and prose about survival. About the experience of violence, abuse, love, loss, and femininity. The book is divided into four chapters, and each chapter serves a different purpose. Deals with a different pain. Heals a different heartache. milk and honey takes readers through a journey of the most bitter moments in life and finds sweetness in them because there is sweetness everywhere if you are just willing to look.",
+            "remaining": 3,
+            "product_image": location + "book+milk+and+honey.jpg"
+        },
+        {
+            "seller_id": username_to_ids["acee"],
+            "name": "Earle The Psychology of Money Paperback - 1 September 2020",
+            "price": 13.00,
+            "category": categories[2],
+            "description": "In the psychology of money, the author shares 19 short stories exploring the strange ways people think about money and teaches you how to make better sense of one of life?s most important matters.",
+            "remaining": 17,
+            "product_image": location + "book+pschyology+of+money.jpg"
+        },
+        {
+            "seller_id": username_to_ids["nickyli"],
+            "name": "Armitron Women's Day/Date Crystal Accented Dial Metal Bracelet Watch, 75/2475",
+            "price": 26.92,
+            "category": categories[3],
+            "description": "Coin edge bezel; mineral crystal lens Mother-of-pearl dial with day/date calendar window; gold-tone hands and premium crystal markers; printed outer minute track Two-tone stainless steel bracelet; fold over clasp Case diameter: 24.5 millimeters Inner bracelet circumference: 7 inches Water-resistant to 165 feet (50 M): suitable for showering and short periods of swimming. Pull the crown out to set the time on calendar watch",
+            "remaining": 33,
+            "product_image": location + "watch-women.jpg"
+        },
+        {
+            "seller_id": username_to_ids["nickyli"],
+            "name": "Rolex Day-Date 40mm Sundust Set with Diamonds Dial Rose Gold Men's Watch 228235",
+            "price": 55700.00,
+            "category": categories[3],
+            "description": "18k everose gold case with a 18k everose gold Rolex President bracelet Fixed - fluted 18k everose gold bezel Sundust dial with rose-gold tone hands and alternating Roman numeral and index hour markers Automatic movement. Rolex 3255 engine Scratch resistant sapphire crystal Screw down crown. Solid case back",
+            "remaining": 5,
+            "product_image": location + "watch-men.jpg"
+        },
+        {
+            "seller_id": username_to_ids["zoro"],
+            "name": "AMEROUS 15 Inches Magnetic Wooden Chess Set - 2 Extra Queens - Folding Board - Pieces Storage Slots, Handmade Portable Travel Chess Game - Beginner Chess Set for Kids, 6 up Age",
+            "price": 29.99,
+            "category": categories[4],
+            "description": "INTELLIGENT ENLIGHTENMENT - Not only suitable for kids playing with fun, this magnetic chess set could be a useful tool to enlighten your family and stimulate their intelligence. Chess learning is no longer boring, but with joy and interest. Perfect for beginners and those indulged in electronic gadgets MAGNETIC CHESSMEN - The hand carved wood chess pieces are magnetically attached to the board and won't fall off during the game, which allows you to play the board game on the road, in car, airplane or any mobile vehicles EASY TO CARRY - Lightweight and folding board design makes it portable to carry around and easy to travel with. Compact board size fits your luggage or bag when travelling while chess pieces are large enough to handle, playing with comfort PREMIUM QUALITY - Handmade with high quality wooden material, the smooth surface of the entire chess board ensures optimal touch comfort while playing chess and checkers game. 2 extra queens are added to the board as free accessories at your disposal PERFECT GIFT - Promote the relationship between children and friends or parents, sharing board game, suitable for indoor and outdoor, widely used in schools, families, camping and travel, is the most popular board game, can be used as a gift at Christmas , Children's Day, birthday, New Year gift for children or friends, parents",
+            "remaining": 15,
+            "product_image": location + "chess.jpg"
+        },
+        {
+            "seller_id": username_to_ids["sanji"],
+            "name": "LEGO Disney Stitch Toy Building Kit, Disney Toy for 9 Year Old Kids, Buildable Figure with Ice Cream Cone, Fun Disney Gift for Girls, Boys and Lovers of The Hit Movie Lilo and Stitch, 43249",
+            "price": 29.99,
+            "category": categories[4],
+            "description": "Disney’s Lilo and Stitch building set for kids - Buildable LEGO Disney Stitch toy for girls and boys ages 9 and up that sparks imagination as kids build the model, then play with and display it afterwards Disney Stitch character - This creative LEGO building set features a displayable model from Lilo and Stitch, a buildable ice cream cone and a flower that can be used to decorate the characte Moving parts - The buildable Stitch model includes ears that can move up or down and a turning head with space for the decorative flower, plus a hand that can hold the brick built ice cream cone Fun display - Create Stitch in his Hawaiian shirt, decorate him with an ice cream cone and flower, move his head and ears into different positions to show new expressions, then set him up on display Disney gift for kids - A building toy set featuring a Disney character with functions and accessories that makes a great gift for movie lovers, girls and boys ages 9 and up to share at school or home A helping hand - Let the LEGO Builder app guide kids on an intuitive building adventure, where they can save sets, track progress and zoom in and rotate models in 3D while they build Expand life skills - With this Disney toy for 9 year old kids, plus accessories and functions to enhance display, this buildable character construction toy helps foster life skills through fun",
+            "remaining": 25,
+            "product_image": location + "lego.jpg"
         }
     ]
 

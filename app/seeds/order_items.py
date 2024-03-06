@@ -22,7 +22,7 @@ def seed_order_items():
             "quantity": 3
         },
         {
-            "product_id": product_image_name_to_ids["red+raspberries.jpg"],
+            "product_id": product_image_name_to_ids["raspberries.jpg"],
             "order_id": 1,
             "quantity": 4
         },
@@ -72,7 +72,7 @@ def seed_order_items():
             "quantity": 1
         },
         {
-            "product_id": product_image_name_to_ids["red+raspberries.jpg"],
+            "product_id": product_image_name_to_ids["raspberries.jpg"],
             "order_id": 3,
             "quantity": 1
         },
@@ -87,7 +87,7 @@ def seed_order_items():
             "quantity": 1
         },
         {
-            "product_id": product_image_name_to_ids["red+raspberries.jpg"],
+            "product_id": product_image_name_to_ids["raspberries.jpg"],
             "order_id": 4,
             "quantity": 1
         }
