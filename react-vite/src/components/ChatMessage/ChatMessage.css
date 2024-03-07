@@ -23,3 +23,9 @@
   height: 50px;
   border-radius: 50%;
 }
+
+.chat-message .message-parts {
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+}

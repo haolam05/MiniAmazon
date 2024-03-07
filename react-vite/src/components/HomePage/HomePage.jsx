@@ -21,6 +21,7 @@ function HomePage() {
   const dispatch = useDispatch();
   const [productNameInput, setProductNameInput] = useState("");
   const [productCategoryInput, setProductCategoryInput] = useState("");
+  const [messages, setMessages] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
   const { setModalContent } = useModal();
   const user = useSelector(sessionActions.sessionUser);
@@ -73,8 +74,9 @@ function HomePage() {
           </div>
           <CustomerServiceChatWindow
             user={user?.user}
-            messages={[]}
             socket={socket}
+            messages={messages}
+            setMessages={setMessages}
           />
         </>
       )}

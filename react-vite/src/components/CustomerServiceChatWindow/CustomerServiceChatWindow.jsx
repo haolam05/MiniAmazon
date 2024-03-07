@@ -3,12 +3,25 @@ import { closeChat } from "../../utils/chat";
 import ChatMessages from "../ChatMessages";
 import "./CustomerServiceChatWindow.css";
 
-function CustomerServiceChatWindow({ user, messages, socket }) {
+function CustomerServiceChatWindow({ user, socket, messages, setMessages }) {
   const [textInput, setTextInput] = useState("");
 
   const sendUserMessage = () => {
     if (textInput.length) {
+      setMessages([...messages, { sender_id: user.id, text: textInput }]);
+      setTextInput("");
       socket.emit("new_user_message", textInput);
+    }
+  }
+
+  const handleKeyPress = e => {
+    if (e.keyCode === 13) { // enter
+      e.preventDefault(); // prevent default new line
+      if (e.ctrlKey) {
+        setTextInput(textInput + "\n")
+      } else {
+        sendUserMessage();
+      }
     }
   }
 
@@ -21,10 +34,15 @@ function CustomerServiceChatWindow({ user, messages, socket }) {
         <i className="fa-solid fa-left-long"></i>
       </div>
       <div className="chat-body">
-        <ChatMessages user={user} messages={messages} />
+        <ChatMessages user={user} messages={messages} setMessages={setMessages} />
       </div>
       <div className="chat-footer">
-        <textarea spellCheck={false} value={textInput} onChange={e => setTextInput(e.target.value)} />
+        <textarea
+          spellCheck={false}
+          value={textInput}
+          onChange={e => setTextInput(e.target.value)}
+          onKeyDown={handleKeyPress}
+        />
         <i className="fa-solid fa-paper-plane" title="Send" onClick={sendUserMessage}></i>
       </div>
     </div>

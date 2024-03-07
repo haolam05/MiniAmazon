@@ -2,11 +2,11 @@ import ChatBotMessage from "../ChatBotMessage";
 import MyMessage from "../MyMessage/MyMessage";
 import "./ChatMessage.css";
 
-function ChatMessage({ message, myMsg, user }) {
-  if (myMsg) {
+function ChatMessage({ user, message }) {
+  if (user.id === message.sender_id) {
     return (
       <MyMessage
-        message={message}
+        message={message.text}
         user={user}
       />
     );
