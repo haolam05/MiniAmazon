@@ -124,6 +124,8 @@ def checkout_order(id):
     order.is_checkout = True
     for order_item in order.order_items:
         product = order_item.product
+        if product.is_deleted:
+            return {"message": f"\"{product.name}\" is already deleted. Please remove it from your cart!"}, 500
         product.remaining -= order_item.quantity
 
     db.session.commit()

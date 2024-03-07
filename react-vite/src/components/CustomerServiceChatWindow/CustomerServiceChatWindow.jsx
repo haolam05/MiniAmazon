@@ -1,8 +1,17 @@
+import { useState } from "react";
 import { closeChat } from "../../utils/chat";
 import ChatMessages from "../ChatMessages";
 import "./CustomerServiceChatWindow.css";
 
-function CustomerServiceChatWindow({ user, messages }) {
+function CustomerServiceChatWindow({ user, messages, socket }) {
+  const [textInput, setTextInput] = useState("");
+
+  const sendUserMessage = () => {
+    if (textInput.length) {
+      socket.emit("new_user_message", textInput);
+    }
+  }
+
   return (
     <div id="customer-service-chat-window" className="hidden">
       <div className="chat-title">
@@ -15,8 +24,8 @@ function CustomerServiceChatWindow({ user, messages }) {
         <ChatMessages user={user} messages={messages} />
       </div>
       <div className="chat-footer">
-        <textarea spellCheck={false} />
-        <i className="fa-solid fa-paper-plane" title="Send"></i>
+        <textarea spellCheck={false} value={textInput} onChange={e => setTextInput(e.target.value)} />
+        <i className="fa-solid fa-paper-plane" title="Send" onClick={sendUserMessage}></i>
       </div>
     </div>
   );

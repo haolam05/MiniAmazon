@@ -23,7 +23,7 @@ function Products({ products, user, inCartProductIds, bookmarkProductIds, produc
 
   return (
     <div id="products">
-      {currentProducts.map(product =>
+      {currentProducts.filter(product => !product.is_deleted).map(product =>
         <Product
           key={product.id}
           product={product}
