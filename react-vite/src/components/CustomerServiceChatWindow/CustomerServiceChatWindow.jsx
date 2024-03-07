@@ -2,7 +2,7 @@ import { closeChat } from "../../utils/chat";
 import ChatMessages from "../ChatMessages";
 import "./CustomerServiceChatWindow.css";
 
-function CustomerServiceChatWindow() {
+function CustomerServiceChatWindow({ user, messages }) {
   return (
     <div id="customer-service-chat-window" className="hidden">
       <div className="chat-title">
@@ -12,7 +12,7 @@ function CustomerServiceChatWindow() {
         <i className="fa-solid fa-left-long"></i>
       </div>
       <div className="chat-body">
-        <ChatMessages messages={[]} />
+        <ChatMessages user={user} messages={messages} />
       </div>
       <div className="chat-footer">
         <textarea spellCheck={false} />

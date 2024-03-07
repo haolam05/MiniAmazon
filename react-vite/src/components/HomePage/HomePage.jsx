@@ -41,9 +41,6 @@ function HomePage() {
   );
 
   useEffect(() => {
-    // const url = import.meta.env.MODE === 'development' ? "http://127.0.0.1:8000" : "https://miniamazon.onrender.com";
-    // const socket = io(url);
-
     const loadData = async () => {
       await dispatch(sessionActions.restoreSession());
       await dispatch(productActions.loadProductsThunk());
@@ -66,7 +63,10 @@ function HomePage() {
             <i className="fa-solid fa-plus" title="Add a product" onClick={showProductForm}></i>
             <i className="fa-solid fa-database" title="My products" onClick={showMyProducts}></i>
           </div>
-          <CustomerServiceChatWindow />
+          <CustomerServiceChatWindow
+            user={user?.user}
+            messages={[]}
+          />
         </>
       )}
       <NavBar
