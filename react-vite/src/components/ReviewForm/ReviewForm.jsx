@@ -32,7 +32,6 @@ function ReviewForm({ product, setAverageRating }) {
     }
 
     const ratings = product.reviews.map(review => review.rating);
-    console.log(ratings)
     setAverageRating(getAverageRating([...ratings, data.rating]));
 
     setSubmitting(false);
