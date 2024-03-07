@@ -1,6 +1,7 @@
-import { useSelector } from "react-redux";
 import { useModal } from "../../context/Modal";
+import { useSelector } from "react-redux";
 import { toggleCart } from "../../utils/cart";
+import { toggleChat } from "../../utils/chat";
 import { addOutline, removeOutline } from "../../utils/navbar";
 import Bookmarks from "../Bookmarks";
 import SessionInfo from "../SessionInfo";
@@ -68,6 +69,9 @@ function NavBar({ user, products, inCartProductIds, bookmarks, bookmarkProductId
       </div>
       <div id="bookmark" title="View bookmarks" onClick={toggleBookmarks}>
         <i className="fa-solid fa-bookmark"></i>
+      </div>
+      <div id="customer-service-chat" onClick={toggleChat}>
+        <i className="fa-solid fa-robot" title="Customer service live chat"></i>
       </div>
       <SessionInfo user={user} />
     </div>

@@ -7,6 +7,7 @@ import Loading from "../Loading";
 import Products from "../Products";
 import ProductForm from "../ProductForm";
 import MyProducts from "../MyProducts";
+import CustomerServiceChatWindow from "../CustomerServiceChatWindow";
 import * as sessionActions from "../../redux/session";
 import * as productActions from "../../redux/product";
 import * as orderActions from "../../redux/order";
@@ -40,6 +41,9 @@ function HomePage() {
   );
 
   useEffect(() => {
+    // const url = import.meta.env.MODE === 'development' ? "http://127.0.0.1:8000" : "https://miniamazon.onrender.com";
+    // const socket = io(url);
+
     const loadData = async () => {
       await dispatch(sessionActions.restoreSession());
       await dispatch(productActions.loadProductsThunk());
@@ -57,10 +61,13 @@ function HomePage() {
   return (
     <div id="home-page">
       {user?.user && (
-        <div className="manage-my-product-btns">
-          <i className="fa-solid fa-plus" title="Add a product" onClick={showProductForm}></i>
-          <i className="fa-solid fa-database" title="My products" onClick={showMyProducts}></i>
-        </div>
+        <>
+          <div className="manage-my-product-btns">
+            <i className="fa-solid fa-plus" title="Add a product" onClick={showProductForm}></i>
+            <i className="fa-solid fa-database" title="My products" onClick={showMyProducts}></i>
+          </div>
+          <CustomerServiceChatWindow />
+        </>
       )}
       <NavBar
         user={user?.user}

@@ -1,4 +1,4 @@
-@keyframes modal-slide-in {
+@keyframes second-modal-slide-in {
   0% {
     transform: translateX(-30vw);
     opacity: 0;
@@ -20,7 +20,7 @@
   justify-content: center;
   align-items: center;
   z-index: 3;
-  animation: modal-slide-in 500ms ease-in-out;
+  animation: second-modal-slide-in 500ms ease-in-out;
 }
 
 #secondary-modal-background {

@@ -1,4 +1,4 @@
-@keyframes slide-in {
+@keyframes cart-slide-in {
   0% {
     transform: translateX(30vw);
     opacity: 0;
@@ -10,7 +10,7 @@
   }
 }
 
-@keyframes slide-out {
+@keyframes cart-slide-out {
   0% {
     transform: translateX(0);
     opacity: 1;
@@ -35,11 +35,11 @@
 }
 
 #cart-orders.open {
-  animation: slide-in 500ms ease-in-out;
+  animation: cart-slide-in 500ms ease-in-out;
 }
 
 #cart-orders.close {
-  animation: slide-out 500ms ease-in-out;
+  animation: cart-slide-out 500ms ease-in-out;
 }
 
 #cart-orders .cart-title {
