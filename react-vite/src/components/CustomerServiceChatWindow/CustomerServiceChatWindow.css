@@ -48,6 +48,7 @@
   align-items: center;
   justify-content: center;
   gap: 40px;
+  margin-bottom: 20px;
 }
 
 #customer-service-chat-window .close-chat-btn i {
@@ -63,18 +64,27 @@
   opacity: 0.7;
 }
 
+#customer-service-chat-window .chatbot {
+  margin-bottom: 10px;
+}
+
+#customer-service-chat-window .chatbot i {
+  font-size: xxx-large;
+  color: var(--red);
+}
+
 #customer-service-chat-window .chat-body {
   background-color: var(--cart-product-background);
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
-  height: 65vh;
+  height: 70vh;
   padding: 10px;
 }
 
 #customer-service-chat-window .chat-footer {
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
-  background-color: var(--cart-delete-btn);
+  background-color: var(--chat-footer-background);
   padding: 10px;
   height: 10vh;
   display: flex;
@@ -91,6 +101,7 @@
   background-color: var(--chat-input-color);
   scrollbar-color: var(--cart-scroll-color) transparent;
   padding-right: 25px;
+  border: none;
 }
 
 #customer-service-chat-window .chat-footer textarea:focus {

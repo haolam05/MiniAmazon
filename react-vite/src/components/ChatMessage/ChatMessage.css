@@ -1,6 +1,6 @@
 .chat-message {
   line-break: anywhere;
-  background-color: rgb(113, 82, 25);
+  background-color: var(--other-message-background);
   padding: 10px;
   border-radius: 5px;
   width: fit-content;
@@ -9,7 +9,7 @@
 }
 
 .chat-message.me {
-  background-color: rgb(44, 113, 203);
+  background-color: var(--my-message-background);
   align-self: flex-end;
   margin-left: 0;
   margin-right: 5px;

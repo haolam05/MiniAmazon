@@ -33,13 +33,10 @@
   --my-review-background: rgb(244, 209, 209);
   --unsave-color: rgb(3, 124, 3);
   --discontinue-color: rgb(188 37 14);
-  --chat-input-color: rgb(234, 230, 230);
+  --chat-input-color: rgb(225, 224, 224);
   --my-message-background: #0084ff;
-  --other-message-background: #323436;
-}
-
-option:hover {
-  background-color: yellow;
+  --other-message-background: rgb(105, 85, 85);
+  --chat-footer-background: rgb(78, 76, 76);
 }
 
 * {
