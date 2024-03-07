@@ -13,7 +13,7 @@ function ChatMessage({ user, message }) {
   } else {
     return (
       <ChatBotMessage
-        message={message}
+        message={message.text}
       />
     );
   }
