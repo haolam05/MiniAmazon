@@ -14,8 +14,14 @@ import ProductReviewInfo from "../ProductReviewInfo";
 import "./ProductDetails.css";
 
 function ProductDetails({ user, product, showCart, inCartProductIds, bookmarkProductIds }) {
-  const { createAndShowBookmarks } = useThirdLevelModal();
+  const { setThirdLevelModalContent, createAndShowBookmarks } = useThirdLevelModal();
   const [averageRating, setAverageRating] = useState(getAverageRating(product.reviews.map(review => review.rating)));
+
+  const showFullSizeImage = e => {
+    setThirdLevelModalContent(
+      <img src={product.product_image} alt="product-image" />
+    );
+  }
 
   return (
     <>
@@ -24,7 +30,7 @@ function ProductDetails({ user, product, showCart, inCartProductIds, bookmarkPro
         <div className="product-image-magnify hidden"></div>
         <div className="product-wrapper">
           <div className="product cursor-normal" id={product.id}>
-            <div className="product-image">
+            <div className="product-image" onClick={showFullSizeImage}>
               <div
                 className="image-len hidden"
                 onMouseMove={showMagnifyImage}
