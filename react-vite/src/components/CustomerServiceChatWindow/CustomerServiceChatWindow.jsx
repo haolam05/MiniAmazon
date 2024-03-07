@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { closeChat } from "../../utils/chat";
+import { closeChat, scrollToBottomOfChat } from "../../utils/chat";
 import ChatMessages from "../ChatMessages";
 import "./CustomerServiceChatWindow.css";
 
@@ -8,9 +8,10 @@ function CustomerServiceChatWindow({ user, socket, messages, setMessages }) {
 
   const sendUserMessage = () => {
     if (textInput.length) {
+      socket.emit("new_user_message", textInput);
       setMessages([...messages, { sender_id: user.id, text: textInput }]);
       setTextInput("");
-      socket.emit("new_user_message", textInput);
+      scrollToBottomOfChat();
     }
   }
 

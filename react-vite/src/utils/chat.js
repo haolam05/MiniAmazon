@@ -46,3 +46,12 @@ export const closeChat = e => {
     chatWindow.classList.add("close");
   }
 }
+
+export const scrollToBottomOfChat = () => {
+  const chatWindow = document.querySelector(".chat-messages");
+  if (chatWindow && chatWindow.scrollTop + chatWindow.clientHeight === chatWindow.scrollHeight) {
+    setTimeout(() => {
+      chatWindow.scrollTop = chatWindow.scrollHeight;
+    }, 300);
+  }
+}
