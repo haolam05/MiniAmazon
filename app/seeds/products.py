@@ -9,7 +9,7 @@ def seed_products():
 
     products = [
         {
-            "seller_id": username_to_ids["haolam"],
+            "seller_id": username_to_ids["nickyli"],
             "name": "Organic Blackberries, 6 Oz",
             "price": 4.69,
             "category": categories[0],
@@ -18,7 +18,7 @@ def seed_products():
             "product_image": location + "black+berries.jpg"
         },
         {
-            "seller_id": username_to_ids["haolam"],
+            "seller_id": username_to_ids["mihawk"],
             "name": "Red Raspberries, 6 Oz",
             "price": 3.59,
             "category": categories[0],
@@ -90,7 +90,7 @@ def seed_products():
             "product_image": location + "eyedrop.png"
         },
                 {
-            "seller_id": username_to_ids["haolam"],
+            "seller_id": username_to_ids["mihawk"],
             "name": "Hair Dryer - 150000 RPM High-Speed Brushless Motor Negative Ionic Blow Dryer for Fast Drying, Low Noise Thermo-Control Hair Dryer with Diffuser and Nozzle, Perfect for Gifts",
             "price": 99.98,
             "category": categories[3],
@@ -99,7 +99,7 @@ def seed_products():
             "product_image": location + "hair+dryer.jpg"
         },
                 {
-            "seller_id": username_to_ids["haolam"],
+            "seller_id": username_to_ids["robin"],
             "name": "COSLUS Water Dental Flosser Teeth Pick: Portable Cordless Oral Irrigator 300ML Rechargeable Travel Irrigation Cleaner IPX7 Waterproof Electric Waterflosser Flossing Machine for Teeth Cleaning F5020E",
             "price": 35.99,
             "category": categories[3],
@@ -108,7 +108,7 @@ def seed_products():
             "product_image": location + "water+flosser.jpg"
         },
         {
-            "seller_id": username_to_ids["haolam"],
+            "seller_id": username_to_ids["nickyli"],
             "name": "TitanicToyCo RMS Titanic Model Ship or Britannic or Olympic 8\" Assembled Titanic Toys For Kids, Historically Accurate Titanic Toy, Titanic Ship, Titanic Cake Topper, Toy Ships, Titanic Boat",
             "price": 15.99,
             "category": categories[4],
@@ -117,7 +117,7 @@ def seed_products():
             "product_image": location + "ship.jpg"
         },\
         {
-            "seller_id": username_to_ids["haolam"],
+            "seller_id": username_to_ids["nickyli"],
             "name": "Customizable Boy Puppet #2 - Professional Puppet Ministry, School, Church",
             "price": 89.00,
             "category": categories[4],
@@ -126,7 +126,7 @@ def seed_products():
             "product_image": location + "puppet.jpg"
         },
         {
-            "seller_id": username_to_ids["haolam"],
+            "seller_id": username_to_ids["nickyli"],
             "name": "Personalized Wooden Name Puzzle for Kids Personalized Name Puzzle for Toddlers Personalized Baby Gifts First Birthday Gift Personalized Puzzle Wooden Puzzles Custom Name Puzzle Baby & Toddler Toys",
             "price": 13.96,
             "category": categories[4],
@@ -135,7 +135,7 @@ def seed_products():
             "product_image": location + "puzzle.jpg"
         },
         {
-            "seller_id": username_to_ids["haolam"],
+            "seller_id": username_to_ids["mihawk"],
             "name": "Medium Hass Avocado",
             "price": 1.29,
             "category": categories[0],
