@@ -18,7 +18,7 @@ function ProductDetails({ user, product, showCart, inCartProductIds, bookmarkPro
   const [averageRating, setAverageRating] = useState(getAverageRating(product.reviews.map(review => review.rating)));
 
   const showFullSizeImage = e => {
-    if (e.target.classList.contais("product-image-tag")) {
+    if (e.target.classList.contains("image-len")) {
       setThirdLevelModalContent(
         <img src={product.product_image} alt="product-image" />
       );
