@@ -62,17 +62,21 @@ function NavBar({ user, products, inCartProductIds, bookmarks, bookmarkProductId
           <option className="category" value="Handmade">Handmade</option>
         </select>
       </div>
-      <div id="cart" title="View cart" onClick={toggleCart}>
-        <img src="/images/cart.png" alt="shopping-cart" />
-        <span>Cart</span>
-        <span id="cart-items-count">{itemsInCart.length}</span>
-      </div>
-      <div id="bookmark" title="View bookmarks" onClick={toggleBookmarks}>
-        <i className="fa-solid fa-bookmark"></i>
-      </div>
-      <div id="customer-service-chat" onClick={toggleChat}>
-        <i className="fa-solid fa-robot" title="Customer service live chat"></i>
-      </div>
+      {user && (
+        <>
+          <div id="cart" title="View cart" onClick={toggleCart}>
+            <img src="/images/cart.png" alt="shopping-cart" />
+            <span>Cart</span>
+            <span id="cart-items-count">{itemsInCart.length}</span>
+          </div>
+          <div id="bookmark" title="View bookmarks" onClick={toggleBookmarks}>
+            <i className="fa-solid fa-bookmark"></i>
+          </div>
+          <div id="customer-service-chat" onClick={toggleChat}>
+            <i className="fa-solid fa-robot" title="Customer service live chat"></i>
+          </div>
+        </>
+      )}
       <SessionInfo user={user} />
     </div>
   );
