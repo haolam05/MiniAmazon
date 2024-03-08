@@ -21,15 +21,17 @@ function CustomerServiceChatWindow({ user, socket }) {
   useEffect(() => {
     const handleConnectionError = () => setTimeout(() => socket.connect(), 5000);
     const handleNewMessage = newMessages => {
-      setMessages([...messages, newMessages[0]]);
-      showTyping();
-      setTimeout(() => {
-        setMessages(prev => [...prev, newMessages[1]]);
+      if (newMessages[0]?.sender_id === user.id) {
+        setMessages([...messages, newMessages[0]]);
+        showTyping();
+        setTimeout(() => {
+          setMessages(prev => [...prev, newMessages[1]]);
+          scrollToBottomOfChat(endOfChat);
+          hideTyping();
+          setNotification();
+        }, 3000);
         scrollToBottomOfChat(endOfChat);
-        hideTyping();
-        setNotification();
-      }, 3000);
-      scrollToBottomOfChat(endOfChat);
+      }
     };
 
     socket.on('connect_error', handleConnectionError);

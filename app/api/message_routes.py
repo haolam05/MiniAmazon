@@ -48,6 +48,8 @@ profile_questions = f"{please_choose}{profile_question_1}\n{profile_question_2}"
 profile_answer_1 = f"To update your profile, click your avatar (or the default avatar if you don't have one) in the navigation bar.\n\nAfter that, your profile page will pop up. You can then select the \"Update\" button to update your profile.\n\nPlease note that you are not allowed to update your username or email, and you must enter your current password for security reason.\n\nHope it helps!!\n\n{other_question}"
 profile_answer_2 = f"To change your password, click your avatar (or the default avatar if you don't have one) in the navigation bar.\n\nAfter that, your profile page will pop up. You can then select the \"Change password\" button to change your password.\n\n Please note that you must enter your current password for security reason. Besides that, you will have to login again with your new password.\n\nHope it helps!!\n\n{other_question}"
 
+users = {}
+
 map = {
     "state": "",
     "X": wrong_option,
@@ -84,79 +86,83 @@ def handle_new_user_message():
         "id": data["id"] + 1,
         "sender_id": chatbot_id
     }
+    sender_id = data["sender_id"]
     key = data["text"]
 
-    if map["state"] == "":
+    if sender_id not in users:
+        users[sender_id] = {**map}
+
+    if users[sender_id]["state"] == "":
         if key in allowed_keys:
-            map["state"] = key
-            message["text"] = map[key]
+            users[sender_id]["state"] = key
+            message["text"] = users[sender_id][key]
         else:
-            message["text"] = map["X"]
-    elif map["state"] == "1":
+            message["text"] = users[sender_id]["X"]
+    elif users[sender_id]["state"] == "1":
         if key == "1":
-            map["state"] = "11"
-            message["text"] = map["11"]
+            users[sender_id]["state"] = "11"
+            message["text"] = users[sender_id]["11"]
         elif key == "2":
-            map["state"] = "12"
-            message["text"] = map["12"]
+            users[sender_id]["state"] = "12"
+            message["text"] = users[sender_id]["12"]
         else:
-            message["text"] = invalid_choice + map[map["state"]]
-    elif map["state"] in ["11", "12", "21", "22", "31", "32", "41", "42", "51", "52", "61", "62"]:
+            message["text"] = invalid_choice + users[sender_id][users[sender_id]["state"]]
+    elif users[sender_id]["state"] in ["11", "12", "21", "22", "31", "32", "41", "42", "51", "52", "61", "62"]:
         if key == "1":
-            map["state"] = ""
-            message["text"] = map["111"]
+            users[sender_id]["state"] = ""
+            message["text"] = users[sender_id]["111"]
         elif key == "2":
-            map["state"] = ""
-            message["text"] = map["112"]
+            users[sender_id]["state"] = ""
+            message["text"] = users[sender_id]["112"]
         else:
-            message["text"] = invalid_choice + map[map["state"]]
-    elif map["state"] == "2":
+            message["text"] = invalid_choice + users[sender_id][users[sender_id]["state"]]
+    elif users[sender_id]["state"] == "2":
         if key == "1":
-            map["state"] = "21"
-            message["text"] = map["21"]
+            users[sender_id]["state"] = "21"
+            message["text"] = users[sender_id]["21"]
         elif key == "2":
-            map["state"] = "22"
-            message["text"] = map["22"]
+            users[sender_id]["state"] = "22"
+            message["text"] = users[sender_id]["22"]
         else:
-            message["text"] = invalid_choice + map[map["state"]]
-    elif map["state"] == "3":
+            message["text"] = invalid_choice + users[sender_id][users[sender_id]["state"]]
+    elif users[sender_id]["state"] == "3":
         if key == "1":
-            map["state"] = "31"
-            message["text"] = map["31"]
+            users[sender_id]["state"] = "31"
+            message["text"] = users[sender_id]["31"]
         elif key == "2":
-            map["state"] = "32"
-            message["text"] = map["32"]
+            users[sender_id]["state"] = "32"
+            message["text"] = users[sender_id]["32"]
         else:
-            message["text"] = invalid_choice + map[map["state"]]
-    elif map["state"] == "4":
+            message["text"] = invalid_choice + users[sender_id][users[sender_id]["state"]]
+    elif users[sender_id]["state"] == "4":
         if key == "1":
-            map["state"] = "41"
-            message["text"] = map["41"]
+            users[sender_id]["state"] = "41"
+            message["text"] = users[sender_id]["41"]
         elif key == "2":
-            map["state"] = "42"
-            message["text"] = map["42"]
+            users[sender_id]["state"] = "42"
+            message["text"] = users[sender_id]["42"]
         else:
-            message["text"] = invalid_choice + map[map["state"]]
-    elif map["state"] == "5":
+            message["text"] = invalid_choice + users[sender_id][users[sender_id]["state"]]
+    elif users[sender_id]["state"] == "5":
         if key == "1":
-            map["state"] = "51"
-            message["text"] = map["51"]
+            users[sender_id]["state"] = "51"
+            message["text"] = users[sender_id]["51"]
         elif key == "2":
-            map["state"] = "52"
-            message["text"] = map["52"]
+            users[sender_id]["state"] = "52"
+            message["text"] = users[sender_id]["52"]
         else:
-            message["text"] = invalid_choice + map[map["state"]]
-    elif map["state"] == "6":
+            message["text"] = invalid_choice + users[sender_id][users[sender_id]["state"]]
+    elif users[sender_id]["state"] == "6":
         if key == "1":
-            map["state"] = "61"
-            message["text"] = map["61"]
+            users[sender_id]["state"] = "61"
+            message["text"] = users[sender_id]["61"]
         elif key == "2":
-            map["state"] = "62"
-            message["text"] = map["62"]
+            users[sender_id]["state"] = "62"
+            message["text"] = users[sender_id]["62"]
         else:
-            message["text"] = invalid_choice + map[map["state"]]
+            message["text"] = invalid_choice + users[sender_id][users[sender_id]["state"]]
     else:
-        message["text"] = map["X"]
+        message["text"] = users[sender_id]["X"]
 
 
     socketio.emit("new_robot_message", [data, message])
