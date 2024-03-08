@@ -100,7 +100,7 @@
   padding: 10px;
   background-color: var(--chat-input-color);
   scrollbar-color: var(--cart-scroll-color) transparent;
-  padding-right: 25px;
+  padding-right: 45px;
   border: none;
 }
 
@@ -112,6 +112,15 @@
   position: absolute;
   right: 30px;
   bottom: 20px;
+  cursor: pointer;
+  color: var(--light-orange);
+  font-size: x-large;
+}
+
+#customer-service-chat-window .chat-footer .fa-scroll {
+  position: absolute;
+  right: 30px;
+  top: 20px;
   cursor: pointer;
   color: var(--light-orange);
   font-size: x-large;

@@ -49,13 +49,15 @@ export const closeChat = e => {
   }
 }
 
-export const scrollToBottomOfChat = () => {
+export const scrollToBottomOfChat = endOfChat => {
   const chatWindow = document.querySelector(".chat-messages");
   if (chatWindow && chatWindow.scrollTop + chatWindow.clientHeight === chatWindow.scrollHeight) {
-    setTimeout(() => {
-      chatWindow.scrollTop = chatWindow.scrollHeight;
-    }, 300);
+    setTimeout(() => endOfChat.current.scrollIntoView(), 250);
   }
+}
+
+export const forceScrollToBottomOfChat = endOfChat => {
+  endOfChat.current?.scrollIntoView({ behavior: 'smooth' });
 }
 
 export const choosePort = () => {
@@ -64,7 +66,6 @@ export const choosePort = () => {
 
 export const sendMessage = async payload => {
   await csrfFetch('/api/messages', {
-    // mode: 'no-cors',
     method: 'POST',
     body: JSON.stringify({
       ...payload

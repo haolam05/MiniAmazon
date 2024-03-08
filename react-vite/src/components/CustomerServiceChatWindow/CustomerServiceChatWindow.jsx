@@ -1,9 +1,15 @@
-import { useEffect, useState } from "react";
-import { closeChat, scrollToBottomOfChat, sendMessage } from "../../utils/chat";
+import { useEffect, useRef, useState } from "react";
+import {
+  closeChat,
+  forceScrollToBottomOfChat,
+  scrollToBottomOfChat,
+  sendMessage
+} from "../../utils/chat";
 import ChatMessages from "../ChatMessages";
 import "./CustomerServiceChatWindow.css";
 
 function CustomerServiceChatWindow({ user, socket }) {
+  const endOfChat = useRef();
   const [messages, setMessages] = useState([{ id: 0, sender_id: 0, text: "Hi there!! How can I help you today?" }]);
   const [textInput, setTextInput] = useState("");
 
@@ -11,15 +17,15 @@ function CustomerServiceChatWindow({ user, socket }) {
     const handleConnectionError = () => setTimeout(() => socket.connect(), 5000);
     const handleNewMessage = newMessages => {
       setMessages([...messages, ...newMessages]);
-      scrollToBottomOfChat();
+      scrollToBottomOfChat(endOfChat);
     };
 
     socket.on('connect_error', handleConnectionError);
     socket.on("new_robot_message", handleNewMessage);
 
     return () => {
-      // socket.off('connect_error', handleConnectionError);
-      // socket.off('new_robot_message', handleNewMessage);
+      socket.off('connect_error', handleConnectionError);
+      socket.off('new_robot_message', handleNewMessage);
     }
   }, [socket, messages]);
 
@@ -51,7 +57,12 @@ function CustomerServiceChatWindow({ user, socket }) {
         <i className="fa-solid fa-left-long"></i>
       </div>
       <div className="chat-body">
-        <ChatMessages user={user} messages={messages} setMessages={setMessages} />
+        <ChatMessages
+          user={user}
+          messages={messages}
+          setMessages={setMessages}
+          endOfChat={endOfChat}
+        />
       </div>
       <div className="chat-footer">
         <textarea
@@ -60,6 +71,7 @@ function CustomerServiceChatWindow({ user, socket }) {
           onChange={e => setTextInput(e.target.value)}
           onKeyDown={handleKeyPress}
         />
+        <i className="fa-solid fa-scroll" title="Scroll to bottom of chat" onClick={() => forceScrollToBottomOfChat(endOfChat)}></i>
         <i className="fa-solid fa-paper-plane" title="Send" onClick={sendUserMessage}></i>
       </div>
     </div>
