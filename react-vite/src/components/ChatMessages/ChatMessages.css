@@ -6,4 +6,6 @@
   scrollbar-color: var(--cart-scroll-color) transparent;
   overflow-x: hidden;
   overflow-y: auto;
+  line-height: 22px;
+  word-spacing: 2px;
 }

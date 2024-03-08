@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import {
   closeChat,
   forceScrollToBottomOfChat,
+  getStartingMessages,
   hideTyping,
   isTyping,
   scrollToBottomOfChat,
@@ -14,7 +15,7 @@ import "./CustomerServiceChatWindow.css";
 
 function CustomerServiceChatWindow({ user, socket }) {
   const endOfChat = useRef();
-  const [messages, setMessages] = useState([{ id: 0, sender_id: 0, text: "Hi there!! How can I help you today?" }]);
+  const [messages, setMessages] = useState(getStartingMessages());
   const [textInput, setTextInput] = useState("");
 
   useEffect(() => {

@@ -1,10 +1,10 @@
 .chat-message {
-  line-break: anywhere;
+  word-wrap: break-word;
   background-color: var(--other-message-background);
   padding: 10px;
   border-radius: 5px;
   width: fit-content;
-  max-width: 60%;
+  max-width: 70%;
   margin-left: 5px;
   display: flex;
   align-items: center;
@@ -16,6 +16,11 @@
   align-self: flex-end;
   margin-left: 0;
   margin-right: 5px;
+  line-break: anywhere;
+}
+
+.chat-message span {
+  font-size: small;
 }
 
 .chat-message img {
