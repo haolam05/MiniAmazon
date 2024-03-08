@@ -21,9 +21,17 @@ function Products({ products, user, inCartProductIds, bookmarkProductIds, produc
     setCurrentProducts(nextProducts);
   }, [productNameInput, productCategoryInput, products]);
 
+  const validProducts = currentProducts.filter(product => !product.is_deleted);
+
+  if (!validProducts.length) return (
+    <div id="products" style={{ width: '100%' }}>
+      <p>There is no products found!</p>
+    </div>
+  );
+
   return (
     <div id="products">
-      {currentProducts.filter(product => !product.is_deleted).map(product =>
+      {validProducts.map(product =>
         <Product
           key={product.id}
           product={product}
