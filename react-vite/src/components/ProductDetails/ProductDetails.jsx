@@ -28,7 +28,7 @@ function ProductDetails({ user, product, showCart, inCartProductIds, bookmarkPro
       setDownloadProductImageUrl(url);
     }
     getDownloadImage();
-  }, []);
+  }, [product]);
 
   const showFullSizeImage = e => {
     if (e.target.classList.contains("image-len")) {
