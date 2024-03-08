@@ -50,8 +50,8 @@ export const closeChat = e => {
 }
 
 export const scrollToBottomOfChat = endOfChat => {
-  const chatWindow = document.querySelector(".chat-messages");
-  if (chatWindow && chatWindow.scrollTop + chatWindow.clientHeight === chatWindow.scrollHeight) {
+  const chatMessages = document.querySelector(".chat-messages");
+  if (chatMessages && chatMessages.scrollTop + chatMessages.clientHeight === chatMessages.scrollHeight) {
     setTimeout(() => endOfChat.current.scrollIntoView(), 250);
   }
 }
@@ -76,13 +76,19 @@ export const sendMessage = async payload => {
 export const setNotification = () => {
   const robotIcon = document.querySelector("#customer-service-chat");
   const chatWindow = document.querySelector("#customer-service-chat-window");
-  const notification = document.querySelector("#robot-notification");
-  if (robotIcon && chatWindow && notification) {
+  const robotNotification = document.querySelector("#robot-notification");
+  const scrollIcon = document.querySelector(".fa-scroll");
+  const scrollNotification = document.querySelector("#scroll-notification");
+  const chatMessages = document.querySelector(".chat-messages");
+  if (robotIcon && chatWindow && robotNotification) {
     if (chatWindow.classList.contains("close")) {
-      notification.classList.remove("hidden");
-      robotIcon.addEventListener('click', () => notification.classList.add("hidden"))
-    } else {
-
+      robotNotification.classList.remove("hidden");
+      robotIcon.addEventListener('click', () => robotNotification.classList.add("hidden"))
+    } else if (scrollNotification && scrollIcon && chatMessages) {
+      if (chatMessages.scrollTop + chatMessages.clientHeight !== chatMessages.scrollHeight) {
+        scrollNotification.classList.remove("hidden");
+        scrollIcon.addEventListener('click', () => scrollNotification.classList.add("hidden"));
+      }
     }
   }
 }

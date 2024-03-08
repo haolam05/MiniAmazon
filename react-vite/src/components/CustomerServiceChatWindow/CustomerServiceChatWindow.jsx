@@ -83,6 +83,7 @@ function CustomerServiceChatWindow({ user, socket }) {
           onChange={e => setTextInput(e.target.value)}
           onKeyDown={handleKeyPress}
         />
+        <i className="fa-solid fa-circle hidden" id="scroll-notification"></i>
         <i className="fa-solid fa-scroll" title="Scroll to bottom of chat" onClick={() => forceScrollToBottomOfChat(endOfChat)}></i>
         <i className="fa-solid fa-paper-plane" title="Send" onClick={sendUserMessage}></i>
       </div>

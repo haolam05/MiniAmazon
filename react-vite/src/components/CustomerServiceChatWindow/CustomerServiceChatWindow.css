@@ -126,6 +126,15 @@
   font-size: x-large;
 }
 
+#customer-service-chat-window #scroll-notification {
+  color: var(--original-red);
+  font-size: x-small;
+  position: absolute;
+  right: 30px;
+  top: 20px;
+  z-index: 1;
+}
+
 #customer-service-chat-window .typing {
   width: 60px;
   aspect-ratio: 4;
