@@ -6,14 +6,14 @@ function ChatMessage({ user, message }) {
   if (user.id === message.sender_id) {
     return (
       <MyMessage
-        message={message.text}
+        message={message}
         user={user}
       />
     );
   } else {
     return (
       <ChatBotMessage
-        message={message.text}
+        message={message}
       />
     );
   }

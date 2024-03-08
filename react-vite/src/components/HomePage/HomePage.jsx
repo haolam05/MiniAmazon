@@ -1,7 +1,8 @@
-import { io } from 'socket.io-client';
+import { io } from "socket.io-client";
 import { useModal } from "../../context/Modal";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { choosePort } from "../../utils/chat";
 import Cart from "../Cart";
 import NavBar from "../NavBar";
 import Loading from "../Loading";
@@ -15,13 +16,12 @@ import * as orderActions from "../../redux/order";
 import * as bookmarkActions from "../../redux/bookmark";
 import "./HomePage.css";
 
-let socket;
+const socket = io(choosePort());
 
 function HomePage() {
   const dispatch = useDispatch();
   const [productNameInput, setProductNameInput] = useState("");
   const [productCategoryInput, setProductCategoryInput] = useState("");
-  const [messages, setMessages] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
   const { setModalContent } = useModal();
   const user = useSelector(sessionActions.sessionUser);
@@ -46,11 +46,6 @@ function HomePage() {
 
   useEffect(() => {
     const loadData = async () => {
-      const url = import.meta.env.MODE === 'development' ? "http://127.0.0.1:8000" : "https://miniamazon.onrender.com";
-      socket = io(url);
-
-      // socket.on("new_message");
-
       await dispatch(sessionActions.restoreSession());
       await dispatch(productActions.loadProductsThunk());
       if (user?.user) {
@@ -75,8 +70,6 @@ function HomePage() {
           <CustomerServiceChatWindow
             user={user?.user}
             socket={socket}
-            messages={messages}
-            setMessages={setMessages}
           />
         </>
       )}

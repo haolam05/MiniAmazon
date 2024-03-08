@@ -1,3 +1,5 @@
+import { csrfFetch } from "../redux/csrf";
+
 export const toggleChat = e => {
   e.preventDefault();
   const chatWindow = document.querySelector("#customer-service-chat-window");
@@ -54,4 +56,18 @@ export const scrollToBottomOfChat = () => {
       chatWindow.scrollTop = chatWindow.scrollHeight;
     }, 300);
   }
+}
+
+export const choosePort = () => {
+  return import.meta.env.MODE === 'development' ? 'http://localhost:8000' : 'https://miniamazon.onrender.com';
+}
+
+export const sendMessage = async payload => {
+  await csrfFetch('/api/messages', {
+    // mode: 'no-cors',
+    method: 'POST',
+    body: JSON.stringify({
+      ...payload
+    })
+  });
 }

@@ -1,17 +1,33 @@
-import { useState } from "react";
-import { closeChat, scrollToBottomOfChat } from "../../utils/chat";
+import { useEffect, useState } from "react";
+import { closeChat, scrollToBottomOfChat, sendMessage } from "../../utils/chat";
 import ChatMessages from "../ChatMessages";
 import "./CustomerServiceChatWindow.css";
 
-function CustomerServiceChatWindow({ user, socket, messages, setMessages }) {
+function CustomerServiceChatWindow({ user, socket }) {
+  const [messages, setMessages] = useState([{ id: 0, sender_id: 0, text: "Hi there!! How can I help you today?" }]);
   const [textInput, setTextInput] = useState("");
 
-  const sendUserMessage = () => {
-    if (textInput.length) {
-      socket.emit("new_user_message", textInput);
-      setMessages([...messages, { sender_id: user.id, text: textInput }]);
-      setTextInput("");
+  useEffect(() => {
+    const handleConnectionError = () => setTimeout(() => socket.connect(), 5000);
+    const handleNewMessage = newMessages => {
+      setMessages([...messages, ...newMessages]);
       scrollToBottomOfChat();
+    };
+
+    socket.on('connect_error', handleConnectionError);
+    socket.on("new_robot_message", handleNewMessage);
+
+    return () => {
+      // socket.off('connect_error', handleConnectionError);
+      // socket.off('new_robot_message', handleNewMessage);
+    }
+  }, [socket, messages]);
+
+  const sendUserMessage = async () => {
+    if (textInput.length) {
+      const newMessage = { id: messages.length, sender_id: user.id, text: textInput };
+      setTextInput("");
+      await sendMessage(newMessage);
     }
   }
 
