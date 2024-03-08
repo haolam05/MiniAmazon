@@ -2,7 +2,7 @@ import { io } from "socket.io-client";
 import { useModal } from "../../context/Modal";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { choosePort } from "../../utils/chat";
+import { choosePort, closeChat } from "../../utils/chat";
 import Cart from "../Cart";
 import NavBar from "../NavBar";
 import Loading from "../Loading";
@@ -58,6 +58,7 @@ function HomePage() {
   }, [user?.user, dispatch]);
 
   if (!isLoaded) return <Loading />
+  if (!user) closeChat();
 
   return (
     <div id="home-page">

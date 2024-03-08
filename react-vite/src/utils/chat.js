@@ -36,7 +36,7 @@ export const revealChat = e => {
 }
 
 export const closeChat = e => {
-  e.preventDefault();
+  if (e) e.preventDefault();
   const chatWindow = document.querySelector("#customer-service-chat-window");
   const products = document.querySelector("#products");
   if (chatWindow) {
