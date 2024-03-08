@@ -41,7 +41,7 @@ function CustomerServiceChatWindow({ user, socket }) {
       socket.off('connect_error', handleConnectionError);
       socket.off('new_robot_message', handleNewMessage);
     }
-  }, [socket, messages]);
+  }, [socket, messages, user]);
 
   const sendUserMessage = async () => {
     if (textInput.length && !isTyping()) {

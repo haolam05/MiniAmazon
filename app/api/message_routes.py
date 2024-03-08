@@ -14,7 +14,7 @@ other_question = f"Do you have any other questions?\n1️⃣ Yes\n2️⃣ No"
 
 product_question_1 = f"1️⃣ List a product for sale"
 product_question_2 = f"2️⃣ View listed products"
-product_answer_1 = f"1️⃣ To list a product for sale, click the plus (+) symbol at the upper left cornor of the home page.\n\nA modal will open and you will need to fill out all required fields to list a product for sale. Please note that you must have an image for your product.\n\nWe highly recommend high resolution image to support magnifying feature.\n\nAfter the product is listed, it will show up in the products list immediately.\n\nHope it helps!!\n\n{other_question}"
+product_answer_1 = f"To list a product for sale, click the plus (+) symbol at the upper left cornor of the home page.\n\nA modal will open and you will need to fill out all required fields to list a product for sale. Please note that you must have an image for your product.\n\nWe highly recommend high resolution image to support magnifying feature.\n\nAfter the product is listed, it will show up in the products list immediately.\n\nHope it helps!!\n\n{other_question}"
 product_answer_2 = f"To view your listed products, click in the database symbol located at the upper left cornor of the home page, on the right side of the plus (+) symbol. From here, you can update/delete your products as you wish.\n\nHope it helps!!\n\n{other_question}"
 product_questions = f"{please_choose}{product_question_1}\n{product_question_2}"
 
