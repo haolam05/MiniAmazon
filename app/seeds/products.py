@@ -232,6 +232,123 @@ def seed_products():
             "description": "Disney’s Lilo and Stitch building set for kids - Buildable LEGO Disney Stitch toy for girls and boys ages 9 and up that sparks imagination as kids build the model, then play with and display it afterwards Disney Stitch character - This creative LEGO building set features a displayable model from Lilo and Stitch, a buildable ice cream cone and a flower that can be used to decorate the characte Moving parts - The buildable Stitch model includes ears that can move up or down and a turning head with space for the decorative flower, plus a hand that can hold the brick built ice cream cone Fun display - Create Stitch in his Hawaiian shirt, decorate him with an ice cream cone and flower, move his head and ears into different positions to show new expressions, then set him up on display Disney gift for kids - A building toy set featuring a Disney character with functions and accessories that makes a great gift for movie lovers, girls and boys ages 9 and up to share at school or home A helping hand - Let the LEGO Builder app guide kids on an intuitive building adventure, where they can save sets, track progress and zoom in and rotate models in 3D while they build Expand life skills - With this Disney toy for 9 year old kids, plus accessories and functions to enhance display, this buildable character construction toy helps foster life skills through fun",
             "remaining": 25,
             "product_image": location + "lego.jpg"
+        },
+        {
+            "seller_id": username_to_ids["nickyli"],
+            "name": "CHANEL 19 HANDBAG",
+            "price": 6400.00,
+            "category": categories[4],
+            "description": "Shiny Lambskin, Gold-Tone, Silver-Tone & Ruthenium-Finish Metal, Black, Ref.AS1160 B04852 94305. Includes certificate of authenticity and all original packaging. Measures 6.1 × 10.1 × 3.5in",
+            "remaining": 16,
+            "product_image": location + "chanel19bag.jpg"
+        },
+        {
+            "seller_id": username_to_ids["nickyli"],
+            "name": "CHANEL 22 SMALL HANDBAG",
+            "price": 5500.00,
+            "category": categories[4],
+            "description": "Shiny light yellow calfskin exterior with antique gold-tone hardware. Features short chain top handles, long chain strap, leather cord strap, dangling logo medallion, and interior pocket. Includes certificate of authenticity and all original packaging. I miss you. Measures 13.7 × 14.4 × 2.7in",
+            "remaining": 19,
+            "product_image": location + "chanel22handbag.jpg"
+        },
+        {
+            "seller_id": username_to_ids["nickyli"],
+            "name": "CHANEL 19 BACKPACK",
+            "price": 6200.00,
+            "category": categories[4],
+            "description": "Tweed, Gold-Tone, Silver-Tone & Ruthenium-Finish Metal. Green, Pink & Turquoise. Ref. AS4223 B15407 NT027. Includes certificate of authenticity and all original packaging. Measures 10.1 × 8.6 × 6.2in",
+            "remaining": 18,
+            "product_image": location + "CHANEL19BACKPACK.jpg"
+        },
+        {
+            "seller_id": username_to_ids["nickyli"],
+            "name": "RECTANGLE SUNGLASSES",
+            "price": 560.00,
+            "category": categories[3],
+            "description": "Acetate Black & Gold. Lenses: Gray, Gradient. 100% UVA and UVB Protection CE - Lenses are UV Category Filter 3 - Prescription friendly. Made in Italy",
+            "remaining": 99,
+            "product_image": location + "chanelSunglass1.jpg"
+        },
+        {
+            "seller_id": username_to_ids["nickyli"],
+            "name": "Vintage Alhambra Pendant Necklace",
+            "price": 7950.00,
+            "category": categories[3],
+            "description": "18K rose gold, Diamond. The pendant is attached to the necklace’s chain. Chain length: 16.54 inches. Diamond: 12 stones, 0.48 carat.",
+            "remaining": 29,
+            "product_image": location + "Vintage-necklace.jpg"
+        },
+        {
+            "seller_id": username_to_ids["nickyli"],
+            "name": "Vintage Alhambra bracelet, 5 motifs",
+            "price": 27900.00,
+            "category": categories[3],
+            "description": "Vintage Alhambra bracelet, 5 motifs, 18K yellow gold, round diamonds; diamond quality DEF, IF to VVS.Diamond: 60 stones, 2.41 carats. Hallmark clasp, small model in 18K yellow gold. Bracelet wrist size: 7.48 inches",
+            "remaining": 28,
+            "product_image": location + "Vintage-Alhambra-bracelet.jpg"
+        },
+        {
+            "seller_id": username_to_ids["nickyli"],
+            "name": "Vintage Alhambra Earrings",
+            "price": 13100.00,
+            "category": categories[3],
+            "description": "Vintage Alhambra earrings, 18K yellow gold, round diamonds; diamond quality DEF, IF to VVS.Diamond: 24 stones, 0.96 carat. Clip back with detachable stem in 18K yellow gold, option to remove or reposition the stem in store",
+            "remaining": 52,
+            "product_image": location + "earing-vintage.jpg"
+        },
+        {
+            "seller_id": username_to_ids["nickyli"],
+            "name": "ROUGE COCO BAUME",
+            "price": 45.00,
+            "category": categories[3],
+            "description": "ROUGE COCO BAUME contains a deeply hydrating oil, made from fruit and olive leaves, that features restorative and antioxidant properties for better-looking lips day after day. The finish transforms from sheer and shiny to opaque and subtly luminous as the formula’s benefits are absorbed.",
+            "remaining": 520,
+            "product_image": location + "lipstickWhite.jpg"
+        },
+        {
+            "seller_id": username_to_ids["nickyli"],
+            "name": "FLEUR DE PEAU Eau de parfum",
+            "price": 230.00,
+            "category": categories[3],
+            "description": "An ancient myth translated into perfume. For Diptyque, only musks could do justice to the love of Eros and Psyche. Musks are at the very heart of Fleur de Peau eau de parfum, as cottony and light as they are soft and moist. Highlighted with iris and ambrette seeds, their tactile aspects are fully revealed.",
+            "remaining": 999,
+            "product_image": location + "diptyquePerfume.jpg"
+        },
+        {
+            "seller_id": username_to_ids["nickyli"],
+            "name": "Tiffany T Wire Bracelet",
+            "price": 4200.00,
+            "category": categories[3],
+            "description": "The modern aesthetic of this bracelet is enhanced with mother-of-pearl, a natural, iridescent material found in oyster shells. This luminous stone is complemented with scintillating diamonds, creating a bold design with high shine and elegant luster. As multifaceted as it is iconic, the Tiffany T collection is a tangible reminder of the connections we feel but can't always see. Wear this sleek design in a mixed-metal bracelet stack for a striking look.",
+            "remaining": 88,
+            "product_image": location + "tiffany-twire-bracelet.jpg"
+        },
+        {
+            "seller_id": username_to_ids["nickyli"],
+            "name": "LOVE WEDDING BAND, 1 DIAMOND",
+            "price": 2370.00,
+            "category": categories[3],
+            "description": "LOVE wedding band, yellow gold (750/1000), set with 1 brilliant-cut diamonds totaling 0.02 carats. Width: 4 mm.",
+            "remaining": 520,
+            "product_image": location + "cartier-ring.jpg"
+        },
+        {
+            "seller_id": username_to_ids["nickyli"],
+            "name": "LOVE NECKLACE, 2 DIAMONDS",
+            "price": 2620.00,
+            "category": categories[3],
+            "description": "LOVE necklace, 18K rose gold (750/1000), set with 2 brilliant-cut diamonds totaling 0.03 carats. Inner diameter: 0.3”. Chain length: 15” - 16.1”.",
+            "remaining": 999,
+            "product_image": location + "cartier-necklace.jpg"
+        },
+        {
+            "seller_id": username_to_ids["nickyli"],
+            "name": "Objects First with Java: A Practical Introduction Using BlueJ, 6th edition",
+            "price": 143.99,
+            "category": categories[2],
+            "description": "Recognizing functional programming as a key part of the programming field, Objects First with Java delivers the foundational knowledge you need. The text illuminates the differences between Java programming language and BlueJ, providing a firm grasp of the material and enhancing your understanding of source code.",
+            "remaining": 68,
+            "product_image": location + "javaBook.jpg"
         }
     ]
 
