@@ -72,3 +72,21 @@ export const sendMessage = async payload => {
     })
   });
 }
+
+export const setNotification = () => {
+
+}
+
+export const showTyping = () => {
+  const typing = document.querySelector(".typing");
+  if (typing) {
+    typing.classList.remove("hidden");
+  }
+}
+
+export const hideTyping = () => {
+  const typing = document.querySelector(".typing");
+  if (typing) {
+    typing.classList.add("hidden");
+  }
+}

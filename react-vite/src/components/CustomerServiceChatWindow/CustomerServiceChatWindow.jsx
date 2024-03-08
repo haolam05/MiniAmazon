@@ -2,8 +2,11 @@ import { useEffect, useRef, useState } from "react";
 import {
   closeChat,
   forceScrollToBottomOfChat,
+  hideTyping,
   scrollToBottomOfChat,
-  sendMessage
+  sendMessage,
+  setNotification,
+  showTyping
 } from "../../utils/chat";
 import ChatMessages from "../ChatMessages";
 import "./CustomerServiceChatWindow.css";
@@ -16,7 +19,14 @@ function CustomerServiceChatWindow({ user, socket }) {
   useEffect(() => {
     const handleConnectionError = () => setTimeout(() => socket.connect(), 5000);
     const handleNewMessage = newMessages => {
-      setMessages([...messages, ...newMessages]);
+      setMessages([...messages, newMessages[0]]);
+      showTyping();
+      setTimeout(() => {
+        setMessages(prev => [...prev, newMessages[1]]);
+        scrollToBottomOfChat(endOfChat);
+        hideTyping();
+      }, 3000);
+      setNotification();
       scrollToBottomOfChat(endOfChat);
     };
 
@@ -64,6 +74,7 @@ function CustomerServiceChatWindow({ user, socket }) {
           endOfChat={endOfChat}
         />
       </div>
+      <div className="typing hidden"></div>
       <div className="chat-footer">
         <textarea
           spellCheck={false}
