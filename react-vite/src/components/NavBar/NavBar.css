@@ -119,6 +119,18 @@
   color: var(--orange);
 }
 
+#navbar #customer-service-chat {
+  position: relative;
+}
+
+#navbar .fa-circle {
+  color: var(--red);
+  font-size: 8px;
+  position: absolute;
+  left: 20px;
+  top: 10px;
+}
+
 #navbar #profile-btns {
   width: 75px;
   margin-right: 20px;

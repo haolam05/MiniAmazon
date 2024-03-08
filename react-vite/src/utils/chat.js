@@ -74,7 +74,17 @@ export const sendMessage = async payload => {
 }
 
 export const setNotification = () => {
+  const robotIcon = document.querySelector("#customer-service-chat");
+  const chatWindow = document.querySelector("#customer-service-chat-window");
+  const notification = document.querySelector("#robot-notification");
+  if (robotIcon && chatWindow && notification) {
+    if (chatWindow.classList.contains("close")) {
+      notification.classList.remove("hidden");
+      robotIcon.addEventListener('click', () => notification.classList.add("hidden"))
+    } else {
 
+    }
+  }
 }
 
 export const showTyping = () => {
@@ -89,4 +99,9 @@ export const hideTyping = () => {
   if (typing) {
     typing.classList.add("hidden");
   }
+}
+
+export const isTyping = () => {
+  const typing = document.querySelector(".typing");
+  return typing && !typing.classList.contains("hidden");
 }

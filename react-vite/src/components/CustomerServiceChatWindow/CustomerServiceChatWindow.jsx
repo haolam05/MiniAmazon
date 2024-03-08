@@ -3,6 +3,7 @@ import {
   closeChat,
   forceScrollToBottomOfChat,
   hideTyping,
+  isTyping,
   scrollToBottomOfChat,
   sendMessage,
   setNotification,
@@ -25,8 +26,8 @@ function CustomerServiceChatWindow({ user, socket }) {
         setMessages(prev => [...prev, newMessages[1]]);
         scrollToBottomOfChat(endOfChat);
         hideTyping();
+        setNotification();
       }, 3000);
-      setNotification();
       scrollToBottomOfChat(endOfChat);
     };
 
@@ -40,7 +41,7 @@ function CustomerServiceChatWindow({ user, socket }) {
   }, [socket, messages]);
 
   const sendUserMessage = async () => {
-    if (textInput.length) {
+    if (textInput.length && !isTyping()) {
       const newMessage = { id: messages.length, sender_id: user.id, text: textInput };
       setTextInput("");
       await sendMessage(newMessage);

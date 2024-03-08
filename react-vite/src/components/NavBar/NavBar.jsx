@@ -74,6 +74,7 @@ function NavBar({ user, products, inCartProductIds, bookmarks, bookmarkProductId
           </div>
           <div id="customer-service-chat" onClick={toggleChat}>
             <i className="fa-solid fa-robot" title="Customer service live chat"></i>
+            <i className="fa-solid fa-circle hidden" id="robot-notification"></i>
           </div>
         </>
       )}
