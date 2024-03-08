@@ -3,7 +3,7 @@ from sqlalchemy.sql import text
 
 
 def seed_customers():
-    location = 'https://miniamazon.s3.us-west-2.amazonaws.com/public/'
+    location = 'https://miniamazon.s3.us-west-2.amazonaws.com/'
 
     customers = [
         {

@@ -32,7 +32,7 @@ class Product(db.Model):
 
     @classmethod
     def product_image_to_ids(cls):
-        location = 'https://miniamazon.s3.us-west-2.amazonaws.com/public/'
+        location = 'https://miniamazon.s3.us-west-2.amazonaws.com/'
         return { product.product_image.split(location)[1]: product.id for product in cls.query.all() }
 
 

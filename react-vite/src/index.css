@@ -238,3 +238,14 @@ form label {
   bottom: 83px;
   right: 30px;
 }
+
+#download-link {
+  color: var(--green);
+  cursor: pointer;
+  font-style: italic;
+  text-decoration: none;
+}
+
+#download-link:hover {
+  text-decoration: underline;
+}

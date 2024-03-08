@@ -15,6 +15,7 @@ from .api.review_routes import review_routes
 from .api.bookmark_routes import bookmark_routes
 from .api.order_routes import order_routes
 from .api.message_routes import message_routes
+from .api.aws_routes import aws_routes
 from .seeds import seed_commands
 from .config import Config
 from .socket import socketio
@@ -42,6 +43,7 @@ app.register_blueprint(review_routes, url_prefix='/api/reviews')
 app.register_blueprint(bookmark_routes, url_prefix='/api/bookmarks')
 app.register_blueprint(order_routes, url_prefix='/api/orders')
 app.register_blueprint(message_routes, url_prefix='/api/messages')
+app.register_blueprint(aws_routes, url_prefix='/api/aws')
 db.init_app(app)
 Migrate(app, db)
 socketio.init_app(app, async_mode='gevent')

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { getPreviewText } from "../../utils/product";
 import { useThirdLevelModal } from "../../context/ThirdLevelModal";
 import { hideMagnifyImage, showMagnifyImage } from "../../utils/magnify";
@@ -16,11 +16,27 @@ import "./ProductDetails.css";
 function ProductDetails({ user, product, showCart, inCartProductIds, bookmarkProductIds }) {
   const { setThirdLevelModalContent, createAndShowBookmarks } = useThirdLevelModal();
   const [averageRating, setAverageRating] = useState(getAverageRating(product.reviews.map(review => review.rating)));
+  const [downloadProductImageUrl, setDownloadProductImageUrl] = useState("");
+
+  useEffect(() => {
+    const getDownloadImage = async () => {
+      const parts = product.product_image.split("/");
+      const file = parts[parts.length - 1];
+      const res = await fetch(`/api/aws/download/${file}`);
+      const blob = await res.blob();
+      const url = URL.createObjectURL(blob);
+      setDownloadProductImageUrl(url);
+    }
+    getDownloadImage();
+  }, []);
 
   const showFullSizeImage = e => {
     if (e.target.classList.contains("image-len")) {
       setThirdLevelModalContent(
-        <img src={product.product_image} alt="product-image" />
+        <>
+          <img src={product.product_image} alt="product-image" />
+          <a id="download-link" download href={downloadProductImageUrl}>Download Image</a>
+        </>
       );
     }
   }

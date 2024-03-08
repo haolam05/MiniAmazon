@@ -6,7 +6,7 @@
 
 ![miniamazon-database-schema]
 
-[miniamazon-database-schema]: https://miniamazon.s3.us-west-2.amazonaws.com/public/miniAmazon-database-schema.png
+[miniamazon-database-schema]: https://miniamazon.s3.us-west-2.amazonaws.com/miniamazon-database-schema.png
 
 # Demo
 
@@ -216,7 +216,7 @@ Creates a new user, logs them in as the current user, and returns the current us
         "email": "john1.smith@gmail.com",
         "username": "JohnSmith",
         "password": "secret_password",
-        "profile_image_url": "https://meetup2024.s3.us-west-2.amazonaws.com/public/avatar2.png" || null
+        "profile_image_url": "https://meetup2024.s3.us-west-2.amazonaws.com/avatar2.png" || null
       }
     ```
 
@@ -234,7 +234,7 @@ Creates a new user, logs them in as the current user, and returns the current us
           "last_name": "Smith",
           "email": "john1.smith@gmail.com",
           "username": "JohnSmith,",
-          "profile_image_url": "https://meetup2024.s3.us-west-2.amazonaws.com/public/avatar2.png" || null,
+          "profile_image_url": "https://meetup2024.s3.us-west-2.amazonaws.com/avatar2.png" || null,
         }
       }
     ```
@@ -309,7 +309,7 @@ Returns all users
               "first_name": "Hao",
               "id": 1,
               "last_name": "Lam",
-              "profile_image_url": "https://miniamazon.s3.us-west-2.amazonaws.com/public/avatar1.png",
+              "profile_image_url": "https://miniamazon.s3.us-west-2.amazonaws.com/avatar1.png",
               "username": "haolam"
           }
         ]
@@ -338,7 +338,7 @@ Returns a specific user by id
         "first_name": "Hao",
         "id": 1,
         "last_name": "Lam",
-        "profile_image_url": "https://miniamazon.s3.us-west-2.amazonaws.com/public/avatar1.png",
+        "profile_image_url": "https://miniamazon.s3.us-west-2.amazonaws.com/avatar1.png",
         "username": "haolam"
       }
     ```
@@ -374,7 +374,7 @@ Update user's information
         "email": "john1.smith@gmail.com",
         "username": "JohnSmith",
         "password": "secret_password",
-        "profile_image_url": "https://meetup2024.s3.us-west-2.amazonaws.com/public/avatar2.png" || null
+        "profile_image_url": "https://meetup2024.s3.us-west-2.amazonaws.com/avatar2.png" || null
       }
     ```
 
@@ -392,7 +392,7 @@ Update user's information
           "last_name": "Smith 2",
           "email": "john1.smith@gmail.com",
           "username": "JohnSmith,",
-          "profile_image_url": "https://meetup2024.s3.us-west-2.amazonaws.com/public/avatar2.png" || null,
+          "profile_image_url": "https://meetup2024.s3.us-west-2.amazonaws.com/avatar2.png" || null,
         }
       }
     ```
@@ -576,14 +576,14 @@ Delete current user
             "id": 1,
             "name": "Meidum Hass Avocado",
             "price": "1.29",
-            "product_image": "https://miniamazon.s3.us-west-2.amazonaws.com/public/avocado.jpg",
+            "product_image": "https://miniamazon.s3.us-west-2.amazonaws.com/avocado.jpg",
             "remaining": 22,
             "seller": {
               "email": "haolam@user.io",
               "first_name": "Hao",
               "id": 1,
               "last_name": "Lam",
-              "profile_image_url": "https://miniamazon.s3.us-west-2.amazonaws.com/public/avatar1.png",
+              "profile_image_url": "https://miniamazon.s3.us-west-2.amazonaws.com/avatar1.png",
               "username": "haolam"
             },
             "seller_id": 1
@@ -613,7 +613,7 @@ Delete current user
           "id": 14,
           "name": "Personalized Wooden Name Puzzle for Kids Personalized Name Puzzle for Toddlers Personalized Baby Gifts First Birthday Gift Personalized Puzzle Wooden Puzzles Custom Name Puzzle Baby & Toddler Toys",
           "price": "13.96",
-          "product_image": "https://miniamazon.s3.us-west-2.amazonaws.com/public/puzzle.jpg",
+          "product_image": "https://miniamazon.s3.us-west-2.amazonaws.com/puzzle.jpg",
           "remaining": 50,
           "seller_id": 1
       }

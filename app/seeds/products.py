@@ -3,7 +3,7 @@ from sqlalchemy.sql import text
 
 
 def seed_products():
-    location = 'https://miniamazon.s3.us-west-2.amazonaws.com/public/'
+    location = 'https://miniamazon.s3.us-west-2.amazonaws.com/'
     username_to_ids = Customer.username_to_ids()
     categories = Product.allowed_categories()
 
