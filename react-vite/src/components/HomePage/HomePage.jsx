@@ -48,7 +48,7 @@ function HomePage() {
   useEffect(() => {
     const loadData = async () => {
       const handleProductCheckout = data => {
-        if (data.user_checkout_id !== user?.user.id) {
+        if (data.user_checkout_id !== user?.user?.id) {
           let message = ""
           const products = data.products;
 
