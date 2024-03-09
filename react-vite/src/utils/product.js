@@ -8,7 +8,22 @@ export const getPreviewText = name => {
 export const getFormattedPrice = price => {
   if (!price.length) return ["0", "00"];
   const parts = price.split(".");
-  const part1 = parts[0];
+
+  let part1s = [];
+  let curr = ""
+  for (let i = parts[0].length - 1; i >= 0; i--) {
+    const num = parts[0][i];
+    if ("0123456789".includes(num)) {
+      curr = num + curr;
+    }
+    if (curr.length === 3) {
+      part1s.splice(0, 0, curr);
+      curr = "";
+    }
+  }
+  if (curr.length) part1s.splice(0, 0, curr);
+
+  const part1 = part1s.join(",");
   const part2 = parts[1] ? (parts[1].length > 2 ? parts[1].slice(0, 2) : parts[1]) : "";
   return [part1, part2.padEnd(2, 0)];
 }
