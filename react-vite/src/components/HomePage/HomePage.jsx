@@ -24,7 +24,7 @@ function HomePage() {
   const [productNameInput, setProductNameInput] = useState("");
   const [productCategoryInput, setProductCategoryInput] = useState("");
   const [isLoaded, setIsLoaded] = useState(false);
-  const { setModalContent } = useModal();
+  const { setModalContent, closeModal } = useModal();
   const user = useSelector(sessionActions.sessionUser);
   const products = useSelector(productActions.getProducts);
   const bookmarks = useSelector(bookmarkActions.getBookmarks);
@@ -54,6 +54,7 @@ function HomePage() {
 
           products.forEach(product => {
             dispatch(productActions.updateProductsQuantityWhenSomeoneCheckoutThunk(product.id, product.remaining));
+            console.log(inCartProductIds.includes(product.id), product.id, '❌❌❌❌❌❌❌❌❌')
             if (inCartProductIds.includes(product.id)) {
               if (product.remaining > 0) {
                 message += `"${product.name}" only has ${product.remaining} left!\n`;
@@ -63,7 +64,8 @@ function HomePage() {
             }
           });
 
-          if (message.length) {
+          if (message.length > 0) {
+            console.log(message.length > 0, '🆔🆔🆔🆔')
             setModalContent(
               <NotificationModal
                 message={message}
@@ -72,6 +74,8 @@ function HomePage() {
                 loader={false}
               />
             );
+          } else {
+            closeModal();
           }
         }
       }
@@ -105,7 +109,7 @@ function HomePage() {
       setIsLoaded(true);
     }
     loadData();
-  }, [user?.user, dispatch, inCartProductIds, setModalContent]);
+  }, [user?.user, dispatch, inCartProductIds, setModalContent, closeModal]);
 
   if (!isLoaded) return <Loading />
   if (!user) closeChat();
