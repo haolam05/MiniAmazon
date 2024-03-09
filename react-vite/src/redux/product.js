@@ -64,7 +64,11 @@ export const updateProductQuantityThunk = (productId, quantity) => (dispatch, ge
     const items = currentOrder.items;
     const item = items.find(item => item.product_id === productId);
     if (item) {
-      dispatch(orderActions.updateOrderThunk(currentOrder.id, productId, quantity));
+      if (quantity === 0) {
+        dispatch(orderActions.updateOrderThunk(currentOrder.id, productId, 0));
+      } else if (quantity < item.quantity) {  // quantity to buy > quantity in stock
+        dispatch(orderActions.updateOrderItem({ ...item, quantity }));
+      }
     }
   }
 }
