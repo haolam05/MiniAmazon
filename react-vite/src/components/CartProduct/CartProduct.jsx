@@ -20,7 +20,6 @@ function CartProduct({ product, item, user, inCartProductIds, bookmarkProductIds
     // for websocket - update product quantity immediately when someone checkout
     if (product.remaining < +quantityInput) {
       setQuantityInput(product.remaining);
-      dispatch(orderActions.updateOrderThunk(item.order_id, product.id, product.remaining));
     }
   }, [dispatch, product.remaining, item, quantityInput]);
 

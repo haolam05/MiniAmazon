@@ -53,7 +53,7 @@ export const handleCheckout = items => ({
 
 
 // Thunk action creators
-export const updateProductQuantityThunk = (productId, quantity) => (dispatch, getState) => {
+export const updateProductsQuantityWhenSomeoneCheckoutThunk = (productId, quantity) => (dispatch, getState) => {
   dispatch(updateProductQuantity(productId, quantity));
   const ordersObject = getState().orders.orders;
   if (!ordersObject) return;
@@ -69,6 +69,22 @@ export const updateProductQuantityThunk = (productId, quantity) => (dispatch, ge
       } else if (quantity < item.quantity) {  // quantity to buy > quantity in stock
         dispatch(orderActions.updateOrderItem({ ...item, quantity }));
       }
+    }
+  }
+}
+
+export const updateProductsWhenProductIsDeletedThunk = productId => (dispatch, getState) => {
+  dispatch(deleteProduct(productId));
+  const ordersObject = getState().orders.orders;
+  if (!ordersObject) return;
+
+  const orders = Object.values(ordersObject);
+  const currentOrder = orders.find(order => !order.is_checkout);
+  if (currentOrder) {
+    const items = currentOrder.items;
+    const item = items.find(item => item.product_id === productId);
+    if (item) {
+      dispatch(orderActions.updateOrderThunk(currentOrder.id, productId, 0));
     }
   }
 }

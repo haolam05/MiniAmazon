@@ -53,15 +53,17 @@ function HomePage() {
           const products = data.products;
 
           products.forEach(product => {
-            dispatch(productActions.updateProductQuantityThunk(product.id, product.remaining));
-            if (product.remaining > 0) {
-              message += `"${product.name}" only has ${product.remaining} left!\n`;
-            } else {
-              message += `"${product.name}" has already sold out!\n`;
+            dispatch(productActions.updateProductsQuantityWhenSomeoneCheckoutThunk(product.id, product.remaining));
+            if (inCartProductIds.includes(product.id)) {
+              if (product.remaining > 0) {
+                message += `"${product.name}" only has ${product.remaining} left!\n`;
+              } else {
+                message += `"${product.name}" has already sold out!\n`;
+              }
             }
           });
 
-          if (products.length) {
+          if (message.length) {
             setModalContent(
               <NotificationModal
                 message={message}
@@ -74,8 +76,21 @@ function HomePage() {
         }
       }
 
-      const handleProductDelete = () => {
+      const handleProductDelete = data => {
+        if (data.product_owner_id !== user?.user?.id) {
+          dispatch(productActions.updateProductsWhenProductIsDeletedThunk(data.product_id));
 
+          if (inCartProductIds.includes(data.product_id)) {
+            setModalContent(
+              <NotificationModal
+                message={`"${data.product_name}" is discontinued!! ❌`}
+                status="alert-success"
+                setTimeOut={false}
+                loader={false}
+              />
+            );
+          }
+        }
       }
 
       socket.on("checkout", handleProductCheckout);

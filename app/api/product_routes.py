@@ -114,7 +114,7 @@ def delete_product(id):
         return redirect("/api/auth/forbidden")
 
     product.is_deleted = True
-    socketio.emit("product_delete", {"product_owner_id": current_user.id, "product": product})
+    socketio.emit("product_delete", {"product_owner_id": current_user.id, "product_id": product.id, "product_name": product.name})
     db.session.commit()
 
     return {"message": "Successfully deleted product"}, 200
