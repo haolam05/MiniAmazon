@@ -18,7 +18,7 @@ function CartProduct({ product, item, user, inCartProductIds, bookmarkProductIds
 
   useEffect(() => {
     if (product.remaining < +quantityInput) {
-      setQuantityInput(0);
+      setQuantityInput(product.remaining);
     }
   }, [product.remaining]);
 
