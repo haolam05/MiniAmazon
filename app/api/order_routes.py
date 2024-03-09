@@ -130,7 +130,6 @@ def checkout_order(id):
         if product.is_deleted:
             return {"message": f"\"{product.name}\" is already deleted. Please remove it from your cart!"}, 500
 
-        print(product.remaining,order_item.quantity)
         if product.remaining - order_item.quantity >= 0:
             emit_data.append({"id": product.id, "name": product.name, "remaining": product.remaining - order_item.quantity})
             product.remaining -= order_item.quantity
