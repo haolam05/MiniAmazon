@@ -2,6 +2,7 @@ from flask import Blueprint, request, redirect
 from flask_login import login_required, current_user
 from app.models import db, Product, Order, OrderItem
 from app.forms import OrderForm
+from ..socket import socketio
 
 
 order_routes = Blueprint('orders', __name__)
@@ -121,13 +122,19 @@ def checkout_order(id):
     if len(order.order_items) < 1:
         return {"message": "You have nothing to checkout"}, 500
 
+    emit_data = []
     order.is_checkout = True
     for order_item in order.order_items:
         product = order_item.product
+
         if product.is_deleted:
             return {"message": f"\"{product.name}\" is already deleted. Please remove it from your cart!"}, 500
-        product.remaining -= order_item.quantity
 
+        if product.remaining - order_item.quantity >= 0:
+            product.remaining -= order_item.quantity
+        emit_data.append({"id": product.id, "name": product.name, "remaining": product.remaining})
+
+    socketio.emit("checkout", {"user_checkout_id": current_user.id, "products": emit_data})
     db.session.commit()
 
     return order.to_dict(), 200

@@ -3,6 +3,7 @@ from flask_login import login_required, current_user
 from app.models import db, Product, Review, Bookmark
 from app.forms import ProductForm, ReviewForm, BookmarkForm
 from .aws_helpers import upload_file_to_s3, get_unique_filename
+from ..socket import socketio
 
 product_routes = Blueprint('products', __name__)
 
@@ -113,6 +114,7 @@ def delete_product(id):
         return redirect("/api/auth/forbidden")
 
     product.is_deleted = True
+    socketio.emit("product_delete", {"product_owner_id": current_user.id, "product": product})
     db.session.commit()
 
     return {"message": "Successfully deleted product"}, 200

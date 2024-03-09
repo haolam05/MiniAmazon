@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { getPreviewText } from "../../utils/product";
@@ -12,9 +12,15 @@ function CartProduct({ product, item, user, inCartProductIds, bookmarkProductIds
   const dispatch = useDispatch();
   const { showProductDetails } = useModal();
   const [submitting, setSubmitting] = useState(false);
-  const [quantityInput, setQuantityInput] = useState(item.quantity);
+  const [quantityInput, setQuantityInput] = useState(product.remaining <= item.quantity ? product.remaining : item.quantity);
   const [errors, setErrors] = useState({})
   const [unsaveChanges, setUnsaveChanges] = useState(false);
+
+  useEffect(() => {
+    if (product.remaining < +quantityInput) {
+      setQuantityInput(0);
+    }
+  }, [product.remaining]);
 
   const removeProductFromCart = async e => {
     e.stopPropagation();

@@ -15,6 +15,7 @@ import * as productActions from "../../redux/product";
 import * as orderActions from "../../redux/order";
 import * as bookmarkActions from "../../redux/bookmark";
 import "./HomePage.css";
+import NotificationModal from "../NotificationModal";
 
 const socket = io(choosePort());
 
@@ -46,6 +47,40 @@ function HomePage() {
 
   useEffect(() => {
     const loadData = async () => {
+      const handleProductCheckout = data => {
+        if (data.user_checkout_id !== user?.user.id) {
+          let message = ""
+          const products = data.products.filter(product => inCartProductIds.includes(product.id));
+
+          products.forEach(product => {
+            dispatch(productActions.updateProductQuantityThunk(product.id, product.remaining));
+            if (product.remaining > 0) {
+              message += `\"${product.name}\" only has ${product.remaining} left!\n`;
+            } else {
+              message += `\"${product.name}\" has already sold out!\n`;
+            }
+          });
+
+          if (products.length) {
+            setModalContent(
+              <NotificationModal
+                message={message}
+                status="alert-success"
+                setTimeOut={false}
+                loader={false}
+              />
+            );
+          }
+        }
+      }
+
+      const handleProductDelete = () => {
+
+      }
+
+      socket.on("checkout", handleProductCheckout);
+      socket.on("product_delete", handleProductDelete);
+
       await dispatch(sessionActions.restoreSession());
       await dispatch(productActions.loadProductsThunk());
       if (user?.user) {
@@ -55,7 +90,7 @@ function HomePage() {
       setIsLoaded(true);
     }
     loadData();
-  }, [user?.user, dispatch]);
+  }, [user?.user, dispatch, inCartProductIds, setModalContent]);
 
   if (!isLoaded) return <Loading />
   if (!user) closeChat();

@@ -3,6 +3,7 @@ import { createSelector } from "reselect";
 import * as orderActions from "./order";
 
 // Actions
+const UPDATE_PRODUCT_QUANTITY = 'products/UPDATE_PRODUCT_QUANTITY';
 const LOAD_PRODUCTS = 'products/LOAD_PRODUCTS';
 const UPDATE_PRODUCT = 'products/UPDATE_PRODUCT';
 const DELETE_PRODUCT = 'products/DELETE_PRODUCT';
@@ -12,6 +13,12 @@ const HANDLE_CHECKOUT = 'products/HANDLE_CHECKOUT';
 
 
 // POJO action creators
+export const updateProductQuantity = (productId, quantity) => ({
+  type: UPDATE_PRODUCT_QUANTITY,
+  productId,
+  quantity
+});
+
 const loadProducts = products => ({
   type: LOAD_PRODUCTS,
   products
@@ -46,6 +53,26 @@ export const handleCheckout = items => ({
 
 
 // Thunk action creators
+export const updateProductQuantityThunk = (productId, quantity) => (dispatch, getState) => {
+  dispatch(updateProductQuantity(productId, quantity));
+  const ordersObject = getState().orders.orders;
+  if (!ordersObject) return;
+
+  const orders = Object.values(ordersObject);
+  const currentOrder = orders.find(order => !order.is_checkout);
+  if (currentOrder) {
+    const items = currentOrder.items;
+    const item = items.find(item => item.product_id === productId);
+    if (item) {
+      if (quantity === 0) {
+        dispatch(orderActions.deleteOrderItem(currentOrder.id, productId));
+      } else if (quantity < item.quantity) {
+        dispatch(orderActions.updateOrderItem({ ...item, quantity }));
+      }
+    }
+  }
+}
+
 export const loadProductsThunk = () => async (dispatch, getState) => {
   if (getState().products.products !== null) return;
   const response = await csrfFetch(`/api/products`);
@@ -188,6 +215,11 @@ function productReducer(state = initialState, action) {
     case DELETE_PRODUCT: {
       const newState = { ...state };
       newState.products[action.productId].is_deleted = true;
+      return newState;
+    }
+    case UPDATE_PRODUCT_QUANTITY: {
+      const newState = { ...state };
+      newState.products[action.productId].remaining = action.quantity;
       return newState;
     }
     case UPDATE_PRODUCT_REVIEW: {

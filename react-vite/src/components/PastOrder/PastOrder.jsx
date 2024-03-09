@@ -14,7 +14,7 @@ function PastOrder({ order, products, user, inCartProductIds, bookmarkProductIds
   return (
     <div className="past-order">
       <h3 className="past-order-number">
-        <span>Order #{order.id}</span>
+        <span>🆔 {order.id}</span>
         <span className="tilde">~</span>
         <span className="total">${getSubTotal(order.items)}</span>
       </h3>

@@ -17,7 +17,7 @@ const loadOrders = orders => ({
   orders
 });
 
-const createOrder = order => ({
+export const createOrder = order => ({
   type: CREATE_ORDER,
   order
 });
@@ -27,7 +27,7 @@ const checkoutOrder = orderId => ({
   orderId
 });
 
-const updateOrderItem = item => ({
+export const updateOrderItem = item => ({
   type: UPDATE_ORDER_ITEM,
   item
 });
