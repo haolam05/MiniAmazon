@@ -19,7 +19,7 @@
 #cart-products .summary {
   position: fixed;
   top: 160px;
-  right: 210px;
+  right: 190px;
 }
 
 #cart-products .checkout {
@@ -30,7 +30,7 @@
 
 #cart-products .checkout {
   background-color: var(--light-orange);
-  width: 135px;
+  width: 120px;
   height: 21px;
   padding: 10px 20px;
   border-radius: 5px;
@@ -42,6 +42,7 @@
 
 #cart-products .checkout p {
   color: var(--black);
+  font-size: 10pt;
 }
 
 #cart-products .checkout p:hover {
@@ -50,7 +51,7 @@
 
 #cart-products .subtotal {
   background-color: var(--cart-subtotal-btn);
-  width: 120px;
+  width: 140px;
   padding: 10px 20px;
   border-radius: 5px;
   display: flex;
@@ -61,7 +62,7 @@
 #cart-products .subtotal .text {
   color: var(--black);
   align-self: center;
-  font-size: 14pt;
+  font-size: 10pt;
   margin-right: 15px;
 }
 
