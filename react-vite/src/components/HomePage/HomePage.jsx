@@ -54,7 +54,6 @@ function HomePage() {
 
           products.forEach(product => {
             dispatch(productActions.updateProductsQuantityWhenSomeoneCheckoutThunk(product.id, product.remaining));
-            console.log(inCartProductIds.includes(product.id), product.id, '❌❌❌❌❌❌❌❌❌')
             if (inCartProductIds.includes(product.id)) {
               if (product.remaining > 0) {
                 message += `"${product.name}" only has ${product.remaining} left!\n`;
@@ -65,7 +64,6 @@ function HomePage() {
           });
 
           if (message.length > 0) {
-            console.log(message.length > 0, '🆔🆔🆔🆔')
             setModalContent(
               <NotificationModal
                 message={message}
