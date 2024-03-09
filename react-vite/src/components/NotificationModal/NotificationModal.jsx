@@ -28,7 +28,7 @@ function NotificationModal({ message, status, secondaryModal = false, thirdLevel
       }, 4000);
       return () => clearTimeout(timer);
     }
-  }, [closeModalFn]);
+  }, [closeModalFn, setTimeOut]);
 
   const messageWithNewLines = message.split("\n");
 

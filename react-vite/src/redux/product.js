@@ -64,11 +64,7 @@ export const updateProductQuantityThunk = (productId, quantity) => (dispatch, ge
     const items = currentOrder.items;
     const item = items.find(item => item.product_id === productId);
     if (item) {
-      if (quantity === 0) {
-        dispatch(orderActions.deleteOrderItem(currentOrder.id, productId));
-      } else if (quantity < item.quantity) {
-        dispatch(orderActions.updateOrderItem({ ...item, quantity }));
-      }
+      dispatch(orderActions.updateOrderThunk(currentOrder.id, productId, quantity));
     }
   }
 }

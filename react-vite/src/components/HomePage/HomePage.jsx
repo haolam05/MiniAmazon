@@ -48,16 +48,17 @@ function HomePage() {
   useEffect(() => {
     const loadData = async () => {
       const handleProductCheckout = data => {
+        console.log(data)
         if (data.user_checkout_id !== user?.user.id) {
           let message = ""
-          const products = data.products.filter(product => inCartProductIds.includes(product.id));
+          const products = data.products;
 
           products.forEach(product => {
             dispatch(productActions.updateProductQuantityThunk(product.id, product.remaining));
             if (product.remaining > 0) {
-              message += `\"${product.name}\" only has ${product.remaining} left!\n`;
+              message += `"${product.name}" only has ${product.remaining} left!\n`;
             } else {
-              message += `\"${product.name}\" has already sold out!\n`;
+              message += `"${product.name}" has already sold out!\n`;
             }
           });
 

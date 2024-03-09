@@ -17,10 +17,12 @@ function CartProduct({ product, item, user, inCartProductIds, bookmarkProductIds
   const [unsaveChanges, setUnsaveChanges] = useState(false);
 
   useEffect(() => {
+    // for websocket - update product quantity immediately when someone checkout
     if (product.remaining < +quantityInput) {
       setQuantityInput(product.remaining);
+      dispatch(orderActions.updateOrderThunk(item.order_id, product.id, product.remaining));
     }
-  }, [product.remaining]);
+  }, [product.remaining, quantityInput]);
 
   const removeProductFromCart = async e => {
     e.stopPropagation();
