@@ -22,7 +22,7 @@ function CartProduct({ product, item, user, inCartProductIds, bookmarkProductIds
       setQuantityInput(product.remaining);
       dispatch(orderActions.updateOrderThunk(item.order_id, product.id, product.remaining));
     }
-  }, [dispatch, product, item, quantityInput]);
+  }, [dispatch, product.remaining, item, quantityInput]);
 
   const removeProductFromCart = async e => {
     e.stopPropagation();
