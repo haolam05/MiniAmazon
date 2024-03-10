@@ -47,7 +47,7 @@ class Product(db.Model):
         return {
             "id": self.id,
             "name": self.name,
-            "price": self.price,
+            "price": str(self.price),
             "category": self.category,
             "description": self.description,
             "seller_id": self.seller_id,

@@ -95,8 +95,25 @@ function HomePage() {
         }
       }
 
+      const handleProductUpdate = data => {
+        if (data.product_owner_id !== user?.user?.id) {
+          dispatch(productActions.updateProductsWhenProductIsUpdatedThunk(data.product))
+          if (inCartProductIds.includes(data.product.id)) {
+            setModalContent(
+              <NotificationModal
+                message={`"${data.product.name}" just updated its information!! ❌`}
+                status="alert-success"
+                setTimeOut={false}
+                loader={false}
+              />
+            );
+          }
+        }
+      }
+
       socket.on("checkout", handleProductCheckout);
       socket.on("product_delete", handleProductDelete);
+      socket.on("product_update", handleProductUpdate);
 
       await dispatch(sessionActions.restoreSession());
       await dispatch(productActions.loadProductsThunk());

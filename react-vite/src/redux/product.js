@@ -89,6 +89,22 @@ export const updateProductsWhenProductIsDeletedThunk = productId => (dispatch, g
   }
 }
 
+export const updateProductsWhenProductIsUpdatedThunk = product => (dispatch, getState) => {
+  dispatch(updateProduct(product));
+  const ordersObject = getState().orders.orders;
+  if (!ordersObject) return;
+
+  const orders = Object.values(ordersObject);
+  const currentOrder = orders.find(order => !order.is_checkout);
+  if (currentOrder) {
+    const items = currentOrder.items;
+    const item = items.find(item => item.product_id === product.id);
+    if (item) {
+      dispatch(orderActions.updateOrderThunk(currentOrder.id, product.id, product.quantity));
+    }
+  }
+}
+
 export const loadProductsThunk = () => async (dispatch, getState) => {
   if (getState().products.products !== null) return;
   const response = await csrfFetch(`/api/products`);

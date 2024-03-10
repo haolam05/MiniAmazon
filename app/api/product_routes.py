@@ -95,7 +95,7 @@ def update_product(id):
             product.product_image = url
 
         db.session.commit()
-
+        socketio.emit("product_update", {"product_owner_id": current_user.id, "product": {**product.to_dict()}})
         return product.to_dict(), 200
 
     return form.errors, 400
