@@ -55,7 +55,7 @@ def create_product():
 
         db.session.add(new_product)
         db.session.commit()
-
+        socketio.emit("product_create", {"product_owner_id": current_user.id, "product": {**new_product.to_dict()}})
         return new_product.to_dict(), 201
 
     return form.errors, 400

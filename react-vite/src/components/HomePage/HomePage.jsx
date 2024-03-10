@@ -111,9 +111,16 @@ function HomePage() {
         }
       }
 
+      const handleProductCreate = data => {
+        if (data.product_owner_id !== user?.user?.id) {
+          dispatch(productActions.updateProductsWhenProductIsUpdatedThunk(data.product))
+        }
+      }
+
       socket.on("checkout", handleProductCheckout);
       socket.on("product_delete", handleProductDelete);
       socket.on("product_update", handleProductUpdate);
+      socket.on("product_create", handleProductCreate);
 
       await dispatch(sessionActions.restoreSession());
       await dispatch(productActions.loadProductsThunk());
