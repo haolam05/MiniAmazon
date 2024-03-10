@@ -343,12 +343,12 @@ def seed_products():
         },
         {
             "seller_id": username_to_ids["nickyli"],
-            "name": "Objects First with Java: A Practical Introduction Using BlueJ, 6th edition",
-            "price": 143.99,
-            "category": categories[2],
-            "description": "Recognizing functional programming as a key part of the programming field, Objects First with Java delivers the foundational knowledge you need. The text illuminates the differences between Java programming language and BlueJ, providing a firm grasp of the material and enhancing your understanding of source code.",
+            "name": "Large Hourglass Timer 60 Minute, Decorative Wooden Sandglass, Black",
+            "price": 29.99,
+            "category": categories[4],
+            "description": "Sandglass Measure 10\" x 4\" x 4\" Sand Timing: 60 Minutes (deviation within 5 min) High Quality Wooden Frame and Fine Flow Sand Great Birthday Gift, Wedding Gift & Christams Gift Ideal for Study, Meeting, Cooking, Exercising and Playing Games",
             "remaining": 68,
-            "product_image": location + "javaBook.jpg"
+            "product_image": location + "hourglass.jpg"
         }
     ]
 
