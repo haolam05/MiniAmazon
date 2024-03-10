@@ -78,6 +78,7 @@ export const createOrderThunk = product => async (dispatch, getState) => {
 }
 
 export const updateOrderThunk = (orderId, productId, quantityInput) => async dispatch => {
+  console.log(quantityInput, 'updateOrderThunk')
   const response = await csrfFetch(`/api/orders/${orderId}`, {
     method: 'PUT',
     body: JSON.stringify({
@@ -158,9 +159,9 @@ function orderReducer(state = initialState, action) {
     case DELETE_ORDER_ITEM: {
       const newState = { ...state };
       newState.orders[action.orderId].items = newState.orders[action.orderId].items.filter(item => item.product_id !== action.itemId);
-      if (newState.orders[action.orderId].items.length === 0) {
-        delete newState.orders[action.orderId];
-      }
+      // if (newState.orders[action.orderId].items.length === 0) {
+      //   delete newState.orders[action.orderId];
+      // }
       return newState;
     }
     case RESET:

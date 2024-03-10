@@ -53,8 +53,9 @@ function HomePage() {
           const products = data.products;
 
           products.forEach(product => {
-            dispatch(productActions.updateProductsQuantityWhenSomeoneCheckoutThunk(product.id, product.remaining));
+            dispatch(productActions.updateProductQuantity(product.id, product.remaining));
             if (inCartProductIds.includes(product.id)) {
+              dispatch(productActions.updateProductsQuantityInCartWhenSomeoneCheckoutThunk(product.id, product.remaining));
               if (product.remaining > 0) {
                 message += `"${product.name}" only has ${product.remaining} left!\n`;
               } else {
@@ -80,9 +81,8 @@ function HomePage() {
 
       const handleProductDelete = data => {
         if (data.product_owner_id !== user?.user?.id) {
-          dispatch(productActions.updateProductsWhenProductIsDeletedThunk(data.product_id));
-
           if (inCartProductIds.includes(data.product_id)) {
+            dispatch(productActions.updateProductsInCartWhenProductIsDeletedThunk(data.product_id));
             setModalContent(
               <NotificationModal
                 message={`"${data.product_name}" is discontinued!! ❌`}
@@ -93,12 +93,15 @@ function HomePage() {
             );
           }
         }
+        dispatch(productActions.deleteProduct(data.product_id));
       }
 
       const handleProductUpdate = data => {
         if (data.product_owner_id !== user?.user?.id) {
-          dispatch(productActions.updateProductsWhenProductIsUpdatedThunk(data.product))
+          dispatch(productActions.updateProduct(data.product));
+
           if (inCartProductIds.includes(data.product.id)) {
+            dispatch(productActions.updateProductsInCartWhenProductIsUpdatedThunk(data.product))
             setModalContent(
               <NotificationModal
                 message={`"${data.product.name}" just updated its information!! ❌`}
@@ -113,7 +116,7 @@ function HomePage() {
 
       const handleProductCreate = data => {
         if (data.product_owner_id !== user?.user?.id) {
-          dispatch(productActions.updateProductsWhenProductIsUpdatedThunk(data.product))
+          dispatch(productActions.updateProduct(data.product));
         }
       }
 

@@ -29,7 +29,7 @@ export const updateProduct = product => ({
   product
 });
 
-const deleteProduct = productId => ({
+export const deleteProduct = productId => ({
   type: DELETE_PRODUCT,
   productId
 });
@@ -53,8 +53,7 @@ export const handleCheckout = items => ({
 
 
 // Thunk action creators
-export const updateProductsQuantityWhenSomeoneCheckoutThunk = (productId, quantity) => (dispatch, getState) => {
-  dispatch(updateProductQuantity(productId, quantity));
+export const updateProductsQuantityInCartWhenSomeoneCheckoutThunk = (productId, quantity) => (dispatch, getState) => {
   const ordersObject = getState().orders.orders;
   if (!ordersObject) return;
 
@@ -67,14 +66,13 @@ export const updateProductsQuantityWhenSomeoneCheckoutThunk = (productId, quanti
       if (quantity === 0) {
         dispatch(orderActions.updateOrderThunk(currentOrder.id, productId, 0));
       } else if (quantity < item.quantity) {  // quantity to buy > quantity in stock
-        dispatch(orderActions.updateOrderItem({ ...item, quantity }));
+        dispatch(orderActions.updateOrderThunk(currentOrder.id, productId, quantity));
       }
     }
   }
 }
 
-export const updateProductsWhenProductIsDeletedThunk = productId => (dispatch, getState) => {
-  dispatch(deleteProduct(productId));
+export const updateProductsInCartWhenProductIsDeletedThunk = productId => (dispatch, getState) => {
   const ordersObject = getState().orders.orders;
   if (!ordersObject) return;
 
@@ -84,13 +82,13 @@ export const updateProductsWhenProductIsDeletedThunk = productId => (dispatch, g
     const items = currentOrder.items;
     const item = items.find(item => item.product_id === productId);
     if (item) {
+      console.log(currentOrder.id, 'updateProductsInCartWhenProductIsDeletedThunk', item)
       dispatch(orderActions.updateOrderThunk(currentOrder.id, productId, 0));
     }
   }
 }
 
-export const updateProductsWhenProductIsUpdatedThunk = product => (dispatch, getState) => {
-  dispatch(updateProduct(product));
+export const updateProductsInCartWhenProductIsUpdatedThunk = product => (dispatch, getState) => {
   const ordersObject = getState().orders.orders;
   if (!ordersObject) return;
 

@@ -18,7 +18,7 @@ function CartProduct({ product, item, user, inCartProductIds, bookmarkProductIds
 
   useEffect(() => {
     // for websocket - update product quantity immediately when someone checkout
-    if (product.remaining < +quantityInput) {
+    if (product.remaining < +quantityInput && product.remaining > 0) {
       setQuantityInput(product.remaining);
       setErrors({ "quantity": "None remaining ❌" });
       dispatch(orderActions.updateOrderThunk(item.order_id, product.id, product.remaining));
@@ -28,6 +28,7 @@ function CartProduct({ product, item, user, inCartProductIds, bookmarkProductIds
   const removeProductFromCart = async e => {
     e.stopPropagation();
     setSubmitting(true);
+    console.log("removeProductFromCart", 0)
     await dispatch(orderActions.updateOrderThunk(item.order_id, product.id, 0));
     setSubmitting(false);
   }
@@ -37,6 +38,7 @@ function CartProduct({ product, item, user, inCartProductIds, bookmarkProductIds
     setErrors({ "quantity": "" });
     setUnsaveChanges(false);
     setSubmitting(true);
+    console.log("updateOrder --- <CartProduct />", quantityInput)
     await dispatch(orderActions.updateOrderThunk(item.order_id, product.id, quantityInput));
     setSubmitting(false);
   }
