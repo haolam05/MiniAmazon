@@ -78,7 +78,6 @@ export const createOrderThunk = product => async (dispatch, getState) => {
 }
 
 export const updateOrderThunk = (orderId, productId, quantityInput) => async dispatch => {
-  console.log(quantityInput, 'updateOrderThunk')
   const response = await csrfFetch(`/api/orders/${orderId}`, {
     method: 'PUT',
     body: JSON.stringify({

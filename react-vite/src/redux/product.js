@@ -82,7 +82,6 @@ export const updateProductsInCartWhenProductIsDeletedThunk = productId => (dispa
     const items = currentOrder.items;
     const item = items.find(item => item.product_id === productId);
     if (item) {
-      console.log(currentOrder.id, 'updateProductsInCartWhenProductIsDeletedThunk', item)
       dispatch(orderActions.updateOrderThunk(currentOrder.id, productId, 0));
     }
   }

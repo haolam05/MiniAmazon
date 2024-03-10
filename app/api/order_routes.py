@@ -78,7 +78,6 @@ def update_order(id):
             return {"message": "Successfully deleted item in the order"}, 200
         elif not order_item:
             """ Add item to order (cart) if not yet in cart """
-            print(order_item, order.id, form.data["quantity"],'➡️➡️➡️➡️➡️')
             if form.data["quantity"] != 1:
                 return {"message": "Quantity must be 1 when an item is first added to cart"}, 500
             if product.remaining < 1:
