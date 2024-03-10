@@ -84,7 +84,7 @@ export function SecondaryModal() {
   return ReactDOM.createPortal(
     <div id="secondary-modal">
       <div id="secondary-modal-background" onClick={closeSecondaryModal} />
-      <div id="secondary-modal-content">{modalContent}</div>
+      <div id="secondary-modal-content" className="modal">{modalContent}</div>
     </div>,
     modalRef.current
   );

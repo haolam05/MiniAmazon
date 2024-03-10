@@ -84,7 +84,7 @@ export function ThirdLevelModal() {
   return ReactDOM.createPortal(
     <div id="third-modal">
       <div id="third-modal-background" onClick={closeThirdLevelModal} />
-      <div id="third-modal-content">{modalContent}</div>
+      <div id="third-modal-content" className="modal">{modalContent}</div>
     </div>,
     modalRef.current
   );

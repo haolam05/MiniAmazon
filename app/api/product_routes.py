@@ -55,7 +55,7 @@ def create_product():
 
         db.session.add(new_product)
         db.session.commit()
-        socketio.emit("product_create", {"product_owner_id": current_user.id, "product": {**new_product.to_dict()}})
+        socketio.emit("product_create", {"product_owner_id": current_user.id, "product": new_product.to_dict()})
         return new_product.to_dict(), 201
 
     return form.errors, 400
@@ -95,7 +95,7 @@ def update_product(id):
             product.product_image = url
 
         db.session.commit()
-        socketio.emit("product_update", {"product_owner_id": current_user.id, "product": {**product.to_dict()}})
+        socketio.emit("product_update", {"product_owner_id": current_user.id, "product": product.to_dict()})
         return product.to_dict(), 200
 
     return form.errors, 400
@@ -160,6 +160,7 @@ def create_product_review(id):
         db.session.add(new_review)
         db.session.commit()
 
+        socketio.emit("product_review_create", {"review_owner_id": current_user.id, "product": product.to_dict()})
         return {**new_review.to_dict(), "customer": new_review.customer.to_dict()}, 200
 
     return form.errors, 400
