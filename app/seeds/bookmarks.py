@@ -8,7 +8,7 @@ def seed_bookmarks():
 
     bookmarks = [
         {
-            "product_id": product_image_name_to_ids["digital+microscope.jpg"],
+            "product_id": product_image_name_to_ids["digital-microscope.jpg"],
             "customer_id": username_to_ids["haolam"],
             "note": "This seems reasonable. Looking to see if there is a better deal."
         },
@@ -18,12 +18,12 @@ def seed_bookmarks():
             "note": "Too expensive. Waiting for a sale."
         },
         {
-            "product_id": product_image_name_to_ids["book+python+bible.jpg"],
+            "product_id": product_image_name_to_ids["book-python-bible.jpg"],
             "customer_id": username_to_ids["haolam"],
             "note": "Great advertisement. Is this really a bible? Researching for more information before buying."
         },
         {
-            "product_id": product_image_name_to_ids["book+java.jpg"],
+            "product_id": product_image_name_to_ids["book-java.jpg"],
             "customer_id": username_to_ids["haolam"],
             "note": "Considering which language to learn. Java book is too expensive compared to python book."
         },

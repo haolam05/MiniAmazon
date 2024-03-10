@@ -12,7 +12,7 @@ def seed_order_items():
             "quantity": 2
         },
         {
-            "product_id": product_image_name_to_ids["black+berries.jpg"],
+            "product_id": product_image_name_to_ids["black-berries.jpg"],
             "order_id": 5,
             "quantity": 1
         },
@@ -42,7 +42,7 @@ def seed_order_items():
             "quantity": 2
         },
         {
-            "product_id": product_image_name_to_ids["water+flosser.jpg"],
+            "product_id": product_image_name_to_ids["water-flosser.jpg"],
             "order_id": 2,
             "quantity": 1
         },
@@ -52,7 +52,7 @@ def seed_order_items():
             "quantity": 4
         },
         {
-            "product_id": product_image_name_to_ids["hair+dryer.jpg"],
+            "product_id": product_image_name_to_ids["hair-dryer.jpg"],
             "order_id": 2,
             "quantity": 3
         },
@@ -77,12 +77,12 @@ def seed_order_items():
             "quantity": 1
         },
         {
-            "product_id": product_image_name_to_ids["black+berries.jpg"],
+            "product_id": product_image_name_to_ids["black-berries.jpg"],
             "order_id": 4,
             "quantity": 1
         },
         {
-            "product_id": product_image_name_to_ids["book+blood+money.jpg"],
+            "product_id": product_image_name_to_ids["book-blood-money.jpg"],
             "order_id": 4,
             "quantity": 1
         },

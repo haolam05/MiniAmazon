@@ -15,7 +15,7 @@ def seed_products():
             "category": categories[0],
             "description": "Organic Blackberries taste best when they are very dark purplish-black to completely black. These berries are rich in antioxidants, especially in vitamin C. These berries have a tart-sweet flavor and can easily be consumed as a wonderfully plump and juicy snack....",
             "remaining": 10,
-            "product_image": location + "black+berries.jpg"
+            "product_image": location + "black-berries.jpg"
         },
         {
             "seller_id": username_to_ids["mihawk"],
@@ -33,7 +33,7 @@ def seed_products():
             "category": categories[1],
             "description": "Lens L (60-240x) for Soldering and Repairing: Can be used to repair circuit boards, mobile phones, etc. Lens A (18-720x), can be used to observe whole coins or parts, plants, stones, etc. Lens D (1800-2040x), can be used to observe biological slides. Ultra high definition 2160P Video Record, while supporting HDMI output to a larger screen, allows you to see a more microscopic world and free your eyes all the time.",
             "remaining": 99,
-            "product_image": location + "digital+microscope.jpg"
+            "product_image": location + "digital-microscope.jpg"
         },
         {
             "seller_id": username_to_ids["zoro"],
@@ -42,7 +42,7 @@ def seed_products():
             "category": categories[1],
             "description": "Lightweight and Portable - The drone is lightweight and compact, weighing less than 249 𝗴𝗿𝗮𝗺𝘀. It's perfect for taking on hikes, road trips, and other adventures, allowing you to capture stunning aerial moments from above wherever you go. Enjoy longer flights with DJI Mini 2 SE, which offers a 31-min max flight time. Combo offers two additional Intelligent Flight Batteries (three in total) for up to 93 minutes of total flight time. Explore and create more.",
             "remaining": 86,
-            "product_image": location + "mini+drone.jpg"
+            "product_image": location + "mini-drone.jpg"
         },
         {
             "seller_id": username_to_ids["zoro"],
@@ -60,7 +60,7 @@ def seed_products():
             "category": categories[2],
             "description": "It's often said that China is in a cold war with America. The reality is far worse: the war is hot, and the body count is one-sided. China is killing Americans and working aggressively to maximize the carnage while our leaders remain passive and, in some cases, compliant. Why? If anyone could crack the code, it's the renowned nonpartisan investigator Peter Schweizer. Schweizer's previous three number one New York Times bestsellers sent shock waves through official Washington, sparking FBI investigations and congressional probes that continue to this day.",
             "remaining": 8,
-            "product_image": location + "book+blood+money.jpg"
+            "product_image": location + "book-blood-money.jpg"
         },
         {
             "seller_id": username_to_ids["sanji"],
@@ -69,7 +69,7 @@ def seed_products():
             "category": categories[2],
             "description": "Imagine embarking on a learning journey where complexity is simplified, and every topic is meticulously organized for the most effective progression. We've engineered this guide with precision, aligning the best topics in an optimal sequence that ensures you grasp the fundamentals and advanced concepts of Python with remarkable speed and clarity. Forget the frustration of information overload;we deliver exactly what you need to know, when you need to know it! Bid farewell to the bafflement that often accompanies the learning process. Nicholas Kimmel breaks down Python programming into digestible, manageable segments, offering clear, step-by-step instructions that guide you from utter novice to confident coder. You'll experience the joy of your \"aha\" moments as you transition from asking \"What's Python?\" to exclaiming \"I can't believe I'm coding!\"",
             "remaining": 5,
-            "product_image": location + "book+python+bible.jpg"
+            "product_image": location + "book-python-bible.jpg"
         },
         {
             "seller_id": username_to_ids["sanji"],
@@ -78,7 +78,7 @@ def seed_products():
             "category": categories[2],
             "description": "Modern Java in Action connects new features of the Java language with their practical applications. Using crystal-clear examples and careful attention to detail, this book respects your time. It will help you expand your existing knowledge of core Java as you master modern additions like the Streams API and the Java Module System, explore new approaches to concurrency, and learn how functional concepts can help you write code that's easier to read and maintain.",
             "remaining": 0,
-            "product_image": location + "book+java.jpg"
+            "product_image": location + "book-java.jpg"
         },
         {
             "seller_id": username_to_ids["haolam"],
@@ -96,7 +96,7 @@ def seed_products():
             "category": categories[3],
             "description": "Cosy Companions diffuser hair dryer is equipped with a high speed brushless motor of 150,000RPM, upgraded high powered to provide powerful airflow with 36m/s wind speed to dry hair in a short time, which is 5x faster than traditional hair dryers. It takes only 2-5 minutes to dry hair. Fast blow dry hair feels awesome! Cosy Companions Ionic hair dryer can release 500 million negative ions during the blow-drying process, which can balance the static electricity in your hair and make your hair not frizzy in the slightest, but also effectively lock in moisture, nourish your hair, make your hair soft, fluffy and stylish, and give your hair a healthy and natural shine.",
             "remaining": 44,
-            "product_image": location + "hair+dryer.jpg"
+            "product_image": location + "hair-dryer.jpg"
         },
                 {
             "seller_id": username_to_ids["robin"],
@@ -105,7 +105,7 @@ def seed_products():
             "category": categories[3],
             "description": "The COSLUS water dental flosser boasts advanced 0.3mm+0.3mm ultra-fine dual-thread water pulse technology, professionally endorsed by an American dental team. This water dental pick delivers high water pressure pulses at 1400-1800 times per minute, effectively removing 99.9% of dental plaque for deep teeth cleaning. This water dental pick massages the gums, promotes blood circulation, and addresses oral issues like bad breath, orthodontic teeth.",
             "remaining": 9,
-            "product_image": location + "water+flosser.jpg"
+            "product_image": location + "water-flosser.jpg"
         },
         {
             "seller_id": username_to_ids["nickyli"],
@@ -186,7 +186,7 @@ def seed_products():
             "category": categories[2],
             "description": "#1 New York Times bestseller milk and honey is a collection of poetry and prose about survival. About the experience of violence, abuse, love, loss, and femininity. The book is divided into four chapters, and each chapter serves a different purpose. Deals with a different pain. Heals a different heartache. milk and honey takes readers through a journey of the most bitter moments in life and finds sweetness in them because there is sweetness everywhere if you are just willing to look.",
             "remaining": 3,
-            "product_image": location + "book+milk+and+honey.jpg"
+            "product_image": location + "book-milk-and-honey.jpg"
         },
         {
             "seller_id": username_to_ids["acee"],
@@ -195,7 +195,7 @@ def seed_products():
             "category": categories[2],
             "description": "In the psychology of money, the author shares 19 short stories exploring the strange ways people think about money and teaches you how to make better sense of one of life?s most important matters.",
             "remaining": 17,
-            "product_image": location + "book+pschyology+of+money.jpg"
+            "product_image": location + "book-pschyology-of-money.jpg"
         },
         {
             "seller_id": username_to_ids["nickyli"],
@@ -240,7 +240,7 @@ def seed_products():
             "category": categories[4],
             "description": "Shiny Lambskin, Gold-Tone, Silver-Tone & Ruthenium-Finish Metal, Black, Ref.AS1160 B04852 94305. Includes certificate of authenticity and all original packaging. Measures 6.1 × 10.1 × 3.5in",
             "remaining": 16,
-            "product_image": location + "chanel19bag.jpg"
+            "product_image": location + "chanel-bag-2.jpg"
         },
         {
             "seller_id": username_to_ids["nickyli"],
@@ -249,7 +249,7 @@ def seed_products():
             "category": categories[4],
             "description": "Shiny light yellow calfskin exterior with antique gold-tone hardware. Features short chain top handles, long chain strap, leather cord strap, dangling logo medallion, and interior pocket. Includes certificate of authenticity and all original packaging. I miss you. Measures 13.7 × 14.4 × 2.7in",
             "remaining": 19,
-            "product_image": location + "chanel22handbag.jpg"
+            "product_image": location + "chanel-bag-3.jpg"
         },
         {
             "seller_id": username_to_ids["nickyli"],
@@ -258,7 +258,7 @@ def seed_products():
             "category": categories[4],
             "description": "Tweed, Gold-Tone, Silver-Tone & Ruthenium-Finish Metal. Green, Pink & Turquoise. Ref. AS4223 B15407 NT027. Includes certificate of authenticity and all original packaging. Measures 10.1 × 8.6 × 6.2in",
             "remaining": 18,
-            "product_image": location + "CHANEL19BACKPACK.jpg"
+            "product_image": location + "chanel-bag-1.jpg"
         },
         {
             "seller_id": username_to_ids["nickyli"],
@@ -267,7 +267,7 @@ def seed_products():
             "category": categories[3],
             "description": "Acetate Black & Gold. Lenses: Gray, Gradient. 100% UVA and UVB Protection CE - Lenses are UV Category Filter 3 - Prescription friendly. Made in Italy",
             "remaining": 99,
-            "product_image": location + "chanelSunglass1.jpg"
+            "product_image": location + "chanel-sunglasses.jpg"
         },
         {
             "seller_id": username_to_ids["nickyli"],
@@ -276,7 +276,7 @@ def seed_products():
             "category": categories[3],
             "description": "18K rose gold, Diamond. The pendant is attached to the necklace’s chain. Chain length: 16.54 inches. Diamond: 12 stones, 0.48 carat.",
             "remaining": 29,
-            "product_image": location + "Vintage-necklace.jpg"
+            "product_image": location + "vintage-necklace.jpg"
         },
         {
             "seller_id": username_to_ids["nickyli"],
@@ -285,7 +285,7 @@ def seed_products():
             "category": categories[3],
             "description": "Vintage Alhambra bracelet, 5 motifs, 18K yellow gold, round diamonds; diamond quality DEF, IF to VVS.Diamond: 60 stones, 2.41 carats. Hallmark clasp, small model in 18K yellow gold. Bracelet wrist size: 7.48 inches",
             "remaining": 28,
-            "product_image": location + "Vintage-Alhambra-bracelet.jpg"
+            "product_image": location + "vintage-alhambra-bracelet.jpg"
         },
         {
             "seller_id": username_to_ids["nickyli"],
@@ -303,7 +303,7 @@ def seed_products():
             "category": categories[3],
             "description": "ROUGE COCO BAUME contains a deeply hydrating oil, made from fruit and olive leaves, that features restorative and antioxidant properties for better-looking lips day after day. The finish transforms from sheer and shiny to opaque and subtly luminous as the formula’s benefits are absorbed.",
             "remaining": 520,
-            "product_image": location + "lipstickWhite.jpg"
+            "product_image": location + "lipstick-white.jpg"
         },
         {
             "seller_id": username_to_ids["nickyli"],
@@ -312,7 +312,7 @@ def seed_products():
             "category": categories[3],
             "description": "An ancient myth translated into perfume. For Diptyque, only musks could do justice to the love of Eros and Psyche. Musks are at the very heart of Fleur de Peau eau de parfum, as cottony and light as they are soft and moist. Highlighted with iris and ambrette seeds, their tactile aspects are fully revealed.",
             "remaining": 999,
-            "product_image": location + "diptyquePerfume.jpg"
+            "product_image": location + "diptyque-perfume.jpg"
         },
         {
             "seller_id": username_to_ids["nickyli"],
