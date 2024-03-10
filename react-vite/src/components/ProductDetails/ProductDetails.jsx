@@ -17,6 +17,7 @@ function ProductDetails({ user, product, showCart, inCartProductIds, bookmarkPro
   const { setThirdLevelModalContent, createAndShowBookmarks } = useThirdLevelModal();
   const [averageRating, setAverageRating] = useState(getAverageRating(product.reviews.map(review => review.rating)));
   const [downloadProductImageUrl, setDownloadProductImageUrl] = useState("");
+  const [numReviews, setNumReviews] = useState(product?.reviews?.length || 0);
 
   useEffect(() => {
     const getDownloadImage = async () => {
@@ -62,7 +63,7 @@ function ProductDetails({ user, product, showCart, inCartProductIds, bookmarkPro
               <ProductReviewInfo
                 user={user}
                 toggleReviewInfo={toggleReviewInfo}
-                numReviews={product.reviews.length}
+                numReviews={numReviews}
                 averageRating={averageRating}
               />
             </div>
@@ -96,6 +97,7 @@ function ProductDetails({ user, product, showCart, inCartProductIds, bookmarkPro
             product={product}
             user={user}
             setAverageRating={setAverageRating}
+            setNumReviews={setNumReviews}
           />
         )}
       </div>

@@ -8,7 +8,7 @@ import NotificationModal from "../NotificationModal";
 import * as productActions from "../../redux/product";
 import "./ReviewForm.css";
 
-function ReviewForm({ product, setAverageRating, setReviews }) {
+function ReviewForm({ product, setAverageRating, setReviews, setNumReviews, reviews }) {
   const dispatch = useDispatch();
   const { setThirdLevelModalContent } = useThirdLevelModal();
   const [reviewInput, setReviewInput] = useState("");
@@ -31,12 +31,15 @@ function ReviewForm({ product, setAverageRating, setReviews }) {
       return setErrors(data.errors);
     }
 
-    const ratings = product.reviews.map(review => review.rating);
-    setAverageRating(getAverageRating([...ratings, data.rating]));
+    const ratings = reviews.map(review => review.rating);
+    const reviewExist = reviews?.find(review => review.id === data.id);
+    if (!reviewExist) ratings.push(data.rating);
+    setAverageRating(getAverageRating(ratings));
     setReviews(prevReivews => {
       const reviewExist = prevReivews.find(prevReview => prevReview.id === data.id);
       return reviewExist ? prevReivews : [...prevReivews, data];
     });
+    setNumReviews(prevNumReviews => prevNumReviews + 1);
 
     setSubmitting(false);
     enabledSubmitButton();

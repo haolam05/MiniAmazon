@@ -4,7 +4,7 @@ import ProductReview from "../ProductReview";
 import ReviewForm from "../ReviewForm";
 import "./ProductReviews.css";
 
-function ProductReviews({ product, user, setAverageRating }) {
+function ProductReviews({ product, user, setAverageRating, setNumReviews }) {
   const { setThirdLevelModalContent } = useThirdLevelModal();
   const [reviews, setReviews] = useState(product?.reviews || []);
 
@@ -18,7 +18,9 @@ function ProductReviews({ product, user, setAverageRating }) {
       <ReviewForm
         product={product}
         setAverageRating={setAverageRating}
+        reviews={reviews}
         setReviews={setReviews}
+        setNumReviews={setNumReviews}
       />
     );
   }
@@ -41,6 +43,7 @@ function ProductReviews({ product, user, setAverageRating }) {
           setReviews={setReviews}
           user={user}
           setAverageRating={setAverageRating}
+          setNumReviews={setNumReviews}
         />
       ))}
     </div>

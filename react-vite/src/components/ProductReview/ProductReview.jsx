@@ -13,7 +13,7 @@ import NotificationModal from "../NotificationModal";
 import * as productActions from "../../redux/product";
 import "./ProductReview.css";
 
-function ProductReview({ reviews, review, user, setAverageRating, setReviews }) {
+function ProductReview({ reviews, review, user, setAverageRating, setReviews, setNumReviews }) {
   const dispatch = useDispatch();
   const { setThirdLevelModalContent, closeThirdLevelModal } = useThirdLevelModal();
   const [reviewInput, setReviewInput] = useState(review.review);
@@ -30,7 +30,8 @@ function ProductReview({ reviews, review, user, setAverageRating, setReviews }) 
   }
 
   const setAverageRatingAfterDelete = () => {
-    const ratings = reviews.filter(r => r.id !== review.id).map(r => r.rating);
+    const selectedReviews = reviews.filter(r => r.id !== review.id);
+    const ratings = selectedReviews.map(r => r.rating);
     setAverageRating(getAverageRating(ratings));
   }
 
@@ -68,6 +69,7 @@ function ProductReview({ reviews, review, user, setAverageRating, setReviews }) 
       );
       setAverageRatingAfterDelete();
       setReviews(prevReviews => prevReviews.filter(prevReview => prevReview.id !== review.id));
+      setNumReviews(prevNumReviews => prevNumReviews - 1);
     }
   }
 
