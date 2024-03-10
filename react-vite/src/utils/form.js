@@ -190,6 +190,11 @@ export const handleProductPriceOnChange = (e, key, setPrice, setErrors) => {
     return setErrors(errors => ({ ...errors, [key]: "Must be greater than 0" }));
   }
 
+  if (+e.target.value > 10 ** 6) {
+    turnOnRedBoxShadow(e);
+    return setErrors(errors => ({ ...errors, [key]: "Must be less than or equal to $1,000,000" }));
+  }
+
   turnOnGreenBoxShadow(e);
   return setErrors(errors => ({ ...errors, [key]: "" }));
 }

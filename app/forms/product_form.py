@@ -14,6 +14,8 @@ def check_name(form, field):
 def check_price(form, field):
     if field.data <= 0:
         raise ValidationError("Price must be greater than 0")
+    if  field.data > 1000000:
+        raise ValidationError("Price must be smaller than or equal to 1,000,000")
 
 
 def check_category(form, field):

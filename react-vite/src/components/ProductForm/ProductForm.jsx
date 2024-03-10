@@ -116,6 +116,7 @@ function ProductForm({ product, products, user, bookmarkProductIds, inCartProduc
       !category.length ||
       description.length < 50 ||
       price <= 0 ||
+      price > 10 ** 6 ||
       remaining < 1 ||
       !productImage ||
       errors.productImage
