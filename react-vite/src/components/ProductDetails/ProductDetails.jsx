@@ -18,6 +18,7 @@ function ProductDetails({ user, product, showCart, inCartProductIds, bookmarkPro
   const [averageRating, setAverageRating] = useState(getAverageRating(product.reviews.map(review => review.rating)));
   const [downloadProductImageUrl, setDownloadProductImageUrl] = useState("");
   const [numReviews, setNumReviews] = useState(product?.reviews?.length || 0);
+  const [currentBookmarkProductIds, setCurrentBookmarkProductIds] = useState(bookmarkProductIds || []);
 
   useEffect(() => {
     const getDownloadImage = async () => {
@@ -72,15 +73,15 @@ function ProductDetails({ user, product, showCart, inCartProductIds, bookmarkPro
             <ProductRemaining product={product} />
             <ProductBookmark
               user={user}
-              bookmarkProductIds={bookmarkProductIds}
+              bookmarkProductIds={currentBookmarkProductIds}
               product={product}
             />
             <div className="product-btns">
               <BookmarkButton
-                bookmarkProductIds={bookmarkProductIds}
+                bookmarkProductIds={currentBookmarkProductIds}
                 product={product}
                 user={user}
-                createAndShowBookmarks={e => createAndShowBookmarks(e, product.id)}
+                createAndShowBookmarks={e => createAndShowBookmarks(e, product.id, setCurrentBookmarkProductIds)}
               />
               <AddToCartButton
                 showCart={e => showCart(e, product)}

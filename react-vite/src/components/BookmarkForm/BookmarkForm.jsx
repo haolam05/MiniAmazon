@@ -7,7 +7,7 @@ import NotificationModal from "../NotificationModal";
 import * as bookmarkActions from "../../redux/bookmark";
 import "./BookmarkForm.css";
 
-function BookmarkForm({ productId }) {
+function BookmarkForm({ productId, setCurrentBookmarkProductIds }) {
   const dispatch = useDispatch();
   const { setThirdLevelModalContent } = useThirdLevelModal();
   const [note, setNote] = useState("");
@@ -37,6 +37,9 @@ function BookmarkForm({ productId }) {
         thirdLevelModal={true}
       />
     );
+    if (setCurrentBookmarkProductIds) {
+      setCurrentBookmarkProductIds(prev => [...prev, productId]);
+    }
   }
 
   return (

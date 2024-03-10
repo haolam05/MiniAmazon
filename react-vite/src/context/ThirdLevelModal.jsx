@@ -29,9 +29,9 @@ export function ThirdLevelModalProvider({ children }) {
 
   /************************************************/
   /********** Open Product details page **********/
-  const createAndShowBookmarks = async (e, productId) => {
+  const createAndShowBookmarks = async (e, productId, setCurrentBookmarkProductIds) => {
     e.stopPropagation();
-    setThirdLevelModalContent(<BookmarkForm productId={productId} />);
+    setThirdLevelModalContent(<BookmarkForm productId={productId} setCurrentBookmarkProductIds={setCurrentBookmarkProductIds} />);
   }
 
   const showCart = async (e, product) => {
