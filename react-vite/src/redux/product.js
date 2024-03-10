@@ -24,7 +24,7 @@ const loadProducts = products => ({
   products
 });
 
-const updateProduct = product => ({
+export const updateProduct = product => ({
   type: UPDATE_PRODUCT,
   product
 });
@@ -40,7 +40,7 @@ const updateProductReview = (productId, review) => ({
   review
 });
 
-const deleteProductReview = (productId, reviewId) => ({
+export const deleteProductReview = (productId, reviewId) => ({
   type: DELETE_PRODUCT_REVIEW,
   productId,
   reviewId
@@ -99,8 +99,8 @@ export const updateProductsWhenProductIsUpdatedThunk = product => (dispatch, get
   if (currentOrder) {
     const items = currentOrder.items;
     const item = items.find(item => item.product_id === product.id);
-    if (item) {
-      dispatch(orderActions.updateOrderThunk(currentOrder.id, product.id, product.quantity));
+    if (item && product.remaining < item.quantity) {
+      dispatch(orderActions.updateOrderThunk(currentOrder.id, product.id, product.remaining));
     }
   }
 }

@@ -61,8 +61,8 @@ function ProductDetails({ user, product, showCart, inCartProductIds, bookmarkPro
               />
               <ProductReviewInfo
                 user={user}
-                product={product}
                 toggleReviewInfo={toggleReviewInfo}
+                numReviews={product.reviews.length}
                 averageRating={averageRating}
               />
             </div>

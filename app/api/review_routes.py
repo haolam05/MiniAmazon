@@ -50,7 +50,6 @@ def update_review(id):
 def delete_review(id):
     """Delete a review by id"""
     review = Review.query.get(id)
-    product = Product.query.get(review.product_id)
 
     if not review:
         return {"message": "review couldn't be found"}, 404
@@ -61,5 +60,6 @@ def delete_review(id):
     db.session.delete(review)
     db.session.commit()
 
-    # socketio.emit("product_review_delete", {"product_owner_id": current_user.id, "product": product.to_dict()})
+    product = Product.query.get(review.product_id)
+    socketio.emit("product_review_delete", {"review_owner_id": current_user.id, "product": product.to_dict()})
     return {"message": "Successfully deleted review"}, 200

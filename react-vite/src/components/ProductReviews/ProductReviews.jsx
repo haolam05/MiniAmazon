@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useThirdLevelModal } from "../../context/ThirdLevelModal";
 import ProductReview from "../ProductReview";
 import ReviewForm from "../ReviewForm";
@@ -5,17 +6,19 @@ import "./ProductReviews.css";
 
 function ProductReviews({ product, user, setAverageRating }) {
   const { setThirdLevelModalContent } = useThirdLevelModal();
+  const [reviews, setReviews] = useState(product?.reviews || []);
 
   if (!product) return;
 
-  const otherReviews = product.reviews.filter(review => review.customer_id !== user.id);
-  const myReview = product.reviews.filter(review => review.customer_id === user.id);
+  const otherReviews = reviews.filter(review => review.customer_id !== user.id);
+  const myReview = reviews.filter(review => review.customer_id === user.id);
 
   const showReviewForm = () => {
     setThirdLevelModalContent(
       <ReviewForm
         product={product}
         setAverageRating={setAverageRating}
+        setReviews={setReviews}
       />
     );
   }
@@ -33,8 +36,9 @@ function ProductReviews({ product, user, setAverageRating }) {
       ].map(review => (
         <ProductReview
           key={review.id}
-          reviews={product.reviews}
+          reviews={reviews}
           review={review}
+          setReviews={setReviews}
           user={user}
           setAverageRating={setAverageRating}
         />

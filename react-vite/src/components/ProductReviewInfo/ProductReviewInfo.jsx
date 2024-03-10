@@ -1,11 +1,11 @@
-function ProductReviewInfo({ user, product, toggleReviewInfo, averageRating }) {
+function ProductReviewInfo({ user, toggleReviewInfo, numReviews, averageRating }) {
   if (user) {
     return (
       <div className="product-review-info" onClick={toggleReviewInfo}>
         <div className="sticker cursor-pointer" title="Click to open/collapse reviews information"></div>
         <div className="review-info cursor-pointer">
           <div className="total-reviews">
-            <span>Total reviews ~ {product.reviews.length} 📝</span>
+            <span>Total reviews ~ {numReviews} 📝</span>
           </div>
           <div className="average-rating">
             <span>Average rating ~ {averageRating} </span>

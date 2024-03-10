@@ -119,7 +119,7 @@ function HomePage() {
 
       const handleProductReviewCUD = data => {
         if (data.review_owner_id !== user?.user?.id) {
-          dispatch(productActions.updateProductsWhenProductIsUpdatedThunk(data.product));
+          dispatch(productActions.updateProduct(data.product));
         }
       }
 
@@ -129,7 +129,7 @@ function HomePage() {
       socket.on("product_create", handleProductCreate);
       socket.on("product_review_create", handleProductReviewCUD);
       socket.on("product_review_update", handleProductReviewCUD);
-      // socket.on("product_review_delete", handleProductReviewCUD);
+      socket.on("product_review_delete", handleProductReviewCUD);
 
       await dispatch(sessionActions.restoreSession());
       await dispatch(productActions.loadProductsThunk());
