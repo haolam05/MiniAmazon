@@ -2,11 +2,40 @@
 
 ## https://miniamazon.onrender.com
 
+## Contact Us
+  * https://www.linkedin.com/in/hao-lam-378065196/ (Hao Lam)
+
 ## Database Schema Design
 
 ![miniamazon-database-schema]
 
 [miniamazon-database-schema]: https://miniamazon.s3.us-west-2.amazonaws.com/miniamazon-database-schema.png
+
+## Installation guide
+
+### Clone the project
+
+### Install dependencies
+  * run `pipenv install -r requirements.txt` in the root project folder
+  * run `npm install` in `react-vite` folder
+
+### Create and ensure that the .env file has the following fields
+  * SECRET_KEY
+  * DATABASE_URL
+  * SCHEMA
+  * S3_BUCKET
+  * S3_KEY
+  * S3_SECRET
+
+### Migration
+  * run `pipenv shell flask db upgrade` in the root project folder
+
+### Optional seedings
+  * run `pipenv shell flask seed reset` in the root project folder
+
+### Start up the servers
+  * run `pipenv shell flask run` in the root project folder
+  * run `npm run dev` in `react-vite` folder
 
 # Demo
 
