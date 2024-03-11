@@ -5,7 +5,6 @@ import { getFormattedPrice } from "../../utils/product";
 import CartProduct from "../CartProduct";
 import NotificationModal from "../NotificationModal";
 import ConfirmDeleteModal from "../ConfirmDeleteModal";
-import PastOrders from "../PastOrders";
 import * as orderActions from "../../redux/order";
 import "./CartProducts.css";
 
