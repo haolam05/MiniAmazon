@@ -44,6 +44,42 @@
 ![alt text](<demo/create product.gif>)
 
 ## Technologies
+* PPFR Stack
+  * Postgres (Sqlite in development)
+  * Python
+  * Flask
+  * React (Redux for state management)
+* SQLAlchemy
+  * ORM for easier CRUD operations on the database
+* AWS
+  * Cloud hosting service for image(s) uploading & downloading
+* Boto3 & Botocore
+  * Used to create, configure, and manage AWS services
+* Dyanmic seedings
+  * A variety of seeds are dynamically created for testing and demo purposes without hard-coding
+* Flask-socketio
+  * Allows for real-time notifications, messaging(chabot), and authorization changes (e.g. simultaneous checkout among different users)
+* Redux State Hydration
+  * Avoid unecessary fetches from the database, speed up application, and increase users' experience while ensuring data integrity across pages
+* CSRF Protection
+  * By exchanging tokens for non-GET requests
+* Prevent SQL injections
+  * By sanitize queries input
+* Prevent Rainbow Table attacks
+  * By salt and hash passwords before storing in the database
+  * Prevent XSS attacks
+  * Force all inputs to be text
+  * Also applied csrf practice mentioned above for extra layer of protection
+* CORS
+  * Enabled during development
+* Eslint
+  * Used for consistent styling
+* DBDiagram
+  * Used for design and sketch database schema, assign associations amongst tables
+* Data Racing
+  * Avoid false positive due to fast button clicks
+  * Avoid multiple CUD records being sent to the database by ensuring CUD signals are only processed once
+
 
 ## Features
   * See github wiki page
