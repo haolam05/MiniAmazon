@@ -5,10 +5,11 @@ import { getFormattedPrice } from "../../utils/product";
 import CartProduct from "../CartProduct";
 import NotificationModal from "../NotificationModal";
 import ConfirmDeleteModal from "../ConfirmDeleteModal";
+import PastOrders from "../PastOrders";
 import * as orderActions from "../../redux/order";
 import "./CartProducts.css";
 
-function CartProducts({ products, itemsInCart, user, inCartProductIds, bookmarkProductIds }) {
+function CartProducts({ products, pastOrders, itemsInCart, user, inCartProductIds, bookmarkProductIds }) {
   const { setModalContent, closeModal } = useModal();
   const { setSecondaryModalContent } = useSecondaryModal();
   const dispatch = useDispatch();
@@ -36,7 +37,15 @@ function CartProducts({ products, itemsInCart, user, inCartProductIds, bookmarkP
         secondaryModal={true}
       />
     );
-    closeModal();
+    setModalContent(
+      <PastOrders
+        orders={[...pastOrders, data].reverse()}
+        products={products}
+        user={user}
+        inCartProductIds={[]}
+        bookmarkProductIds={bookmarkProductIds}
+      />
+    );
   }
 
   const showCheckoutConfirmModal = () => {
