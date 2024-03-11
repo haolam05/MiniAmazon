@@ -11,11 +11,37 @@
 # Demo
 
 ## Sign up
+![alt text](<demo/signup.gif>)
 
 ## Login
+![alt text](<demo/login.gif>)
 
-## Logout
+## User profile
+![alt text](<demo/user profile.gif>)
 
+## Magnifying and download image
+![alt text](<demo/magnifying-and-image-download.gif>)
+
+## Checkout simultaneously with different users
+![alt text](<demo/checkout simultaneously with different users.gif>)
+
+## Checkout while product owners update/delete product
+![alt text](<demo/checkout while product owners update or delete product.gif>)
+
+## Chatbot
+![alt text](<demo/chatbot.gif>)
+
+## Search
+![alt text](<demo/search.gif>)
+
+## Reviews
+![alt text](<demo/reviews.gif>)
+
+## Bookmarks
+![alt text](<demo/bookmarks.gif>)
+
+## Create a product
+![alt text](<demo/create product.gif>)
 
 ## Technologies
 
