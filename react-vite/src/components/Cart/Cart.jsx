@@ -37,7 +37,6 @@ function Cart({ products, user, inCartProductIds, bookmarkProductIds }) {
       </div>
       <CartProducts
         products={products}
-        pastOrders={pastOrders}
         itemsInCart={itemsInCart}
         user={user}
         inCartProductIds={inCartProductIds}

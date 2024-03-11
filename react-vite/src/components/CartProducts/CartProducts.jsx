@@ -9,7 +9,7 @@ import PastOrders from "../PastOrders";
 import * as orderActions from "../../redux/order";
 import "./CartProducts.css";
 
-function CartProducts({ products, pastOrders, itemsInCart, user, inCartProductIds, bookmarkProductIds }) {
+function CartProducts({ products, itemsInCart, user, inCartProductIds, bookmarkProductIds }) {
   const { setModalContent, closeModal } = useModal();
   const { setSecondaryModalContent } = useSecondaryModal();
   const dispatch = useDispatch();
@@ -37,15 +37,7 @@ function CartProducts({ products, pastOrders, itemsInCart, user, inCartProductId
         secondaryModal={true}
       />
     );
-    setModalContent(
-      <PastOrders
-        orders={[...pastOrders, data].reverse()}
-        products={products}
-        user={user}
-        inCartProductIds={[]}
-        bookmarkProductIds={bookmarkProductIds}
-      />
-    );
+    closeModal();
   }
 
   const showCheckoutConfirmModal = () => {

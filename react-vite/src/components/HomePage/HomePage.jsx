@@ -92,8 +92,8 @@ function HomePage() {
               />
             );
           }
+          dispatch(productActions.deleteProduct(data.product_id));
         }
-        dispatch(productActions.deleteProduct(data.product_id));
       }
 
       const handleProductUpdate = data => {
