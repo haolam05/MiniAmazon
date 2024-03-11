@@ -72,8 +72,6 @@ def update_order(id):
             order = order_item.order
             if len(order.order_items) > 1:
                 db.session.delete(order_item)
-            # else:   # last item => delete order
-            #     db.session.delete(order)
             db.session.commit()
             return {"message": "Successfully deleted item in the order"}, 200
         elif not order_item:
@@ -128,9 +126,10 @@ def checkout_order(id):
         product = order_item.product
 
         if product.is_deleted:
-            return {"message": f"\"{product.name}\" is already deleted. Please remove it from your cart!"}, 500
+            db.session.delete(order_item)
+            # return {"message": f"\"{product.name}\" is already deleted. Please remove it from your cart!"}, 500
 
-        if product.remaining - order_item.quantity >= 0:
+        elif product.remaining - order_item.quantity >= 0:
             emit_data.append({"id": product.id, "name": product.name, "remaining": product.remaining - order_item.quantity})
             product.remaining -= order_item.quantity
 

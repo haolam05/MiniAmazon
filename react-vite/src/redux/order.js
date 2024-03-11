@@ -158,9 +158,6 @@ function orderReducer(state = initialState, action) {
     case DELETE_ORDER_ITEM: {
       const newState = { ...state };
       newState.orders[action.orderId].items = newState.orders[action.orderId].items.filter(item => item.product_id !== action.itemId);
-      // if (newState.orders[action.orderId].items.length === 0) {
-      //   delete newState.orders[action.orderId];
-      // }
       return newState;
     }
     case RESET:
