@@ -1,6 +1,7 @@
 # MiniAmazon
 
-## https://miniamazon.onrender.com
+## Hosted On
+[![Render](https://img.shields.io/badge/Render-%46E3B7.svg?logo=render&logoColor=white)](https://miniamazon.onrender.com)
 
 ## Contact Me
 [![LinkedIn](https://img.shields.io/badge/linkedin-%230077B5.svg?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/hao-lam-378065196/)
