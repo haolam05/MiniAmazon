@@ -1,5 +1,22 @@
 # MiniAmazon
 
+  - Inspired by the remarkable impact and success of Amazon in the online retail industry, MiniAmazon was built to replicate the essence of Amazon's success while catering to a more specific market or specific user needs. Miniamazon aims to provide a scaled-down yet effective platform for online shopping.
+
+  - On the other hand, as Amazon grows larger and larger, its website becomes extrememly complex and sometimes is hard to navigate. Instead of creating an all-in-one app, MiniAmazon focus more on user experience using a single-page application with a few core features:
+    - Shopping (Orders & Checkout)
+    - Bookmark
+    - Reviews
+    - Searchbox
+    - Chatbot (customer service)
+    - Product Magnifying & Download (for details view)
+    - Simultaneous checkouts (Websocket)
+
+  - Customers can quickly find products by name via searchbox, or sort the products by categories. The customer can easily add or bookmark a product from any page, simple user interface to update each product quantity and checkout. Besides that, each product can be magnified for details view.
+
+  - More importantly, product's quantity will be update in real-time when someone checks out, which ensures data integrity.
+
+  - Miniamazon's future plan includes implementing delivery services and adding more product categories, aiming to enhance convenience and broaden the selection available to customers.
+
 ## Hosted On
 [![Render](https://img.shields.io/badge/Render-%46E3B7.svg?logo=render&logoColor=white)](https://miniamazon.onrender.com)
 
