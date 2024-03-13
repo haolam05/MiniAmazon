@@ -111,3 +111,9 @@ export const isTyping = () => {
   const typing = document.querySelector(".typing");
   return typing && !typing.classList.contains("hidden");
 }
+
+export const initializeConversation = async (userId, setMessages) => {
+  const res = await csrfFetch(`/api/messages/initialize/${userId}`);
+  const data = await res.json();
+  setMessages(data.startingMessages);
+}

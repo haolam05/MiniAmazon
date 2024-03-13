@@ -3,6 +3,7 @@ import {
   closeChat,
   forceScrollToBottomOfChat,
   hideTyping,
+  initializeConversation,
   isTyping,
   scrollToBottomOfChat,
   sendMessage,
@@ -11,13 +12,6 @@ import {
 } from "../../utils/chat";
 import ChatMessages from "../ChatMessages";
 import "./CustomerServiceChatWindow.css";
-
-
-
-import { csrfFetch } from "../../redux/csrf";
-
-
-
 
 function CustomerServiceChatWindow({ user, socket }) {
   const endOfChat = useRef();
@@ -50,12 +44,7 @@ function CustomerServiceChatWindow({ user, socket }) {
   }, [socket, messages, user]);
 
   useEffect(() => {
-    const initializeConversation = async () => {
-      const res = await csrfFetch(`/api/messages/initialize/${user.id}`);
-      const data = await res.json();
-      setMessages(data.startingMessages);
-    }
-    initializeConversation();
+    initializeConversation(user.id, setMessages);
   }, [user.id]);
 
   const sendUserMessage = async () => {
