@@ -68,7 +68,7 @@ def seed_customers():
             "username": "nickyli",
             "password": "password8",
             "email": "nickyli@user.io",
-            "profile_image_url": location + "avatar8.jpg"
+            "profile_image_url": location + "avatar8.png"
         }
     ]
 
