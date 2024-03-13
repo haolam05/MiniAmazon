@@ -75,13 +75,35 @@ map = {
     "62": profile_answer_2
 }
 allowed_keys = ["1", "2", "3", "4", "5", "6"]
+chatbot_id = 0
+
+
+welcome_message = f"Hi there👋\nThanks for reaching out. Please enter the corresponding number of the  topics listed below:"
+
+@message_routes.route('/initialize/<int:id>')
+def initialize_conversation(id):
+    users[id] = {**map}
+
+    messages = [
+        {
+            "id": 0,
+            "sender_id": chatbot_id,
+            "text": welcome_message
+        },
+        {
+            "id": 1,
+            "sender_id": chatbot_id,
+            "text": topics_list
+        }
+    ]
+
+    return { "startingMessages": messages }, 200
 
 
 @message_routes.route('/', methods=['POST'])
 def handle_new_user_message():
     """New user message"""
     data = request.json
-    chatbot_id = 0
     message = {
         "id": data["id"] + 1,
         "sender_id": chatbot_id

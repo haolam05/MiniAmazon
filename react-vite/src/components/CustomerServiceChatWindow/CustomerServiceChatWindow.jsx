@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from "react";
 import {
   closeChat,
   forceScrollToBottomOfChat,
-  getStartingMessages,
   hideTyping,
   isTyping,
   scrollToBottomOfChat,
@@ -13,9 +12,16 @@ import {
 import ChatMessages from "../ChatMessages";
 import "./CustomerServiceChatWindow.css";
 
+
+
+import { csrfFetch } from "../../redux/csrf";
+
+
+
+
 function CustomerServiceChatWindow({ user, socket }) {
   const endOfChat = useRef();
-  const [messages, setMessages] = useState(getStartingMessages());
+  const [messages, setMessages] = useState([]);
   const [textInput, setTextInput] = useState("");
 
   useEffect(() => {
@@ -42,6 +48,15 @@ function CustomerServiceChatWindow({ user, socket }) {
       socket.off('new_robot_message', handleNewMessage);
     }
   }, [socket, messages, user]);
+
+  useEffect(() => {
+    const initializeConversation = async () => {
+      const res = await csrfFetch(`/api/messages/initialize/${user.id}`);
+      const data = await res.json();
+      setMessages(data.startingMessages);
+    }
+    initializeConversation();
+  }, [user.id]);
 
   const sendUserMessage = async () => {
     if (textInput.length && !isTyping()) {

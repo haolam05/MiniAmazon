@@ -111,10 +111,3 @@ export const isTyping = () => {
   const typing = document.querySelector(".typing");
   return typing && !typing.classList.contains("hidden");
 }
-
-export const getStartingMessages = () => {
-  return [
-    { id: 0, sender_id: 0, text: `Hi there👋\nThanks for reaching out. Please enter the corresponding number of the  topics listed below:` },
-    { id: 1, sender_id: 0, text: `1️⃣ Product\n2️⃣ Bookmark\n3️⃣ Review\n4️⃣ Order\n5️⃣ Search\n6️⃣ Profile` }
-  ];
-}
