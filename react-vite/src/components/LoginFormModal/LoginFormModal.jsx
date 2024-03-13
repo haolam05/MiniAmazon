@@ -16,18 +16,25 @@ function LoginFormModal() {
   const [submitting, setSubmitting] = useState(false);
   const { setModalContent } = useModal();
 
-  const handleSubmit = async (e, loginAsDemoUser = false) => {
+  const handleSubmit = async (e, loginAsDemoUser1 = false, loginAsDemoUser2 = false) => {
     e.preventDefault();
     disabledSubmitButton();
 
     let data;
 
     setSubmitting(true);
-    if (loginAsDemoUser) {
+    if (loginAsDemoUser1) {
       data = await dispatch(
         sessionActions.thunkLogin({
           email: "haolam@user.io",
           password: "password",
+        })
+      );
+    } else if (loginAsDemoUser2) {
+      data = await dispatch(
+        sessionActions.thunkLogin({
+          email: "nickyli@user.io",
+          password: "password8",
         })
       );
     } else {
@@ -96,7 +103,8 @@ function LoginFormModal() {
           >
             Log In
           </button>
-          <span type="submit" onClick={e => handleSubmit(e, true)}>Login as demo user</span>
+          <span type="submit" onClick={e => handleSubmit(e, true, false)}>Login as demo user 1</span>
+          <span type="submit" onClick={e => handleSubmit(e, false, true)}>Login as demo user 2</span>
         </div>
       </form>
     </>
