@@ -239,7 +239,7 @@ def callback():
         customer = Customer(
             first_name=first_name,
             last_name=last_name,
-            username=f"{username}-{email}",
+            username={email},
             email=email,
             profile_image_url=picture,
             password='OAUTH'
