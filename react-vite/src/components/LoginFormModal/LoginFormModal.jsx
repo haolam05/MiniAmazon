@@ -107,6 +107,7 @@ function LoginFormModal() {
           <span type="submit" onClick={e => handleSubmit(e, false, true)}>Login as demo user 2</span>
         </div>
       </form>
+      <a style={{ color: 'red' }} href={`${window.origin}/api/auth/oauth_login`}>OAUTH</a>
     </>
   );
 }

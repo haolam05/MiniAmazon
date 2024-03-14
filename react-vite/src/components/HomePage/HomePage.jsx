@@ -126,13 +126,13 @@ function HomePage() {
         }
       }
 
-      socket.on("checkout", handleProductCheckout);
-      socket.on("product_delete", handleProductDelete);
-      socket.on("product_update", handleProductUpdate);
-      socket.on("product_create", handleProductCreate);
-      socket.on("product_review_create", handleProductReviewCUD);
-      socket.on("product_review_update", handleProductReviewCUD);
-      socket.on("product_review_delete", handleProductReviewCUD);
+      // socket.on("checkout", handleProductCheckout);
+      // socket.on("product_delete", handleProductDelete);
+      // socket.on("product_update", handleProductUpdate);
+      // socket.on("product_create", handleProductCreate);
+      // socket.on("product_review_create", handleProductReviewCUD);
+      // socket.on("product_review_update", handleProductReviewCUD);
+      // socket.on("product_review_delete", handleProductReviewCUD);
 
       await dispatch(sessionActions.restoreSession());
       await dispatch(productActions.loadProductsThunk());
