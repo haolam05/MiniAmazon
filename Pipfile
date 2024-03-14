@@ -55,7 +55,6 @@ requests = "==2.31.0"
 rsa = "==4.9"
 
 [dev-packages]
-psycopg2 = "==2.9.9"
 
 [requires]
 python_version = "3.9"
