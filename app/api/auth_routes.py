@@ -204,7 +204,7 @@ secrets.close()
 
 @auth_routes.route("/oauth_login")
 def oauth_login():
-    authorization_url, state = flow.authorization_url()
+    authorization_url, state = flow.authorization_url(prompt="select_account consent")
     session["referrer"] = request.headers.get('Referer')
     session["state"] = state
     return redirect(authorization_url)
@@ -224,7 +224,8 @@ def callback():
     id_info = id_token.verify_oauth2_token(
         id_token=credentials._id_token,
         request=token_request,
-        audience=CLIENT_ID
+        audience=CLIENT_ID,
+        clock_skew_in_seconds=5
     )
 
     first_name = id_info.get("given_name")
@@ -238,7 +239,7 @@ def callback():
         customer = Customer(
             first_name=first_name,
             last_name=last_name,
-            username=username,
+            username=f"{username}-{email}",
             email=email,
             profile_image_url=picture,
             password='OAUTH'
