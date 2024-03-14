@@ -15,6 +15,7 @@ import {
 } from "../../utils/form";
 import NotificationModal from "../NotificationModal";
 import Loading from "../Loading";
+import OAUTH from "../OAUTH";
 import * as sessionActions from "../../redux/session";
 
 function SignupFormModal() {
@@ -158,6 +159,7 @@ function SignupFormModal() {
           Sign Up
         </button>
       </form>
+      <OAUTH text="Sign up" />
     </>
   );
 }

@@ -1,7 +1,6 @@
 #login-form .login-form-footer {
   display: flex;
   align-items: center;
-  ;
   gap: 20px;
 }
 
@@ -14,37 +13,4 @@
 #login-form .login-form-footer span:hover {
   cursor: pointer;
   text-decoration: underline;
-}
-
-#login-form {
-  border-bottom: 1px solid var(--black);
-  padding-bottom: 30px;
-  margin-bottom: 0;
-}
-
-a.oauth {
-  margin-top: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid var(--gray);
-  padding: 10px 150px;
-  border-radius: 10px;
-  gap: 20px;
-}
-
-a.oauth:hover {
-  background-color: rgb(185, 222, 247);
-}
-
-a.oauth img {
-  width: 50px;
-}
-
-a.oauth {
-  text-decoration: none;
-}
-
-a.oauth span {
-  color: var(--option-background);
 }

@@ -1,0 +1,26 @@
+a.oauth {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--gray);
+  padding: 7px;
+  border-radius: 10px;
+  width: 96%;
+  /* height: 41px; */
+}
+
+a.oauth:hover {
+  background-color: var(--light-blue);
+}
+
+a.oauth img {
+  width: 50px;
+}
+
+a.oauth {
+  text-decoration: none;
+}
+
+a.oauth span {
+  color: var(--option-background);
+}

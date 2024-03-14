@@ -12,6 +12,7 @@
   --pink: pink;
   --wheat: wheat;
   --orange: orange;
+  --light-blue: rgb(185, 222, 247);
   --light-orange: rgb(221, 147, 11);
   --light-yellow: rgb(245, 249, 3);
   --success-color: rgb(10, 133, 10);
@@ -248,4 +249,9 @@ form label {
 
 #download-link:hover {
   text-decoration: underline;
+}
+
+.line-break {
+  border-top: 1px dashed var(--gray);
+  width: 100%;
 }

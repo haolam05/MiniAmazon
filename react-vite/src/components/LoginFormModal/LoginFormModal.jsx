@@ -5,6 +5,7 @@ import { disabledSubmitButton, enabledSubmitButton } from "../../utils/dom";
 import { emailIsValid, handleEmailOnChange, handlePasswordOnChange } from "../../utils/form";
 import NotificationModal from "../NotificationModal";
 import Loading from "../Loading";
+import OAUTH from "../OAUTH";
 import * as sessionActions from "../../redux/session";
 import "./LoginFormModal.css"
 
@@ -107,10 +108,7 @@ function LoginFormModal() {
           <span type="submit" onClick={e => handleSubmit(e, false, true)}>Login as demo user 2</span>
         </div>
       </form>
-      <a className="oauth" href={`${window.origin}/api/auth/oauth_login`}>
-        <img src="/images/google_logo.png" alt="google-logo" />
-        <span>Log in with Google</span>
-      </a>
+      <OAUTH text="Log in" />
     </>
   );
 }

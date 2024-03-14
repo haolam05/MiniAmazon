@@ -231,7 +231,7 @@ def callback():
     first_name = id_info.get("given_name")
     last_name = id_info.get("family_name")
     email = id_info.get("email")
-    username = id_info.get("name")
+    username = email.split("@")[0]
     picture = id_info.get("picture")
     customer = Customer.query.filter(Customer.email == email).first()
 
@@ -239,7 +239,7 @@ def callback():
         customer = Customer(
             first_name=first_name,
             last_name=last_name,
-            username={email},
+            username=username,
             email=email,
             profile_image_url=picture,
             password='OAUTH'
