@@ -64,11 +64,15 @@ function UserProfile({ user }) {
           </div>
         </div>
       </div>
-      <div className="profile-btns">
-        <button className="btn-update" onClick={openUpdateUserForm}>Update</button>
-        <button className="btn-delete" onClick={openUpdatePasswordForm}>Change Password</button>
-        <button className="btn-delete" onClick={openDeleteUserForm}>Delete</button>
-      </div>
+      {!user.is_oauth ? (
+        <div className="profile-btns">
+          <button className="btn-update" onClick={openUpdateUserForm}>Update</button>
+          <button className="btn-delete" onClick={openUpdatePasswordForm}>Change Password</button>
+          <button className="btn-delete" onClick={openDeleteUserForm}>Delete</button>
+        </div>
+      ) : (
+        <p>Updates are not allowed for Google accounts!</p>
+      )}
     </div>
   );
 }

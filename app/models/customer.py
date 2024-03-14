@@ -92,5 +92,6 @@ class Customer(db.Model, UserMixin):
             "username": self.username,
             "email": self.email,
             "profile_image_url": self.profile_image_url,
-            "is_deleted": self.is_deleted
+            "is_deleted": self.is_deleted,
+            "is_oauth": self.hashed_password == "OAUTH"
         }
