@@ -51,7 +51,8 @@
 #user-profile-container .profile-btns {
   display: flex;
   gap: 20px;
-  justify-self: center;
+  justify-content: center;
+  width: 100%;
 }
 
 #user-profile-container .profile-btns button {

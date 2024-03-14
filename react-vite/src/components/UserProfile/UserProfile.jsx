@@ -1,16 +1,11 @@
-import { useDispatch } from "react-redux";
 import { getAvatarUrl } from "../../utils/navbar";
 import { useModal } from "../../context/Modal";
-import ConfirmDeleteFormModal from "../ConfirmDeleteModal";
 import UpdatePasswordFormModal from "../UpdatePasswordFormModal";
 import UpdateUserFormModal from "../UpdateUserFormModal";
-import NotificationModal from "../NotificationModal";
-import * as sessionActions from "../../redux/session";
 import "./UserProfile.css";
 
 function UserProfile({ user }) {
-  const dispatch = useDispatch();
-  const { setModalContent, closeModal } = useModal();
+  const { setModalContent } = useModal();
 
   if (!user) return;
 
@@ -22,25 +17,25 @@ function UserProfile({ user }) {
     setModalContent(<UpdatePasswordFormModal user={user} />);
   }
 
-  const openDeleteUserForm = () => {
-    setModalContent(
-      <ConfirmDeleteFormModal
-        user={user}
-        text="Are you sure you want to cancel your account?"
-        deleteCb={deleteUser}
-        cancelDeleteCb={closeModal}
-      />);
-  }
+  // const openDeleteUserForm = () => {
+  //   setModalContent(
+  //     <ConfirmDeleteFormModal
+  //       user={user}
+  //       text="Are you sure you want to cancel your account?"
+  //       deleteCb={deleteUser}
+  //       cancelDeleteCb={closeModal}
+  //     />);
+  // }
 
-  const deleteUser = async () => {
-    dispatch(sessionActions.deleteUserThunk());
-    setModalContent(
-      <NotificationModal
-        message="Account is deleted successfully"
-        status="alert-success"
-      />
-    );
-  }
+  // const deleteUser = async () => {
+  //   dispatch(sessionActions.deleteUserThunk());
+  //   setModalContent(
+  //     <NotificationModal
+  //       message="Account is deleted successfully"
+  //       status="alert-success"
+  //     />
+  //   );
+  // }
 
   return (
     <div id="user-profile-container">
@@ -68,7 +63,7 @@ function UserProfile({ user }) {
         <div className="profile-btns">
           <button className="btn-update" onClick={openUpdateUserForm}>Update</button>
           <button className="btn-delete" onClick={openUpdatePasswordForm}>Change Password</button>
-          <button className="btn-delete" onClick={openDeleteUserForm}>Delete</button>
+          {/* <button className="btn-delete" onClick={openDeleteUserForm}>Delete</button> */}
         </div>
       ) : (
         <p>Updates are not allowed for Google accounts!</p>

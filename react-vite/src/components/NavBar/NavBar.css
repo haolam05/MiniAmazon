@@ -9,6 +9,9 @@
   align-items: center;
   cursor: auto;
   z-index: 1;
+  scrollbar-color: var(--cart-scroll-color) transparent;
+  overflow-x: auto;
+  overflow-y: hidden;
 }
 
 #navbar #logo {
