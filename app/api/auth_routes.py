@@ -17,6 +17,11 @@ from .aws_helpers import upload_file_to_s3, get_unique_filename
 auth_routes = Blueprint("auth", __name__)
 
 
+def clear_oauth_session():
+    session['state'] = None
+    session['referrer'] = None
+
+
 @auth_routes.route("/")
 def authenticate():
     """Get Current User. Returns null if user is not signed in, a dictionary of user info if signed in."""
@@ -47,7 +52,7 @@ def login():
 @login_required
 def logout():
     """Logs a customer out"""
-    session["state"] = None
+    clear_oauth_session()
     logout_user()
     return {"message": "Customer logged out"}, 200
 
@@ -132,7 +137,7 @@ def update_user_password():
         current_user.password = form.data["new_password"]
 
         db.session.commit()
-        session["state"] = None
+        clear_oauth_session()
         logout_user()
 
         return { "message": "Successfully updated your password. Please log in again." }, 200
@@ -146,7 +151,8 @@ def delete_user():
     """Delete current user."""
     current_user.is_deleted = True
     db.session.commit()
-    session["state"] = None
+
+    clear_oauth_session()
     logout_user()
     return { "message": "Successfully deleted account" }, 200
 

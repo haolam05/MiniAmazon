@@ -73,7 +73,7 @@ function LoginFormModal() {
   return (
     <>
       <h2 className="subheading">Log In</h2>
-      <form onSubmit={handleSubmit}>
+      <form id="login-form" onSubmit={handleSubmit}>
         <label>Email</label>
         <input
           type="text"
@@ -107,7 +107,10 @@ function LoginFormModal() {
           <span type="submit" onClick={e => handleSubmit(e, false, true)}>Login as demo user 2</span>
         </div>
       </form>
-      <a style={{ color: 'red' }} href={`${window.origin}/api/auth/oauth_login`}>OAUTH</a>
+      <a className="oauth" href={`${window.origin}/api/auth/oauth_login`}>
+        <img src="/images/google_logo.png" alt="google-logo" />
+        <span>Log in with Google</span>
+      </a>
     </>
   );
 }
