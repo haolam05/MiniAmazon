@@ -2,7 +2,7 @@
 
   - Inspired by the remarkable impact and success of Amazon in the online retail industry, MiniAmazon was built to replicate the essence of Amazon's success while catering to a more specific market or specific user needs. Miniamazon aims to provide a scaled-down yet effective platform for online shopping.
 
-  - On the other hand, as Amazon grows larger and larger, its website becomes extrememly complex and sometimes is hard to navigate. Instead of creating an all-in-one app, MiniAmazon focus more on user experience using a single-page application with a few core features:
+  - On the other hand, as Amazon grows larger and larger, its website becomes extrememely complex and sometimes is hard to navigate. Instead of creating an all-in-one app, MiniAmazon focus more on user experience using a single-page application with a few core features:
     - Shopping (Orders & Checkout)
     - Bookmark
     - Reviews
