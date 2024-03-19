@@ -7,6 +7,7 @@
   background-color: var(--product-background);
   position: relative;
   cursor: pointer;
+  animation: product-slide-in 1s ease-in-out;
 }
 
 .product div {
@@ -102,4 +103,16 @@
 
 .product .product-btns button:hover {
   text-decoration: underline;
+}
+
+@keyframes product-slide-in {
+  0% {
+    transform: translateX(-100vw);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateX(0vw);
+    opacity: 1;
+  }
 }
