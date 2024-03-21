@@ -349,6 +349,15 @@ def seed_products():
             "description": "Sandglass Measure 10\" x 4\" x 4\" Sand Timing: 60 Minutes (deviation within 5 min) High Quality Wooden Frame and Fine Flow Sand Great Birthday Gift, Wedding Gift & Christams Gift Ideal for Study, Meeting, Cooking, Exercising and Playing Games",
             "remaining": 68,
             "product_image": location + "hourglass.jpg"
+        },
+        {
+            "seller_id": username_to_ids["haolam"],
+            "name": "8-bit CPU on breadboard",
+            "price": 999.99,
+            "category": categories[1],
+            "description": "Constructed a CPU from scratch on a breadboard, drawing inspiration from the Ben Eater YouTube Channel.",
+            "remaining": 555,
+            "product_image": location + "8-bit-cpu.jpg"
         }
     ]
 
