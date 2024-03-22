@@ -240,6 +240,14 @@ form label {
   right: 30px;
 }
 
+#signup-form #preview-image {
+  position: absolute;
+  width: 35px;
+  height: 35px;
+  bottom: 165px;
+  right: 30px;
+}
+
 #download-link {
   color: var(--green);
   cursor: pointer;

@@ -42,7 +42,7 @@ function SignupFormModal() {
     }
 
     setSubmitting(true);
-    movePreviewImageUp();
+    movePreviewImageUp(202);
     const data = await dispatch(
       sessionActions.thunkSignup({
         first_name: firstName,
@@ -57,12 +57,12 @@ function SignupFormModal() {
     if (data?.errors) {
       enabledSubmitButton();
       setSubmitting(false);
-      movePreviewImageDown();
+      movePreviewImageDown(165);
       return setErrors(data.errors);
     }
     setModalContent(<NotificationModal message="You have successfully signed up!" status="alert-success" />);
     enabledSubmitButton();
-    movePreviewImageDown();
+    movePreviewImageDown(165);
     setSubmitting(false);
   };
 
@@ -81,7 +81,7 @@ function SignupFormModal() {
   return (
     <>
       <h2 className="subheading">Sign Up</h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} id="signup-form">
         <label>First name</label>
         <input
           type="text"
