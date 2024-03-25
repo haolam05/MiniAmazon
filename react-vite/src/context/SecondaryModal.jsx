@@ -84,7 +84,10 @@ export function SecondaryModal() {
   return ReactDOM.createPortal(
     <div id="secondary-modal">
       <div id="secondary-modal-background" onClick={closeSecondaryModal} />
-      <div id="secondary-modal-content" className="modal">{modalContent}</div>
+      <div id="secondary-modal-content" className="modal">
+        <i title="Close" className="fa-solid fa-circle-xmark close-welcome-modal" onClick={closeSecondaryModal}></i>
+        {modalContent}
+      </div>
     </div>,
     modalRef.current
   );

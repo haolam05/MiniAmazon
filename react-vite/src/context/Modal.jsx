@@ -96,7 +96,10 @@ export function Modal() {
   return ReactDOM.createPortal(
     <div id="modal">
       <div id="modal-background" onClick={closeModal} />
-      <div id="modal-content" className="modal">{modalContent}</div>
+      <div id="modal-content" className="modal">
+        <i title="Close" className="fa-solid fa-circle-xmark close-welcome-modal" onClick={closeModal}></i>
+        {modalContent}
+      </div>
     </div>,
     modalRef.current
   );

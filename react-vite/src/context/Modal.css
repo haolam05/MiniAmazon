@@ -46,6 +46,7 @@
   min-width: 500px;
   width: min-content;
   max-height: 800px;
+  position: relative;
 }
 
 #modal-content h2 {
@@ -53,4 +54,14 @@
   scrollbar-color: var(--dark-purple) transparent;
   overflow-x: hidden;
   overflow-y: auto;
+}
+
+#modal-content .close-welcome-modal {
+  color: var(--red);
+  z-index: 1;
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  cursor: pointer;
+  font-size: x-large;
 }
