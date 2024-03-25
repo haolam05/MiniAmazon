@@ -17,6 +17,7 @@
 #navbar #logo {
   height: 40px;
   margin-left: 20px;
+  cursor: auto;
 }
 
 #navbar .searchbox {
@@ -57,6 +58,10 @@
 
 #navbar div:hover {
   border: 1px solid var(--white);
+}
+
+#navbar div#logo:hover {
+  border: 1px solid var(--navbar-background);
 }
 
 #navbar #searchbox:hover {
